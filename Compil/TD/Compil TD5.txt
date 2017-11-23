@@ -1,0 +1,266 @@
+code intermédiaire -> code 3 adresses
+x <- y op z
+au un opérateur et au plus 3 opérandes
+chaque instruction à un numéro
+pas de limite mémoire
+chaque opérandes renvoie à la table des symboles
+transformation x = a + 2 en x = a + temp avec temp dans la table des symboles valant 2
+goto 42 => goto temp2
+
+Table des symboles :
+
+Les adresses sont introduite dans la table des symboles :
+	-entrée : à la 1ère déclaration ou définition
+	-sortie : à la disparition ex: 	{
+										int i; => entrée
+									} => sortie
+	-chaque symbole possède des infos additionnelles : type/valeur(constantes)/etc...
+	-à tout moment la table des symboles contient la liste des variables utilisables ("carte de la mémoire" mais PAS la mémoire)
+
+Fonctions utiles :
+-struct symbol* newTemp(.) // créer un nouveau temporaire
+-struct symbol* lookup(.) // va chercher un symbole dans la table des symboles (renvoie null si pas trouvé)
+-struct symbol* add(.) // ajoute un symbole à la table des symboles
+
+expr.y:
+
+%{
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include "symbol.h"
+	
+	void yyerror(char*);
+	int yylex();
+	
+	struct symbol* tds = NULL;
+%}
+
+%union
+{
+	char* string;
+	int value;
+	struct
+	{
+		struct symbol* result;
+		struct quad* code;
+	} codegen;
+}
+
+%token <string> IDENTIFIER
+%token <value> NUMBER
+%token <codegen> expression
+
+%left '+'
+%left '*'
+
+%%
+
+axiom:
+	expression '\n'
+	{ printf("Match !\n"); return 0; }
+
+espression:
+	  expression '+' expression
+	  {
+			printf("expression -> expression + expression\n");
+			$$.result = symbol_newTemp(&tds);
+			$$.code = $1.code;
+			quad_add(&$$.code, $3.code);
+			quad_add(&$$.code, quad_gen('+', $1.result, $3.result, $$.result);
+	  }
+	|  expression '*' expression
+	  {
+			printf("expression -> expression * expression\n");
+			$$.result = symbol_newTemp(&tds);
+			$$.code = $1.code;
+			quad_add(&$$.code, $3.code);
+			quad_add(&$$.code, quad_gen('*', $1.result, $3.result, $$.result);
+	  }
+	| '(' expression ')'
+	  {
+		printf("expression -> ( expression )");
+		$$.result = $2.result;
+		$$.code = $2.code;
+	  }
+	| IDENTIFIER
+	  {
+		printf("expression -> IDENTIFIER(%s)\n", $1);
+		$$.code = NULL;
+		$$.result = symbol_add(&tds, $1);
+		symbol_add(&tds, $1);
+	  }
+	| NUMBER
+	  {
+		printf("expression -> NUMBER(%d)\n", $1);
+		struct symbol* new = symbol_newtemp(&tds);
+		new->isConstant = true;
+		new->value = $1;
+		$$.code = NULL;
+		$$.result = new;
+	  }
+%%
+
+int main()
+{
+	yyparse();
+	symbol_print(tds);
+	return 0;
+}
+
+
+expr.l:
+
+{identifier} { yylval.string = strdup(yytext); return IDENTIFIER; }
+{number} 	 { yylval.value = atoi(yytext); return NUMBER; }
+
+symbol.h:
+#ifndef SYMBOL_H
+#define SYMBOL_H
+#include <stdbool.h>
+
+#define SYMBOL_MAX_STRING 32
+
+struct symbol{
+	char* identifier;
+	bool isConstant;
+	int value;
+	struct symbol* next;
+};
+
+struct symbol* symbol_alloc();
+struct symbol* symbol_newTemp(struct symbol**);
+struct symbol* symbol_lookup(struct symbol*, char*);
+struct symbol* symbol_add(struct symbol**, char*);
+void 		   symbol_print(struct symbol*);
+
+#endif
+
+symbol.c:
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "symbol.h"
+
+struct symbol* symbol_alloc()
+{
+	struct symbol* new = malloc(sizeof(struct symbol));
+	new->identifier = NULL;
+	new->isConstant = false;
+	new->value = 0;
+	new->next = NULL;
+	return new;
+}
+
+struct symbol* symbol_newTemp(struct symbol** table)
+{
+	static size_t temporary_number = 0; //c'est beau le C
+	char temporary_name[SYMBOL_MAX_STRING];
+	snprintf(temporary_name, SYMBOL_MAX_STRING, "temp_%d", temporary_number);
+	temporary_number++;
+	return symbol_add(table, temporary_name);
+}
+
+struct symbol* symbol_lookup(struct symbol*, char*)
+{
+	while(table != NULL)
+	{
+		if(strcmp(table->identifier, name) == 0)//identique
+		{
+			return table;
+		}
+		table = table->next;
+	}
+	return NULL;
+}
+
+struct symbol* symbol_add(struct symbol** table, char* name)
+{
+	if(*tab == NULL) //premier élément de la tds
+	{
+		*table = symbol_alloc();
+		(*table)->identifier = strdup(name);
+		return *table;
+	}
+	else
+	{
+		struct symbol* scan = *table;
+		while(scan->next != NULL)
+		{
+			scan = scan->next;
+		}
+		scan->next = symbol_alloc();
+		scan->next->identifier = strdup(name);
+		return scan->next;
+	}
+}
+
+void symbol_print(struct symbol* symbol)
+{
+	while(symbol != NULL)
+	{
+		printf("id: %7s, isConstant:",symbol->identifier); //prend au minimum 7 caractère pour affciher les symbole
+		if(symbol->isConstant)
+		{
+			printf("true, value: %d\n, symbol->value);
+		}
+		else
+		{
+			printf("false, value: N/A\n");
+		}
+		symbol = symbol->next;
+	}
+}
+
+Quad: implémentation du code 3 adresses sous forme de quadruplets:
+	-structure de 4 champs :
+		-opérateur
+		-arg1
+		-arg2
+		-résulat
+
+Génération des quads
+Principe: on définit pour chaque opération :
+	-un résultat intermédiaire "result" qui va contenir le résultat de l'opération
+	-le code (liste de quads) qui calcule le résultat
+exemple
+					op		arg1	arg2	res
+x = y + 2			+		y 		z		x
+x = -y				neg		y				x
+x = y				=		y 				x
+goto 10				goto					10
+si a < b goto 20	<		a		b 		10
+a = x * (y + z)  	+		y 		z 		temp_0
+					* 		x		temp_0	temp_1
+					=		temp_1			a
+car on fait:
+	temp_0 = y + z
+	temp_1 = x * temp_0
+	a = temp_1
+a = x * -y + c 		neg 	y 				temp_0
+					* 		x 		temp_0 	temp_1
+					+ 		temp_1 	c 		temp_2
+					= 		temp_2			a
+car on fait :
+	temp_0 = -y
+	temp_1 = x * temp_0
+	temp_2 = temp_1 + c
+	a = temp_2
+	
+besoin de 2 fonction:
+	struct quad* gen(.) // génère un nouveau quad
+	void add(.) // ajoute un quad à une liste de quad
+
+quad.h:
+	
+struct quad
+{
+	char op;
+	struct symbol* arg1;
+	struct symbol* arg2;
+	struct symbol* res;
+	struct quad* next;
+}
+
+struct quad* quad_gen(char, struct symbol*, struct symbol*, struct symbol*);
+
+quad.c:
