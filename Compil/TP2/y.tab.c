@@ -73,8 +73,8 @@
   void yyerror(char*);
   int yylex();
 
-  symbol *tds = NULL;
-  quad* code = NULL;
+  struct symbol *tds = NULL;
+  struct quad* code = NULL;
 
 #line 80 "y.tab.c" /* yacc.c:339  */
 
@@ -129,8 +129,8 @@ union YYSTYPE
   char* string;
 	int value;
 	struct{
-		symbol* result;
-    quad* code;
+		struct symbol* result;
+    struct quad* code;
 	} codegen;
 
 #line 137 "y.tab.c" /* yacc.c:355  */

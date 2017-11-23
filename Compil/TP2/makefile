@@ -19,8 +19,13 @@ lex.yy.c: $(EXEC).l
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)
 
+valgrind: remake
+	valgrind ./$(EXEC)
+
 clean:
 	rm -f *.o y.tab.c y.tab.h lex.yy.c
 
 mrproper: clean
 	rm -f $(EXEC)
+
+remake: mrproper all

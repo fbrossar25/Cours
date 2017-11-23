@@ -63,8 +63,8 @@ union YYSTYPE
   char* string;
 	int value;
 	struct{
-		symbol* result;
-    quad* code;
+		struct symbol* result;
+    struct quad* code;
 	} codegen;
 
 #line 71 "y.tab.h" /* yacc.c:1909  */

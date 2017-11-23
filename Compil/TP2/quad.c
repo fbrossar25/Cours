@@ -37,7 +37,10 @@ void quad_print(quad* q)
 {
     while(q != NULL)
     {
-        printf("%s -> %s %c %s", q->res, q->arg1, q->op, q->arg2);
+		if(q->res != NULL && q-> arg1 != NULL && q->op != NULL && q->arg2 != NULL)
+		{
+			printf("%s -> %s %c %s", q->res->identifier, q->arg1->identifier, q->op, q->arg2->identifier);
+		}
         q = q->next;
     }
 }
