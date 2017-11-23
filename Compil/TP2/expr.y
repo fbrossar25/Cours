@@ -2,12 +2,28 @@
   #include <stdio.h>
   #include <stdlib.h>
 
+  #include "symbol.h"
+  #include "quad.h"
+
   void yyerror(char*);
   int yylex();
+
+  symbol *tds = NULL;
+  quad* code = NULL;
 %}
 
-%token IDENTIFIER
-%token NUMBER
+%union{
+  char* string;
+	int value;
+	struct{
+		symbol* result;
+    quad* code;
+	} codegen;
+}
+
+%token <string> IDENTIFIER
+%token <value> NUMBER
+%type  <codegen> expr
 
 %left '+'
 %left '*'
@@ -15,33 +31,41 @@
 %%
 
 axiom:
-    expression '\n'
+    expr '\n'
     { 
       printf("Match :-) !\n");
+      code = $1.code;
       return 0;
     }
   ;
 
-expression:
-    expression '+' expression
+expr:
+    expr '+' expr
     { 
-      printf("expression -> expression + expression\n");
+      printf("expr -> expr + expr\n");
+      $$.result = symbol_newtemp(&tds);
     }
-  | expression '*' expression
+  | expr '*' expr
     {
-      printf("expression -> expression * expression\n");
+      printf("expr -> expr * expr\n");
+      $$.result = symbol_newtemp(&tds);
     }
-  | '(' expression ')'
+  | '(' expr ')'
     {
-      printf("expression -> ( expression )\n");
+      printf("expr -> ( expr )\n");
     }
   | IDENTIFIER
     {
-      printf("expression -> IDENTIFIER (%s)\n", "???");
+      printf("expr -> IDENTIFIER (%s)\n", $1);
+      $$.result = symbol_add(&tds, $1);
     }
   | NUMBER
     {
-      printf("expression -> NUMBER (%d)\n", 42);
+      printf("expr -> NUMBER (%d)\n", $1);
+      symbol* newSymbol = symbol_newtemp(&tds);
+      newSymbol->isConstant = true;
+      newSymbol->value = $1;
+      $$.result = newSymbol;
     }
   ;
 
@@ -55,7 +79,12 @@ int main() {
   printf("Enter an arithmetic expression:\n");
   yyparse();
   printf("-----------------\nSymbol table:\n");
+  symbol_print(tds);
   printf("-----------------\nQuad list:\n");
+  quad_print(code);
 
-  return 0;
+  symbol_destroy(tds);
+  quad_destroy(code);
+
+  return EXIT_SUCCESS;
 }

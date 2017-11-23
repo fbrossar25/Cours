@@ -9,8 +9,8 @@ number     [1-9][0-9]*
 
 %%
 
-{identifier} { return IDENTIFIER; }
-{number}     { return NUMBER; }
+{identifier} { yylval.string = strdup(yytext); return IDENTIFIER; }
+{number}     { yylval.value = atoi(yytext); return NUMBER; }
 [()+*]       { return yytext[0]; }
 \n           { return yytext[0]; }
 .            { printf("[Lex] Unknown character: %s\n", yytext); }

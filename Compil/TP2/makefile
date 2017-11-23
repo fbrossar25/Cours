@@ -4,7 +4,7 @@ YACC = yacc -d
 CFLAGS = -O2 -Wall
 LDFLAGS = -ly -ll -lfl # Linux: -lfl / OSX: -ll
 EXEC = expr
-SRC = 
+SRC = symbol.c quad.c
 OBJ = $(SRC:.c=.o)
 
 all: $(OBJ) y.tab.c lex.yy.c

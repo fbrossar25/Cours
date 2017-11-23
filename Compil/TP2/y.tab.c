@@ -67,10 +67,16 @@
   #include <stdio.h>
   #include <stdlib.h>
 
+  #include "symbol.h"
+  #include "quad.h"
+
   void yyerror(char*);
   int yylex();
 
-#line 74 "y.tab.c" /* yacc.c:339  */
+  symbol *tds = NULL;
+  quad* code = NULL;
+
+#line 80 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -115,7 +121,22 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 15 "expr.y" /* yacc.c:355  */
+
+  char* string;
+	int value;
+	struct{
+		symbol* result;
+    quad* code;
+	} codegen;
+
+#line 137 "y.tab.c" /* yacc.c:355  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -129,7 +150,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 133 "y.tab.c" /* yacc.c:358  */
+#line 154 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -426,7 +447,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    18,    18,    26,    30,    34,    38,    42
+       0,    34,    34,    43,    48,    53,    57,    62
 };
 #endif
 
@@ -436,7 +457,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "IDENTIFIER", "NUMBER", "'+'", "'*'",
-  "'\\n'", "'('", "')'", "$accept", "axiom", "expression", YY_NULLPTR
+  "'\\n'", "'('", "')'", "$accept", "axiom", "expr", YY_NULLPTR
 };
 #endif
 
@@ -1197,56 +1218,64 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 19 "expr.y" /* yacc.c:1646  */
+#line 35 "expr.y" /* yacc.c:1646  */
     { 
       printf("Match :-) !\n");
+      code = (yyvsp[-1].codegen).code;
       return 0;
     }
-#line 1206 "y.tab.c" /* yacc.c:1646  */
+#line 1228 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 27 "expr.y" /* yacc.c:1646  */
+#line 44 "expr.y" /* yacc.c:1646  */
     { 
-      printf("expression -> expression + expression\n");
+      printf("expr -> expr + expr\n");
+      (yyval.codegen).result = symbol_newtemp(&tds);
     }
-#line 1214 "y.tab.c" /* yacc.c:1646  */
+#line 1237 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 31 "expr.y" /* yacc.c:1646  */
+#line 49 "expr.y" /* yacc.c:1646  */
     {
-      printf("expression -> expression * expression\n");
-    }
-#line 1222 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 5:
-#line 35 "expr.y" /* yacc.c:1646  */
-    {
-      printf("expression -> ( expression )\n");
-    }
-#line 1230 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 6:
-#line 39 "expr.y" /* yacc.c:1646  */
-    {
-      printf("expression -> IDENTIFIER (%s)\n", "???");
-    }
-#line 1238 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 7:
-#line 43 "expr.y" /* yacc.c:1646  */
-    {
-      printf("expression -> NUMBER (%d)\n", 42);
+      printf("expr -> expr * expr\n");
+      (yyval.codegen).result = symbol_newtemp(&tds);
     }
 #line 1246 "y.tab.c" /* yacc.c:1646  */
     break;
 
+  case 5:
+#line 54 "expr.y" /* yacc.c:1646  */
+    {
+      printf("expr -> ( expr )\n");
+    }
+#line 1254 "y.tab.c" /* yacc.c:1646  */
+    break;
 
-#line 1250 "y.tab.c" /* yacc.c:1646  */
+  case 6:
+#line 58 "expr.y" /* yacc.c:1646  */
+    {
+      printf("expr -> IDENTIFIER (%s)\n", (yyvsp[0].string));
+      (yyval.codegen).result = symbol_add(&tds, (yyvsp[0].string));
+    }
+#line 1263 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 7:
+#line 63 "expr.y" /* yacc.c:1646  */
+    {
+      printf("expr -> NUMBER (%d)\n", (yyvsp[0].value));
+      symbol* newSymbol = symbol_newtemp(&tds);
+      newSymbol->isConstant = true;
+      newSymbol->value = (yyvsp[0].value);
+      (yyval.codegen).result = newSymbol;
+    }
+#line 1275 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+
+#line 1279 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1474,7 +1503,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 48 "expr.y" /* yacc.c:1906  */
+#line 72 "expr.y" /* yacc.c:1906  */
 
 
 void yyerror (char *s) {
@@ -1485,7 +1514,12 @@ int main() {
   printf("Enter an arithmetic expression:\n");
   yyparse();
   printf("-----------------\nSymbol table:\n");
+  symbol_print(tds);
   printf("-----------------\nQuad list:\n");
+  quad_print(code);
 
-  return 0;
+  symbol_destroy(tds);
+  quad_destroy(code);
+
+  return EXIT_SUCCESS;
 }
