@@ -1,0 +1,29 @@
+III)
+1)
+remove supprime le ou les attributs indiqué
+normalize normalise tout les attributs numérique dans leurs plage de données respectives
+standardize nomalise tout les attributs numérique de manière à avoir un écart type de 1 et une moyenne de 0
+
+2)
+RemoveMisclassified : supprime les instances incorrectement classées
+Resample : Créer un sous-échantillon d'un ensemble de données en utilisant
+
+3)
+AttributeSelection : permet de sélectionner des attributs
+StratifiedRemoveFolds : Prend un ensemble de données et en renvois une partie spécifiée pour validation
+
+4)
+Tout ces filtres permettent de sélectionnier les données souhaitées
+
+IV)
+2)Oui, petalwidth
+3)petalwidth et petallength
+4)Sert à ajouter des points aléatoire afin de valider les observations
+5) bonne question
+
+V)
+1)92%
+Non, tout les attributs sont utilisés
+3)
+J48 96% réussite
+Bayes 96 % réussite
