@@ -1,0 +1,53 @@
+SPARQL Query
+Syntaxe Turtle :
+
+a <=> rdf:type
+; => facilité de not
+
+1) Tous les modules
+SELECT ?module
+WHERE{
+	?module a univ:Module
+}
+
+2) Tous les modules de MasterInformatique
+
+
+SELECT ?module
+WHERE {
+	?module a univ:Module .
+	?f a univ:MasterInformatique;
+		univ:aModule ?m
+}
+
+OU
+
+WHERE{
+	?module a univ:Module;
+		univ:estDispenseDans ?f .
+	?f a univ:MasterInformatique
+}
+
+3) Etudiants suivant le cours de fouille de données
+SELECT ?etudiant
+WHERE {
+	?etudiant a univ:Etudiant;
+		estInscritA ?c .
+	?c a univ:FD
+}
+
+4) Tous les modules suivis pas Jean Dubois
+SELECT ?module
+WHERE {
+	?module a univ:Module .
+	?etudiant a univ:JeanDubois;
+		univ:estInscritA ?module
+}
+
+5) MCF qui donnent pas de TP
+SELECT ?mcf
+WHERE {
+	?mcf a univ:MCF
+	OPTIONNAL(?mcf univ:enseigneTPDans ?m) .
+		FILTER(!bound(?m))
+}
