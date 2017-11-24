@@ -1,6 +1,6 @@
 @relation 'test-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToNominal-R1,2,3'
 
-@attribute Survived string
+@attribute Survived {0,1}
 @attribute Pclass {1,2,3}
 @attribute Sex {male,female}
 @attribute Age numeric
