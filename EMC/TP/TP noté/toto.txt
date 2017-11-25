@@ -1,0 +1,65 @@
+Class :
+
+Personne (lire FOAF)
+		(DAVE GROOOOOOOOOOHL !!!!)
+	Musicien
+		TresRecompense
+			(Dave Grohl)
+		MusicienRockOuPop
+			(Dave Grohl)
+		DansPlusieursGroupes
+			(Dave Grohl)
+		AuteurInterprete
+			(Dave Grohl)
+		Parolier
+		Compositeur
+			CompositeurRockSeulement
+				(Dave Grohl)
+		Interprete
+			SoloSeulement
+			JamaisSolo
+			MusicienPlatineFrancais
+			(Dave Grohl)
+Groupe
+	GroupeMixte
+		(Garbage)
+	(Nirvana)
+Role
+	Guitariste
+	Bassiste
+	Batteur
+	Chanteur
+Chanson
+	ChansonRock
+		(Smell Like Teen Spirit)
+Genre
+	Rock
+	Pop
+Disque
+Recompense
+	Prix
+	DisqueCertification
+		Argent
+		Or
+		Platine
+		2xPlatine
+		3xPlatine
+		Diamant
+		2xDiamant
+		3xDiamant
+		4xDiamant
+			
+Object Properties [Dom, Range]:
+
+aInterprete[Chanson or Disque, Musicien or Groupe] / estInterpreteDe
+aRole [Interprete, Role] / estRoleDe
+aGenre [Chanson, Genre] / estGenreDe
+aChanson [Disque, Chanson] / estChansonDe
+aRecompense [Disque, Recompense] / estRecompenseDe
+aMembre [Groupe, Musicien]
+
+Data Properties [a quoi ?]:
+
+aNom [Interprete]
+aPrenom [Interprete]
+aNationalite [Interprete]
