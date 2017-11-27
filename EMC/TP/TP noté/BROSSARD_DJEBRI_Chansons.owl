@@ -101,6 +101,8 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aChanson">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estChansonDe"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Chanson"/>
     </owl:ObjectProperty>
     
 
@@ -122,6 +124,8 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aInterprete">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estInterpreteDe"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Chanson"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
     </owl:ObjectProperty>
     
 
@@ -131,6 +135,8 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aMembre">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estMembreDe"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/GroupeMusique"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Chanson"/>
     </owl:ObjectProperty>
     
 
@@ -151,6 +157,8 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aRecompense">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estRecompenseDe"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Recompense"/>
     </owl:ObjectProperty>
     
 
@@ -160,6 +168,19 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aRole">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estRoleDe"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aSexe -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aSexe">
+        <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estSexeDe"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
     </owl:ObjectProperty>
     
 
@@ -305,6 +326,12 @@
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/estRoleDe">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/estSexeDe -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/estSexeDe"/>
     
 
 
@@ -871,7 +898,23 @@
     <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/gender">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>female</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>male</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
         <rdfs:comment>The gender of this Agent (typically but not necessarily &apos;male&apos; or &apos;female&apos;).</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:label>gender</rdfs:label>
@@ -1253,6 +1296,12 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Disque">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Project"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/GenreMusique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1275,6 +1324,15 @@
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:label>Document</rdfs:label>
         <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Femme -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Femme">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Homme"/>
     </owl:Class>
     
 
@@ -1302,7 +1360,35 @@
     <!-- http://xmlns.com/foaf/0.1/GroupeMixte -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeMixte">
-        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/GroupeMusique"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/GroupeMusique"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Interprete"/>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aSexe"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Femme"/>
+                                            </owl:Restriction>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aSexe"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Homme"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
     
 
@@ -1311,6 +1397,12 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeMusique">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1319,6 +1411,14 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Guitariste">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Homme -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Homme">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
     </owl:Class>
     
 
@@ -1339,6 +1439,25 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Interprete">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Musicien"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aSexe"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/firstName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/lastName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1514,6 +1633,14 @@
     <!-- http://xmlns.com/foaf/0.1/Role -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Role">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Sexe -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Sexe">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     </owl:Class>
     
@@ -1748,6 +1875,15 @@
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/GenreMusique"/>
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Recompense"/>
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Role"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/GenreMusique"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Recompense"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Role"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Sexe"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
