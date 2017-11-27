@@ -7,7 +7,9 @@ EXEC = expr
 SRC = symbol.c quad.c quad_list.c
 OBJ = $(SRC:.c=.o)
 
-all: $(OBJ) y.tab.c lex.yy.c
+all: $(EXEC)
+
+$(EXEC): $(OBJ) y.tab.c lex.yy.c
 	$(CC) $(CFLAGS) -o $(EXEC) $^ $(LDFLAGS)
 
 y.tab.c: $(EXEC).y
