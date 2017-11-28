@@ -156,6 +156,7 @@
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estRecompenseDe"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Musicien"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Recompense"/>
     </owl:ObjectProperty>
     
@@ -973,6 +974,14 @@
     
 
 
+    <!-- http://xmlns.com/foaf/0.1/lieu -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/lieu">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://xmlns.com/foaf/0.1/mbox_sha1sum -->
 
     <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/mbox_sha1sum">
@@ -1587,7 +1596,6 @@
     <!-- http://xmlns.com/foaf/0.1/Person -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Project"/>
         <rdfs:comment>A person.</rdfs:comment>
@@ -1649,6 +1657,13 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Recompense">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/lieu"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1715,6 +1730,32 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/TresRecompense">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Musicien"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aRecompense"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+                <owl:onClass>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Prix"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/lieu"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:pattern>Victoires de la musique</xsd:pattern>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:onClass>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1786,6 +1827,21 @@
     
 
 
+    <!-- http://xmlns.com/foaf/0.1/Dave_Grohl -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Dave_Grohl">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aRole"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Batteur"/>
+            </owl:Restriction>
+        </rdf:type>
+        <estMembreDe rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://xmlns.com/foaf/0.1/France -->
 
     <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/France">
@@ -1798,6 +1854,61 @@
 
     <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Italie">
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Nationalite"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Krist_Novoselic -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Krist_Novoselic">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aRole"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Bassiste"/>
+            </owl:Restriction>
+        </rdf:type>
+        <estMembreDe rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Kurt_Cobain -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Kurt_Cobain">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprete"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aRole"/>
+                        <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Chanteur"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aRole"/>
+                        <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Guitariste"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <estMembreDe rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Nirvana -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Nirvana">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/GroupeMusique"/>
+        <estInterpreteDe rdf:resource="http://xmlns.com/foaf/0.1/Smell_Like_Teen_Spirit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Smell_Like_Teen_Spirit -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Smell_Like_Teen_Spirit">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/ChansonRock"/>
     </owl:NamedIndividual>
     
 
@@ -1895,15 +2006,6 @@
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/3xDiamant"/>
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/3xPlatine"/>
             <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/4xDiamant"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Bassiste"/>
-            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Batteur"/>
-            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Chanteur"/>
-            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Guitariste"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
