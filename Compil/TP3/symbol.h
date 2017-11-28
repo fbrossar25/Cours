@@ -24,6 +24,6 @@ symbol* symbol_add(symbol** table, char* name);
 symbol* symbol_get_or_create(symbol** table, char* name);
 void symbol_destroy(symbol* table);
 void symbol_print(symbol* symbol);
-void symbol_print_value_or_id(symbol* s);
+void symbol_print_value_&tableor_id(symbol* s);
 
 #endif

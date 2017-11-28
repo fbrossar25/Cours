@@ -1,0 +1,7 @@
+#define N 4
+byte choix[]
+
+init
+{
+
+}
