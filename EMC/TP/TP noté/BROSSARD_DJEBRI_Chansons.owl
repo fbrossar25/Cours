@@ -1282,17 +1282,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/made"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Chanson"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
-                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Rock"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:allValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/ChansonRock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
