@@ -829,6 +829,25 @@
     
 
 
+    <!-- http://xmlns.com/foaf/0.1/dateDépart -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/dateDépart">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Musicien"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/dateEntrée -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/dateEntrée">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Musicien"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://xmlns.com/foaf/0.1/dnaChecksum -->
 
     <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/dnaChecksum">
@@ -1501,6 +1520,20 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Musicien">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/dateDépart"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/dateEntrée"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
