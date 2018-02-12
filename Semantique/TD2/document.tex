@@ -1,0 +1,105 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Sémantique TD2}
+
+\newcommand{\ra}{\rightarrow}
+
+\begin{document}
+	\section{Algèbres, congruences et modèles}
+	Voir notes écrites
+	\section{Spécifications}
+	\subsection{Exercice 1}
+	[Nat Bool]\\
+	
+	op zero : -> Nat\\
+	op succ : Nat -> Nat\\
+	ops plus, mult : Nat Nat -> Nat\\
+	eq plus(zero, m) = m\\
+	eq plus (succ(n), p) = succ (plus n p)\\
+	eq mult (zero,n) = zero\\
+	eq mult (succ(p),q) = plus (q, mult(p,q))\\
+	\begin{equation*}
+	\text{eq somme(x,y)} =\begin{cases}
+	somme(y,x), & \text{si $y<x$}\\
+	x, & \text{si $x=y$}\\
+	x + somme(x+1,y) & \text{sinon}
+	\end{cases}
+	\end{equation*}
+	eq egal(zero, zero) = true\\
+	eq egal(succ(n), zero) = false\\
+	eq egal(zero, succ(n)) = false\\
+	egal(succ(p),succ(q)) = egal(p,q)\\
+	\newpage
+	\section{Logique équationnelle}
+	\subsection{Exercice 1}
+	\begin{align*}
+	\begin{cases}
+	\text{$M + 0 = M$ (1)}\\
+	\text{$M + s(N) = s(M + N)$ (2)}
+	\end{cases}\\
+	s(s(0)) + (s(0) + s(s(s(0)))) &=^{(2)} s(s(0)) + (s(s(0) + s(s(0))))\\
+	&=^{(2)} s(s(s(0))) + (s(0) + s(s(0))\\
+	&=^{(2)} s(s(s(0))) + (s(s(0) + s(0)))\\
+	&=^{(2)} s(s(s(s(0)))) + (s(0) + s(0))\\
+	&=^{(2)} s(s(s(s(0)))) + (s(s(0) + 0))\\
+	&=^{(2)} s(s(s(s(0)))) + (s(s(0)))\\
+	&=^{(1)} s(s(s(s(s(0)) + s(0)))\\
+	&=^{(2)} s(s(s(s(s(s(0)))))) + 0\\
+	&= s(s(s(s(s(s(0))))))
+	\end{align*}
+	\newpage
+	\subsection{Exercice 2}
+	On dispose des axiomes suivants :
+	\begin{enumerate}
+		\item $(X + Y) + Z = X + (Y + Z)$
+		\item $e + X = X$
+		\item $(-X) + X = e$
+	\end{enumerate}
+	Montrer que $\forall X, X + (-X) = e$ est un théorème déductif.\\
+	Astuce :\\
+	\begin{align*}
+		X + (-X) &= --X + -X +X\\
+		&= --X + (-X + X)\\
+		&= --X + e\\
+		\text{et } X + (-X) &= --X + -X +X\\
+		&= e + X\\
+		&= X\\
+		\text{J'en déduis que } &X = --X + e\\ \\
+		X + (-X) &= (--X + e) + (-X)\\
+		&= --X + (e + -X)\\
+		&= --X + -X\\
+		&= e\\
+	\end{align*}
+	\newpage
+	\section{Logique inductive}
+	\subsection{Exercice 1}
+	Voir les note d'adèle
+	
+	\subsection{Exercice 2}
+	On dispose des axiomes suivants :
+	\begin{enumerate}
+		\item $0 + M = M (A)$
+		\item $s(N) + M = s(N + M) (B)$
+	\end{enumerate}
+	Montrons que $X + Y = Y + X$\\
+	Par induction
+	\begin{align*}
+		(1) 0 + Y &= Y + 0\\
+		(2) N + Y = Y + N \rightarrow s(N) + Y = Y + s(N)\\ \\
+		1)&\\
+		0 + Y &=^{(A)} Y\\
+		Y + 0 &=^{(1)} Y\\
+		\text{d'où } 0 + Y &= Y + 0\\ \\
+		2)&\\
+		s(N) + Y &=^{(B)} s(N +Y)\\
+		Y + s(N) &=^{(2)} s(Y + N)		 
+	\end{align*}
+	Par hypothèse d'induction
+\end{document}

@@ -224,11 +224,11 @@ Principe: on définit pour chaque opération :
 	-le code (liste de quads) qui calcule le résultat
 exemple
 					op		arg1	arg2	res
-x = y + 2			+		y 		z		x
+x = y + z			+		y 		z		x
 x = -y				neg		y				x
 x = y				=		y 				x
 goto 10				goto					10
-si a < b goto 20	<		a		b 		10
+si a < b goto 10	<		a		b 		10
 a = x * (y + z)  	+		y 		z 		temp_0
 					* 		x		temp_0	temp_1
 					=		temp_1			a

@@ -1,0 +1,1261 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
+     xml:base="http://xmlns.com/foaf/0.1/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
+        <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
+        <dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://www.w3.org/2003/06/sw-vocab-status/ns#term_status -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/06/sw-vocab-status/ns#term_status"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/membershipClass -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/membershipClass">
+        <rdfs:comment>Indicates the class of individuals that are a member of a Group</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>membershipClass</rdfs:label>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://xmlns.com/wot/0.1/assurance -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/wot/0.1/assurance"/>
+    
+
+
+    <!-- http://xmlns.com/wot/0.1/src_assurance -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/wot/0.1/src_assurance"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/AsurDisque -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/AsurDisque">
+        <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estSurDisque"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aCertification -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aCertification">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+        <owl:propertyDisjointWith rdf:resource="http://xmlns.com/foaf/0.1/aPrix"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aComposé -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aComposé">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aGenre -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aGenre">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Genre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aInterprété -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aInterprété">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estInterprétéPar"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aMembre -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aMembre">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/estMembre"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aParolié -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aParolié">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/aPrix -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/aPrix">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/estInterprétéPar -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/estInterprétéPar">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/estMembre -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/estMembre">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/estSurDisque -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/estSurDisque">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Année_de_parution -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Année_de_parution">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdfs:comment>Année de parution d&apos;un disque</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Certification -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Certification"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/CreationDate -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/CreationDate">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Groupe"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/DateCertificiation -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/DateCertificiation">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+        <rdfs:comment>date d&apos;obtention de la certification</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/DatePrix -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/DatePrix">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+        <rdfs:comment>date d&apos;obtention du prix</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Disque -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Disque"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Groupe -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Groupe">
+        <rdfs:comment>Caractéristique d&apos;un groupe</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/MembreFromDATEtoDATE -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/MembreFromDATEtoDATE">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Groupe"/>
+        <rdfs:comment>Date d&apos;ajout dans un membre à date de renvoie d&apos;un groupe</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/MentionCertification -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/MentionCertification">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+        <rdfs:comment>nom éventuel d&apos;une certification spéciale</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Nationalité -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Nationalité">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Personne"/>
+        <rdfs:comment>Nationalité d&apos;une personne</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/NomPrix -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/NomPrix">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+        <rdfs:comment>Nom du prix obtenu</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Nom_de_Famille -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Nom_de_Famille">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Personne"/>
+        <rdfs:comment>Nom de famille d&apos;une personne</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Personne -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Personne">
+        <rdfs:comment>Caractéristique d&apos;une personne</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Prix -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Prix"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Prénom -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Prénom">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Personne"/>
+        <rdfs:comment>Prénom d&apos;une personne</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Sexe -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/Sexe">
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/Personne"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment>Sexe d&apos;une personne</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:comment>Un musicien(eg. une persone).</rdfs:comment>
+        <rdfs:label>Musicien</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Argent -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Argent">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/AuteurInterprète -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/AuteurInterprète">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Interprète"/>
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Parolier"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Certification -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Certification">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Récompense"/>
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/ChansonRock -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/ChansonRock">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Rock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Compositeur -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Compositeur">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/CompositeurRock -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/CompositeurRock">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aComposé"/>
+                <owl:allValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/ChansonRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/DansPlusieursGroupes -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/DansPlusieursGroupes">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/estMembre"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Diamant -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Diamant">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Disque -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Disque">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Genre"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Document -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Document">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Genre"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Une musique</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>Musique</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Genre -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Genre"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Group -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Group">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Une classe de Musiciens.</rdfs:comment>
+        <rdfs:label>Groupe</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/GroupeComposé -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeComposé">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/GroupeSolo"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/GroupeMixte -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeMixte">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/GroupeComposé"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:onClass>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:pattern>F</xsd:pattern>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:onClass>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:onClass>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/Sexe"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:pattern>H</xsd:pattern>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:onClass>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/GroupeSolo -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeSolo">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aMembre"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/GroupeSoloSeulement -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/GroupeSoloSeulement">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/GroupeSolo"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aComposé"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/estInterprétéPar"/>
+                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                                <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Interprète -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Interprète">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/JamaisSolo -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/JamaisSolo">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/estMembre"/>
+                <owl:allValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/GroupeComposé"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/MusicienPlatineFrançais -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/MusicienPlatineFrançais">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aComposé"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/estSurDisque"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Platine"/>
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/3xPlatine"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aCertification"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/2xPlatine"/>
+                                            </owl:Restriction>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/Nationalité"/>
+                <owl:hasValue>Française</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/MusicienRockOuPop -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/MusicienRockOuPop">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aPrix"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/NomPrix"/>
+                        <owl:hasValue>Victoires de la Musique</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aComposé"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Rock"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Pop"/>
+                                            </owl:Restriction>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aInterprété"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Rock"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Pop"/>
+                                            </owl:Restriction>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aParolié"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Rock"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aGenre"/>
+                                                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Pop"/>
+                                            </owl:Restriction>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Or -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Or">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Parolier -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Parolier">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aPrix"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Une personne.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>Personne</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Platine -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Platine">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Pop -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Pop">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Genre"/>
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Rock"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Prix -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Prix">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Récompense"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Rock -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Rock">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Genre"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Récompense -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Récompense"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/TrésRécompensé -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/TrésRécompensé">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/aPrix"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://xmlns.com/foaf/0.1/Prix"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/NomPrix"/>
+                        <owl:hasValue>Victoires de la Musique</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/2xDiamant -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/2xDiamant">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/2xPlatine -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/2xPlatine">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/3xDiamant -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/3xDiamant">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/3xPlatine -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/3xPlatine">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/4xDiamant -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/4xDiamant">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Certification"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/AlainSouchon -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/AlainSouchon">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/MusicienPlatineFrançais"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Parolier"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Française</Nationalité>
+        <Nom_de_Famille>Souchon</Nom_de_Famille>
+        <Prénom>Alain</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/AlainSouchon_LaurentVoulzy -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/AlainSouchon_LaurentVoulzy">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <aMembre rdf:resource="http://xmlns.com/foaf/0.1/AlainSouchon"/>
+        <aMembre rdf:resource="http://xmlns.com/foaf/0.1/LaurentVoulzy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Bleach -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Bleach">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1989</Année_de_parution>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/ButchVig -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/ButchVig">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Vig</Nom_de_Famille>
+        <Prénom>Butch</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/DaveGrohl -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/DaveGrohl">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <MembreFromDATEtoDATE>1990-1994 Nirvana</MembreFromDATEtoDATE>
+        <MembreFromDATEtoDATE>1994-now FooFighter</MembreFromDATEtoDATE>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Grohl</Nom_de_Famille>
+        <Prénom>Dave</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/DukeErikson -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/DukeErikson">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Erikson</Nom_de_Famille>
+        <Prénom>Duke</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/FooFighter -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/FooFighter">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/GroupeComposé"/>
+        <aMembre rdf:resource="http://xmlns.com/foaf/0.1/DaveGrohl"/>
+        <CreationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1994</CreationDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Garbage -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Garbage">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <CreationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1993</CreationDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/InUtero -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/InUtero">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1993</Année_de_parution>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/KristNovoselic -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/KristNovoselic">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <MembreFromDATEtoDATE>1987-1994</MembreFromDATEtoDATE>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Novoselic</Nom_de_Famille>
+        <Prénom>Krist</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/KurtCobain -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/KurtCobain">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Parolier"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <MembreFromDATEtoDATE>1987-1994</MembreFromDATEtoDATE>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Cobain</Nom_de_Famille>
+        <Prénom>Kurt</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/LaurentVoulzy -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/LaurentVoulzy">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/MusicienPlatineFrançais"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Parolier"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Française</Nationalité>
+        <Nom_de_Famille>Voulzy</Nom_de_Famille>
+        <Prénom>Laurent</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/LoriGoldston -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/LoriGoldston">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <MembreFromDATEtoDATE>1992-1994 Nirvana</MembreFromDATEtoDATE>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Goldston</Nom_de_Famille>
+        <Prénom>Lori</Prénom>
+        <Sexe>F</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Nevermind -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Nevermind">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1991</Année_de_parution>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Nirvana -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Nirvana">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <CreationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1987</CreationDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/PatSmear -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/PatSmear">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/FooFighter"/>
+        <estMembre rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <MembreFromDATEtoDATE>1992-1994 Nirvana</MembreFromDATEtoDATE>
+        <MembreFromDATEtoDATE>2011-now FooFighter</MembreFromDATEtoDATE>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Smear</Nom_de_Famille>
+        <Prénom>Pat</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/RacineCarré -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/RacineCarré">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/4xDiamant"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/Stromae"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2014</Année_de_parution>
+        <DateCertificiation rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2014</DateCertificiation>
+        <MentionCertification>Album  de  chansons  de  l’année</MentionCertification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/ShirleyManson -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/ShirleyManson">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Ecossaise</Nationalité>
+        <Nom_de_Famille>Manson</Nom_de_Famille>
+        <Prénom>Shirley</Prénom>
+        <Sexe>F</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/SmellsLikeTeenSpirit -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/SmellsLikeTeenSpirit">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/ChansonRock"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/Nirvana"/>
+        <estSurDisque rdf:resource="http://xmlns.com/foaf/0.1/Nevermind"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1991</Année_de_parution>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/SteveMarker -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/SteveMarker">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <Nationalité>Américaine</Nationalité>
+        <Nom_de_Famille>Marker</Nom_de_Famille>
+        <Prénom>Steve</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Stromae -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Stromae">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Compositeur"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/GroupeSoloSeulement"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Interprète"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Parolier"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <DatePrix rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2014</DatePrix>
+        <Nationalité>Belge</Nationalité>
+        <NomPrix>Artiste interprète masculin de l’année</NomPrix>
+        <Nom_de_Famille>N\A</Nom_de_Famille>
+        <Prénom>Stromae</Prénom>
+        <Sexe>H</Sexe>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Alain_Souchon_&amp;_Lautrent_Voulzy -->
+
+    <owl:NamedIndividual rdf:about="http://xmlns.com/foaf/0.1/Alain_Souchon_&amp;_Lautrent_Voulzy">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Disque"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/3xPlatine"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/AlainSouchon"/>
+        <estInterprétéPar rdf:resource="http://xmlns.com/foaf/0.1/LaurentVoulzy"/>
+        <Année_de_parution rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2015</Année_de_parution>
+        <DateCertificiation rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2015</DateCertificiation>
+        <MentionCertification>Album de chansons de l’année</MentionCertification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+        <rdfs:label>Thing</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+        <rdfs:label>Concept</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Disque">
+        <rdfs:comment>caractéristique d&apos;un disque</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Argent"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Diamant"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Or"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Platine"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/2xDiamant"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/2xPlatine"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/3xDiamant"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/3xPlatine"/>
+            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/4xDiamant"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,27 @@
+Recherche de maximum :
+	- Concevoir un algo de recherche du max dans un ensemble à n elements (vous disposez uniquement d'une relation de comparaison)
+	- Quel est la complexité de cet algorithme (nb de comparaison)
+	- Justifier son optimalité
+	
+=> sans le tri =>
+
+Soit max, le maximum connus, i l'indice dans le tableau T du nombre n, un entier. N la taille du tableau.
+max <- T0
+Pour i de 1 à N-1
+	Si max < Ti Alors
+		max <- Ti
+	Fin Si
+Fin Pour
+Retouner max
+
+On doit systématiquement parcourir tout le tableau => n - 1 comparaison
+
+Recherche du 2ème plus grand (pas deux fois la même valeur):
+	- Algorithme ?
+	- nb de comparaisons
+	- Reformuler l'algorithme sous forme d'un tournoi
+max <- T0
+max2 <- T1
+
+2 (n-1) comparaison + n - 1 pour la recherche du max -> 3 (n - 1)
+
