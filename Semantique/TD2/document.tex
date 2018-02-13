@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
-\usepackage[fleqn]{amsmath}
+\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -91,15 +91,24 @@
 	Montrons que $X + Y = Y + X$\\
 	Par induction
 	\begin{align*}
-		(1) 0 + Y &= Y + 0\\
-		(2) N + Y = Y + N \rightarrow s(N) + Y = Y + s(N)\\ \\
-		1)&\\
+		\text{(1) } 0 + Y &= Y + 0\\
+		\text{(2) } N + Y = Y + N &\rightarrow s(N) + Y = Y + s(N)\\ \\
+		\text{1) }
+		\left.
+		\begin{array}{rcr}
 		0 + Y &=^{(A)} Y\\
 		Y + 0 &=^{(1)} Y\\
+		\end{array}
+		\right\}
 		\text{d'où } 0 + Y &= Y + 0\\ \\
-		2)&\\
+		\text{2) }
+		\left\{
+		\begin{array}{rcr}
 		s(N) + Y &=^{(B)} s(N +Y)\\
-		Y + s(N) &=^{(2)} s(Y + N)		 
+		Y + s(N) &=^{(2)} s(Y + N)\\
+		\end{array}
+		\right.
 	\end{align*}
 	Par hypothèse d'induction
+	
 \end{document}

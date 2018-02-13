@@ -1,0 +1,50 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{minted}
+
+\title{Sémantique TD2}
+
+\newcommand{\ra}{\rightarrow}
+
+\begin{document}
+	\section{Question 1}
+	
+	\begin{minted}
+	pivot p, indice\_p = 0, indice\_sup = sup;
+	tant que (indice\_p < indice\_sup)
+		si p > A[indice\_p + 1]
+			échanger(indice\_p, indice\_p + 1)
+			indice\_p++
+		sinon si p <= A[indice\_p + 1]
+			échanger(indice\_p + 1, A[indice\_sup])
+			indice\_sup--
+		fsi
+	ftq
+	\end{minted}
+%	\begin{align*}
+%		\text{(1) } 0 + Y &= Y + 0\\
+%		\text{(2) } N + Y = Y + N &\rightarrow s(N) + Y = Y + s(N)\\ \\
+%		\text{1) }
+%		\left.
+%		\begin{array}{rcr}
+%		0 + Y &=^{(A)} Y\\
+%		Y + 0 &=^{(1)} Y\\
+%		\end{array}
+%		\right\}
+%		\text{d'où } 0 + Y &= Y + 0\\ \\
+%		\text{2) }
+%		\left\{
+%		\begin{array}{rcr}
+%		s(N) + Y &=^{(B)} s(N +Y)\\
+%		Y + s(N) &=^{(2)} s(Y + N)\\
+%		\end{array}
+%		\right.
+%	\end{align*}
+	
+\end{document}
