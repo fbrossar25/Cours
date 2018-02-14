@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+
+\begin{document}
+	\section{Exercice 2}
+	\subsection{Algo naif}
+	\begin{algorithm}
+		\begin{algorithmic}[1]%numéroter toute les n lignes
+			\Function{SousSuiteNaif}{$E$}
+			\State $somme \gets E[0]$
+			\State $d \gets 0$
+			\State $f \gets 0$
+			\For{$i=0; i<t; n; i++$}
+				\For{$j=n-1; j \geq i; i++$}
+					\State $p \gets 0$
+					\For{$k = i; k \leq j; k++$}
+						\State $p += E[k]$
+					\EndFor
+					\If{$p > somme$}
+						\State $somme \gets p$
+						\State $d \gets i$
+						\State $f \gets j$
+					\EndIf
+				\EndFor
+			\EndFor
+			\State \Return $(d, f)$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+
+	\subsection{Complexité}
+	$C \in \Theta(n^{2})$
+	
+	\subsection{Chercher à droite}
+	
+	\begin{algorithm}
+		\begin{algorithmic}[1]
+			\Function{chercher\_a\_droite}{$E,i,j$}
+				\State $s \gets E[i]$
+				\State $k \gets i + 1$
+				\State $f \gets i$
+				\State $smax \gets E[i]$
+				\While{$k \leq j$}
+					\State $s += E[k]$
+					\If{$s > smax$}
+						\State $smax \gets s$
+						\State $f \gets k$
+					\EndIf
+				\EndWhile
+				\State \Return $(f, smax)$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\subsection{Complexité}
+	$C \in \Theta(n)$
+
+	\subsection{Spécifier l'algorithme diviser pour régner}
+	
+	\begin{itemize}
+		\item Prend un tableau $E$ en argument
+		\item Prend en argument les bornes du tables $i$ et $j$
+		\item Algorithme récursif
+		\item Renvois le triplet $(s,d,f)$ où :
+			\begin{itemize}
+				\item $s$ est la somme de la suite $[d, f]$
+				\item $d$ est l'index de début de la suite
+				\item $f$ est l'index de fin de la suite
+			\end{itemize}
+	\end{itemize}
+	
+	\subsection{Expliquer son principe (3 phases)}
+	
+	
+
+	\begin{center}
+		\begin{enumerate}[label=Phase \arabic* :]
+			\item Diviser par 2 la liste
+			\item Régner sur chaque moitié
+			\item Combiner les cas entre
+			\begin{itemize}[label={$\to$}]
+				\item Maximum de chaque moitié
+				\item Les cas de "recollement" dans le cas où la division a "coupé" notre sous-suite de somme maximale (utilisation de $chercher\_a\_droite$ et $chercher\_a\_gauche$)
+			\end{itemize}
+		\end{enumerate}
+	
+%		\begin{tikzpicture}[yscale=-1]
+%			%\fill (0,0) -- (1,0) -- (1,1) -- cycle;
+%			\draw (-4,2) -- (-4,0);
+%			\draw (-4,2) -- (4,2);
+%			\draw (4,2) -- (4,0);
+%			\draw (-4,1.5) rectangle (-2.1,2.5);
+%			\draw (-2,1.5) rectangle (2,2.5);
+%			\draw (2.1,1.5) rectangle (4,2.5);
+%			\draw (0,1) -- (0,3);
+%			\draw (-3,1) node {$1$};
+%			\draw (0,0) node {$2$};
+%			\draw (3,1) node {$3$};
+%		\end{tikzpicture}
+	\end{center}
+	
+	\subsection{Écrire l'algorithme}
+	
+	\begin{algorithm}
+		\begin{algorithmic}[1]
+			\Function{SousSuite}{$E,i,j$}
+				\If{$i == j$} \Comment{Cas d'arrêt}
+					\State $smax \gets E[i]$
+					\State $dmax \gets i$
+					\State $fmax \gets j$
+				\Else
+					\State $k \gets (i + j) / 2$
+				\EndIf
+				\State $(smax1, dmax1, fmax1) = Sous\_Suite(E, k+1, j)$ 
+				\Comment{Régner}
+				\State $(smax2, dmax2, fmax2) = Sous\_Suite(E, i, k)$
+				\State $(smax3, dmax3) = chercher\_a\_gauche(E, i, k)$
+				\State $(smax4, dmax4) = chercher\_a\_droite(E, k+1, j)$
+				\State $(smax3, dmax3, fmax3) \gets (s3 + s4, dmax3, fmax3)$ \Comment{$s3 + s4$ ??}
+				\State $(smax4, dmax4, fmax4) \gets (s3 + s4, dmax4, fmax4)$ \Comment{$s3 + s4$ ??}
+				\State $smax \gets max(smax1, smax2, smax3, smax4)$ \Comment{Combinaison}
+				\If{$smax == smax1$}
+					\State \Return $(smax, dmax1, fmax1)$
+				\ElsIf{$smax == smax2$}
+					\State \Return $(smax, dmax2, fmax2)$
+				\ElsIf{$smax == smax3$}
+					\State \Return $(smax, dmax3, fmax3)$
+				\Else
+					\State \Return $(smax, dmax4, fmax4)$
+				\EndIf
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\subsection{Complexité}
+	
+	??
+	
+	\subsection{Algorithme à complexité linéaire}
+	
+	Demandez à Alexandre.
+	
+\end{document}
