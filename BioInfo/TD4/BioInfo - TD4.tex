@@ -1,0 +1,125 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{BioInfo - Page 36-37}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Déterminer l'approximation entre $\alpha_{T}$ et $\alpha$ quand $T \to 0$}
+	
+	
+	
+	$$\alpha_{T} \underset{T \to 0}{=} \alpha$$
+	
+	\section{Simplifier $P^{\prime}_{B}(t)$}
+	
+	\begin{align*}
+		P^{\prime}_{B}(t) &= (1 - 	P^{\prime}_{B}(t))\alpha - (n - 1)\alpha P_{B}(t)\\
+		&= \alpha - \alpha P_{B}(t) - (n - 1)\alpha P_{B}(t)\\
+		&= \alpha - n \alpha P_{B}(t)\\
+	\end{align*}
+	
+	\section{Déduire la matrice de substitution}	
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline 
+			& $A_{1}$ & --- & --- & $A_{n}$ \\ 
+			\hline 
+			$A_{1}$ & $1 - (n - 1)\alpha$ & $\alpha$ & $\alpha$ & $\alpha$ \\ 
+			\hline 
+			| & $\alpha$ & $1 - (n - 1)\alpha$ & $\alpha$ & $\alpha$ \\ 
+			\hline 
+			| & $\alpha$ & $\alpha$ & $1 - (n - 1)\alpha$ & $\alpha$ \\ 
+			\hline 
+			$A_{n}$ & $\alpha$ & $\alpha$ & $\alpha$ & $1 - (n - 1)\alpha$ \\ 
+			\hline 
+		\end{tabular} 
+	\end{center}
+	
+	\section{Déterminer la probabilité $P(t)$ en fonction de la constante d'intégration $c$}
+	
+	
+	
+	\href{https://fr.wikipedia.org/wiki/%C3%A9quation_diff%C3%A9rentielle_linéaire}{Voir équa diff linéaire}
+		
+	\href{https://fr.wikipedia.org/wiki/Facteur_int%C3%A9grant}{Voir facteur intégrant}
+	
+	$$I(t) = \exp^{n\alpha t}$$
+	
+	\begin{align*}
+		P^{\prime}(t) + n\alpha P(t) &= \alpha\\
+		P^{\prime}(t) + p(t)P(t) = q(t)\\
+		\text{Calcul du facteur intégrant} I(t) &\\
+		l(t) = \exp^{\int{P(t)dt}}&\\
+		\text{d'où}&\\
+	\end{align*}
+	
+	\section{Calcul de la constante $c$ en fonction de $P(0)$}
+	
+	$$c = P(0) - \frac{1}{n}$$
+	
+	\section{Déterminer la probabilité de $P(t)$ en fonction de $P(0)$}
+	
+	$$P(t) = \frac{1}{n} + \left( P(0) - \frac{1}{n} \right) \exp^{-n\alpha t}$$
+	
+	\section{Déterminer la probabilité $P(t) = P_{B}(t)$ que le site soit occupé par $B$ au temps $t$}
+	
+	\begin{align*}
+		\text{Avec } P(0) &= 1\\
+		P(t) &= \frac{1}{n} + \frac{n - 1}{n}\exp^{-n\alpha t}\\
+	\end{align*}
+	
+	\section{Déterminer la probabilité $Q(t)$ que le site soit occupé par $B^{\prime}, B \neq B^{\prime}$ au temps $t$}
+	
+	\begin{align*}
+		\text{Avec } P(0) &= 0\\
+		Q(t) &= \frac{1}{n} + \frac{1}{n}\exp^{-n\alpha t}
+	\end{align*}
+	
+	\section{Donner la relation (la plus simple, sans terme exponentiel) entre $P(t)$ et $Q(t)$ pour $t$}
+	
+	$$\forall t, P(t) + (n - 1)Q(y) = 1$$
+	
+	\section{Donner la relation entre $x$ et $t, \alpha, n$}
+	
+	Soit $x$ le nombre moyen de substitutions aléatoires par site (nombre total de substitutions dans le mot divisé par la longueur du mot)
+	
+	\begin{enumerate}
+		\item $x \in [0, +\infty[$
+		\item $x$ : nombre total de mutation divisé par le nombre de lettres
+		\item $x$ est invariant en fonction de la longueur
+	\end{enumerate}
+	
+	$\alpha$ : \text{taux de mutation instantané}
+	
+	\begin{align*}
+		x &= f(t, \alpha, n)\\
+		x &= (n - 1)\alpha t\\
+	\end{align*}
+	
+	\section{Déduire la probabilité $F(x)$ que le site soit occupé par $B$ après $x$ substitutions sachant $B$ au temps $t=0$}
+	
+	$$F(x) = \frac{1}{n} + \frac{n - 1}{n}\exp^{-\frac{n}{n-1}x}$$
+	
+	\section{Déduire la probabilité $G(x)$ que le site soit occupé par $B \neq B^{\prime}$ après $x$ substitutions sachant $B^{\prime}$ au temps $t = 0$}
+	
+	$$G(x) = \frac{1}{n} - \frac{1}{n}\exp^{-\frac{n}{n-1}x}$$
+	
+	\section{Relation entre $F(x)$ et $G(x)$}
+	
+	$$F(x) + (n - 1)G(x) = 1$$
+	
+	
+	
+\end{document}
