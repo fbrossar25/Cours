@@ -1,0 +1,137 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabu}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{listings}
+
+
+\title{\LaTeX cheatsheet}
+
+\newcommand{\q}[1]{\begin{verbatim}#1\end{verbatim}}
+\newcommand{\row}[1]{#1\\\hline}
+\newcommand{\bs}{\backslash}
+\def\X#1{$#1$ &\tt\string#1} %cite une commande
+\def\W#1#2{$#1{#2}$ &\tt\string#1\string{#2\string}}
+\newcolumntype{C}{>{$}c<{$}}
+
+\begin{document}
+	\maketitle
+	
+	\section{Symboles}
+	
+	\subsection{Lettres grèques}
+	\begin{center}
+		\begin{tabu}{|c|c|c|}
+			\everyrow{\hline}
+			\hline
+			\text{Symbole} & Commande & Description\\
+			\X\lambda &\\
+			\X\Pi &\\
+			\X\Theta &\\
+		\end{tabu}
+	\end{center}
+	
+	\subsection{Logique}
+	
+	\begin{center}
+		\begin{tabu}{|c|c|c|}
+			\everyrow{\hline}
+			\hline
+			\text{Symbole} & Commande & Description\\
+			\X\Leftrightarrow & Équivalent\\
+			\X\top & True\\
+			\X\bot & False\\
+			\X\lor & Disjonction\\
+			\X\land & Conjonction\\
+			\X\implies & Implique\\
+		\end{tabu}
+	\end{center}
+	
+	\subsection{Ensemble}
+	
+	\begin{center}
+		\begin{tabu}{|c|c|c|}
+			\everyrow{\hline}
+			\hline
+			\text{Symbole} & Commande & Description\\
+			\X\cup & Union\\
+			\X\cap & Intersection\\
+			\X\subseteq & Sous-ensemble\\
+			\X\supseteq & Sur-ensemble\\
+			\X\nsubseteq & Non sous-ensemble\\
+			\X\nsupseteq & Non sous-ensemble\\
+			\X\nsupseteq & Non sur-ensemble\\
+			\X\in & Appartient\\
+			$\mathbb{N}$ & \tt\string\mathbb\{N\} & Ensemble des entiers naturels\\
+		\end{tabu}
+	\end{center}
+	
+	\subsection{Arithmétique}
+	
+	\begin{center}
+		\begin{tabu}{|c|c|c|}
+			\everyrow{\hline}
+			\hline
+			\text{Symbole} & Commande & Description\\
+			\X\sqsubseteq & Est plus définie que\\
+			\X\exists & Il existe\\
+			\X\forall & Pour tout\\
+			$\sum_{i=0}^{n}$ & \tt\string\sum\_\{i=0\}\string^\{n\} &\\
+			\X\to & Vers\\
+			\X\equiv & Est identique à\\
+			\X\neg & Negation\\
+			\X\nless  & Non inférieur\\
+			\X\ngtr & Non supérieur\\
+			\X\int & Intégrale\\
+		\end{tabu}
+	\end{center}
+
+	\subsection{Autres}
+	{%arraystretch redefined in this block only
+	\renewcommand{\arraystretch}{1.2}
+	\begin{center}
+		\begin{tabu}{|c|c|c|}
+			\everyrow{\hline}
+			\hline
+			\text{Symbole} & Commande & Description\\
+			\W\overline{abc} &\\
+			\W\sqrt{abc} &\\
+			$\sqrt[n]{abc}$&\tt\string\sqrt[n]\{abc\}&\\
+			$\frac{abc}{xyz}$&\tt\string\frac\{abc\}\{xyz\}&\\
+		\end{tabu}
+	\end{center}
+	}
+
+	\section{Commandes}
+	
+	\subsection{Longues formules mathématiques}
+	\begin{verbatim}
+		\begin{eqnarray*}
+		\left(1+x\right)ˆn & = & 1 + nx + \frac{n\left(n-1\right)}{2!}xˆ2 \\
+		& & {} + \frac{n\left(n-1\right)\left(n-2\right)}{3!}xˆ3 \\
+		& & {} + \frac{n\left(n-1\right)\left(n-2\right)\left(n-3\right)}{4!}xˆ4 \\
+		& & {} + \ldots
+		\end{eqnarray*}
+	\end{verbatim}
+	\begin{eqnarray*}
+		\left(1+x\right)ˆn & = & 1 + nx + \frac{n\left(n-1\right)}{2!}xˆ2 \\
+		& & {} + \frac{n\left(n-1\right)\left(n-2\right)}{3!}xˆ3 \\
+		& & {} + \frac{n\left(n-1\right)\left(n-2\right)\left(n-3\right)}{4!}xˆ4 \\
+		& & {} + \ldots
+	\end{eqnarray*}
+	\newpage
+	
+	\begin{align*}
+	P^{\prime}_{B}(t) &= \lim\limits_{T \to 0}\left(\frac{P_{B}(t + T) - P_{B}(t)}{T}\right)\\
+	&= \lim\limits_{T \to 0}\left(\frac{\alpha_{T}(1 - P_{B}(t)) - (n - 1)\alpha_{T}P_{B}(t)}{T}\right)\\
+	&= (1 - P_{B}(t)) \lim\limits_{T \to 0}\left(\frac{\alpha_{T}}{T}\right) - (n - 1) P_{B}(t)\lim\limits_{T \to 0}\left(\frac{\alpha_{T}}{T}\right)\\
+	\end{align*}
+	
+\end{document}

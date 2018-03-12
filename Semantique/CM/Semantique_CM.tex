@@ -1,0 +1,101 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Sémantique CM}
+
+\begin{document}
+	\maketitle
+	
+	\section{??}
+	$[[...]]$ : pour les instructions\\
+	$[[while\ E_{b}\ do\ S ]]y = \lambda e\ si\ [[t_{b}]]_{z} e\ est\ vrai$
+	$Alors [[while\ E_{b}\ do\ S]]$
+
+	\section{Sémantique dénotationnelle des boucles}
+
+	Exemple avec une fonction récursive, ATTENTION : on n'est pas dans le langage des tant que.
+	On considère $f: \mathbb{Z} \to \mathbb{Z}$\\
+	"définie" par $f(x) = si\ x = 0 alors\ 0 sinon\ f(x - 1)$\\
+	En fait, $f$ est solution d'une équation de point fixe.\\
+	$f = Gf\ avec\ G : (\mathbb{Z} \to \mathbb{Z}) \to (\mathbb{Z} \to \mathbb{Z})$
+	(la fin manque)\\
+		
+	On introduit $\bot_{\mathbb{Z}}$ : indéterminé\\
+	$\bot_{\mathbb{Z}} - 1 = \bot_{\mathbb{Z}}$ : le genre de classe\\
+	 $\bot_{\mathbb{Z} \to \mathbb{Z}}$ : fonction indéterminée\\
+	 $\bot_{\mathbb{Z} \to \mathbb{Z}}(x) = \bot_{\mathbb{Z}}$\\
+	 On essaie de voir si certaines informations marchent avec $f_{0} = \bot$\\
+	 est-ce que $f = G f_{0}$ ?
+	 $$f_{1} = G f_{0} = \lambda x si x = 0 alors\ 0 sinon\ f_{0}(x-1)$$\\
+	 $$f_{1} = \lambda x si\ x = 0 alors\ 0 sinon\ \bot \neq f_{0}$$
+	 mais $f_{1}$ est plus déterminée que $f_{0}$.
+	 $\gamma : E \to E$\\
+	 $x = \gamma(x)$ : x point fixe.
+	 \begin{align*}
+	 	f_{2} &= G f_{1}\\
+	 	&= \lambda x . si\ x = 0 alors\ 0\\
+	 	&sinon\ si\ x - 1 = 0 alors\ 0\\
+	 	&sinon\ \bot\\
+	 	f_{2} &= \lambda x . si\ x \in [0,1] alors\ 0\\
+	 	&sinon\ \bot\\
+	 \end{align*}
+	 
+	 On continue
+	 
+	 \begin{align*}
+	 	f_{k} &= G^{k} f_{0} = G(f_{k-1})\\
+	 	f_{k} &= \lambda x . si\ x \in [0,1] alors\ 0\\
+	 	&sinon\ \bot\\
+	 \end{align*}
+	 En faisant tendre $k \to \infty$ :\\
+	 $f_{\infty} = \lambda x . si\ x \in \mathbb{N}\ alors\ 0$\\
+	 $sinon\ \bot$
+	 
+	 Un peu de théorie : introduction de $\mathbb{L}$ littéraux $\mathbb{B}, \mathbb{N}, \mathbb{Z}, \mathbb{Q}$. On ajoute un symbole d'indétermination : $\bot_{\mathbb{B}}, \bot_{\mathbb{N}}, \bot_{\mathbb{Z}}, \bot_{\mathbb{Q}}$.
+	 
+	 ...
+	 
+	 
+	 
+	 On étend cette notion aux fonctions E : ensemble avec $\bot$ et $\sqsubseteq$.\\
+	 \begin{align*}
+		 f : E \to E\ et\ g : E \to E\\
+		 f \sqsubseteq g\\
+	 \end{align*}
+	 ......
+	 
+	 propriétés de $\sqsubseteq$ :
+	 \begin{itemize}
+	 	\item $\sqsubseteq$ est une relation d'ordre :
+	 	\begin{align*}
+	 		f \sqsubseteq f\\
+	 		si\ f \sqsubseteq g\ et\ g \sqsubseteq f\ alors\ f = g\\
+	 		si\ f \sqsubseteq g\ et\ g \sqsubseteq h\ alors\ f \sqsubseteq h\\
+	 	\end{align*}
+	 	\item c'est un ordre partiel
+	 	\item toute suite croissante admet une borne supérieure (plus petit majorant)\\
+	 	$f_{0} \sqsubseteq f_{1} \sqsubseteq f_{2} ... \sqsubseteq f_{k} \sqsubseteq f_{k+1} ....$
+	 \end{itemize}
+ 	Il existe $f_{\infty}$ une borne sup définie par
+ 	$$\begin{cases}
+	 	Df_{\infty} = \underset{k}{\cup} Df_{k}\\
+	 	f_{\infty}(x) = f_{k}(x) pour\ x \in Df_{k}
+ 	\end{cases}$$
+ 	Notation : $f_{\infty}$ est notée $\underset{k}{lim}\uparrow f_{k}$ ou $lim\uparrow f_{k}$
+ 	
+ 	Définitions:
+ 	\begin{itemize}
+ 		\item Soit $E$ et $F$ deux domaines et $f : E \to F$, on dit que f est monotone ssi $\forall x,y \in E, \exists x \sqsubseteq y \implies f(x) \sqsubseteq f(y)$
+ 		\item si $E$ est un domaine, et $f : E \to E$, on dit que $f$ est continue ssi
+ 		\begin{enumerate}
+	 		\item $f$ est monotone
+	 		\item ta mère la catin
+ 		\end{enumerate}
+ 	\end{itemize}
+\end{document}

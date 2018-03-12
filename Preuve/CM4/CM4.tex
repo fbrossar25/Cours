@@ -1,0 +1,80 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Ingénierie de la preuve - CM4}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Polymorphisme et ordre supéreieur}
+	
+	\subsection{polymorphisme}
+	
+	Quand une fonction sur un type peut être rendue générique et utilisable sur un autre type.
+	
+	\begin{verbatim}
+		Definition : id_nat : (n : nat) := n.
+		Definition : id_bool : (b : bool) := b.
+		Definition id_gauss (g : gauss) := g.
+	\end{verbatim}
+	
+	\subsection{Fonction polymorphe}
+	
+	\begin{verbatim}
+		Definition id (A : Set) (x : A) := x.
+	\end{verbatim}
+	
+	Évidement:
+	\begin{align*}
+	\forall n, id\_nat\ n &= id\_nat\ n.\\
+	\forall b, id\_bool\ b &= id\_bool\ b.\\
+	\forall g, id\_gauss\ g &= id\_gauss\ g.\\
+	\end{align*}
+	
+	On pourrait redéfinir les fonctions:
+	\begin{align*}
+		Definition\ id\_nat &:= id\ nat.\\
+		Check id\_nat.&\\
+			&id\_nat : nat \to nat\\
+		Definition\ id\_bool &:= id\ bool.\\
+	\end{align*}
+	
+	\subsection{Ordre supérieur}
+	
+	Quand les fonctions prennent/peuvent prendre des fonctions en arguments
+	
+	\begin{align*}
+		Definition\ id\ (A : Set) (x : A) := x.&\\
+		Definition\ id\_fun := id(nat \to nat).&\\
+		Check\ id\_fun.&\\
+			&(nat \to nat) \to (nat \to nat)\\
+	\end{align*}
+	
+	Une fonction polymorphe et d'ordre supérieur : exemple la fonction iter.
+	$$f^{n} = f o f^{n - 1}$$
+	$$f^{n} = f^{n - 1} o f$$
+	$$f^{n}(x) = f(f^{n - 1}(x))$$
+	
+	On aimerait avoir une fonction iter du type suivant :
+	$$\forall A : Set, (A \to A) \to nat \to A \to A$$
+	
+	\begin{align*}
+		Fixpoint\ iter (A : Set) (f : A \to A)\\
+		(n : nat) {struct\ n} : A \to A :\\
+		match n with :\\
+		 0  => (fun(n : A) => n)\\
+		|Sp => (fun(m : A) =>\\
+		\ \ \ iter\ A f p (f m)\\
+		end\\
+	\end{align*}
+	
+\end{document}
