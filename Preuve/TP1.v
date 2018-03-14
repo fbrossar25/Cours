@@ -1,3 +1,5 @@
+Require Import Classical.
+
 (* ∀A B C : Prop, (A → B ∧ B → C) → (A → C) *)
 Lemma l10 :forall A B C : Prop, (A -> B) /\ (B -> C) -> (A -> C).
 Proof.
@@ -79,5 +81,23 @@ Print l10.
 
 Axiom tiers_exclu : forall A:Prop, A \/ ~A.
 
+Lemma NNPP : forall p:Prop, ~ ~ p -> p.
+Proof.
+  unfold not in |- *; intros; elim (classic p); auto.
+  intro NP; elim (H NP).
+Qed.
+
 (* ∀A B : Prop,(A → B) ←→ (¬B → ¬A) *)
 Lemma Contraposée :forall A B : Prop, (A -> B) <-> (~B -> ~A).
+  split.
+  intros.
+  intro.
+  apply H0.
+  apply H.
+  assumption.
+  intros.
+  apply double_neg.
+  intro.
+  apply H in H1.
+  contradiction.
+Qed.
