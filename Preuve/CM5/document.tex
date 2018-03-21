@@ -1,0 +1,32 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+
+\title{Preuve : or\_comm}
+
+\begin{document}
+	\maketitle
+	\begin{align*}
+		\forall A B : &Prop, A \lor B \rightarrow \lor A\\
+		&or\_introl : \forall A B : Prop, A \rightarrow A \lor B\\
+		&or\_intror : \forall A B : Prop, B \rightarrow A \lor B\\
+		&or\_ind : \forall A B P : Prop, (A \rightarrow P) \rightarrow (B \rightarrow P) \rightarrow (A \lor B) \rightarrow P\\
+	\end{align*}
+	\\\\
+	\begin{align*}
+	fun\ &(A B : Prop) (H: A \lor B) \Rightarrow\\
+	&or\_ind A\ B\ B \lor A\\
+	&fun (H' : A) \Rightarrow or\_intror\ B\ A\ H' : B \lor A\\
+	&fun (H' : B) \Rightarrow or\_introl\ B\ A\ H' : B \lor A\\
+	\end{align*}
+\end{document}

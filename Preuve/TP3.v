@@ -13,7 +13,6 @@ Definition cplus z1 z2 :=
   match z1, z2 with
     Cgauss a1 b1 , Cgauss a2 b2
     => Cgauss(a1+a2) (b1+b2)
-    
   end.
 
 Definition cmoins z1 z2 :=
@@ -63,4 +62,3 @@ Proof.
   rewrite (Zplus_assoc z4 z2 z0).
   reflexivity.
 Qed.
-

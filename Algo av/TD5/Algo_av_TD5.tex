@@ -1,0 +1,92 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+
+\title{Algo avancée TD5}
+
+\begin{document}
+	\maketitle
+	\section{Sous-suite ascendante}
+	\subsection{Question 1}
+	
+	\begin{itemize}
+		\item cas d'arrêt :	
+			$$i \geqslant n : \underset{\to 0}{\text{plus d'élément}}$$
+		\item si $i < n$ et $T(i+1) < m$
+		\begin{align*}
+		&\implies T(i+1) \notin SSA\\
+		&\implies \text{on continue avec } T(i+2) \implies LSSA(i,m) = LSSA(i+1, m)
+		\end{align*}
+		\item si $i < n$ et $T(i + 1) \geqslant n$ :
+			$$\text{max}\begin{cases}
+			T(i+1) \in SSA \implies LSSA(i,m) = LSSA(i+1, T(i+1)) + 1\\
+			T(i+1) \notin SSA \implies LSSA(i,m) = LSSA(i+1, m)
+			\end{cases}$$
+	\end{itemize}
+	
+	\subsection{Question 2}
+		$LSSA(0, -\infty)$
+		
+	\subsection{Question 3}
+	\begin{center}
+		\begin{tikzpicture}[level/.style={sibling distance = 20em/#1,
+			level distance = 1.5cm},
+		every node/.style = {align=center}]]
+		\draw (-1,-5) rectangle (2,-4);
+		\node {$(0, -\infty)$}
+		child {
+			node {$(1,3)$}
+		}
+		child {
+			node {$(1,-\infty)$}
+			child {
+				node{$(2, -1)$}
+				child{
+					node{$(3,2)$}	
+				}
+				child{
+					node{$(3,-1)$}	
+				}
+			}
+			child{
+				node{$(2, -\infty)$}
+				child{
+					node{$(3,2)$}
+				}
+				child{
+					node{$(3,-\infty)$}	
+				}
+			}
+		};
+		\end{tikzpicture}
+	\end{center}
+	\newpage
+	\subsection{Question 4}
+	\begin{algorithm}
+		\begin{algorithmic}[1]%numéroter toute les n lignes
+			\State $\text{tableau L initialisé à -1}$
+			\Function{LSSA\_memo}{$i,j$}
+			\If {$L(i,j) == -1$}
+				\If {$i = n$}
+					\State $L(i,j) = 0$
+				\ElsIf {$T(i+1) < T(j)$}
+					\State $L(i,j) = LSSA\_memo(i+1,j)$
+				\Else
+					\State $L(i,j) = Max[LSSA\_memo(i+1,j), 1+LSSA\_memo(i+1,i+1)]$
+				\EndIf
+			\EndIf
+			\State \Return $L(i,j)$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+\end{document}
