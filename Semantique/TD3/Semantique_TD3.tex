@@ -7,10 +7,17 @@
 \usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+
 
 \title{Sémantique TD3}
 
 \newcommand{\ra}{\rightarrow}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\llbr}{\llbracket}
+\newcommand{\rrbr}{\rrbracket}
 
 \begin{document}
 	\section*{Sémantique dénotationnelle}
@@ -26,9 +33,9 @@
 	\end{tabular}
 	\begin{align*}
 		\sigma ,{\sigma }^{\prime }\ \ \ \sigma \left[x{\to }4\right]\\
-		[[x*x - 4*y+z]](\sigma) &= [[x*x]](\sigma) - [[4*y*z]](\sigma)\\
+		 \llbracket x*x - 4*y+z \rrbracket (\sigma) &=  \llbracket x*x \rrbracket (\sigma) -  \llbracket 4*y*z \rrbracket (\sigma)\\
 		\text{liste de variables x y z}&\\
-		&= [[x]](\sigma) * [[x]](\sigma) - [[4]]\sigma*[[y]]\sigma*[[z]]\sigma\\
+		&=  \llbracket x \rrbracket (\sigma) *  \llbracket x \rrbracket (\sigma) -  \llbracket 4 \rrbracket \sigma* \llbracket y \rrbracket \sigma* \llbracket z \rrbracket \sigma\\
 		&= \sigma(x) * \sigma(x) - 4 * \sigma(y) * \sigma(z)\\
 	\end{align*}
 	\begin{align*}
@@ -39,16 +46,16 @@
 	\end{align*}
 	Soit $e$ une expression :
 	\begin{description}
-		\item[aff] $[[x := e]](\sigma) = \sigma[x \to [[e]](\sigma)]$
-		\item[seq]  $[[I, J]](J) = [[J]] o [[I]](\sigma) = [[J]]([[I]](\sigma))$
-		\item[condition] $[[if\ b then\ i1 else\ i2]](\sigma) =$
+		\item[aff] $ \llbracket x := e \rrbracket (\sigma) = \sigma[x \to  \llbracket e \rrbracket (\sigma)]$
+		\item[seq]  $ \llbracket I, J \rrbracket (J) =  \llbracket J \rrbracket  o  \llbracket I \rrbracket (\sigma) =  \llbracket J \rrbracket ( \llbracket I \rrbracket (\sigma))$
+		\item[condition] $ \llbracket if\ b then\ i1 else\ i2 \rrbracket (\sigma) =$
 		$\begin{cases}
-			[[i1]](\sigma) & si\ [[b]](\sigma) = true\\
-			[[i2]](\sigma) & sinon\\
+			 \llbracket i1 \rrbracket (\sigma) & si\  \llbracket b \rrbracket (\sigma) = true\\
+			 \llbracket i2 \rrbracket (\sigma) & sinon\\
 		\end{cases}$
-		\item[while] $[[while\ b do\ S]](\sigma) =$
+		\item[while] $ \llbracket while\ b do\ S \rrbracket (\sigma) =$
 		$\begin{cases}
-			[[S; while\ b do\ S]](\sigma) si\ [[b]](\sigma) = true\\
+			 \llbracket S; while\ b do\ S \rrbracket (\sigma) si\  \llbracket b \rrbracket (\sigma) = true\\
 			\sigma sinon\\
 		\end{cases}$
 	\end{description}
@@ -56,7 +63,7 @@
 	\section{Expressions, instructions}
 	\subsection{Question 2}
 	\begin{align*}
-		[[tmp := x; x := y; ]]\\
+		 \llbracket tmp := x; x := y;  \rrbracket \\
 		\text{demander a dedele}\\
 	\end{align*}
 	\subsection{Question bonus !!}
@@ -72,11 +79,11 @@
 	\end{align*}
 	$\sigma(x) = x_{0} \\ \sigma(y) = y_{0}$
 	\begin{align*}
-		[[x := x + y; y := x - y; x := x - y]](\sigma) &= [[y := x - y; x := x - y]]([[x := x + y]](\sigma))\\
-		&= [[y := x - y; x := x - y]](\sigma[x \to [[x + y]](\sigma)])\\
-		&= [[y := x - y; x := x - y]](\sigma[x \to x_{0} + y_{0}])\\
-		&= [[x := x - y]]([[y := x - y]](\sigma[x \to x_{0} + y_{0}]))\\
-		&= [[x := x - y]](\sigma[y \to x_{0} + y_{0} - y_{0}; x \to x_{0} + y_{0}])\\
+		 \llbracket x := x + y; y := x - y; x := x - y \rrbracket (\sigma) &=  \llbracket y := x - y; x := x - y \rrbracket ( \llbracket x := x + y \rrbracket (\sigma))\\
+		&=  \llbracket y := x - y; x := x - y \rrbracket (\sigma[x \to  \llbracket x + y \rrbracket (\sigma)])\\
+		&=  \llbracket y := x - y; x := x - y \rrbracket (\sigma[x \to x_{0} + y_{0}])\\
+		&=  \llbracket x := x - y \rrbracket ( \llbracket y := x - y \rrbracket (\sigma[x \to x_{0} + y_{0}]))\\
+		&=  \llbracket x := x - y \rrbracket (\sigma[y \to x_{0} + y_{0} - y_{0}; x \to x_{0} + y_{0}])\\
 	\end{align*}
 	3) \underline{Variante} : on peut faire la même chose avec la multiplication et la division
 	\newpage
@@ -84,18 +91,18 @@
 	\subsection{Question 5}
 	Rappel :\\
 	\[
-		[[if\ b\ then\ i1\ else\ i2]](\sigma) =
+		 \llbracket if\ b\ then\ i1\ else\ i2 \rrbracket (\sigma) =
 		\begin{cases}
-			[[i1]](\sigma) si\ [[b]](\sigma) = true\\
-			[[i2]](\sigma) sinon\\
+			 \llbracket i1 \rrbracket (\sigma) si\  \llbracket b \rrbracket (\sigma) = true\\
+			 \llbracket i2 \rrbracket (\sigma) sinon\\
 		\end{cases}
 	\]
 	
 	\begin{align*}
-		[[if\ x1 > x2\ then\ m := x1 else\ m := x2]](\sigma) &=
+		 \llbracket if\ x1 > x2\ then\ m := x1 else\ m := x2 \rrbracket (\sigma) &=
 		\begin{cases}
-			[[m := x1]](\sigma)\ si\ [[x1 > x2]](\sigma) = true\\
-			[[m := x2]](\sigma)\ sinon\\
+			 \llbracket m := x1 \rrbracket (\sigma)\ si\  \llbracket x1 > x2 \rrbracket (\sigma) = true\\
+			 \llbracket m := x2 \rrbracket (\sigma)\ sinon\\
 		\end{cases}\\
 		&=
 		\begin{cases}
@@ -106,10 +113,197 @@
 	\end{align*}
 	\begin{align*}
 		max : int \to int \to int&\\
-		[[max(x,y)]](\sigma) &=
+		 \llbracket max(x,y) \rrbracket (\sigma) &=
 		\begin{cases}
 			\sigma(x)\ si\ \sigma(x) > \sigma(y)\\
 			\sigma(y)\ sinon\\
 		\end{cases}
+	\end{align*}
+	
+	\section{Question plus ouverte}
+	
+	\section{Fonctionnelles simples}
+	
+	\lstset{ 
+		backgroundcolor=\color{white},
+		basicstyle=\normalsize,
+		breakatwhitespace=false,
+		breaklines=true,
+		captionpos=b,
+		commentstyle=\color{Dandelion},
+		escapeinside={\%*}{*)},
+		extendedchars=true,
+		frame=single,
+		keepspaces=true,
+		keywordstyle=\color{blue}\textbf,
+		numbers=none,
+		rulecolor=\color{lightgray},
+		showspaces=false,
+		showstringspaces=false,
+		showtabs=false,
+		stringstyle=\color{orange},
+		tabsize=2,
+		title=\lstname
+	}
+
+	\begin{lstlisting}[language=caml,caption=?]
+		let rec f n = if (n = 0) then 0 else n + f(n - 1)
+		(* 1 + 2 + 3 + ...*)
+		(* ou bien *)
+		let rec f n = if (n = 0) then 1 else n * f(n - 1)
+		(* 1 * 2 * 3 * ...*)
+	\end{lstlisting}
+	
+	\subsection{Point fixe de $F$}
+	
+	\begin{align*}
+		F^{2}(\bot)(x) &= F(F(\bot))(x)\\
+		&= if\ x = 0\ then\ 0\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ x + F(\bot)(x - 1)\\
+		&....
+	\end{align*}
+	
+	\begin{align*}
+		F^3(\bot)(x) &= F(F^2(\bot))(x)\\
+		&= if\ x = 0\ then\ 0\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ x + F^2(\bot)(x - 1)\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				x + F^2(\bot)(x - 1)\ sinon
+			\end{cases}\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				x + \begin{cases}
+						0\ si\ x = 1\\
+						0 + 1\ si\ x = 2\\
+						\bot \ sinon\\
+					\end{cases}
+			\end{cases}\\
+		F^3(\bot)(x) &=	\begin{cases}
+							0\ si\ x = 0\\
+							1 + 0\ si\ x = 1\\
+							2 + 1 + 0\ si\ x = 2\\
+							\bot\ sinon
+						\end{cases}\\	
+		F^4(\bot)(x) &=	\begin{cases}
+							0\ si\ x = 0\\
+							1 + 0\ si\ x = 1\\
+							2 + 1 + 0\ si\ x = 2\\
+							3 + 2 + 1 + 0\ si\ x = 3\\
+							\bot\ sinon
+						\end{cases}\\	
+		F^4(\bot)(x) &= F(F^3(\bot))(x)\\
+		&= if\ x = 0\ then\ 0\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ x + F^3(\bot)(x - 1)\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				x + \begin{cases}
+						0\ si\ x = 0\\
+						1 + 0\ si\ x = 1\\
+						2 + 1 + 0\ si\ x = 2\\
+						\bot\ sinon\\
+					\end{cases}
+			\end{cases}\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				x + 0\ si\ x = 1\\
+				x + 1 + 0\ si\ x = 2\\
+				x + 2 + 1 + 0\ si\ x = 3\\
+				\bot\ sinon\\
+			\end{cases}\\
+	\end{align*}
+	\begin{align*}
+	F^4(\bot)(x) &=	\begin{cases}
+						0\ si\ x = 0\\
+						1 + 0\ si\ x = 1\\
+						2 + 1 + 0\ si\ x = 2\\
+						3 + 2 + 1 + 0\ si\ x = 3\\
+						\bot\ sinon\\
+					\end{cases}\\
+	F^p(\bot)(x) &=	\begin{cases}
+						0\ si\ x = 0\\
+						1 + 0\ si\ x = 1\\
+						2 + 1 + 0\ si\ x = 2\\
+						3 + 2 + 1 + 0\ si\ x = 3\\
+						\vdots\\
+						(p - 1) + \ldots + 0\ si\ x = p - 1\\
+						\bot\ sinon\\
+					\end{cases}\\
+	\end{align*}
+	
+	\subsection{Conjecture}
+	
+	\begin{align*}
+		F^p(\bot)(x) &= \begin{cases}
+							\sum_{i=0}^{x}i\ si\ x < p,\ x \in \bb{N}\\
+							\bot\ sinon\\
+						\end{cases}
+	\end{align*}
+	Montrons par récurrence sur p que cette propriété est bien vérifiée.
+	
+	\begin{align*}
+		F^{(p+1)}(\bot)(x) &= F(F^{(p)}(\bot))(x)\\
+		&= if\ x = 0\ then\ 0\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ x + F^p(\bot)(x - 1)\\
+		&= if\ x = 0\ then\ 0\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ x + \begin{cases}
+														\sum_{i=0}^{x- 1}i\ si\ x - 1 < p\\
+														\bot\ sinon\\
+													\end{cases}\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				x + \sum_{i= 0}^{x - 1}i\ si\ x - 1 < p\\
+				\bot\ sinon\\
+			\end{cases}\\
+		&=	\begin{cases}
+				0\ si\ x = 0\\
+				\sum_{i= 0}^{x}i\ si\ x - 1 < p\\
+				\bot\ sinon\\
+			\end{cases}\\
+		&=	\begin{cases}
+				\sum_{i= 0}^{x}i\ si\ x = 0\\
+				\sum_{i= 0}^{x}i\ si\ x - 1 < p\\
+				\bot\ sinon\\
+			\end{cases}\\
+		F^{(p + 1)}(\bot)(x) &=	\begin{cases}
+									\sum_{i= 0}^{x}i\ si\ x < p + 1\\
+									\bot\ sinon\\
+								\end{cases}\\
+	\end{align*}
+	
+	F est continue monotone, donc on peut appliquer le théorème de Scott.
+	
+	$$\lim\uparrow F^p(x) = \begin{cases}
+								\sum_{i = 0}^{x}i\ si\ x \geqslant 0\\
+								\bot\ sinon\\
+							\end{cases}$$
+	\newpage					
+	\section{Boucles}
+	
+	\subsection{a)}
+	
+	\begin{align*}
+		\text{Quand } \sigma(y) = 1,&\\
+		while\ &x - y > 0\ do\\
+			&y = 2 * y\\
+	\end{align*}
+	
+	Calcule dans y la plus petit puissance de 2 sup ou égale à $\sigma(x)$ et laisse x inchangé.
+	
+	\begin{align*}
+		\llbracket while\ x - y > 0\ do\ y = 2 * y \rrbracket\sigma&\\
+		= si\ \llbracket x - y > 0 \rrbracket(\sigma) &alors \llbracket while \llbracket y = 2 * y \rrbracket(\sigma)\rrbracket \circ\\
+		&sinon\ \sigma
+	\end{align*}
+	Remarque
+	\begin{align*}
+		\llbracket x - y > 0 \rrbracket(\sigma) &= true\\
+		&= \llbracket while\ \ldots \rrbracket \circ \llbracket y = 2 * y \rrbracket(\sigma)\\
+		&= \llbr while\ \ldots \rrbr \sigma [ x \to 9, y○ \to 2]\\
+		&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 4]\\
+		&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 8]\\
+		&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 16]\\
+		&= si\  \llbr x - y > 0 \rrbr (\sigma) [x \to 9, y \to 16]\ alors\ \llbr y = 2 * y \rrbr \sigma [x \to 9, y \to 16]\\
+		&= \sigma [x \to 9, y \to 16]\ sinon\ \sigma ??\\
 	\end{align*}
 \end{document}
