@@ -1,5 +1,4 @@
 (* resumé des commandes diapo 46 *)
-
 Require Import ZArith.
 
 Inductive gauss :Type :=

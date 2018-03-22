@@ -85,3 +85,78 @@ Proof.
   rewrite H.
   reflexivity.
 Qed.
+
+Fixpoint reverse {A : Type} (l1 :@liste A) : liste :=
+  match l1 with
+  | nil => nil
+  | cons h t => (append (reverse t) (cons h nil))
+end.
+
+Compute (reverse (cons 1 (cons 2 (cons 3 (cons 4 nil))))).
+
+Lemma map_reverse : forall (A B : Type) (f : A -> B) (l : liste), (map (reverse l) f) = (reverse (map l f)).
+Proof.
+  intros.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite map_append.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
+
+
+
+Lemma append_nil : forall {A : Type} (l : @liste A), (append l nil) = l.
+Proof.
+  intros.
+  elim l.
+  simpl.
+  reflexivity.
+  intros.
+  simpl.
+  rewrite H.
+  reflexivity.
+Qed.
+
+Lemma append_assoc : forall {A:Type}, forall (l1 l2 l3:@liste A), 
+(append l1 (append l2 l3)) = (append (append l1 l2) l3).
+Proof.
+  intros.
+  elim l1.
+  simpl.
+  reflexivity.
+  intros.
+  simpl.
+  rewrite H.
+  reflexivity.
+Qed.
+
+
+Lemma  reverse_append : forall {A : Type} (l1 l2 :@liste A), reverse (append l1 l2) = append (reverse l2) (reverse l1).
+Proof.
+  intros.
+  induction l1.
+  simpl.
+  rewrite append_nil.
+  reflexivity.
+  simpl.
+  rewrite IHl1.
+  rewrite append_assoc.
+  reflexivity.
+Qed.
+
+Lemma double_reverse : forall {A : Type} (l :@liste A), reverse (reverse l) = l.
+Proof.
+  intros.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite reverse_append.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
