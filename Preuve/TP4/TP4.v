@@ -1,3 +1,5 @@
+Require Import Arith.
+
 Inductive liste {A:Type} : Type :=
 | nil : liste
 | cons : A -> liste -> liste.
@@ -86,8 +88,8 @@ Proof.
   reflexivity.
 Qed.
 
-Fixpoint reverse {A : Type} (l1 :@liste A) : liste :=
-  match l1 with
+Fixpoint reverse {A : Type} (l :@liste A) :=
+  match l with
   | nil => nil
   | cons h t => (append (reverse t) (cons h nil))
 end.
@@ -160,3 +162,110 @@ Proof.
   rewrite IHl.
   reflexivity.
 Qed.
+
+Lemma append_length : forall {A : Type} (l1 l2:@liste A), (length (append l1 l2)) = (length l1) + (length l2).
+Proof.
+  intros; simpl.
+  induction l1.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl1.
+  reflexivity.
+Qed.
+
+Lemma reverse_length : forall {A : Type} (l:@liste A), (length (reverse l)) = (length l).
+Proof.
+  intros; simpl.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite append_length.
+  simpl.
+  rewrite IHl.
+  (*
+  Search (_ + 1 = _).
+  rewrite Nat.add_1_r.
+  *)
+  ring.
+Qed.
+
+Fixpoint foldr {A B : Type} (f: A -> B -> B) (z : B) (l : liste) : B :=
+  match l with
+  | nil => z
+  | cons h t => (f h (foldr f z t))
+end.
+
+Lemma l16 : forall (A B : Type) (f: A -> B -> B) (z : B) (l1 l2 : liste), foldr f z (append l1 l2) = foldr f (foldr f z l2) l1.
+Proof.
+  intros; simpl.
+  induction l1.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl1.
+  reflexivity.
+Qed.
+
+Lemma l17: forall (A B : Type) (f: A -> B -> B) (z : B) (l : liste), foldr (fun h q => cons (f h) q) nil l = map l f.
+Proof.
+  intros; simpl.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
+
+Lemma l18 : forall (A B: Type) (f : A -> B -> B) (l :@liste A),
+(foldr (fun h q => S q) 0 l) = length l.
+Proof.
+  intros; simpl.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
+
+Lemma l19 : forall {A B: Type} (f : A -> B -> B) (l :@liste A),
+(foldr (fun h q => (append (cons h nil) q)) nil l) = l.
+Proof.
+  intros; simpl.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
+
+Lemma l20 : forall {A B: Type} (f : A -> B -> B) (l :@liste A),
+(foldr (fun h q => (append q (cons h nil))) nil l) = reverse l.
+Proof.
+  intros; simpl.
+  induction l.
+  simpl.
+  reflexivity.
+  simpl.
+  rewrite IHl.
+  reflexivity.
+Qed.
+
+Fixpoint foldl {A B : Type} (f: B -> A -> B) (z : B) (l : liste) : B :=
+  match l with
+  | nil => z
+  | cons h t => (f (foldl f z t) h)
+end.
+
+Lemma l22 : forall {A B: Type} (f : A -> B -> B) (l :@liste A) (z : B),
+foldr f z (reverse l) = foldl (fun x y => f y x) z l.
+Proof.
+  intros.
+  generalize z.
+  clear z.
+  intros.
+  simpl.
