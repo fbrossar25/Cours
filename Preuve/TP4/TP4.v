@@ -150,6 +150,19 @@ Proof.
   reflexivity.
 Qed.
 
+Lemma append_reverse : forall {A : Type} (l1 l2 :@liste A), append (reverse l2) (reverse l1) = reverse (append l1 l2).
+Proof.
+  intros.
+  induction l1.
+  simpl.
+  rewrite append_nil.
+  reflexivity.
+  simpl.
+  rewrite reverse_append.
+  rewrite append_assoc.
+  reflexivity.
+Qed.
+
 Lemma double_reverse : forall {A : Type} (l :@liste A), reverse (reverse l) = l.
 Proof.
   intros.
@@ -261,11 +274,31 @@ Fixpoint foldl {A B : Type} (f: B -> A -> B) (z : B) (l : liste) : B :=
   | cons h t => (f (foldl f z t) h)
 end.
 
-Lemma l22 : forall {A B: Type} (f : A -> B -> B) (l :@liste A) (z : B),
+Axiom l22 : forall {A B: Type} (f : A -> B -> B) (l :@liste A) (z : B),
 foldr f z (reverse l) = foldl (fun x y => f y x) z l.
+
+Fixpoint zip {A : Type} (l1 l2 : @liste A) :=
+  match l1,l2 with
+  | nil, _ => nil
+  | _ , nil => nil
+  | (cons h1 t1),(cons h2 t2) => (cons (h1,h2) (zip t1 t2))
+end.
+
+Compute zip (cons 1 (cons 2 (cons 3 nil))) (cons 11 (cons 12 nil)).
+Compute zip (cons 11 (cons 12 nil)) (cons 1 (cons 2 (cons 3 nil))).
+
+Lemma zip_length : forall (A : Type) (l1 l2 : @liste A), length (zip l1 l2) = length (zip l2 l1).
 Proof.
-  intros.
-  generalize z.
-  clear z.
-  intros.
+  intros; simpl.
+  induction l1.
+  induction l2.
   simpl.
+  reflexivity.
+  simpl.
+  reflexivity.
+  simpl.
+  elim l2.
+  simpl.
+  reflexivity.
+  intros; simpl.
+  
