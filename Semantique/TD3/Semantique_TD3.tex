@@ -13,6 +13,8 @@
 \usepackage{fullpage}
 \usepackage[dvipsnames]{xcolor}
 
+\newcommand{\circled}[1]{\textcircled{\raisebox{-0.9pt}{#1}}}
+
 
 \title{Sémantique TD3}
 
@@ -35,9 +37,9 @@
 	\end{tabular}
 	\begin{align*}
 		\sigma ,{\sigma }^{\prime }\ \ \ \sigma \left[x{\to }4\right]\\
-		 \llbracket x*x - 4*y+z \rrbracket (\sigma) &=  \llbracket x*x \rrbracket (\sigma) -  \llbracket 4*y*z \rrbracket (\sigma)\\
+		  \llbr x*x - 4*y+z  \rrbr (\sigma) &=   \llbr x*x  \rrbr (\sigma) -   \llbr 4*y*z  \rrbr (\sigma)\\
 		\text{liste de variables x y z}&\\
-		&=  \llbracket x \rrbracket (\sigma) *  \llbracket x \rrbracket (\sigma) -  \llbracket 4 \rrbracket \sigma* \llbracket y \rrbracket \sigma* \llbracket z \rrbracket \sigma\\
+		&=   \llbr x  \rrbr (\sigma) *   \llbr x  \rrbr (\sigma) -   \llbr 4  \rrbr \sigma*  \llbr y  \rrbr \sigma*  \llbr z  \rrbr \sigma\\
 		&= \sigma(x) * \sigma(x) - 4 * \sigma(y) * \sigma(z)\\
 	\end{align*}
 	\begin{align*}
@@ -48,16 +50,16 @@
 	\end{align*}
 	Soit $e$ une expression :
 	\begin{description}
-		\item[aff] $ \llbracket x := e \rrbracket (\sigma) = \sigma[x \to  \llbracket e \rrbracket (\sigma)]$
-		\item[seq]  $ \llbracket I, J \rrbracket (J) =  \llbracket J \rrbracket  o  \llbracket I \rrbracket (\sigma) =  \llbracket J \rrbracket ( \llbracket I \rrbracket (\sigma))$
-		\item[condition] $ \llbracket if\ b then\ i1 else\ i2 \rrbracket (\sigma) =$
+		\item[aff] $  \llbr x := e  \rrbr (\sigma) = \sigma[x \to   \llbr e  \rrbr (\sigma)]$
+		\item[seq]  $  \llbr I, J  \rrbr (J) =   \llbr J  \rrbr  o   \llbr I  \rrbr (\sigma) =   \llbr J  \rrbr (  \llbr I  \rrbr (\sigma))$
+		\item[condition] $  \llbr if\ b then\ i1 else\ i2  \rrbr (\sigma) =$
 		$\begin{cases}
-			 \llbracket i1 \rrbracket (\sigma) & si\  \llbracket b \rrbracket (\sigma) = true\\
-			 \llbracket i2 \rrbracket (\sigma) & sinon\\
+			  \llbr i1  \rrbr (\sigma) & si\   \llbr b  \rrbr (\sigma) = true\\
+			  \llbr i2  \rrbr (\sigma) & sinon\\
 		\end{cases}$
-		\item[while] $ \llbracket while\ b do\ S \rrbracket (\sigma) =$
+		\item[while] $  \llbr while\ b do\ S  \rrbr (\sigma) =$
 		$\begin{cases}
-			 \llbracket S; while\ b do\ S \rrbracket (\sigma) si\  \llbracket b \rrbracket (\sigma) = true\\
+			  \llbr S; while\ b do\ S  \rrbr (\sigma) si\   \llbr b  \rrbr (\sigma) = true\\
 			\sigma sinon\\
 		\end{cases}$
 	\end{description}
@@ -65,7 +67,7 @@
 	\section{Expressions, instructions}
 	\subsection{Question 2}
 	\begin{align*}
-		 \llbracket tmp := x; x := y;  \rrbracket \\
+		  \llbr tmp := x; x := y;   \rrbr \\
 		\text{demander a dedele}\\
 	\end{align*}
 	\subsection{Question bonus !!}
@@ -81,11 +83,11 @@
 	\end{align*}
 	$\sigma(x) = x_{0} \\ \sigma(y) = y_{0}$
 	\begin{align*}
-		 \llbracket x := x + y; y := x - y; x := x - y \rrbracket (\sigma) &=  \llbracket y := x - y; x := x - y \rrbracket ( \llbracket x := x + y \rrbracket (\sigma))\\
-		&=  \llbracket y := x - y; x := x - y \rrbracket (\sigma[x \to  \llbracket x + y \rrbracket (\sigma)])\\
-		&=  \llbracket y := x - y; x := x - y \rrbracket (\sigma[x \to x_{0} + y_{0}])\\
-		&=  \llbracket x := x - y \rrbracket ( \llbracket y := x - y \rrbracket (\sigma[x \to x_{0} + y_{0}]))\\
-		&=  \llbracket x := x - y \rrbracket (\sigma[y \to x_{0} + y_{0} - y_{0}; x \to x_{0} + y_{0}])\\
+		  \llbr x := x + y; y := x - y; x := x - y  \rrbr (\sigma) &=   \llbr y := x - y; x := x - y  \rrbr (  \llbr x := x + y  \rrbr (\sigma))\\
+		&=   \llbr y := x - y; x := x - y  \rrbr (\sigma[x \to   \llbr x + y  \rrbr (\sigma)])\\
+		&=   \llbr y := x - y; x := x - y  \rrbr (\sigma[x \to x_{0} + y_{0}])\\
+		&=   \llbr x := x - y  \rrbr (  \llbr y := x - y  \rrbr (\sigma[x \to x_{0} + y_{0}]))\\
+		&=   \llbr x := x - y  \rrbr (\sigma[y \to x_{0} + y_{0} - y_{0}; x \to x_{0} + y_{0}])\\
 	\end{align*}
 	3) \underline{Variante} : on peut faire la même chose avec la multiplication et la division
 	\newpage
@@ -93,18 +95,18 @@
 	\subsection{Question 5}
 	Rappel :\\
 	\[
-		 \llbracket if\ b\ then\ i1\ else\ i2 \rrbracket (\sigma) =
+		  \llbr if\ b\ then\ i1\ else\ i2  \rrbr (\sigma) =
 		\begin{cases}
-			 \llbracket i1 \rrbracket (\sigma) si\  \llbracket b \rrbracket (\sigma) = true\\
-			 \llbracket i2 \rrbracket (\sigma) sinon\\
+			  \llbr i1  \rrbr (\sigma) si\   \llbr b  \rrbr (\sigma) = true\\
+			  \llbr i2  \rrbr (\sigma) sinon\\
 		\end{cases}
 	\]
 	
 	\begin{align*}
-		 \llbracket if\ x1 > x2\ then\ m := x1 else\ m := x2 \rrbracket (\sigma) &=
+		  \llbr if\ x1 > x2\ then\ m := x1 else\ m := x2  \rrbr (\sigma) &=
 		\begin{cases}
-			 \llbracket m := x1 \rrbracket (\sigma)\ si\  \llbracket x1 > x2 \rrbracket (\sigma) = true\\
-			 \llbracket m := x2 \rrbracket (\sigma)\ sinon\\
+			  \llbr m := x1  \rrbr (\sigma)\ si\   \llbr x1 > x2  \rrbr (\sigma) = true\\
+			  \llbr m := x2  \rrbr (\sigma)\ sinon\\
 		\end{cases}\\
 		&=
 		\begin{cases}
@@ -115,7 +117,7 @@
 	\end{align*}
 	\begin{align*}
 		max : int \to int \to int&\\
-		 \llbracket max(x,y) \rrbracket (\sigma) &=
+		  \llbr max(x,y)  \rrbr (\sigma) &=
 		\begin{cases}
 			\sigma(x)\ si\ \sigma(x) > \sigma(y)\\
 			\sigma(y)\ sinon\\
@@ -306,19 +308,82 @@
 	Calcule dans y la plus petit puissance de 2 sup ou égale à $\sigma(x)$ et laisse x inchangé.
 	
 	\begin{align*}
-		\llbracket while\ x - y > 0\ do\ y = 2 * y \rrbracket\sigma&\\
-		= si\ \llbracket x - y > 0 \rrbracket(\sigma) &alors \llbracket while \llbracket y = 2 * y \rrbracket(\sigma)\rrbracket \circ\\
+		 \llbr while\ x - y > 0\ do\ y = 2 * y  \rrbr\sigma&\\
+		= si\  \llbr x - y > 0  \rrbr(\sigma) &alors  \llbr while  \llbr y = 2 * y  \rrbr(\sigma) \rrbr \circ\\
 		&sinon\ \sigma
 	\end{align*}
 	Remarque
 	\begin{align*}
-	\llbracket x - y > 0 \rrbracket(\sigma) &= true\\
-	&= \llbracket while\ \ldots \rrbracket \circ \llbracket y = 2 * y \rrbracket(\sigma)\\
+	 \llbr x - y > 0  \rrbr(\sigma) &= true\\
+	&=  \llbr while\ \ldots  \rrbr \circ  \llbr y = 2 * y  \rrbr(\sigma)\\
 	&= \llbr while\ \ldots \rrbr \sigma [ x \to 9, y \to 2]\\
 	&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 4]\\
 	&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 8]\\
 	&= \llbr while\ \ldots \rrbr \sigma [x \to 9, y \to 16]\\
 	&= si\  \llbr x - y > 0 \rrbr (\sigma) [x \to 9, y \to 16]\ alors\ \llbr y = 2 * y \rrbr \sigma [x \to 9, y \to 16]\\
-	&= \sigma [x \to 9, y \to 16]\ sinon\ \sigma ??\\
+	&= \sigma [x \to 9, y \to 16]\ sinon\ \sigma ....\\
 	\end{align*}
+	
+	
+	\begin{align*}
+		P &= while\ x - y > 0\ do\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ y = 2 * y\\
+		\sigma(x) &= 9 \sigma(y) = 1\\
+	\end{align*}
+	P calcule la plus petit puissance de 2 supérieure ou égale à x.
+	
+	\begin{align*}
+		\llbr while\ x - y > 0\ do\ y := 2 * y \rrbr (\sigma) &= ?\\
+		f : X \sigma \to \llbr while\ b\ do\ X \rrbr (\sigma)&\\
+		\llbr while\ x - y\ do\ y := 2 * y \rrbr(\sigma)&\\
+		&=\ si\ \llbr x - y > 0 \rrbr(\sigma)\ alors\ \circled{1}\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sinon\ \sigma\\
+	\end{align*}
+	\begin{align*}
+		\circled{1}\ &\llbr while\ x - y > 0\ do\ y := y * 2 \rrbr (\llbr y := 2 * y \rrbr) (\sigma)\\
+		F : X \sigma &\to si\ \llbr x - y > 0 \rrbr (\sigma)\ alors\ (X \circ \llbr y := 2 * y \rrbr)(\sigma)\\
+		&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sinon\ \sigma\\
+		F(X) = X&\\
+	\end{align*}
+	\begin{align*}
+	F^0(\bot)(\sigma) &= \bot\\
+	F^1(\bot)(\sigma) &=\ si\ \llbr x - y > 0 \rrbr (\sigma)\ alors\ \bot sinon \sigma\\
+	F^2(\bot)(\sigma) &= F(F(\bot))(\sigma)\\
+	&=\ si\ \llbr x - y > 0 \rrbr(\sigma)\ alors\ F(\bot)(\sigma[y \to 2 \sigma(y)])\ sinon\ \sigma\\
+	&=\ si\ \llbr x - y > 0 \rrbr(\sigma)\ alors\ si\ \llbr x - y > 0 \rrbr \sigma [y \to 2 \sigma(y)] alors\ \bot\ sinon\ \sigma [y \to 2 \sigma (y)]\\
+	\text{On va noter } &y_0 = \sigma(y);\\
+	&x_0 = \sigma(x);\\
+	&x_0 - y_0 > 0;\\
+	&=\ si\ x_0 - y_0 > 0\ alors\ si\ x_0 - 2y_0 > 0\ alors\ \bot\ sinon\ \sigma\\
+	F^3(\bot)(\sigma) &= F(F^2(\bot))(\sigma)\\
+	&=\ si\ \llbr x - y > 0 \rrbr (\sigma)\ alors\ F^2(\bot) \sigma [y \to 2 y_0]\\
+	&=\ si\ x_0 - \sigma(y) > 0\ alors\\
+	&\ \ \ \ \ \ \ si\ x_0 - 2 \sigma(y) > 0\ alors\\
+	&\ \ \ \ \ \ \ \ \ si\ x_0 - 4 \sigma(y) > 0\ alors\ \bot\ sinon\ \sigma[y \to 4 \sigma(y)]\\
+	&\ \ \ \ \ \ \ sinon\ \sigma [y \to 2 \sigma(y)]\\
+	&\ \ \ sinon\ \sigma\\
+	F^3(\bot)(\sigma) &= \begin{cases}
+							\sigma\ si\ x_0 \leqslant \sigma(y)\\
+							\sigma [y \to 2 \sigma(y)]\ si\ \sigma(y) < x_0 \leqslant 2 \sigma(y)\\
+							\sigma [y \to 4 \sigma(y)]\ si\ 2 \sigma(y) < x_0 \leqslant 4 \sigma (y)\\
+							\bot\ si\ 4 \sigma(y) < x_0\\
+						 \end{cases}\\
+	F^p(\bot)(\sigma) &= \begin{cases}
+							\sigma\ si\ x_0 \leqslant \sigma(y)\\
+							\sigma[y \to 2 \sigma(y)]\ si\ 2^{i-1}\sigma(y) < x_0 \leqslant 2^i \sigma(y), \ \ \ i = 1 \to p-1\\
+							\bot\ si\ 2^{p-1}(\sigma(y)) < x_0\\
+						 \end{cases}\\
+ 	F^{p+1}i(\bot)(\sigma) &=\ si\ \llbr x - y > 0 \llbr(\sigma)\ alors\ F^p(\bot)(\sigma)[y \to 2 \sigma (y)] sinon \sigma\\
+ 	&= \begin{cases}
+		 \sigma\ si\ x_0 \leqslant \sigma(y)\\
+		 \sigma[y \to 2 \sigma(y)]\ si\ x_0 \leqslant 2 \sigma(y), \ \ \ x_0 > \sigma(y)\\
+		 \sigma [y \to 2^i \sigma(y)]\ si\ 2^{i - 1}\sigma(y) < x_0 \leqslant 2^i,\ \ \ i = 1 .. p\\
+		 \bot\ si\ 2^{p} \sigma(y) < x_0\\
+ 	   \end{cases}\\
+ 	\lim \uparrow F^p(\bot)(\sigma) &= \begin{cases}
+									 		\sigma\ si\ x_0 \leqslant y_0\\
+									 		\sigma[y \to 2^i y_0]\ si\ 2^{i-1} y_0 < x_0 \leqslant 2^i y_0\\
+									 	\end{cases}\\
+	\end{align*}
+	Remarque : on à supposé $y_0 = 1$.
 \end{document}
