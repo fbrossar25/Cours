@@ -89,6 +89,8 @@ Qed.
 
 (* ∀A B : Prop,(A → B) ←→ (¬B → ¬A) *)
 Lemma Contraposée :forall A B : Prop, (A -> B) <-> (~B -> ~A).
+Proof.
+  intros.
   split.
   intros.
   intro.
@@ -96,8 +98,35 @@ Lemma Contraposée :forall A B : Prop, (A -> B) <-> (~B -> ~A).
   apply H.
   assumption.
   intros.
-  apply double_neg.
-  intro.
-  apply H in H1.
-  contradiction.
+  elim (tiers_exclu B).
+  intros; simpl.
+  assumption.
+  intros.
+  absurd A.
+  apply H.
+  apply H1.
+  assumption.
 Qed.
+
+(*
+Lemma double_neg : forall A : Prop, ~~A <-> A.
+Proof.
+  intros; simpl.
+  split.
+  intros.
+  absurd A.
+  elim (tiers_exclu A).
+  intros.
+  elim A.
+*)
+
+(*
+Lemma Pierce : forall A B : Prop, ((A -> B) -> A) -> A.
+Proof.
+  intros; simpl.
+  apply H.
+  elim (tiers_exclu A).
+  intros.
+  assert (A -> B).
+  apply H0.
+*)

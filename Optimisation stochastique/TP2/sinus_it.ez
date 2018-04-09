@@ -1,0 +1,137 @@
+/*_________________________________________________________
+
+sinus-it // version of Christian Rolando's student Marc Haegelin
+Marc said this version failed after 1000 generations. We need to
+understand why
+__________________________________________________________*/
+
+\User declarations :
+#define nNB_SIN 10           // only 3 sines rather than 10
+#define nNB_SAMPLES 1000
+#define MIN_AMP 1.0
+#define MAX_AMP 100.0
+#define MIN_FREQ 1.0
+#define MAX_FREQ 10.0
+#define MIN_PH 0.0
+#define MAX_PH 6.283185308
+
+#define X_MIN 100           // minimum value for x
+#define X_MAX 320           // maximum value for x
+#define PI 3.141592654
+#define MAX(x,y) ((x)>(y)?(x):(y))
+#define MIN(x,y) ((x)<(y)?(x):(y))
+
+
+float sample[nNB_SAMPLES][2];
+float training[nNB_SIN][3];
+\end
+
+\User functions:
+
+float gauss(){
+/* Generates a normally distributed random value with variance 1 and 0 mean.
+    Algorithm based on "gasdev" from Numerical recipes' pg. 203. */
+  static int iset = 0;
+  float gset = 0.0;
+  float v1 = 0.0, v2 = 0.0, r = 0.0;
+  float factor = 0.0;
+
+  if (iset) {
+    iset = 0;
+    return gset;
+  }
+  else {
+    do {
+      v1 = (float)random(0.,1.) * 2.0 - 1.0;
+      v2 = (float)random(0.,1.) * 2.0 - 1.0;
+      r = v1 * v1 + v2 * v2;
+    } while (r > 1.0);
+    factor = sqrt (-2.0 * log (r) / r);
+    gset = v1 * factor;
+    iset = 1;
+    return (v2 * factor);
+    }
+}
+
+\end
+
+\User CUDA:
+\end
+
+\Before everything else function:
+\end
+
+\After everything else function:
+
+\end
+
+\At the beginning of each generation function:
+\end
+
+\At the end of each generation function:
+  //cout << "At the end of each generation function called" << endl;
+\end
+
+\At each generation before reduce function:
+  //cout << "At each generation before replacement function called" << endl;
+\end
+
+\User classes :
+GenomeClass { 
+}
+\end
+
+\GenomeClass::display:
+/* 	 for( size_t i=0 ; i<SIZE ; i++){ */
+/* 	      //     cout << Genome.x[i] << ":" << Genome.sigma[i] << "|"; */
+/* 	      printf("%.02f:%.02f|",Genome.x[i],Genome.sigma[i]); */
+/* 	 }	       */
+\end
+
+\GenomeClass::initialiser : // "initializer" is also accepted
+\end
+
+\GenomeClass::crossover :
+\end
+
+\GenomeClass::mutator: // Must return the number of mutations
+  return nNbMut;
+\end
+
+\GenomeClass::evaluator: // Returns the score
+\end
+
+\User Makefile options:
+\end
+
+\Default run parameters :        // Please let the parameters appear in this order
+  Number of generations : 300    	// NB_GEN
+  Time limit: 0 			// In seconds, 0 to deactivate
+  Population size : 65536 // 131072			//POP_SIZE
+  Offspring size : 100% // 40% 
+  Mutation probability : 1       // MUT_PROB
+  Crossover probability : 1      // XOVER_PROB
+  Evaluator goal : minimise      // Maximise
+  Selection operator: Tournament 2 
+  Surviving parents: 100% //percentage or absolute  
+  Surviving offspring: 100%
+  Reduce parents operator: Tournament 2
+  Reduce offspring operator: Tournament 2
+  Final reduce operator: Tournament 3
+
+  Elitism: weak			//Weak or Strong
+  Elite: 1
+  Print stats: true				//Default: 1
+  Generate csv stats file:false			
+  Generate gnuplot script:false
+  Generate R script:false
+  Plot stats:true				//Default: 0
+
+  Remote island model: true
+  IP file: ipexplorer.txt 			//File containing all the remote island's IP
+  Server port : 2929
+  Migration probability: 0.15 // 0.15 or 0.5
+
+  Save population: false
+  Start from file:false
+\end
