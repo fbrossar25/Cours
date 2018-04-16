@@ -6,6 +6,9 @@ understand why
 __________________________________________________________*/
 
 \User declarations :
+#include <iostream>
+#include <fstream>
+
 #define nNB_SIN 10           // only 3 sines rather than 10
 #define nNB_SAMPLES 1000
 #define MIN_AMP 1.0
@@ -15,15 +18,19 @@ __________________________________________________________*/
 #define MIN_PH 0.0
 #define MAX_PH 6.283185308
 
-#define X_MIN 100           // minimum value for x
-#define X_MAX 320           // maximum value for x
+#define X_MIN 100.0           // minimum value for x
+#define X_MAX 320.0           // maximum value for x
 #define PI 3.141592654
 #define MAX(x,y) ((x)>(y)?(x):(y))
 #define MIN(x,y) ((x)<(y)?(x):(y))
 
+using std::ofstream;
+using std::endl;
 
 float sample[nNB_SAMPLES][2];
-float training[nNB_SIN][3];
+
+float training[nNB_SIN][3];  // [0] = amplitude, [1] = frequence, [2] = phase
+
 \end
 
 \User functions:
@@ -59,9 +66,67 @@ float gauss(){
 \end
 
 \Before everything else function:
+
+/*
+for (int i=0;i<nNB_SIN;i++){
+  training[i][0]=random(MIN_AMP, MAX_AMP);
+  training[i][1]=random(MIN_FREQ, MAX_FREQ);
+  training[i][2]=random(MIN_PH, MAX_PH);
+}*/
+
+training[0][0]=90.729996;training[0][1]=1.289466;training[0][2]=0.805245;
+training[1][0]=20.773481;training[1][1]=2.459104;training[1][2]=2.393852;
+training[2][0]=95.286835;training[2][1]=2.949114;training[2][2]=0.261455;
+training[3][0]=90.408043;training[3][1]=3.634938;training[3][2]=3.530523;
+training[4][0]=55.878597;training[4][1]=4.313680;training[4][2]=0.408003;
+training[5][0]=80.658302;training[5][1]=4.794740;training[5][2]=0.977946;
+training[6][0]=36.322758;training[6][1]=5.928653;training[6][2]=6.014008;
+training[7][0]=17.488062;training[7][1]=8.689055;training[7][2]=5.301600;
+training[8][0]=99.049309;training[8][1]=8.835752;training[8][2]=5.738040;
+training[9][0]=02.550257;training[9][1]=9.819863;training[9][2]=2.565585;
+
+for (int i=0;i<nNB_SAMPLES;i++){
+  sample[i][0]=random(X_MIN, X_MAX); // on a fabriqué x
+  sample[i][1]=0; // on initialise y
+  for (int j=0;j<nNB_SIN;j++)
+    sample[i][1]+=training[j][0]*sin(training[j][1]*sample[i][0]+training[j][2]);
+                  // amplitude * sin (freq * x + phase)
+}
+
 \end
 
 \After everything else function:
+ofstream out_sin;
+printf("Fonction désirée:\ny=");
+out_sin.open("sinus_it_out.txt");
+out_sin << "set xrange [0:5]" << endl;
+out_sin << "set term png" << endl;
+out_sin << "set output \"sinus_it_out.png\"" << endl;
+out_sin << "f(x)=";
+for (int i=0;i<nNB_SIN-1;i++)
+{
+  printf("%f*sin(%f*x+%f)+",training[i][0],training[i][1],training[i][2]);
+  out_sin << training[i][0] << "*sin(" << training[i][1] << "*x+" << training[i][2] << ")+";
+}
+int j = nNB_SIN-1;
+printf("%f*sin(%f*x+%f)+",training[j][0],training[j][1],training[j][2]);
+out_sin << training[j][0] << "*sin(" << training[j][1] << "*x+" << training[j][2] << ")";
+printf("\b\n");
+
+printf("Fonction obtenue :\ny=");
+out_sin << endl << "g(x)=";
+for (int i=0;i<nNB_SIN-1;i++)
+{
+  printf("%f*sin(%f*x+%f)+",bBest->Sin[i*3+0],bBest->Sin[i*3+1],bBest->Sin[i*3+2]);
+  out_sin << bBest->Sin[i*3+0] << "*sin(" << bBest->Sin[i*3+1] << "*x+" << bBest->Sin[i*3+2] << ")+";
+}
+printf("%f*sin(%f*x+%f)+",bBest->Sin[j*3+0],bBest->Sin[j*3+1],bBest->Sin[j*3+2]);
+out_sin << bBest->Sin[j*3+0] << "*sin(" << bBest->Sin[j*3+1] << "*x+" << bBest->Sin[j*3+2] << ")";
+out_sin << endl << "plot f(x), g(x)" << endl;
+out_sin << "set term x11" << endl;
+out_sin << "replot" << endl;
+out_sin.close();
+printf("\b\n");
 
 \end
 
@@ -78,6 +143,9 @@ float gauss(){
 
 \User classes :
 GenomeClass { 
+  float Sin[nNB_SIN*3];  // sin[i*3+0] amplitude du sinus i
+                         // sin[i*3+1] fréquence du sinus i 
+                         // sin[i*3+2] phase du sinus i 
 }
 \end
 
@@ -89,30 +157,72 @@ GenomeClass {
 \end
 
 \GenomeClass::initialiser : // "initializer" is also accepted
+for(int i=0; i<nNB_SIN; i++){
+  Genome.Sin[i*3+0]=random(MIN_AMP, MAX_AMP);
+  Genome.Sin[i*3+1]=random(MIN_FREQ, MAX_FREQ);
+  Genome.Sin[i*3+2]=random(MIN_PH, MAX_PH);
+}
 \end
 
-\GenomeClass::crossover :
+\GenomeClass::crossover : // parent1  parent2 child(qui contient déjà parent1)
+int nLocus=random(1,nNB_SIN-2);
+for (int i=nLocus;i<nNB_SIN;i++){
+  child.Sin[i*3+0]=parent2.Sin[i*3+0];
+  child.Sin[i*3+1]=parent2.Sin[i*3+1];
+  child.Sin[i*3+2]=parent2.Sin[i*3+2];
+}
 \end
 
 \GenomeClass::mutator: // Must return the number of mutations
-  return nNbMut;
+float fpMut=3/((float)nNB_SIN);
+float ampTemp, freqTemp, phaseTemp;
+for (int i=0;i<nNB_SIN;i++)
+  if (tossCoin(fpMut)){
+    if (tossCoin(.4)) Genome.Sin[i*3+0]+=4.0-random(0.0, 8.0); // amplitude 1 à 100
+    if (tossCoin(.233)) Genome.Sin[i*3+1]+=0.1-random(0.0, 0.2); // freq 1 à 10
+    if (tossCoin(.233)) Genome.Sin[i*3+2]+=0.4-random(0.0, 0.8); // phase 0 à 2*PI
+  }
+for (int i=0;i<nNB_SIN-1;i++){
+  if (Genome.Sin[i*3+1]>Genome.Sin[(i+1)*3+1]){
+    ampTemp=Genome.Sin[i*3+0];freqTemp=Genome.Sin[i*3+1];phaseTemp=Genome.Sin[i*3+2];
+    Genome.Sin[i*3+0]=Genome.Sin[(i+1)*3+0];
+    Genome.Sin[i*3+1]=Genome.Sin[(i+1)*3+1];
+    Genome.Sin[i*3+2]=Genome.Sin[(i+1)*3+2];
+    Genome.Sin[(i+1)*3+0]=ampTemp;
+    Genome.Sin[(i+1)*3+1]=freqTemp;
+    Genome.Sin[(i+1)*3+2]=phaseTemp;
+  }
+}
+return 1.0;
 \end
 
 \GenomeClass::evaluator: // Returns the score
+//Renvoie l'écart-type des erreurs (valeur trouvée moins sample[x][1])
+  float y,fScore=0.0;
+  for (int i=0;i<nNB_SAMPLES;i++){
+    y=0;
+    for(int j=0;j<nNB_SIN;j++)
+      y+=Genome.Sin[3*j+0]*sin(Genome.Sin[3*j+1]*sample[i][0]+Genome.Sin[3*j+2]);
+
+    fScore+=pow((sample[i][1]-y),2); // carré de la différence
+  }
+  fScore/=(float)nNB_SAMPLES; // divisé par le nombre d'échantillons
+  fScore=pow(fScore,.5);        // dont je prends la racine pour avoir l'écart-type
+  return fScore;
 \end
 
 \User Makefile options:
 \end
 
 \Default run parameters :        // Please let the parameters appear in this order
-  Number of generations : 300    	// NB_GEN
+  Number of generations : 50    	// NB_GEN
   Time limit: 0 			// In seconds, 0 to deactivate
-  Population size : 65536 // 131072			//POP_SIZE
+  Population size : 8192 // 131072			//POP_SIZE
   Offspring size : 100% // 40% 
   Mutation probability : 1       // MUT_PROB
   Crossover probability : 1      // XOVER_PROB
   Evaluator goal : minimise      // Maximise
-  Selection operator: Tournament 2 
+  Selection operator: Tournament 7 
   Surviving parents: 100% //percentage or absolute  
   Surviving offspring: 100%
   Reduce parents operator: Tournament 2
@@ -122,10 +232,10 @@ GenomeClass {
   Elitism: weak			//Weak or Strong
   Elite: 1
   Print stats: true				//Default: 1
-  Generate csv stats file:false			
-  Generate gnuplot script:false
-  Generate R script:false
-  Plot stats:true				//Default: 0
+  Generate csv stats file: false			
+  Generate gnuplot script: false
+  Generate R script: false
+  Plot stats: false				//Default: 0
 
   Remote island model: true
   IP file: ipexplorer.txt 			//File containing all the remote island's IP
@@ -133,5 +243,5 @@ GenomeClass {
   Migration probability: 0.15 // 0.15 or 0.5
 
   Save population: false
-  Start from file:false
+  Start from file: false
 \end
