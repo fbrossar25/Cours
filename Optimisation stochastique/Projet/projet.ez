@@ -1,0 +1,68 @@
+/*________________________________________________________________________________________________
+Projet de recherche stochastique : Université de Strasbourg (2017-2018) M1 ILC
+Brossard Florian
+Dvornichenko Kateryna
+Création d'un emplois du temps
+________________________________________________________________________________________________*/
+
+/* -------------------------------------------------------------------------------------------- */
+
+/************************************************************************************************/
+/*******************///             DECLARATION DES CLASSES               ///********************/
+/************************************************************************************************/
+\User classes :
+
+/* Classe représentant un cours. Un cours se compose de chaque élément ci-dessous.		*/
+Cours
+{
+	int		classe [NBCLASSES];	/* représente une classe d'élève	*/
+	int		matiere;			/* représente une matière		*/
+    
+ 	int		prof;				/* représente un prof			*/
+	int		salle;				/* représente une salle			*/
+	int		creneau;			/* représente un créneau		*/
+}
+
+
+/* Classe représentant une classe d'élèves des 20 etudiants.					*/
+Classes
+{
+	int 	promotion;					/*l'annee de cours */
+	int		specialization;				/* type de diplome */
+	int		occupation	[NBCRENEAUX];	/* indique si présente dans le créneau	*/
+	int		matiere		[NBCRENEAUX];	/* indique la matière dans le créneau	*/
+}
+
+/* Classe représentant un enseignant.							*/
+Profs
+{
+	int		potentiel;					/* indique son nombre d'horaires	*/
+	int		occupation	[NBCRENEAUX];	/* indique si présent dans le créneau	*/
+	int		classe		[NBCRENEAUX];	/* indique la classe dans le créneau	*/
+}
+
+/* Classe représentant une salle de cours.							*/
+Salles
+{
+	int		potentiel;			/* indique le nombre de cours simultanés*/
+	int		occupation	[NBCRENEAUX];	/* indique si occupée dans le créneau	*/
+}
+
+/* Classe représentant une plage horaire.							*/
+Creneaux
+{
+	int		potentiel;			/* indique les cours simultanés		*/
+}
+
+/* Classe représentant un génome, soit un emplois du temps complet.				*/
+Genome
+{ 
+	CoursClass*	cours			[NBCOURS];	/* les cours				*/
+	ClassesClass*	classes		[NBCLASSES];	/* les classes				*/
+	ProfsClass*	profs			[NBPROFS];	/* les profs				*/
+	SallesClass*	salles		[NBSALLES];	/* les salles				*/
+	CreneauxClass*	creneaux	[NBCRENEAUX];	/* les créneaux				*/
+}
+
+\end
+/* -------------------------------------------------------------------------------------------- */
