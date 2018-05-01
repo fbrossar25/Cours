@@ -1,0 +1,246 @@
+/*________________________________________________________________________________________________
+Projet de recherche stochastique : Université de Strasbourg (2017-2018) M1 ILC
+Brossard Florian
+Dvornichenko Kateryna
+Création d'un emplois du temps
+________________________________________________________________________________________________*/
+
+\User declarations:
+	#include <string>
+	#include <iostream>
+
+	#define PENALITE_OBLIGATOIRE 	10000
+	#define PENALITE_FORTE			1000
+	#define PENALITE_FAIBLE			1
+
+	#define NB_GROUPES 16 		// 16 groupes de TP de 20 élèves
+	#define NB_COURS 5 			// 4 spec en L1 + 1 tronc commun en L0
+	#define NB_PROFS 5 			// 4 spec en L1 + 1 tronc commun en L0
+	#define NB_SALLES 5 		// 4 spec en L1 + 1 tronc commun en L0
+	#define NB_CRENEAUX 4 		// 4 creneaux par jours
+
+	//Jours de la semaine
+	#define JOUR_LUNDI 0
+	#define JOUR_MARDI 1
+	#define JOUR_MERCREDI 2
+	#define JOUR_JEUDI 3
+	#define JOUR_VENDREDI 4
+
+	#define SPEC_L0 0			// Pas de spécialisation en L0
+	#define SPEC_CE	1			// Chemical Engineering
+	#define SPEC_CS	2			// Computer Science
+	#define SPEC_GE	3			// Geophysical Engineering
+	#define SPEC_OG	4			// Oil and Gas
+
+	#define SALLE_CM 0			//Salle CM
+	#define SALLE_TD 1			//Salle TD
+	#define SALLE_LANG 2		//Salle langue
+	#define SALLE_INFO 3		//Salle info
+	#define SALLE_LABO 4		//Salle physique-chimie
+
+	#define PROF_VACATAIRE 1	//Prof vacataire
+	#define PROF_PLEIN_TEMPS 1	//Prof à plein temps
+	#define PROF_MI_TEMPS 2		//Prof à mi-temps
+
+	#define NB_PROF_MATH 3		//Nombre de profs de chimie
+	#define NB_PROF_PHYSIQUE 3	//Nombre de profs de chimie
+	#define NB_PROF_INFO 4		//Nombre de profs de chimie
+	#define NB_PROF_CHIMIE 4	//Nombre de profs de chimie
+	#define NB_PROF_ANGLAIS 4	//Nombre de profs de chimie
+	#define NB_PROF_FRANCAIS 5	//Nombre de profs de chimie
+
+	/*
+		TODO : define pour chaque matières + créneaux libre pour la classe Groupe
+	*/
+\end
+
+\User functions:
+	//retourne les penalites pour un profs, a un creneau et un jour donne
+	int evalContraintesProfCreneaux(char prof, int matiere, int jour, int creneau)
+	{
+		if(matiere == MATIERE_MATH)
+		{
+			switch(prof)
+			{
+				case 'A':
+					if(creneau == 0)
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
+				case 'B':
+					if((jour == JOUR_LUNDI || jour == JOUR_MARDI || jour == JOUR_VENDREDI)
+						&& (creneau == 2 || creaneau == 3)
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
+				case 'C':
+					if(creneau == 2)
+					{
+						return PENALITE_FORTE;
+					}
+				default:;
+			}
+		}
+		return 0;
+	}
+
+	//TODO
+
+\end
+
+/* -------------------------------------------------------------------------------------------- */
+
+/************************************************************************************************/
+/*******************///             DECLARATION DES CLASSES               ///********************/
+/************************************************************************************************/
+\User classes :
+
+/* Classe représentant un cours. Un cours se compose de chaque élément ci-dessous.		*/
+Cours
+{
+	int		classe [NB_GROUPES];	/* représente une classe d'élève	*/
+	int		matiere;				/* représente une matière		*/
+    
+ 	int		prof;					/* représente un prof			*/
+	int		salle;					/* représente une salle			*/
+	int		creneau;				/* représente un créneau		*/
+}
+
+/* Classe représentant un groupe de TP de 20 etudiants.					*/
+Groupe
+{
+	int		specialisation;				/* type de diplome */
+	//int		occupation	[NB_CRENEAUX];	/* indique si présente dans le créneau	*/
+	//si matiere[i] == 0 -> pas d'occupation
+	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
+}
+
+/* Classe représentant un enseignant.							*/
+Prof
+{
+	char 	id; //correspond à A,B,C ou D sur le sujet
+	int		potentiel;						/* indique son nombre d'horaires	*/
+	//int		occupation	[NB_CRENEAUX];	/* indique si présent dans le créneau	*/
+	int		matiere;						//matiere enseignée par le prof
+	int		classe		[NB_CRENEAUX];		/* indique la classe dans le créneau	*/
+}
+
+/* Classe représentant une salle de cours.							*/
+Salle
+{
+	int		potentiel;					/* indique le nombre d'élève max dans la salle */
+	int		type;						//type de la salle
+	int		occupation	[NB_CRENEAUX];	/* indique si occupée dans le créneau	*/
+}
+
+/* Classe représentant une plage horaire.							*/
+Creneau
+{
+	int		potentiel;			/* indique les cours simultanés	*/
+}
+
+/* Classe représentant un génome, soit un emplois du temps complet.				*/
+Genome
+{ 
+	Cours*	cours			[NB_COURS];	/* les cours				*/
+	Groupe*	groupes			[NB_GROUPES];	/* les groupes TP				*/
+	Prof*	profs			[NB_PROFS];	/* les profs				*/
+	Salle*	salles			[NB_SALLES];	/* les salles				*/
+	Creneau*	creneaux	[NB_CRENEAUX];	/* les créneaux				*/
+}
+
+\end
+/* -------------------------------------------------------------------------------------------- */
+
+\Genome::display:
+	//TODO affichage console
+\end
+
+\Genome::initialiser:
+	//initialisation des groupes de TP
+	Groupe* g;
+	if(NB_GROUPES != 16)
+	{
+		for(int i=0; i<NB_GROUPES; i++)
+		{
+			Genome.groupes[i] = new Groupe();
+		}
+	}
+	else
+	{		
+		for(int i=0; i<NB_GROUPES; i++ ) 
+		{
+			g = new Groupe();
+			if(i<8) //8 groupes de L0
+			{
+				g->specialisation = SPEC_L0;
+			}
+			else if(i<10) //2 groupes chimie
+			{
+				g->specialisation = SPEC_CE;
+			}
+			else if(i<12) //2 groupes info
+			{
+				g->specialisation = SPEC_CS;
+			}
+			else if(i < 14) //2 groupes geophysique
+			{
+				g->specialisation = SPEC_GE;
+			}
+			else			//2 groupes roi du petrole
+			{
+				g->specialisation = SPEC_OG;
+			}
+			Genome.groupes[i] = g;
+		}
+	}
+\end
+
+\Genome::crossover:
+	//TODO ???
+\end
+
+\Genome::mutator:
+	//TODO ???
+\end
+
+\Genome::evaluator:
+	//TODO évaluation du genome (pénalités, etc...)
+\end
+
+\User Makefile options:
+	CXX=clang++
+	CPPFLAGS+=-std=c++11 //-std=c++98
+\end
+
+\Default run parameters :
+  Number of generations : 100
+  Time limit: 10
+  Population size : 100
+  Offspring size : 40%
+  Mutation probability : 1
+  Crossover probability : 1
+  Evaluator goal : Minimise
+  Selection operator: Tournament 2.0
+  Surviving parents: 90%
+  Surviving offspring: 90%
+  Reduce parents operator: Tournament 2
+  Reduce offspring operator: Tournament 2
+  Final reduce operator: Tournament 2
+
+  Elitism: Strong
+  Elite: 1
+  Print stats: true
+  Generate csv stats file:false			
+  Generate gnuplot script:false
+  Generate R script:false
+  Plot stats:false
+
+  Remote island model: false
+  Migration probability: 0
+
+  Save population: false
+  Start from file:false
+\end
