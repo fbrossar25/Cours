@@ -880,7 +880,7 @@ for (int i=0; i<NBCOURS; i++)
 \GenomeClass::crossover :
 
 float	limite			= 0.5;
-
+ //pour chaque cours, 1 chance sur 2 de garder le creneau
 for (int i=0; i<NBCOURS; i++)
 {
 	if((float)random(0.,1.) < limite)

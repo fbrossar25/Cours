@@ -14,7 +14,7 @@ ________________________________________________________________________________
 	#define PENALITE_FAIBLE			1
 
 	#define NB_GROUPES 16 		// 16 groupes de TP de 20 élèves
-	#define NB_COURS 5 			// 4 spec en L1 + 1 tronc commun en L0
+	#define NB_COURS 5 			// Nombres de cours dans l'année
 	#define NB_PROFS 5 			// 4 spec en L1 + 1 tronc commun en L0
 	#define NB_SALLES 5 		// 4 spec en L1 + 1 tronc commun en L0
 	#define NB_CRENEAUX 4 		// 4 creneaux par jours
@@ -48,7 +48,31 @@ ________________________________________________________________________________
 	#define NB_PROF_CHIMIE 4	//Nombre de profs de chimie
 	#define NB_PROF_ANGLAIS 4	//Nombre de profs de chimie
 	#define NB_PROF_FRANCAIS 5	//Nombre de profs de chimie
-
+	
+	//type de profs
+	#define PROF_MATH 0
+	#define PROF_PHYSIQUE 1
+	#define PROF_INFO 2
+	#define PROF_CHIMIE 3
+	#define PROF_ANGLAIS 4
+	#define PROF_FRANCAIS 5
+	
+	//COURS L0
+	#define MATIERE_S1_MATH 0 //matiere math S1
+	const int[] NB_S1_MATH = {0, 42, 0, 0}; //0 CM, 42 CI, 0 TD, 0 TP
+	#define MATIERE_S1_CHIM 1
+	const int[] NB_S1_CHIM = {0, 42, 0, 0};
+	#define MATIERE_S1_PHYS 2
+	const int[] NB_S1_PHYS = {0, 42, 0, 0};
+	#define MATIERE_S1_INFO 3
+	const int[] NB_S1_INFO = {0, 56, 0, 0};
+	#define MATIERE_S1_FRANCAIS 4
+	const int[] NB_S1_FRANCAIS = {0, 42, 0, 42};
+	#define MATIERE_S1_ANGLAIS 5
+	const int[] NB_S1_ANGLAIS = {0, 70, 0, 42};
+	#define MATIERE_S1_METHODE 6
+	const int[] NB_S1_METHODE = {0, 0, 0, 14};
+	
 	/*
 		TODO : define pour chaque matières + créneaux libre pour la classe Groupe
 	*/
@@ -56,9 +80,9 @@ ________________________________________________________________________________
 
 \User functions:
 	//retourne les penalites pour un profs, a un creneau et un jour donne
-	int evalContraintesProfCreneaux(char prof, int matiere, int jour, int creneau)
+	int evalContraintesProfCreneaux(char prof, int type_prof, int jour, int creneau)
 	{
-		if(matiere == MATIERE_MATH)
+		if(type_prof == PROF_MATH)
 		{
 			switch(prof)
 			{
@@ -70,16 +94,57 @@ ________________________________________________________________________________
 					break;
 				case 'B':
 					if((jour == JOUR_LUNDI || jour == JOUR_MARDI || jour == JOUR_VENDREDI)
-						&& (creneau == 2 || creaneau == 3)
+						&& (creneau == 2 || creneau == 3)
 					{
 						return PENALITE_OBLIGATOIRE;
 					}
 					break;
 				case 'C':
-					if(creneau == 2)
+					if(jour == JOUR_VENDREDI && creneau == 2)
 					{
 						return PENALITE_FORTE;
 					}
+					break;
+				default:;
+			}
+		}else if(type_prof == PROF_PHYSIQUE)
+		{
+			switch(prof)
+			{
+				case 'A':
+					if(creneau == 0)
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
+				case 'B':
+					if(creneau > 1)
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
+				case 'C':
+					if(!((jour == JOUR_JEUDI && creneau < 2) || (jour == JOUR_VENDREDI && creneau > 1)))
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
+				case 'D':break;
+				default:;
+			}
+		}else if(type_prof == PROF_INFO)
+		{
+			switch(prof)
+			{
+				case 'A':break;
+				case 'B':break;
+				case 'C':break;
+				case 'D':
+					if(jour == JOUR_LUNDI || jour == JOUR_VENDREDI)
+					{
+						return PENALITE_OBLIGATOIRE;
+					}
+					break;
 				default:;
 			}
 		}
@@ -199,11 +264,31 @@ Genome
 \end
 
 \Genome::crossover:
-	//TODO ???
+	//pour chaque cours, 1 chance sur 2 de garder le creneau
+	for (int i=0; i<NBCOURS; i++)
+	{
+		if(random(0.0,1.0) < 0.5)
+		{
+			child.cours[i]->creneau = parent2.cours[i]->creneau;
+		}
+	}
 \end
 
 \Genome::mutator:
-	//TODO ???
+	//reinstancier tous les membres du Genome qui sont NULL
+	//Pour chaque cours c1 dans Genome->cours
+		//prof p1 = c1->prof
+		//si random(0.0,1.0) < 0.5
+			// mutation -> échanger deux profs de la même matière (aléatoire ?)
+			//p2 est le prof à échanger avec p1
+			// Pour chaque cours c2
+				//Si c2->prof == p2 Alors c2->prof = p1
+				//Sinon Si c2->prof == p1 Alors c2->prof = p2
+				//décrémenter les nombre de cours de c1 et c2
+	//Si prof.nbHeure(c1) > 1 OU salles.nbCours(c1) > 1 OU classes.nbCours(c1) > 1 Alors
+		//erreur : nécessite 'correction manuelle'
+		//reporter le cours du creneau c1 ?
+	//retourner 1 si erreur, 0 sinon
 \end
 
 \Genome::evaluator:
