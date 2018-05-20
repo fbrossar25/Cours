@@ -69,20 +69,74 @@ ________________________________________________________________________________
 	#define PROF_FRANCAIS 5
 	
 	#define TYPE_COURS 4 //CM, CI, TD et TP
+
+	//COURS L0 S1
 	#define MATIERE_S1_MATH 0 //matiere math S1
-	const int[] NB_S1_MATH = {0, 42, 0, 0}; //0 CM, 42 CI, 0 TD, 0 TP
+	const int NB_S1_MATH[] = {0, 42, 0, 0}; //0 CM, 42 CI, 0 TD, 0 TP
 	#define MATIERE_S1_CHIM 1
-	const int[] NB_S1_CHIM = {0, 42, 0, 0};
+	const int NB_S1_CHIM[] = {0, 42, 0, 0};
 	#define MATIERE_S1_PHYS 2
-	const int[] NB_S1_PHYS = {0, 42, 0, 0};
+	const int NB_S1_PHYS[] = {0, 42, 0, 0};
 	#define MATIERE_S1_INFO 3
-	const int[] NB_S1_INFO = {0, 56, 0, 0};
+	const int NB_S1_INFO[] = {0, 56, 0, 0};
 	#define MATIERE_S1_FRANCAIS 4
-	const int[] NB_S1_FRANCAIS = {0, 42, 0, 42};
+	const int NB_S1_FRANCAIS[] = {0, 42, 0, 42};
 	#define MATIERE_S1_ANGLAIS 5
-	const int[] NB_S1_ANGLAIS = {0, 70, 0, 42};
+	const int NB_S1_ANGLAIS[] = {0, 70, 0, 42};
 	#define MATIERE_S1_METHODE 6
-	const int[] NB_S1_METHODE = {0, 0, 0, 14};
+	const int NB_S1_METHODE[] = {0, 0, 0, 14};
+
+	//COURS L0 S2
+	#define MATIERE_S2_ANALYSE 7
+	const int NB_S2_ANALYSE[] = {10, 32, 0, 0};
+	#define MATIERE_S2_ALGEBRE 8
+	const int NB_S2_ALGEBRE[] = {10, 32, 0, 0};
+	#define MATIERE_S2_PHYSIQUE 9
+	const int NB_S2_PHYSIQUE[] = {14, 28, 0, 21};
+	#define MATIERE_S2_INFO 10
+	const int NB_S2_INFO[] = {10, 32, 0, 21};
+	#define MATIERE_S2_CHIMIE 11
+	const int NB_S2_CHIMIE[] = {14, 28, 0, 21};
+	#define MATIERE_S2_FRANCAIS 12
+	const int NB_S2_FRANCAIS[] = {0, 42, 0, 0};
+	#define MATIERE_S2_ANGLAIS 13
+	const int NB_S2_ANGLAIS[] = {0, 42, 0, 0};
+	#define MATIERE_S2_PROJET 14
+	const int NB_S2_PROJET[] = {0, 0, 8, 28};
+
+	//COURS L1 S3
+	#define MATIERE_S3_ANALYSE 15
+	const int NB_S3_ANALYSE[] = {30, 0, 42, 0};
+	#define MATIERE_S3_MECA 16
+	const int NB_S3_MECA[] = {21, 0, 21, 0};
+	#define MATIERE_S3_THERMO 17
+	const int NB_S3_THERMO[] = {18, 0, 18, 0};
+	#define MATIERE_S3_FLUID 18
+	const int NB_S3_FLUID[] = {9, 0, 9, 0};
+	#define MATIERE_S3_INFODB 19
+	const int NB_S3_INFODB[] = {12, 0, 12, 12};
+	#define MATIERE_S3_FRANCAIS 20
+	const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
+	#define MATIERE_S3_ANGLAIS 21
+	const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
+
+	//COURS L1 S3 SPE CHIMIE
+	#define MATIERE_S3_SPE_CHIM1 22
+	const int NB_S3_SPE_CHIM1[] = {30, 0, 21, 21};
+	#define MATIERE_S3_SPE_CHIM2 23
+	const int NB_S3_SPE_CHIM2[] = {15, 0, 15, 15};
+
+	//COURS L1 S3 SPE INFO
+	#define MATIERE_S3_SPE_INFO1 24
+	const int NB_S3_SPE_INFO1[] = {21, 0, 21, 12};
+	#define MATIERE_S3_SPE_INFO2 25
+	const int NB_S3_SPE_INFO2[] = {15, 0, 0, 21};
+
+	//COURS L1 S3 SPE PHYS
+	#define MATIERE_S3_SPE_PHYS1 26
+	const int NB_S3_SPE_PHYS1[] = {30, 0, 21, 21};
+	#define MATIERE_S3_SPE_PHYS2 27
+	const int NB_S3_SPE_PHYS2[] = {0, 30, 0, 0};
 	
 	/*
 		TODO : define pour chaque matières + créneaux libre pour la classe Groupe
