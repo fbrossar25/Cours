@@ -4,16 +4,16 @@ Création d'un emplois du temps
 Selection operator: Tournament
 ________________________________________________________________________________________________*/
 
-#include <math.h>
-#include <string>
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <time.h> 
-
 \User declarations : 
 #define Abs(x) ((x) < 0 ? -(x) : (x))
 #define MAX(x,y) ((x)>(y)?(x):(y))
 #define MIN(x,y) ((x)<(y)?(x):(y))
+#include <math.h>
+#include <string>
+#include <cstring>
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> 
 
 /* -------------------------------------------------------------------------------------------- */
 /* Valeurs permettant la sélection par la fitness des individus :				*/
@@ -1351,7 +1351,7 @@ return score;
 /************************************************************************************************/
 
 \User Makefile options: 
-CPPFLAGS+=
+CXXFLAGS+=-std=c++98
 \end
 
 \Default run parameters :       		// Please let the parameters appear in this order
