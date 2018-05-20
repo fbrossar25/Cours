@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cuiteur Inscription</title>
+		<meta charset="iso-8859-1"> 
+	</head>
+	<body>
+		<table border="1" cellpadding="4" cellspacing="0">
+			<form method=POST action="../php/inscription.php">
+				<tr>
+					<td>Choisir un pseudo</td>
+					<td>
+						<input type="text" name="txtPseudo" size="20">
+					</td>
+				</tr>
+				<tr>
+					<td>Choisir un mot de passe</td>
+					<td>
+						<input type="password" name="txtPass" size="20">
+					</td>
+				</tr>
+				<tr>
+					<td>Répéter le mot de passe</td>
+					<td>
+						<input type="password" name="txtVerif" size="20">
+					</td>
+				</tr>
+				<tr>
+					<td>Indiquer votre nom</td>
+					<td>
+						<input type="text" name="txtNom" size="40">
+					</td>
+				</tr>
+				<tr>
+					<td>Donner votre adresse mail</td>
+					<td>
+						<input type="text" name="txtMail" size="40">
+					</td>
+				</tr>
+				<tr>
+					<td>Votre date de naissance</td>
+					<td>
+						<select name="selNais_j">
+							<option value=1>1</option>
+							<option value=2>2</option>
+						</select>
+						<select name="selNais_m">
+							<option value=1>Janvier</option>
+							<option value=2>Février</option>
+						</select>
+						<select name="selNais_a">
+							<option value=2010>2010</option>
+							<option value=2011>2011</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="submit" value="Je m'inscris !" name="btnValider">
+					</td>
+				</tr>
+			</form>
+		</table>
+		<a href="../index.php" title="Index">Retourner à l'index</a>
+	</body>
+</html>

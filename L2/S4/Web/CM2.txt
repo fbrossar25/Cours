@@ -1,0 +1,5 @@
+CSS :
+On sépare un site en 3 piliers : apparence (CSS, Cascading Slide Sheet), contenu (HTML), Actions(Javascript)
+DOM : Document Object Model
+Feuille de style en cascade : séparer contenu et forme,
+pas d'attributs

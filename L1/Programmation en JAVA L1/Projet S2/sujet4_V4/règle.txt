@@ -1,0 +1,4 @@
+1) le premier coup s'effectue avec la bille blanche
+2) la bille blanche ne doit pas tomber dan sun trous au premier tour
+3) la bille noire dois être l'avant dernière bille à tombée dans un trous
+4)le joueur gagnant est celui qui à mis le plus de bille dans un trou en respectant ces règles

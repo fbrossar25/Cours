@@ -1,0 +1,318 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	background-color: #20190F;
+	font-family: "Verdana", "Geneva", "Sans-Serif";
+	font-size: 14px;
+	font-weight: normal;
+	color: #E8DBB1;
+	background-repeat: repeat-y;
+}
+ol, ul {
+	list-style: none;
+	line-height: 1.3;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+#general{
+	background-image: url("../images/fond.jpg");
+	width: 800px;
+	height : 100%;
+	margin: auto;
+	position:relative;
+}
+
+header{
+	background-image: url("../images/entete.jpg") no-repeat;
+	height: 270px;
+	position:relative;
+}
+
+section{
+	float: right;
+	height: 400px;
+	width:550px;
+}
+
+#acceuil{
+	position: absolute;
+	background: url("../images/home.png");
+	width: 48px;
+	height: 44px;
+	margin-top: 10%;
+	margin-left: -26%;
+}
+
+#acceuil:hover{
+	background: url("../images/home_over.png");
+}
+
+#recherche{
+	position: absolute;
+	background: url("../images/cherche.png");
+	width: 44px;
+	height: 40px;
+	margin-top: 10.6%;
+	margin-left: -18%;
+}
+
+#recherche:hover{
+	background: url("../images/cherche_over.png");
+}
+
+#config{
+	position: absolute;
+	background: url("../images/config.png");
+	width: 44px;
+	height: 40px;
+	margin-top: 11%;
+	margin-left: -10.5%;
+}
+
+#config:hover{
+	background: url("../images/config_over.png");
+}
+
+#deconnexion{
+	position: absolute;
+	background: url("../images/deconnexion.png");
+	width: 68px;
+	height: 73px;
+	margin-top: 1.5%;
+	margin-left: -1%;
+}
+
+#deconnexion:hover{
+	background: url("../images/deconnexion_over.png");
+}
+
+#fondSaisie{
+	position: absolute;
+	margin-top: 16%;
+	margin-left: -60%;
+}
+
+#pieceJointe{
+	position: absolute;
+	background: url("../images/trombone.png");
+	width: 52px;
+	height: 44px;
+	margin-top: 27.2%;
+	margin-left: -54%;
+}
+
+#pieceJointe:hover{
+	background: url("../images/trombone_over.png");
+}
+
+#publier{
+	position: absolute;
+	background: url("../images/haut_parleur.png");
+	width: 52px;
+	height: 44px;
+	margin-top: 27.2%;
+	margin-left: -4%;
+	border: 0;
+}
+
+#publier:hover{
+	background: url("../images/haut_parleur_over.png");
+}
+
+#zoneSaisie{
+	position: absolute;
+	color: #7A370D;
+	background-color: #F5F4F4;
+	border-color: #B4B3B43;
+	margin-top: 19%;
+	margin-left: -54.7%;
+	width: 470px;
+	height: 55px;
+	resize: none;
+}
+
+a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+aside{
+	float: left;
+	height: 450px;
+	width: 250px;
+	font-family: "Comic Sans MS", "cursive", "Sans-Serif";
+	font-size: 16px;
+	background: url("../images/micro.jpg") no-repeat;
+	color: #389dff;
+}
+
+.elementList{
+	color: #3C96F1;
+}
+
+.elementList:hover{
+	text-decoration: underline;
+}
+
+.texteBlanc{
+	margin-top: 16px;
+	color: #efe7de;
+	font-size: 18px;
+}
+
+.profilAside{
+	position: relative;
+	bottom: 20px;
+	color: #3C96F1;
+	
+}
+
+.profilAside:hover{
+	text-decoration: underline;
+}
+
+.blabla{
+	background: url("../images/fond_blabla.png");
+	width: 480px;
+	padding: 5px;
+	opacity: 1.0;
+	font-size: 12px;
+	margin: 0px 0px 10px 25px;
+}
+
+.icone{
+	float: left;
+	margin: -5px 0px 0px -30px;
+	padding: 5px;
+}
+
+.profil{
+	color: #3C96F1;
+	font-weight: bold;
+}
+
+.profil:hover{
+	text-decoration: underline;
+}
+
+.htag{
+	color: #3C96F1;
+}
+
+.htag:hover{
+	text-decoration: underline;
+}
+
+.repondre{
+	float: right;
+	color: #3C96F1;
+	margin: 0px 0px 0px 30px;
+	opacity: 0.6;
+}
+
+.repondre:hover{
+	text-decoration: underline;
+	opacity: 1.0;
+}
+
+.recuiter{
+	float: right;
+	color: #3C96F1;
+	margin: 0px 0px 0px 0px;
+	opacity: 0.6;
+}
+
+.recuiter:hover{
+	text-decoration: underline;
+	opacity: 1.0;
+}
+
+#plusBlabla{
+	float: right;
+	margin-top: 30px;
+}
+
+#speaker{
+	float:right;
+	margin: -30px 0px 0px 0px;
+}
+
+#lienBlablas{
+	color: #3C96F1;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+}
+
+#lienBlablas:hover{
+	text-decoration: underline;
+}
+
+footer{
+	position: relative;
+	clear: both;
+	background: url("../images/pied.png") no-repeat;
+	height: 65px;
+	padding-bottom: 3%;
+}
+
+#aPropos{
+	color: #3C96F1;
+	margin-left: 100px;
+	font-size: 12px;
+	opacity: 0.6;
+}
+
+#aPropos:hover{
+	text-decoration: underline;
+	opacity: 1.0;
+}
+
+.liensFooter{
+	color: #3C96F1;
+	margin-left:20px;
+	font-size: 12px;
+	opacity: 0.6;
+}
+
+.liensFooter:hover{
+	text-decoration: underline;
+	opacity: 1.0;
+}

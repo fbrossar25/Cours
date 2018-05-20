@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/florian/Cours_Info/L3/S5/MOP/TP3/dll/DisplayMessage.cpp
+DisplayMessage.h
+/home/florian/Cours_Info/L3/S5/MOP/TP3/dll/DisplayMessage.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP3/dll/DisplayMessage.h
+stdio.h
+/home/florian/Cours_Info/L3/S5/MOP/TP3/dll/stdio.h
+windows.h
+/home/florian/Cours_Info/L3/S5/MOP/TP3/dll/windows.h
+

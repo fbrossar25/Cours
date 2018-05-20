@@ -1,0 +1,93 @@
+		TD4
+classe CoordPolaires{
+	privé réel t,r
+	Constructeur (réel r,t)
+		moi.r <- r
+		moi.t <- t
+	fin
+	Constructeur()
+		Constructeur(racine(2),45*Pi/180)
+	fin
+	Constructeur (point p)
+		moi.r <- p.distOrig()
+		si(p.y = o) t = 0.0
+		sinon si (p.x > 0 && p.y > 0) t = arctan (p.x/p.y)
+		sinon si (p.x > 0 && p.y < 0) t = arctan (p.x/p.y) + 2.0*PI
+		sinon si (p.x < 0) t = arctan (p.x/p.y) + PI
+		sinon si (p.x = 0 && p.y > 0) t = PI / 2.0
+		sinon si (p.x = 0 && p.y < 0) t = ((3.0 * PI) / 2.0)
+		fin si
+	fin
+	réel getR()
+		retourner r
+	fin
+	réel getT()
+		retourner t
+	fin
+	Point enCoordCart()
+		retourner créer point((r*cos(t)),(r*sin(t)))
+	fin
+	reel distOrigine()
+		Point p <- enCoordCart();
+		retourner racine(p.x*p.x+p.y*p.y)
+	fin
+	reel distAvec(CoordPolaire c)
+		Point moi <- enCoordCart()
+		Point lui <- c.enCoordCart()
+		retourner racine((moi.x-lui.x)*(moi.x-lui.x)+(moi.y-lui.y)*(moi.y-lui.y))
+	fin
+}
+
+classe Cercle{
+	privée Point centre
+	privée réel r
+	Constructeur(réel x,y,r)
+		moi.r <- lui.r
+		moi.centre <- créer Point(x,y)
+	fin
+	Construceur()
+		Constructeur(1.0,1.0,1.0)
+	fin
+	réel getR(){
+		retourner moi.r
+	}
+	Point getCentre(){
+		retourner moi.centre
+	}
+	réel aire()
+		retourner PI*r*r
+	fin
+	réel perimètre
+		retourner 2.0*PI*r
+	fin
+	booléen estDansCercle(Point p)
+		retourner (p.distAvec(p,centre) <= r)
+	fin
+	booléen estSurBordCercle(Point p)
+		retourner (p.distAvec(p,centre) = r)
+	fin
+} 
+
+programme principal{
+	Cercle c1 = créer Cercle(1.0,1.0,5.0)
+	Cercle c2 = créer Cercle(2.0,2.0,10.0)
+	
+	si (c1.getR() > c2.getR()) alors Ecran.afficher("Le cercle c1 est plus grand que c2 avec une aire de ",c1.aire())
+	sinon si (c2.getR() > c1.getR()) alors Ecran.afficher("Le cercle c2 est plus grand que c1 avec une aire de ",c2.aire())
+	sinon Ecran.afficher("c1 et c2 ont la même taille : ",c1.aire())
+	fin si
+	
+	si (c1.estDansCercle(c2.centre)) alors Ecran.afficher("le centre de c2 est dans le cercle c1")
+	sinon si (c2.estDansCercle(c1.centre)) alors Ecran.afficher("le centre de c1 est dans le cercle c2")
+	sinon Ecran.afficher("Les centre de c1 et c2 ne sont pas pas respectivement dans les cercles c2 et c1")
+	fin si
+	
+	Si Point.(c1.getCentre().distAvec(c2.getCentre()) = c1.getR() - c2.getR() || c1.getCentre().distAvec(c2.getCentre()) = c1.getR() + c2.getR()) alors Ecran.afficher("c1 et c2 sont tangeants")
+	Sinon Ecran.afficher ("c1 et c2 ne sont pas tangeants.")
+	Fin si
+	
+	Si (c1.getCentre().distOrigine() = 0.0 OU c2.getCentre.distOrigine() = 0.0 ) alors Ecran.afficher("L'un des centre de c1 ou c2 est l'origine du plan.")
+	sinon Ecran.afficher("Aucun des cercles c1 ou c2 n'as pour centre l'origine du plan.")
+	Fin si
+}
+

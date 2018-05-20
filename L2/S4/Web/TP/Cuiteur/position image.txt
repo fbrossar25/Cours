@@ -1,0 +1,6 @@
+dans le fichier css
+
+#idTruc{
+	float: right;
+	margin: 0 -60px 0 0;
+}

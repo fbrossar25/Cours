@@ -1,0 +1,148 @@
+				TD1
+Mdp moodle : pooL2-2015
+Exercice : Un rectangle
+Définir un objet rectangle par une classe
+
+Modèle (voir dessin):
+Rectangle : longueur l, Largeur L (tous deux réels)
+Opérations : périmètre, aire
+
+PDL++ :
+	Classe rectangle
+		Réel lng, lrg 
+		Fonction reel Perimetre(réel lng, réel lrg)
+			Retourner (lrg * 2.0 + lng *2.0)
+		Fin fonction
+		Fonction réel aire(réel lrg, réel lng)
+			Retourner (lrg * lng)
+		Fin fonction
+	Fin Classe
+
+ JAVA :
+	Static class rectangle{
+		double lrg,lng;
+		static double perimetre(double lrg, double lng){
+			return (lrg * 2.0 + lng * 2.0);		
+		}
+		static double aire(double lng, double lrg){
+			return lrg * lng;
+		}	
+	}
+
+Rédigez le programme principal en PDL++ qui crée un rectangle de longueur 4 et de hauteur 3, puis qui affiche 
+l'aire de ce rectangle.
+
+	Classe rectangle
+		Réel lng, lrg 
+		Fonction reel Perimetre(réel lng, réel lrg)
+			Retourner (lrg * 2.0 + lng *2.0)
+		Fin fonction
+		Fonction réel aire(réel lrg, réel lng)
+			Retourner (lrg * lng)
+		Fin fonction
+	Fin Classe
+	
+	fonction Principale
+		rectangle r <-- créer rectanlge()
+		r.lng <-- 4.0
+		r.lrg <-- 3.0
+		Ecran.afficherln("\n Longueur du rectangle : ",r.lng," , largeur du rectangle : ",r.lrg)
+		Ecran.afficherln("Aire du rectangle : ",r.aire())
+	Fin fonction
+	
+On vient d'apprendre qu'en fait le rectangle devrait avoir une position dans le plan et qu'on devrait 
+savoir calculer les coordonnées du centre du rectangle ==> refaire complètement la classe (Modèle puis PDL++)
+Rectangle
+réel longueur, réel largeur, position2D sommet
+opérations réel aire, réel perimetre
+csg : coin supérieur gauche
+
+Classe rectangle
+	reel lng <-- 0.0
+	reel lrg <-- 0.0
+	position2D csg
+	fonction reel aire()
+	fonction reel perimetre()
+	fonction position2D centre(reel lng,reel lrg, position2D csg)
+		position2D c <-- créer position2D()
+		c.x <-- csg.x - (lng / 2.0)
+		c.y <-- csg.y - (lrg / 2.0)
+	Fin Fonction
+Fin Classe
+
+Classe position2D
+	reel x <-- 0.0
+	reel y <-- 0.0
+	fonction reel distancePointOrigine(reel x, reel y)
+		retourner racine(x*x + y*y)
+	Fin fonction
+Fin Classe
+
+On voit apparaitre la notion de point :
+	-le csg est un point
+	-ma position du centre est un point
+	-la distance à l'origine est un calcul qui se fait sur un point
+	
+				TD2
+Classe point {
+	reel x,y
+	reel distanceOrigine()
+		retourner racine(x*x+y*y)
+	fin
+}
+
+Classe rectangle{
+	reel longueur, hauteur
+	point posCSG
+	reel aire()
+		retourner longueur * hauteur
+	fin
+	reel perimetre()
+		retourner (2*longueur + 2* hauteur)
+	fin
+	point getMilieu()
+		point c <-- créer point()
+		c.x <-- csg.x + (longueur / 2.0)
+		c.y <-- csg.y - (hauteur / 2.0)
+		retourner c
+	Fin
+	reel distanceOrigine()
+		retourner getMilieu().distanceOrigine()
+	fin
+}
+
+
+Créer un programme principal qui
+	-créer un rectangle de hauteur 3, longueur 5, positionnée au point ()x=8,y=6)
+	-Affiche le x et le y du milieu du rectangle
+	-affiche la distance entre le milieu et l'origine
+	
+Prog Principale
+	rectangle r <-- créer rectangle()
+	r.x <-- 5
+	r.y <-- 3
+	r.csg.x <-- 8
+	r.csg.y <-- 6
+	Ecran.afficherln("Centre du rectangle(",r.getMilieu().x,",",r.getMilieu().y,")")
+	Ecran.afficherln("Distance Milieu-origine : ",r.distanceOrigine())
+Fin
+
+
+Exo
+rajouter à la classe point une méthode qui calcule la distance entre le point courant et un autre point.
+Classe point {
+	reel x,y
+	reel distanceOrigine()
+		retourner racine(x*x+y*y)
+	fin
+	reel	distPointPoint(point p)
+		retourner racine((p.x-x)+(p.y-y))
+	Fin
+}
+
+
+	
+
+
+
+

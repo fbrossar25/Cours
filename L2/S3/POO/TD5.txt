@@ -1,0 +1,133 @@
+Q1 ) La méthode créer Etudiant(nom,prenom)
+
+Q2)
+Nom : Shelley - Prenom : Steve
+Nom : Shelley - Prenom : Steve
+SHC1111B //car e1 fait maintenant référence à e2
+SHC1111B
+
+Exo2)
+Q1)
+classe Auteur{
+	privée statique nbInstances = 0
+	privée entier id
+	privée chaine nom,prenom
+	privée tabAuteur tableau [500] de auteur
+	Auteur(){
+		Auteur("Anonyme" ,"Anonyme")
+		id <- 0
+	}
+	Auteur(chaine nom, chaine prenom){
+		nom <- "Anonyme"
+		prenom <- "Anonyme"
+		nbInstances <- nbInstances + 1
+		id <- nbInstances
+		tabAuteur [id-1] <- moi
+	}
+	privée Chaine getInitialesPrenom(){
+		entier i
+		chaine res <- moi.prenom.caracNum(0) + "."
+		pour i de 1 à moi.prenom.longueur() faire
+			si(moi.prenom.caracNum(i) = '-') res <- res +  "-" + moi.prenom.caracNum(i+1) + "."
+		fait
+		retourner res
+	}
+	Entier getHomonymByRef(chaine nom, chaine prenom){
+		booléen run <- true
+		entier i <- 0
+		faire
+			si(tabAuteur[i].nom = nom && tabAuteur[i].prenom = prenom) alors run <- false
+			sinon i <- i+1
+		tant que(run)
+		si !run alors retourner tabAuteur[i].id
+		sinon retourner null
+	}
+	Auteur getHomonymByIdent(chaine nom, chaine prenom){
+		booléen run <- true
+		entier i <- 0
+		entier res
+		faire
+			si(tabAuteur[i].nom = nom && tabAuteur[i].prenom = prenom) alors 
+				run <- false
+				res <- i
+			sinon i <- i+1
+		tant que(run && i<tabAuteur.longueur)
+		si (run = true) res <- -1 
+		retourner res
+	}
+	booléen hasHomonym(chaine nom, chaine prenom){
+		booléen run <- true
+		entier i <- 0
+		faire
+			si(tabAuteur[i].nom = nom && tabAuteur[i].prenom = prenom) alors run <- false
+			sinon i <- i+1
+		tant que(run && i<tabAuteur.longueur())
+		retourner !run
+	}
+	tableau de Auteur getHomonyms(chaine nom, chaine prenom){
+		homonyms tableau [500] de Auteur
+		booléen found = false
+		entier i
+		entier j <- 0
+		pour i de 0 à moi.auteur.longueur() faire
+			Si (tabAuteur[i].nom = nom && tabAuteur[i].prenom = prenom) alors
+				found <- true
+				homonyms[j] <- moi.tabAuteur[i]
+				j <- j+1
+			fsi
+		fait
+		si found alors retourner homonyms
+		sinon retourner null
+		fsi
+	}
+	public booléen equals(Auteur lui){
+		retourner lui.nom.equals(moi.nom) ET lui.prenom.(moi.prenom)
+	}
+}
+
+classe Livres{
+	privée chaine titre
+	privée auteur tableau [] de Auteur
+	Livres(chaine titre , Auteur [] auteurs){
+		entier i
+		moi.titre <- titre
+		moi.auteur <- créer moi.auteur[auteurs.longueur()]
+		pour i de 0 à auteurs.longueur() faire
+			moi.auteur[i] <- auteurs[i]
+		fait
+	}
+	Livres(chaine titre){
+		auteur tableau [1] de Auteur
+		auteur[0] <- créer Auteur()
+		Livres(titre,auteur)
+	}
+	Livres(chaine titre, Auteur auteur){
+		auteur tableau [1] de Auteur
+		auteur[0] <- auteur
+		Livres(titre,auteur)
+	}
+	chaine enChaine(){
+		entier i
+		chaine res <- moi.titre+" :\n"
+		pour i de 0 à auteur.longueur() faire
+			Si (auteur[i].id = 0) alors res + "Anonyme\n"
+			sinon res <- res + auteur[i].nom+", "+auteur[i].getInitialesPrenom()+" ["+auteur[i].id+"]\n"
+		fait
+		retourner res
+	}
+	booléen equals(Livre l){
+		retourner moi.enChaine().equals(l.enChaine())
+	}
+}
+
+Programme Principal(){
+	Auteur a <- créer Auteur("Hergé","Dupond")
+	Auteur b <- créer Auteur("Pierre-Paul","Jaques")
+	Livre bd <- créer Livre("Tintin",a)
+	Livre roman <- créer Livre("Tintin",b)
+	Ecran.afficherln(bd)
+	Ecran.afficherln(roman)
+	si bd.equals(roman) alors Ecran.afficher("Equivalent")
+	sinon Ecran.afficher("Différent")
+	si a.hasHomonym() alors Ecran.afficher("A au moins un homonyme")
+}

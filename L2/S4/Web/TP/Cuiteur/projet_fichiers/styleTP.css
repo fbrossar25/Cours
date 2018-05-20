@@ -1,0 +1,159 @@
+html, body, div, span, applet, iframe,
+h1, h2, h3, h4, h5, h6, p, pre,
+a, img, strong, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font-weight: normal;	
+	vertical-align: baseline;
+	background: transparent;
+	}
+body {
+	line-height: 1;
+	}	
+ol, ul {
+	list-style: none;
+	}
+table { 
+	border-collapse: collapse;
+	border-spacing: 0;
+	}
+	
+/****************************************************/
+	
+body { 
+	font: 13px/1.5 verdana, arial, sans serif;
+	background: #ebebeb;
+	padding: 0px;
+	}
+
+h1 {
+	font-weight: bold;
+	color: #333;
+	font-size: 24px;
+	text-align: center;
+	}
+h3 {
+	color: #333;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 30px 0px 20px 0px;
+	background: #F7E0A5;
+	padding: 4px;
+	clear: both;
+	border-left: 2em solid #F7C749;
+	}
+h4 {
+	font-weight: bold;
+	font-size: 15px;
+	margin: 25px 0 15px 0;
+	clear: both;
+	border-bottom: 2px solid #F7C749;
+	}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: #00F;
+	text-decoration: underline;
+	}
+	
+a img {
+	border: 1px solid #00f;
+	}
+	
+
+
+pre, code {
+	font: bold 13px "courrier new", courrier, monospace;
+	}
+code {
+	color: #C00;
+	}
+p {
+	margin: 15px 0;
+	}
+	
+ul {
+	list-style: circle;
+	margin-left: 20px;
+	}
+	
+strong {
+	font-weight: bold;
+	}
+	
+.tablePadding td,
+.tablePadding th {
+	padding: 7px;
+	}
+	
+.tableBord {
+	border-collapse: separate;
+	border: 1px solid #000;
+	}
+.tableBord td,
+.tableBord th {
+	border: 1px solid #000;
+	padding: 4px;
+	}
+.descTable {
+	background:	#97BFD9;
+	}
+.trImpaire {
+	background: #EFEFEF;
+	}
+.red {
+	color: #FF0000;
+	}
+
+.important {
+	border: solid 2px #FF0000;
+	margin: 2em;
+	padding: 2px 10px;
+	color: #FF0000;
+	clear: both;
+	}
+
+.flotteGauche {
+	float: right;
+	margin: 0 0 20px 20px;
+	}
+	
+.flotteDroite {
+	float: left;
+	margin: 0 20px 20px 0;	
+}	
+
+.clear {
+	clear: both;
+}
+	
+.texteCentre {
+	text-align: center;
+	}
+	
+#page {
+	width: 900px;
+	margin: 0 auto;
+	background: #fff;
+	border: 1px solid #c0c0c0;
+	padding: 10px 6px;
+	}
+	
+.texteImportant {
+	border-bottom: solid 2px #FF0000;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FF0000;
+	}
+	
+.codeComment {
+	color: #063;
+}

@@ -1,0 +1,109 @@
+description du métier : qu-est-ce qu'on fait ?
+
+rédaction d'artcile, trouver un sujet, travailler des sujets mal connus, explorer des domaine, simplifier des concept mal compris, en définir de nouveau (nouvelle algorithme par exemple)
+
+pour combien ?
+
+2000 - 2300€ net (sans impot)
+5000€ environ dans le privé
+
+combien d'heure ?
+
+moitié professorat, moitié recherche (40H par semaine environ) dans l'idéal
+3eme charge : administration (emploi du temps, jury, etc.) prend bp de temps
+cause : manque de moyen
+
+difficultées ?
+
+effort fournit, 
+
+matériel utilisé ?
+
+matos fournit par l'état (qui finance la recherche)
+
+Programme utilisé ?
+
+rien de spécial en recherche(en université). Vocation à les développé plutot qu'as les utilisés
+
+Ou on travail ?
+
+déplacement pour voir les collègues d'autres universités (Europe, Nancy).
+pas tant que ça dans le bureau
+
+avec qui ?
+
+
+
+Quels diplômes ?
+
+Avoir un doctorats pour devenir enseignant chercheur, obtenir une qualification (accordé avec une thèse + un peu d'enseignement) ou avec suffisement de recherche (on peu faire la demande)
+
+quel niveau ?
+Quel spécificitées ?
+Quel qualités requises ?
+
+pédagogie, etre à l'aise avec l'abstraction, forte capacité de concentration, courrageux (pas être fainéants), opiniatre(on ne se laisse pas abattre), acharné et être capable de se remettre en question mais avoir confiance en soi.
+
+Doctorat, utile ?
+Débouché éventuelle ?
+temps libre ?
+
+pas beaucoup de temps de libre mais quand même.
+pas de limite de temps
+
+Vacances ?
+
+
+
+que'est-ce que ça apporte au monde ?
+tendance/thèmes actuelle de la recherche (femto)?
+
+logiciel fiable/sur (sans bug) : sur les logiciel critique
+économie d'énergie (niveau logiciel/calculatoire)
+télé-médecine (augmenter les flux vidéos pour pouvoir interroger les spécialistes, photos, etc...)
+ordinateur quantique (coder l'information sur une superposition d'état quantique), l'intrication(une particule dans un état l'autre dans l'autre état, sans communication)
+cryptographie/sécurité/cassage de code
+cloud computing
+big data(comment gèrer une énorme quantité donnée)
+système distribué(comment faire fonctionner plusieurs système en même temps)
+bio-informatique
+
+concurrence ?
+
+oui, du secret, de la compétition, entre labos, plus souvent collaboratif (plus que malhonnête)
+renommée, gloire, carrière même dans la même équipe.
+
+professorat : difficile ?
+ambiance/ressentit ?
+
+Métier passionant (autant professorat que recherche)
+début difficile (mal à l'aise, comment faire,...)
+faire des choix (car noté uniquement sur la recherche donc tentation de négligeance sur l'enseignement)
+
+préparation ?
+
+s'apprend sur le tas, car pas de professorat fait avant la fin la thèse
+
+objectif à long terme ?
+satisafaction ?
+
+passion, création,...
+
+hobby ?
+(interdits particuliers ?)
+
+conditions de travail :
+conférence : droit à 400€ par ans par personne donné par l'état
+accorde des financement sur projet
+locaux bon état, spacieux (en info) assurer par l'ufr
+pas de supression de poste mais pas de création
+
+recherche sous forme de brevet (mais différent pour les logiciel : le dépot app)
+
+évalué au niveau personnel
+
+recherche => extension à la pédagogie
+
+possibilité d'être totalement chercheur ou enseignement : dépend de qui on est affilié
+
+en tant qu'enseignant chercheur on commence maitre de conférence, en quelque année avec une hdr on peut devenir professeur. On peut devenir charger de mission pour le ministère (chargé de mission)

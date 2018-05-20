@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="iso-8859-1">
+<link rel="stylesheet" type="text/css" href="projet_fichiers/styleTP.css">
+
+<title>Sujet du projet - Cuiteur</title>
+
+</head>
+
+<body>
+
+	<div id="page">
+
+		<h1>Projet Cuiteur - Cahier des charges</h1>
+
+		<p class="texteImportant texteCentre">Vous devez lire ce document
+			en entier avant de commencer quoi que ce soit.</p>
+		<p>Vous devrez certainement lire plusieurs fois certains
+			paragraphes pour bien les comprendre. C'est tout à fait
+			normal. Pas parce que le document est mal écrit, pas parce que
+			vous ne savez pas lire, mais tout simplement parce que vous devez
+			"rentrer" dans le sujet et arriver à un certain
+			niveau de concentration pour commencer à travailler
+			véritablement.</p>
+		<p>Ecrire le code étant la dernière chose à
+			faire, ne vous précipitez pas sur votre clavier. Le codage
+			n'est qu'une activité mécanique qui s'adresse à
+			objet mécanique (beaucoup moins intelligent que nous puisqu'il
+			ne comprend que deux choses : 0 et 1).</p>
+		<p>Le vrai travail d'un "informaticien" commence par la
+			réflexion. Je vous conseille donc de ne pas toucher à
+			votre ordinateur le temps de l'étude de ce cahier des charges,
+			mais de vous munir d'un crayon et de feuilles de papier pour y noter
+			et dessiner les choses que la lecture vous fera venir à
+			l'esprit. Nous vous demandons avant tout de réfléchir
+			et de réaliser une construction intellectuelle.</p>
+		<p>Des explications complémentaires vous serons
+			données au fur et à mesure des TP, et en réponse
+			aux questions que vous poserez. Il faut que vous vous mettiez dans la
+			situation qui sera la vôtre quand vous commencerez votre vie
+			professionnelle : vous devrez reformuler ce que l'on vous demande
+			pour être sûr d'avoir bien compris les attentes, et vous
+			devrez demander des explications sur les éléments que
+			vous ne comprenez pas, que ce soit des termes propres à la
+			profession, des processus de travail ou des enchaînements de
+			tâches.</p>
+		<h3>Fonctionnalités</h3>
+
+		<p>
+			Cuiteur est une application de réseau social et de
+			microblogage, du même genre que <a href="http://twitter.com/" target="_blank">Twitter</a>. Les utilisateurs doivent s'enregistrer
+			pour entrer dans l'application Cuiteur : chaque utilisateur est
+			référencé par son pseudo, qui est unique et
+			choisi quand l'utilisateur s'inscrit Le pseudo d'inscription n'est
+			pas modifiable.
+		</p>
+		<p>
+			Les utilisateurs peuvent poster des messages décrivant leur
+			humeur. Un message est appelé<strong> "blabla"</strong>. Il
+			est volontairement court (255 caractères maxi), d'où le
+			terme <b>micro</b>blogage.
+		</p>
+		<p>Tous les blablas sont publics : tout utilisateur
+			connecté à l'application peut consulter n'importe quel
+			blabla de n'importe quel autre utilisateur.</p>
+		<p>
+			Chaque utilisateur peut choisir de s'abonner à d'autres
+			utilisateurs pour visualiser automatiquement les blablas que ceux-ci
+			postent au fur et à mesure. Les utilisateurs qui suivent un
+			utilisateurs sont appelés <strong>"ses
+				abonnés"</strong>. Les utilisateurs suivis par un utilisateur
+			sont appelés <strong>"ses abonnements"</strong>.
+		</p>
+		<p>
+			Les blablas peuvent faire référence à des
+			utilisateurs. Pour cela, il suffit de mentionner le pseudo d'un
+			utilisateur précédé par un arobase @ (ex. <strong>@toto</strong>).
+			Lorsqu'un blabla commence par une référence à un
+			ou plusieurs utilisateurs, il s'agit d'un message destiné aux
+			utilisateurs mentionnés.
+		</p>
+
+		<p>
+			Les blablas peuvent également contenir des tags qui sont des
+			identifiants (sans espaces) commençant par le symbole
+			dièse # (ex. <strong>#Examens</strong>). Ces tags servent
+			à définir des tendances sur les publications dans
+			Cuiteur et peuvent apparaître à n'importe quel endroit
+			des blablas dont ils font partie intégrante.
+		</p>
+
+		<p>Après authentification, un utilisateur accède aux
+			fonctionnalités suivantes :</p>
+		<ul id="liste_description">
+			<li>Mettre à jour son profil : informations personnelles
+				(nom, ville, etc.), paramètres de connexion (mot de passe,
+				avatar, etc.)</li>
+			<li>Interagir avec les autres utilisateurs : rechercher d'autres
+				utilisateurs, s'abonner/se désabonner d'un utilisateur,
+				profiter de suggestions</li>
+			<li>Gérer ses abonnements : voir le profil de ses
+				abonnements, voir leurs abonnés, leurs abonnements, leurs
+				blablas.</li>
+			<li>Consulter des blablas : les messages de son fil (qui
+				contient tous les messages postés par les utilisateurs
+				auxquels il est abonné, les messages qui le mentionnent et
+				ses propres messages), les messages postés par d'autres
+				utilisateurs, les messages mentionnant un utilisateur donné.
+			
+			</li><li>Consulter des tendances : voir les messages employant
+				certains tags, ou voir les tags les plus employés depuis un
+				jour, une semaine, un mois ou une année.
+		</li></ul>
+
+
+
+		<h3>Pages à réaliser</h3>
+
+		<p>Nous décrivons ici la liste des pages à
+			réaliser avec les fonctionnalités attendues pour
+			celles-ci. Vous pouvez cliquer sur les captures d'écran pour
+			les agrandir.</p>
+
+
+		<h4>index.php</h4>
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/index.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/index_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>index.php</code>
+			est la page d'accueil de l'application Cuiteur. Elle permet à
+			un utilisateur déjà enregistré de
+			s'authentifier. Elle donne également accès aux pages
+			permettant de s'inscrire (lien vers
+			<code>inscription.php</code>
+			) ou de découvrir Cuiteur au travers d'une présentation
+			de l'application (lien vers
+			<code>presentation.html</code>
+			).
+		</p>
+
+		<p>Lorsque l'authentification de l'utilisateur échoue, la
+			page est ré-affichée, et contient un message d'erreur
+			indiquant l'échec de l'authentification.</p>
+
+		<p>
+			Lorsque l'authentification de l'utilisateur réussit, une
+			redirection est réalisée vers la page principale de
+			l'application,
+			<code>cuiteur.php</code>
+			.
+		</p>
+
+
+		<h4>inscription.php</h4>
+
+		<a target="_blank" href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/inscription.jpg" class="flotteDroite"><img src="projet_fichiers/inscription_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>inscription.php</code>
+			permet à un futur utilisateur de s'inscrire à
+			l'application Cuiteur.
+		</p>
+
+		<p>L'utilisateur doit fournir les informations suivantes :</p>
+		<ul>
+			<li>un pseudo, qui ne doit pas déjà être
+				utilisé par un autre utilisateur,
+			</li><li>un mot de passe, non-vide, qui doit être
+				répété à l'identique pour être
+				valide,
+			</li><li>son nom, qui ne doit pas être vide,
+			</li><li>une adresse email valide, syntaxiquement parlant.
+		</li></ul>
+
+
+		<p>Si la saisie ne respecte pas les indications ci-dessus, la page
+			est ré-affichée et un message est affiché pour
+			indiquer les erreurs.</p>
+
+		<p>
+			Si la saisie est correcte, l'utilisateur est enregistré dans
+			la base de données et une redirection vers la page de
+			modification du compte de l'utilisateur est effectuée (page
+			<code>compte.php</code>
+			).
+		</p>
+
+
+		<h4>cuiteur.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/cuiteur.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/cuiteur_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>cuiteur.php</code>
+			est la page principale de l'application Cuiteur.
+		</p>
+
+		<p>Le contenu de cette page contient les blablas visibles par
+			l'utilisateur courant, à savoir :</p>
+		<ul>
+			<li>les blablas postés par l'utilisateur courant,
+			</li><li>les blablas postés par des utilisateurs auxquels
+				l'utilisateur courant est abonné,
+			</li><li>les blablas qui mentionnent l'utilisateur courant.
+		</li></ul>
+
+		<p>Les blablas affichés sont triés du plus
+			récent au plus ancien.</p>
+
+		<p>L'affichage est paginé au sens où seulement un
+			sous-ensemble des blablas est affiché pour ne pas surcharger
+			la page. Par défaut, les 4 derniers blablas sont
+			affichés. Un lien "Plus de blablas" en fin de page permet de
+			ré-afficher la page en ajoutant 4 blablas
+			supplémentaires à ceux affichés actuellement. Ce
+			lien existe tant que tous les blablas ne sont pas affichés sur
+			la page.</p>
+
+		<p>
+			Le formulaire en haut de la page permet de poster un message. Le
+			message ne doit pas être vide et sera enregistré dans la
+			table
+			<code>blablas</code>
+			de la base de données. Si le message commence par un arobase @
+			suivi d'un pseudo (ex : @toto) il s'agit d'un message ciblé. <br>
+			Le message, une fois inséré devra être
+			analysé pour en extraire les utilisateurs mentionnés,
+			et les tags qui seront respectivement ajoutés dans la table
+			<code>mentions</code>
+			et dans la table
+			<code>tags</code>
+			.
+		</p>
+
+		<p>
+			Les blablas affichés dont l'utilisateur courant n'est pas
+			l'auteur possèdent des liens permettant d'y "Répondre"
+			ou de le "Recuiter". <br> La réponse aura pour effet de
+			recharger la page
+			<code>cuiteur.php</code>
+			en préparant la zone de texte avec le pseudo du destinataire
+			du message précédé d'un arobase (i.e. @toto). Le
+			"recuitage" consistera à rajouter dans la base de
+			données le texte message d'origine, estampillé avec la
+			date et l'heure du "recuit", pour lequel l'utilisateur courant sera
+			l'auteur, tout en gardant trace de l'auteur d'origine du message.
+		</p>
+
+		<h4>compte.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/mon_compte.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/mon_compte_m.jpg" alt="" height="399" width="280"></a>
+
+		<p>
+			La page
+			<code>compte.php</code>
+			permet à un utilisateur de modifier :
+		</p>
+		<ul>
+			<li>ses informations personnelles, à savoir : son nom, sa
+				date de naissance, sa ville, et une mini-biographie,
+			</li><li>les informations relatives à son compte Cuiteur : son
+				adresse email, et son site web,
+			</li><li>les paramètres de son compte Cuiteur : son mot de
+				passe, son avatar, et la possibilité de désactiver ce
+				dernier.
+		</li></ul>
+
+		<p>Chaque formulaire se valide séparément, si les
+			conditions de validité des différents champs le
+			composant sont satisfaites :</p>
+		<ul>
+			<li>Le nom de l'utilisateur ne doit pas pouvoir être vide.
+			
+			</li><li>La date de naissance doit être valide, et
+				réaliste (ni postérieure à la date du jour, ni
+				antérieure à 130 ans).
+			</li><li>La ville et la mini-bio n'ont pas obligation d'être
+				renseignées.
+			</li><li>L'adresse mail doit être non vide et syntaxiquement
+				correcte.
+			</li><li>Le site web n'est pas obligatoire, mais s'il est
+				renseigné il doit être syntaxiquement correct.
+			</li><li>Les mots de passe n'ont pas obligation d'être
+				renseignés, mais le cas échéant, ils devront
+				être identiques. Bien sûr si le mot de passe est
+				laissé vide il ne faut pas mettre à jour le champ
+				correspondant dans la base de données.
+			</li><li>Si une image est choisie pour remplacer l'avatar actuel,
+				celle-ci devra faire une taille carrée de 50x50 pixels
+				minimum. L'image sera chargée sur le serveur dans le
+				répertoire "upload", redimensionnée au format 50x50
+				pixels et nommée avec l'identifiant de l'utilisateur courant
+				(ex : "42.jpg").
+		</li></ul>
+
+		<p>En cas d'erreur au moment de la validation du formulaire,
+			aucune modification ne sera enregistrée dans la base et un
+			message récapitulant les erreurs sera affiché. Les
+			données de l'utilsateur viendront alors remplacer les
+			données issues de la base lors du ré-affichage en cas
+			d'erreur.</p>
+
+		<p>Si le formulaire est valide, la base de données sera
+			mise à jour et la page ré-affichée avec ces
+			nouvelles informations.</p>
+
+		<h4>recherche.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/recherche.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/recherche_m.jpg" height="266" width="280"></a>
+
+
+		<p>
+			La page
+			<code>recherche.php</code>
+			permet d'effectuer une recherche sur les utilisateurs.
+		</p>
+
+		<p>Cette page présente une simple zone de texte permettant
+			de saisir le critère de recherche à appliquer, qui
+			effectuera une sélection des utilisateurs dont le pseudo, ou
+			le nom, contient la sous-chaîne saisie.</p>
+
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/recherche_resultat.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/recherche_resultat_m.jpg" alt="" height="322" width="280"></a>
+
+		<p>
+			<strong>Affichage du résultat de la recherche </strong><br>
+			La zone de texte devra contenir le critère de recherche
+			utilisé. On aura ensuiite la liste des utilisateurs
+			sélectionnés, avec pour chacun, leur nombre de blablas,
+			de mentions, d'abonnés et d'abonnements. Chacune de ces quatre
+			informations sera affichée sous la forme d'un lien pointant
+			respectivement vers la page
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			. <br> Si l'utilisateur courant n'est pas encore abonné
+			à l'utilisateur affiché, une case à cocher
+			permettra l'abonnement.<br> Si l'utilisateur courant est
+			déjà abonné à l'utilisateur
+			affiché, une case à cocher permettra le
+			désabonnement. <br> Le bouton "Valider" en bas de la
+			liste de résultats permettra de traiter les cases qui ont
+			été cochées en réalisant les
+			abonnements/désabonnements aux utilisateurs. Après le
+			traitement la page
+			<code>cuiteur.php</code>
+			est affichée.
+		</p>
+		<h4>utilisateur.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/utilisateur.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/utilisateur_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>utilisateur.php</code>
+			permet de consulter les informations relatives à un
+			utilisateur.
+		</p>
+
+		<p>
+			Le haut de la page présente un résumé de
+			l'utilisateur, en donnant son pseudo, suivi de son vrai nom, en
+			dessous desquels se trouvent récapitulés le nombre de
+			blablas, de mentions, d'abonnés et d'abonnements, sous la
+			forme 4 liens pointant respectivement vers les pages
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Les informations affichées sont la ville de résidence,
+			le site web, et la date de naissance de l'utilisateur dont on affiche
+			les renseignements. Si un des champs n'a pas été
+			renseigné alors l'indication <i>Non renseigné</i> sera
+			affichée.
+		</p>
+
+		<p>
+			Un bouton permet également de s'abonner ou de se
+			désabonner de l'utilisateur affiché. Le traitement de
+			ce bouton entraînera l'affichage de la page
+			<code>cuiteur.php</code>
+			.
+		</p>
+
+
+
+		<h4>blablas.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/blablas.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/blablas_m.jpg" height="284" width="280"></a>
+
+		<p>
+			La page
+			<code>blablas.php</code>
+			permet d'afficher les blablas d'un utilisateur.
+		</p>
+
+		<p>
+			Le haut de la page présente un résumé de
+			l'utilisateur, en donnant son pseudo, suivi de son vrai nom, en
+			dessous desquels se trouvent récapitulés le nombre de
+			blablas, de mentions, d'abonnés et d'abonnements, sous la
+			forme 4 liens pointant respectivement vers les pages
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>Les blablas affichés sont ceux dont l'utilisateur
+			consulté est l'auteur, recuits inclus, à l'exception
+			des blablas ciblés.</p>
+
+		<p>
+			Les blablas affichés possèdent les mêmes
+			caractéristiques et les même fonctionnalités que
+			les blablas de la page
+			<code>cuiteur.php</code>
+			.
+		</p>
+
+
+		<h4>abonnements.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/abonnements.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/abonnements_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>abonnements.php</code>
+			présente tous les utilisateurs auxquels est abonné un
+			utilisateur.
+		</p>
+
+		<p>
+			Le haut de la page présente un résumé de
+			l'utilisateur, en donnant son pseudo, suivi de son vrai nom, en
+			dessous desquels se trouvent récapitulés le nombre de
+			blablas, de mentions, d'abonnés et d'abonnements, sous la
+			forme 4 liens pointant respectivement vers les pages
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Cette page présente une liste d'utilisateurs avec, pour
+			chacun, leur nombre de blablas, de mentions, d'abonnés et
+			d'abonnements. Chacune de ces quatre informations sera
+			affichée sous la forme d'un lien pointant respectivement vers
+			la page
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Si l'utilisateur courant n'est pas encore abonné à
+			l'utilisateur affiché, une case à cocher permettra
+			l'abonnement.<br> Si l'utilisateur courant est
+			déjà abonné à l'utilisateur
+			affiché, une case à cocher permettra le
+			désabonnement. <br> Le bouton "Valider" en bas de la
+			liste de résultats permettra de traiter les cases qui ont
+			été cochées en réalisant les
+			abonnements/désabonnements aux utilisateurs. Après le
+			traitement la page
+			<code>cuiteur.php</code>
+			est affichée.
+		</p>
+
+
+		<h4>abonnes.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/abonnes.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/abonnes_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>abonnes.php</code>
+			présente tous les utilisateurs qui sont abonnés
+			à l'utilisateur visualisé.
+		</p>
+
+		<p>
+			Le haut de la page présente un résumé de
+			l'utilisateur, en donnant son pseudo, suivi de son vrai nom, en
+			dessous desquels se trouvent récapitulés le nombre de
+			blablas, de mentions, d'abonnés et d'abonnements, sous la
+			forme 4 liens pointant respectivement vers les pages
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Cette page présente une liste d'utilisateurs avec, pour
+			chacun, leur nombre de blablas, de mentions, d'abonnés et
+			d'abonnements. Chacune de ces quatre informations sera
+			affichée sous la forme d'un lien pointant respectivement vers
+			la page
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Si l'utilisateur courant n'est pas encore abonné à
+			l'utilisateur affiché, une case à cocher permettra
+			l'abonnement.<br> Si l'utilisateur courant est
+			déjà abonné à l'utilisateur
+			affiché, une case à cocher permettra le
+			désabonnement. <br> Le bouton "Valider" en bas de la
+			liste de résultats permettra de traiter les cases qui ont
+			été cochées en réalisant les
+			abonnements/désabonnements aux utilisateurs. Après le
+			traitement la page
+			<code>cuiteur.php</code>
+			est affichée.
+		</p>
+
+
+		<h4>mentions.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/mentions.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/mentions_m.jpg" height="284" width="280"></a>
+
+		<p>
+			La page
+			<code>mentions.php</code>
+			permet d'afficher les blablas qui mentionnent un utilisateur.
+		</p>
+
+		<p>
+			Le haut de la page présente un résumé de
+			l'utilisateur, en donnant son pseudo, suivi de son vrai nom, en
+			dessous desquels se trouvent récapitulés le nombre de
+			blablas, de mentions, d'abonnés et d'abonnements, sous la
+			forme 4 liens pointant respectivement vers les pages
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Les blablas affichés sont ceux qui sont associés dans
+			la table
+			<code>mentions</code>
+			à l'utilisateur affiché.
+		</p>
+
+		<p>
+			Les blablas affichés possèdent les mêmes
+			caractéristiques et les même fonctionnalités que
+			les blablas de la page
+			<code>cuiteur.php</code>
+			.
+		</p>
+
+
+		<h4>suggestions.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/suggestions.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/suggestions_m.jpg" height="266" width="280"></a>
+
+		<p>
+			La page
+			<code>suggestions.php</code>
+			présente des suggestions d'utilisateurs auxquels l'utilisateur
+			courant n'est pas (encore) abonné.
+		</p>
+
+		<p>On choisira les utilisateurs suggérés comme
+			étant les utilisateurs auxquels sont abonnés les
+			utilisateurs auxquels est abonné l'utilisateur courant. Pour
+			introduire un peu de diversité, on n'affichera que 5
+			utilisateurs suggérés maximum, choisis
+			aléatoirement parmi toutes les suggestions possibles.</p>
+
+		<p>
+			Cette page présente une liste d'utilisateurs avec, pour
+			chacun, leur nombre de blablas, de mentions, d'abonnés et
+			d'abonnements. Chacune de ces quatre informations sera
+			affichée sous la forme d'un lien pointant respectivement vers
+			la page
+			<code>blablas.php</code>
+			,
+			<code>mentions.php</code>
+			,
+			<code>abonnes.php</code>
+			et
+			<code>abonnements.php</code>
+			.
+		</p>
+
+		<p>
+			Si l'utilisateur courant n'est pas encore abonné à
+			l'utilisateur affiché, une case à cocher permettra
+			l'abonnement.<br> Si l'utilisateur courant est
+			déjà abonné à l'utilisateur
+			affiché, une case à cocher permettra le
+			désabonnement. <br> Le bouton "Valider" en bas de la
+			liste de résultats permettra de traiter les cases qui ont
+			été cochées en réalisant les
+			abonnements/désabonnements aux utilisateurs. Après le
+			traitement la page
+			<code>cuiteur.php</code>
+			est affichée.
+		</p>
+
+
+		<h4>tendances.php</h4>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/tendances_all.jpg" target="_blank" class="flotteDroite"><img src="projet_fichiers/tendances_all_m.jpg" height="322" width="280"></a>
+
+		<p>
+			La page
+			<code>tendances.php</code>
+			a deux utilités.
+		</p>
+
+		<p>
+			Elle peut soit servir à afficher des tendances globales, en
+			affichant un top 10 du jour, de la semaine, du mois ou de
+			l'année des tags les plus utilisés (cf. capture
+			d'écran à gauche). Chaque tag affiché sera un
+			lien qui renverra sur cette même page (
+			<code>tendances.php</code>
+			).
+		</p>
+
+		<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/images/tendances.jpg" target="_blank" class="flotteGauche"><img src="projet_fichiers/tendances_m.jpg" height="266" width="280"></a>
+
+		<p>
+			Cette page peut aussi servir à afficher une tendance en
+			particulier, en considérant un tag précis. Dans ce cas,
+			une liste de blablas contenant ce tag seront affichés sur le
+			même principe que les listes de blablas des pages
+			précédemment décrites (cf. capture
+			d'écran à droite).
+
+			<!--
+
+<table class="tablePadding">    
+    <tr valign="top" align="center">
+	<td>
+	index.php <br>
+    <a href="images/index.jpg" target="_blank"><img src="images/index_m.jpg" width="280" height="266"></a></td>
+
+	<td>
+	inscription.php <br>
+	<a target="_blank" href="images/inscription.jpg"><img src="images/inscription_m.jpg" width="280" height="266"></a>
+	</td>
+	<td>cuiteur.php<br>
+        <a href="images/cuiteur.jpg" target="_blank"><img src="images/cuiteur_m.jpg" width="280" height="266"></a></td>
+</tr>
+
+    <tr valign="top" align="center">
+        <td>compte.php<br>
+            <a href="images/mon_compte.jpg" target="_blank"><img src="images/mon_compte_m.jpg" alt="" width="280" height="399"></a></td>
+        <td>recherche.php<br>
+(saisie d'un crit&egrave;re de recherche)<br>
+<a href="images/recherche.jpg" target="_blank"><img src="images/recherche_m.jpg" width="280" height="266"></a></td>
+        <td>recherche.php<br>
+(r&eacute;sultats d'une recherche)<br>
+<a href="images/recherche_resultat.jpg" target="_blank"><img src="images/recherche_resultat_m.jpg" alt="" width="280" height="322"></a></td>
+    </tr>
+
+    <tr valign="top" align="center">
+        <td>utilisateur.php<br>
+            <a href="images/utilisateur.jpg" target="_blank"><img src="images/utilisateur_m.jpg" width="280" height="266"></a></td>
+        <td>blabla.php<br>
+            <a href="images/blablas.jpg" target="_blank"><img src="images/blablas_m.jpg" width="280" height="284"></a></td>
+        <td>abonnements.php<br>
+            <a href="images/abonnements.jpg" target="_blank"><img src="images/abonnements_m.jpg" width="280" height="266"></a></td>
+    </tr>
+    <tr valign="top" align="center">
+        <td>abonnes.jpg<br>
+            <a href="images/abonnes.jpg" target="_blank"><img src="images/abonnes_m.jpg" width="280" height="266"></a></td>
+        <td>mentions.php<br>
+            <a href="images/mentions.jpg" target="_blank"><img src="images/mentions_m.jpg" width="280" height="284"></a></td>
+        <td>suggestions.php<br>
+            <a href="images/suggestions.jpg" target="_blank"><img src="images/suggestions_m.jpg" width="280" height="266"></a></td>
+    </tr>
+    <tr valign="top" align="center">
+        <td>tendances.php<br>
+(option 1 tendance)<br>
+<a href="images/tendances.jpg" target="_blank"><img src="images/tendances_m.jpg" width="280" height="266"></a></td>
+        <td>tendances.php<br>
+(option toutes les tendances)<br>
+<a href="images/tendances_all.jpg" target="_blank"><img src="images/tendances_all_m.jpg" width="280" height="322"></a></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+-->
+		</p><p class="clear">
+			Vous <strong><span class="texteImportant">devez</span></strong>
+			nommer les pages tels qu'elles ont été nommées
+			dans cet énoncé. La page index.php <span class="texteImportant">doit</span> se trouver à la racine du
+			répertoire du site. Toutes les autres pages php <span class="texteImportant">doivent</span> se trouver dans le
+			répertoire php.
+		</p>
+		<h3>Modèle et liens</h3>
+		<h4>Modèle général</h4>
+		<p>Toutes les pages (sauf index.php et inscription.php) sont
+			construites sur le modèle ci dessous.</p>
+		<p>
+			<span style="position: relative; width: 100%"><img src="projet_fichiers/modele_page.jpg" style="width: 879px; height: 824px; margin: 0 auto; display: block"></span>
+		</p>
+		<p>Le bandeau supérieur contient 4 liens sur les pages
+			indiquées.</p>
+		<p>
+			Le bloc de gauche affiche les éléments
+			mentionnés qui pointent sur les pages indiquées. <br>
+			Dans le cas ou l'utilisateur n'a pas de blablas ou d'abonnements ou
+			d'abonnés, if faut l'indiquer (ie 0 blabla, 0 abonnement,
+			etc). <br> La liste des tendances est composées par
+			défaut des 4 tendances pour lesquelles il y a le plus de
+			blablas. Ce nombre de 4 est un paramètre de l'application qui
+			doit pouvoir être modifié facilement. <br> La liste
+			des suggestions est composées par défaut de 2
+			propositions. Ce nombre de 2 est un paramètre de l'application
+			qui doit pouvoir être modifié facilement.
+		</p>
+		<h4>Modèle infos utilisateur</h4>
+		<p>Certaines pages présentent des informations
+			réduites sur un utilisateur. Le modèle est toujours le
+			même et les les liens sont décrits ci dessous :</p>
+		<p class="texteCentre">
+			<img src="projet_fichiers/modele_stat.jpg" height="202" width="611">
+		</p>
+		<p>Ces informations peuvent apparaître soit en haut de page
+			(blabla.php, mentions.php, abonnes.php, abonnement.php,
+			utilisateur.php) , soit sous la forme d'une liste d'utilisateurs
+			(recherche.php, suggestions.php, abonnes.php, abonnements.php).</p>
+		<h4>Modèle blabla</h4>
+		<p>Les blablas sont présentés sous la forme d'une
+			liste. Un blabla peut contenir divers liens, comme définis
+			ci-dessous.</p>
+		<p>
+			<strong>Blabla simple d'un utilisateur lambda </strong>(ie pas
+			l'utilisateur connecté)
+		</p>
+		<p class="texteCentre">
+			<img src="projet_fichiers/modele_blabla1.png" height="273" width="686">
+		</p>
+		<p>L'utilisateur connecté peut voir la fiche
+			détaillée de l'auteur du blabla, y répondre ou
+			le recuiter.</p>
+		<p>
+			<strong>Blabla simple de l'utilisateur connecté</strong>
+		</p>
+		<p class="texteCentre">
+			<img src="projet_fichiers/modele_blabla2.png" alt="" height="273" width="686">
+		</p>
+		<p>L'utilisateur connecté peut voir sa fiche
+			détaillée et supprimer ses blablas.</p>
+		<p>
+			<strong>Blabla complexe</strong>
+		</p>
+		<p class="texteCentre">
+			<img src="projet_fichiers/modele_blabla3.png" alt="" height="273" width="686">
+		</p>
+		<p>
+			Le blabla a été recuité, comme indiqué
+			après le nom de l'auteur. <br> Le blabla contient une
+			référence à un autre utilisateur (@albert). La
+			référence à cet autre utilisateur est
+			située en début de blabla et indique en
+			conséquence que ce blabla est une réponse à un
+			autre. La référence à un autre utilisateur peut
+			aussi être située n'importe où dans le texte du
+			blabla et il peut y avoir plusieurs utilisateurs
+			référencés.<br> Le blabla contient un tag
+			(#miso). Le tag peut être situé n'importe où dans
+			le texte du blabla et il peut y avoir plusieurs tags.
+		</p>
+		<h4>Réflexion, schématisation, factorisation, et
+			seulement APRES action.</h4>
+		<p>
+			Il est extrêmement important que vous preniez le temps de
+			réfléchir à ce qui est demandé, de
+			façon à vous faire une idée claire,
+			précise et détaillée des traitements qui sont
+			à développer. En réalité l'application
+			repose sur très peu de fonctionnalités (donc fonctions)
+			qu'il suffit ensuite de réutiliser dans divers environnements,
+			en changeant juste les "paramètres" d'entrées
+			(en poussant les choses à l'extrême il serait possible
+			de réaliser le développement avec seulement 2 pages).
+			Il faut absolument que vous définissiez les traitements qui
+			sont identiques dans les différentes pages de façon
+			à les factoriser, les développer sous forme de
+			fonctions et les mettre dans une bibliothèque. Vous pouvez
+			faire une ou plusieurs bibliothèques (à mon avis 2
+			serait un bon nombre).<br> La note finale tiendra beaucoup
+			compte de la façon dont vous avez segmenté et
+			arrangé votre code pour qu'il soit le plus modulaire et
+			modulable possible, et modifiable facilement et rapidement. Nous ne
+			jugeons pas la rapidité d'exécution du travail
+			demandé, mais la qualité de la réalisation. Lors
+			de la soutenance nous vous demanderons les schémas que vous
+			avez réalisés avant de commencer à faire votre
+			développement (leur absence serait rédhibitoire). Nous
+			vous demanderons aussi si vous avez pu les suivre, pourquoi, et
+			quelle expérience vous tirez de ces conclusions.
+		</p>
+		<p>
+			Vous <strong><span class="texteImportant">devRez</span></strong>
+			décrire les fonctions que vous faites en utilisant la syntaxe
+			PHPDoc telle que vue en cours. Chaque fonction non documentée
+			correctement entraînera automatiquement une baisse de 2 points
+			dans la note finale.
+		</p>
+		<p>
+			D'une façon plus générale, vous <strong><span class="texteImportant">devRez</span></strong> commenter votre code
+			correctement. Vous <strong><span class="texteImportant">devRez</span></strong>
+			aussi veiller à sa présentation pour qu'il soit claire,
+			indenté, facile à lire sans que l'on ait à
+			déchiffer les instructions caractère par
+			caractère. Toute présence de code mort sera
+			sanctionnée.
+		</p>
+		<h3>Base de données</h3>
+
+		<h4>Schéma relationnel</h4>
+		<p>
+			La base de données de Cuiteur contient 5 tables permettant de
+			gérer : les utilisateurs, les relations entre utilisateurs,
+			les blablas, les tags contenus dans les blablas, et les mentions
+			faites à des utilisateurs dans les blablas. <img src="projet_fichiers/bd_relations.jpg" height="454" width="805">
+		</p>
+		<p>
+			La base de données est installée sur le serveur <span class="red">localhost</span>. Elle s'appelle <span class="red">votrenom_cuiteur</span>
+			(ou 'votrenom" est votre nom de famille en minuscule, sans
+			accent, et avec uniquement la première partie du nom pour les
+			noms composé). L'utilisateur de la base avec des droits
+			réduits pour le Web s'appelle <span class="red">votrenom_u</span>,
+			avec le mot de passe <span class="red">votrenom_p</span>. Par
+			exemple l'étudiant Nicolas Lepetit travaillera avec la base de
+			données lepetit_cuiteur avec l'utilisateur lepetit_u, mot
+			de passe leptit_p.
+		</p>
+		<p>
+			Si vous souhaitez travailler sur votre ordinateur personnel, vous
+			pouvez utiliser <a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/cuiteur_init_bd.zip" target="_blank">ce
+				script SQL (cuiteur_init_bd.zip)</a> pour installer la base de
+			données, via phpMyAdmin par exemple. Le script va créer
+			la base de données <span class="red">cuiteur</span> et
+			l'utilisateur <span class="red">cuiteur_user</span> avec le mot de
+			passe <span class="red">cuiteur_pass</span>. La base de
+			données est remplie avec un jeu d'essai.
+		</p>
+		<h4>Description des tables</h4>
+		<table class="tableBord">
+			<tbody><tr>
+				<td colspan="3" class="descTable">La table <strong>users</strong>
+					collectent toutes les informations sur les utilisateurs, qu'il
+					s'agisse des paramètres de connexion (email, mot de passe)
+					ou d'informations personnelles consultables par d'autres
+					utilisateurs.
+				</td>
+			</tr>
+			<tr class="trImpaire">
+				<th>Champ</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td valign="top">usID</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire, numéro
+					automatique, identifiant de l'utilisateur</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usNom</td>
+				<td valign="top">char(60)</td>
+				<td valign="top">Nom de l'utilisateur</td>
+			</tr>
+			<tr>
+				<td valign="top">usVille</td>
+				<td valign="top">char(50)</td>
+				<td valign="top">Ville de l'utilisateur (lieu de
+					résidence actuel)</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usWeb</td>
+				<td valign="top">char(120)</td>
+				<td valign="top">Site web de l'utilisateur (au format
+					http://...)</td>
+			</tr>
+			<tr>
+				<td valign="top">usMail</td>
+				<td valign="top">char(80)</td>
+				<td valign="top">Adresse email de l'utilisateur</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usPseudo</td>
+				<td valign="top">char(30)</td>
+				<td valign="top">Clé candidate, pseudonyme de
+					l'utilisateur. De 4 à 30 caractères
+					alphanumériques, sans espaces ni ponctuation.</td>
+			</tr>
+			<tr>
+				<td valign="top">usPasse</td>
+				<td valign="top">char(32)</td>
+				<td valign="top">Mot de passe de l'utilisateur. Ce qui est
+					enregistré est la signature md5 du mot de passe et non le mot de
+					passe.</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usBio</td>
+				<td valign="top">char(255)</td>
+				<td valign="top">Mini-biographie de l'utilisateur</td>
+			</tr>
+			<tr>
+				<td valign="top">usDateNaissance</td>
+				<td valign="top">int(8)</td>
+				<td valign="top">Date de naissance de l'utilisateur, nombre
+					à 8 chiffres au format AAAAMMJJ où AAAA est
+					l'année, MM est le mois (sur 2 chiffres), et JJ est le jour
+					(sur 2 chiffres)</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usDateInscription</td>
+				<td valign="top">int(8)</td>
+				<td valign="top">Date d'inscription de l'utilisateur, nombre
+					à 8 chiffres sur le même format que le date de
+					naissance</td>
+			</tr>
+			<tr>
+				<td valign="top">usAvecPhoto</td>
+				<td valign="top">int(1)</td>
+				<td valign="top">Indique si l'utilisateur utilise un avatar
+					personnalisé (valeur 1) ou s'il utilise un avatar anonyme
+					(valeur 0)</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">usAvecPhoto</td>
+				<td valign="top">int(1)</td>
+				<td valign="top">Indique si l'utilisateur utilise un avatar
+					personnalisé (valeur 1) ou s'il utilise un avatar anonyme
+					(valeur 0)</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" class="descTable">La table <strong>estAbonne</strong>
+					enregistre les abonnements entre un utilisateur et les utilisateurs
+					auxquels il est abonné.
+				</td>
+			</tr>
+			<tr class="trImpaire">
+				<th>Champ</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td valign="top">eaIDAbonne</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire (avec eaIDUser),
+					identifiant de l'utilisateur auquel eaIDUser est abonné
+					(pointe sur "usID" de la table "users")</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">eaIDUser</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire (avec eaIDAbonne),
+					identifiant de l'utilisateur (pointe sur "usID" de la table
+					"users")</td>
+			</tr>
+			<tr>
+				<td valign="top">eaDate</td>
+				<td valign="top">int(8)</td>
+				<td valign="top">Date d'abonnement, nombre à 8 chiffres
+					au format AAAAMMJJ où AAAA est l'année, MM est le
+					mois (sur 2 chiffres), et JJ est le jour (sur 2 chiffres)</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" class="descTable">La table <strong>blablas</strong>
+					enregistre les blablas des utilisateurs. Le blabla peut être
+					également un "recuit": un blabla publié par un autre
+					utilisateur et retransmis par l'utilisateur en cours.
+				</td>
+			</tr>
+			<tr class="trImpaire">
+				<th>Champ</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td valign="top">blID</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire, numéro
+					automatique, identifiant du blabla</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">blIDAuteur</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Identifiant de l'auteur du message (pointe sur
+					"usID" de la table "users")</td>
+			</tr>
+			<tr>
+				<td valign="top">blDate</td>
+				<td valign="top">int(8)</td>
+				<td valign="top">Date de publication du message, nombre
+					à 8 chiffres au format AAAAMMJJ où AAAA est
+					l'année, MM est le mois (sur 2 chiffres), et JJ est le jour
+					(sur 2 chiffres)</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">blHeure</td>
+				<td valign="top">char(8)</td>
+				<td valign="top">Heure de publication du message, format
+					HH:MM:SS où HH est l'heure (2 chiffres), MM les minutes (2
+					chiffres) et SS les secondes (2 chiffres)</td>
+			</tr>
+			<tr>
+				<td valign="top">blTexte</td>
+				<td valign="top">char(255)</td>
+				<td valign="top">Texte complet du blabla (avec
+					éventuellement les références aux autres
+					utilisateurs et tags)</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">blAvecCible</td>
+				<td valign="top">int(1)</td>
+				<td valign="top">Indique si le blabla est pour tout le monde
+					(valeur 0) ou s'il a un ou plusieurs destinataires particuliers (ie
+					une réponse) (valeur 1)</td>
+			</tr>
+			<tr>
+				<td valign="top">blIDOriginal</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Identifiant de l'auteur original d'un blabla
+					recuité. Si 0, le blabla n'est pas un blabla recuité.</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" class="descTable">La table <strong>mentions</strong>
+					enregistre les mentions faites d'un utilisateur dans les blablas.
+				</td>
+			</tr>
+			<tr class="trImpaire">
+				<th>Champ</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td valign="top">meIDBlabla</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire (avec meIDUser),
+					identifiant du message mentionnant un utilisateur (pointe sur
+					"blID" de la table "blablas")</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">meIDUser</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire (avec meIDBlabla),
+					identifiant de l'utilisateur mentionné dans le message
+					(pointe sur "usID" de la table "users")</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" class="descTable">La table <strong>tags</strong>
+					enregistre les tags apparaissant dans les blablas.
+				</td>
+			</tr>
+			<tr class="trImpaire">
+				<th>Champ</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td valign="top">taID</td>
+				<td valign="top">char(60)</td>
+				<td valign="top">Clé primaire (avec taIDBlabla), le tag
+					en lui-même, sans le # devant</td>
+			</tr>
+			<tr class="trImpaire">
+				<td valign="top">taIDBlabla</td>
+				<td valign="top">int(10)</td>
+				<td valign="top">Clé primaire (avec taID), identifiant
+					du message contenant le tag (pointe sur "blID" de la table
+					"blablas")</td>
+			</tr>
+		</tbody></table>
+		<p>
+			La <span class="texteImportant">qualitE des requEtes SQL</span> sera
+			bien entendu prise en compte dans la notation du projet.
+		</p>
+		<h3>Organisation des développements sur le serveur</h3>
+
+
+		<p>Vous organiserez vos développements dans une
+			arborescente de répertoires sur le serveur, dans votre espace
+			personnel :</p>
+		<pre>votre_nom
+   |_____ html
+   |_____images
+   |       |_____anonyme.jpg
+   |       |_____photos
+   |
+   |_____styles
+   |_____php
+   |_____upload  (contient les avatars des utilisateurs) 
+   |       |_____1.jpg
+   |       |_____2.jpg
+   |       |_____3.jpg
+   |       |_____...
+   |
+   |_____index.php
+</pre>
+
+
+		<p>
+			L'avatar d'un utilisateur est situé dans le répertoire
+			"upload". Le fichier image de l'avatar est nommé XXX.jpg
+			où XXX désigne l'identifiant de l'utilisateur (ie
+			usID). Cette image a une dimension de 50px / 50px. <br> Si
+			l'utilisateur ne veut pas utiliser d'avatar personnel, un avatar
+			"anonyme" est disponible dans le répertoire "images"
+			(anonyme.jpg) et doit être utilisé à la place de
+			l'avatar personnel.
+		</p>
+
+		<p>
+			Si vous souhaitez travailler sur votre ordinateur personnel, vous
+			devez utiliser <a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/cuiteur_reperts.zip" target="_blank">cette
+				archive (cuiteur_reperts.zip - disponible quand le projet commencera)</a> qui fournit l'arborescence des
+			répertoires avec les éléments nécessaires
+			pour débuter (images, corrigés des TP1 et 2, etc.).
+		</p>
+		<p>
+			Vous <strong><span class="texteImportant">devez</span></strong>
+			utiliser l'arborescence de répertoires telle que
+			définie ci dessus. Vous <strong><span class="texteImportant">devez</span></strong> nommer les répertoires et
+			les pages tels qu'ils ont été nommés dans cet
+			énoncé. Vous <strong><span class="texteImportant">devez</span></strong> utiliser la base de
+			données avec les tables et les champs nommés de la
+			même façon que ceux définis dans cet
+			énoncé. Tout manquement à ces règles sera
+			sanctionné par le refus de votre travail.
+		</p>
+		<p>
+			Lors de la soutenance de votre projet et pour sa notation, votre
+			travail sera installé sur notre serveur, et utilisera la base
+			de données "par défaut" <a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/16/projet_cuiteur/cuiteur_init_bd.zip">fournie précédemment
+				(cuiteur_init_bd.zip)</a>. Veillez donc à développer sans
+			que l'on ait besoin d'extensions ou de paramètrages
+			particuliers des serveurs.
+		</p>
+	</div>
+
+
+
+</body></html>

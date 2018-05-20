@@ -1,0 +1,42 @@
+Question 1.1
+répertoire personnel ($ pwd) : ~ ou /home/florian/
+
+Question 1.2
+avec la commande $ ls -1 | wc -l
+63 fichiers/dossiers (cachés compris)
+
+Question 1.6
+On peut utiliser $ id -un à la place de $ whoami
+
+Question 1.7
+On peut trouver la commande time dans les sections 1,2 et 7 ($ whatis time)
+
+Question 1.9
+On utilise $ mkdir -p skywalker/luke pour créer les dossiers skywalker et luke en une commande
+
+Question 1.10
+La commande $ rmdir skywalker/anakin ne fonctionne pas car le dossier n'est pas vide 
+on peut utiliser $ rm -r skywalker/anakin pour contourner le problème
+
+Question 1.11
+L'archive figures.tar contient (avec $ tar -tf figures.tar) : 
+arborescence.pdf
+compilation_avancee.pdf
+compilation.pdf
+etats_processus.pdf
+flux.pdf
+inode_fichier.pdf
+inode_repertoire.pdf
+lien_dur.pdf
+lien_symbolique.pdf
+noyau.pdf
+permissions.pdf
+pointeur.pdf
+systeme_exploitation.pdf
+tableau.pdf
+tube.pdf
+uptime.pdf
+partage_memoire.pdf
+partage_memoire_segmentee.pdf
+adresse_virtuelle.pdf
+table_page.pdf

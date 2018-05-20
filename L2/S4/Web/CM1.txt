@@ -1,0 +1,111 @@
+html : pas fait pour le traitement, pas de mise en forme, mise en page.
+standard, pas une norme. Évolutif.
+W3C -> définit ce qui concerne html, css, ...
+code contenu dans de simples fichiers texte, .hmtl ou .htm
+tt les éléments non textuels sont indépendants et liés
+simple éditeur de texte pour le codage
+soupe de tags
+
+langage à balise (marqueur, tags) : délimitent les infos
+Pas sensible à la casse.
+pour certain éléments, la balise de fin est facultative. Ex <p> </p>
+Certain éléments n'ont ni contenu, ni balise de fin ex : <img> <br> <meta> <input>
+Le contenu d'un élément peut être d'autres éléments
+<p>truc<strong>machin</strong></p>
+
+les éléments sont imbriqués dans d'autres éléments
+
+Attention au chevauchement
+<p>truc <strong> toto </p> </strong> FAUX !!
+
+avoir le moins de niveaux d'imbrication possible.
+
+Certains éléments doivent être imbriqués dans un certain ordre
+ex:
+<ul>
+	<li></li>
+	<li></li>
+</ul>
+
+Pas de message d'erreurs du navigateur pour le html
+
+vérifier les standards w3c : https://validator.w3.org/
+
+Une balise peut être précisée par un ou plusieurs attributs
+<a href="toto.html">lien vers toto</a>
+
+Notation générale : 
+nom_attribut="valeur"
+
+<img src="plus.png" width="33" height="33">
+
+les attributs booléens sont des attributs qui n'ont pas de valeur. C'est leur présence qui définit la valeur true et leur absence qui définit la valeur false.
+
+<video src="truc.mp4" autoplay>	//démarre la vidéo automatiquement
+<video src="truc.mp4" autoplay="false"> //démarre la vidéo automatiquement car présence de autoplay
+
+La valeur de l'attribut peut être entourée par des guillemets doubles, simples ou sans guillemets
+Des guillemets sont obligatoire uniquement si la valeur de l'attributs 
+contient les caracteres ' ', '=', ''' ou '"'
+
+certains attributs sont utilisables avec toutes les balise (html5).
+Ils sont nommés attributs globaux.
+
+avec html5, on peu créer nos propres attributs.
+data-nomAuChoix
+
+data- obligatoire pour définir un attributs
+
+Le navigateur ne tient pas compte des sauts de ligne dans le code/texte, ni des espaces consécutifs
+
+Gains de 20% de transfert d'information en retirant toutes les indentations/ les caractères inutile
+-> hébergement moins cher, transfert plus rapide mais illisibilité du code.
+
+mode d'afichage :
+	-bloc (block) : les uns en dessous des autres
+	-en ligne (inline) : les uns à la suite des autres
+
+http : HyperText Transfert Protocol
+
+Client : Navigateur, html,css,javascript
+Serveur web : Apache, Nginx, IIS, PHP ASP JSP, Python .net,...
+
+système demande/réponse
+autant de demande qu'il ya de fichiers composant une page web.
+
+toujours le client qui appelle le serveur
+
+Multiplexage : échange de plusieurs messages simultanément, et non plus séquentiellement
+Entêtes systématiquement compressés, transfert en binaire.
+Regrouper les échanges avec un même serveur au sein d'une seule et même connexion TCP
+cache pushing : un serveur peut envoyer des infos à un client pour un usage futur
+
+Langage interprété -> le navigateur joue un rôle promordial.
+le navigateur réagit à des événements.
+URL (Uniform Resource Locator) : définit l'adresse d'une ressource sur le réseau.
+
+nom de domaine :
+extension de 1er niveau : .com, .net,...(générique), .fr, .de,...(géographiques)
+TLD : Top Level Domain
+
+Domaine : google, facebook, php, w3, mozilla, univ-fcomte
+sous-domaine : www, developer,addons,support,moodle,ent,sedna,...
+
+<a href="source">page</a>
+<img source="source.jpg border="0">
+
+Fabrication des coulerus :
+écran : 3 LED RVB/RGB
+imprimante : Cyan Magenta jaune et noir
+chaque couleur stocké sur un octects : 256 nuances par couleur
+3 octest = 24 bits -> images 24 bits
+256 * 256 * 256 valeurs -> 16 777 216 couleurs différentes.
+
+1 pixel = 8 bits
+
+moins de couleur pour une images -> image dégradés
+
+Formats du web : par défauts : GIF, JPEG, PNG, SVG (format vectoriel)
+
+otpimisation importante (60 a 75% du trafic)
+

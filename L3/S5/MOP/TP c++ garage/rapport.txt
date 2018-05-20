@@ -1,0 +1,3 @@
+Probleme de classe non reconnue (CVoiture does not name a type), resolu en incluant CVoiture.h plutot que garage.h uniquement.
+Meme chose pour les classes CClient, CUtilitaire et CMoto.
+Probleme lors d'appel a la fonction affiche des classes filles de CVehicule (discards const qualifier) non resolu.

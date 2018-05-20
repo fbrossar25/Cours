@@ -1,0 +1,292 @@
+L'OS est l'ensemble de programmes central d'un appareil informatique qui se 
+place à l'interface entre le matériel et les logiciels applicatifs
+	-permet de libérer l'utilisateur de la complexité de la programmation
+	-propose une gestion flexible et 
+	optimisée de ses différents composants (processeurs, affichage, stockage)
+
+mode utilisateur : Interpréteur de comande / Bibliothèque système / Outils sytème
+mode kernel : System Call (API systeme)
+				Noyau
+
+Interface graphique (GUI)
+	-Paradigme WIMP (window, icon, menu, pointing device)
+	-Métaphore du bureau
+	-Communication par mouvement
+
+Interpréteur de Commande (Command Line Interface)
+	-Mode texte
+	-Avantages :
+		-automatisation des tâches
+		-Contrôle à distance
+		-Faible consommation de ressources
+	-Communication par langage
+
+Fonctionnement d'un interpréteur de commandes :
+	1) Attente de la commande avec le prompt($ ou #)
+	2) Saisie de la commande
+	3) Analyse puis éxecution de la commande avec affichage du résultat
+
+Format des commandes :
+	-Commande élémentaire : $ commande [otpions] [Fichiers_ou_données]
+	-Succession de commandes : $commande1 ; commande2
+
+Exemple : $ echo -n "Bonjour, nous somme le "; date
+-n pour empêcher le retour à la ligne
+
+whoami : Afficher l'identifiant d'utilisateur
+uname [-snrvma] : Afficher des infos sur le système
+uptime : indiquer depuis quand le système a été mis en route
+date : afficher ou configurer la date et l'heure du système
+cal [[month] year] : afficher un calendrier
+echo [-n] [string] : afficher une ligne de texte
+
+Une page de manuel (manpage) est une documentation complète relative à un programme, une fonction, un ficher, etc... Les pages de manuel sont rangées dans différentes sections. Le nom d'une page de manuel est de la forme page(section). RTFM! (Read That Fuckin' Manual)
+
+man [[section] page] : Afficher la page de manuel page de la section
+man man : Afficher la page de manuel man(1) de la commande man
+
+Sections des pages de manuel :
+	1) Commandes utilisateurs
+	2) Appels système
+	3) Fonctions de bibliothèque
+	4) Fichiers spéciaux
+	5) Formats de fichiers
+	6) Jeux
+	7) Divers
+	8) Administration système
+	9) Interface du noyau Linux
+	10) Man (retrouver les sections)
+
+Un fichier est un lot d'informations portant un nom.
+Sous Unix, tout est fichier :
+	-Les fichiers physiques ou fichiers réguliers
+	-les fichiers virtuels
+	-les répertoires
+	-Les périphériques
+	-Les tubes (Voir "Shell et scripts shell")
+	-Les sockets ("Système et Réseau" en L3)
+
+Opérations :
+	-Ouverture : prévient le système qu'on commence à utiliser un fichier
+	-Fermeture : prévient le système qu'on à terminé d'utiliser un fichier
+	-Lecture : lit des informations depuis le fichier
+	-Ecriture
+
+Un nom de fichier est formé d'un nom décrivant généralement son contenu et 
+d'une (ou plusieurs ou 0) extension qui indique son type. L'ensemble du nom doit 
+être inférieur à 255 caractères. Il y a une différence entre majuscule et minuscule !
+
+Un fichier dont le nom commence par '.' est un fichier caché.
+
+Bonne pratique de nommage :
+	-Utiliser uniquement des lettres, des chiffres et '_', '-', '.'
+	-ne pas utiliser d'espace !
+	-Ne pas utiliser d'accent !
+	-Ne pas nommer deux fichiers de manière identique à la casse près !
+
+Le système de fichier est un ensemble de fichiers et de répertoirs 
+(qui contiennent des fichiers et d'autres répertoires) organisés en arbre dont la 
+racine est le répertoire /. Le séparateur est /.
+
+Le Filesystem Hierarchy Standard définit l'arborescence et le contenu des principaux répertoires
+des sytèmes de fichiers de GNU/Linux et de la plupart des Unix. Exception notable : Mac OS X
+
+Répertoires dans / :
+	- /bin/ (BINaries) : commandes de bases pour l'utilisateurs
+	- /boot/ : noyaux et chargeurs d'amorçage (bootloader)
+	- /dev/ (DEVices) : fichiers de périphériques physiques et virtuels
+	- /etc/ (Editing Text Configuration) : fichiers de config
+	- /home/ : répertoires des utilisateurs
+	- /lib/ (LIBrary) : bibliothèque nécessaires pour /bin et /sbin
+	- /mnt (MouNT) : point de montage temporaire
+	- /opt (OPTional) : logiciels otpionnels
+	- /proc (PROcess) : infos sur les processus et le noyau
+	- /root : répertoire du root user
+	- /run : fichiers transitoires
+	- /sbin (System BINaries) : commandes pour les admins
+	- /tmp : fichier temporaires
+	- /usr (Unix System Resources) : similaires à /
+	- /var (VARiable) : fichiers variables
+
+RTFM : hier(7)
+
+Fichiers de périphériques physiques
+	- /dev/dsp : carte son
+	- /dev/fd0 : lecteur disquettes
+	- /dev/sd* ou /dev/hd* : disque durs
+	- /dev/sr* : lecteur CD/DVD
+	- /dev/tty* : terminaux
+
+Fichiers de périphériques virtuels
+	- /dev/random : générteurs de nombres (vraiment) aléatoires
+	- /dev/urandom : générateur de nombres (pas tout à fait) aléatoires
+	- /dev/null : "trou noir" (plutôt en écriture)
+	- /dev/zero : flux de zéros (plutôt en lecture)
+
+RTFM : random(4), null(4)
+
+/etc/
+Quelques fichiers importants :
+	- /etc/passwd : infos sur les comptes utilisateurs
+	- /etc/shadow : mdp chiffrés
+	- /etc/group : groupes du système
+	- /etc/fstab : infos sur le systèmes de fichiers
+	- /etc/services : liste des services réseau Internet
+	- /etc/issue : message de bienvenue lors d'une connexion
+RTFM : passwd(5), shadow(5), fstab(5), services(5), issue(5)
+
+Le répertoire utilisateur et le répertoire où l'utilisateur stocke ses fichiers.
+Sous Unix, il est généralement situé dans le répertoire /home. C'est le répertoire dans lequel
+one se trouve après connexion.
+Notations : ~/ ($HOME) est une notation pour votre répertoire utilisateur
+			~jdupont/ est une notation pour le répertoire utilisateur Jean Dupont
+(généralement /home/jdupont/)
+
+/usr/
+Dossier non-nécessaires au fonctionnement minimal du système.
+	-/usr/bin/, /usr/lib/, /usr/sbin/ : idem que pour /
+	-/sur/include/ : entêtes des bibliothèques partagées (Voir le chapitre "Programmation en C")
+	- /usr/share/ : fichiers indépendant de la plateforme, notamment :
+		-/usr/share/man et /doc
+	/usr/local/ : comme /usr pour les données additionnelles
+
+/var/
+	- log/ : fichier journalisation
+	- lock/ : fichiers de verrouillage
+	- run/ : fichiers tempo des logiciels en éxecutions
+	- mail/ : boîte aux lettres utilisateurs
+	- spool/ : file d'attente des services
+	- spool/mail : mails en cours de transit sur la machine
+	- www/ : répertoire web
+
+Les répertoires spécieux . et ..
+Dans tous les répertoires, il existe deux répertoires spéciaux :
+	- . représente le rep courrant
+	- .. repertoire parents
+
+pour le rep /, son parent est lui-même
+
+Le chemin (path) d'un fichier (ou d'un repertoire) est une chaîne de caractères
+décrivant sa position dans le système de fichier. On distingue :
+	-les chemins relatifs, par rapport au rep courant
+	-les chemins absolus, par rapport à la racine
+
+pwd : Print Working Directory : affiche le nom du rep courant
+ls: LiSt :
+	-ls -a : affiche tt les fichiers (cachés compris)
+	-ls -l : fait la liste détaillée des fichiers :
+		-permission
+		-nombre de liens
+		-utilisateurs et groups du propriétaire du fichiers
+		-taille
+		-date de derniere modif
+		-nom
+ls dir : ls mais pour le répertoir dir
+
+cd - : répertoire précédent
+
+Chaque fichier (ou répertoire) du système de fichiers possède :
+	-un utilisateur et un groupe propriétaires du fichier
+	-un ensemble de permission relatives à la lecture/écriture/éxecution du fichier
+
+Utilisateurs et UID
+	-Toute entité (personne ou programme) devant interagir avec un système Unix est 
+	authentifiée par un utilisateur (user)
+	-à chaque utilisateur sont associé un nom d'utilisateurs, et un numero unique 
+	appelé num utilisateurs (UID, User ID)
+	-La correspondance entre le nom d'utilisateur et le numéro d'utilisateur
+	se trouve dans le fichier /etc/passwd
+
+Group et GID
+	-Chaque utilisateur fait partie d'un ou plusieurs groupe.
+	-chaque groupe est associé à un nom et un numero de groupe unique (GID, Group ID)
+	-La correspondance entre le nom de groupe et le numéro de groupe se trouve dans 
+	le fichier /etc/group
+
+Le super-utilisateur root
+Il existe un utilisateur particulier appelé super-utilisateur ou root. Il possède tous les
+pouvoirs sur le système :
+	-Il peut lire, écrire et exécuter n'importe que fichier
+	-Il peut prendre l'identité de n'importe quel utilisateur
+L'utilisateur root a pour UID le numéro 0.
+
+Le groupe root a pour GID 0. Généralement, seul l'utilisateur root fait partie du groupe root.
+
+Les trois permissions :
+	Lecture : lire un fichier ou lister le contenue d'un repertoire
+	Ecriture : ecrire le contenu du fichier ou créer, supprimer, modifier 
+	le nom des fichiers du repertoire
+	Exécution : exécuter le fichier, accèder au répertoire.
+On représente les permissions par un triplet de lettres représentant la permission (rwx) ou un
+tiret (-) pour l'absence de permission.
+
+Chaque permission peut s'appliquer à :
+	-L'utilisateur propriétaire (u, User)
+	-Le groupe du propriétaire (g, Group)
+	-Les autres (o, Other)
+
+On représente les permissions associées à un fichier par trois triplets de lettres ou un tiret.
+
+Les permissions spéciales :
+SUID (s ou S, Set User ID) : --s------ ou --S------
+Permissions d'exécution spéciale qui alloue les permissions de l'utilisateur propriétaire 
+du fichier durant son exécution. s remplace x et S remplace -.
+
+SGID(Set Group ID)
+permission d'exécution spécial qui alloue les permissions du groupe du propriétaire
+du fichier durant son éxecution s remplace x et S remplace -
+
+Sticky Bit (t ou T) :
+Sur un répertoire, il interdit la suppression s'un fichier qu'il contient à tout autre utilisateur
+que le propriétaire du fichier.
+exemple : /tmp
+
+Représentation octale (0 à 7)
+chaque bit représentant une des permissions
+r = 4 = 0b100
+w = 2 = 0b010
+x = 1 = 0b001
+
+On représente l'ensemble des permissions d'un fichier avec trois chiffres en octal.
+Un 4ème peut être rajouté au début pour les permissions spéciales.
+
+Commande id : affiche les infos de l'utilisateurs courant et ses groupes
+
+chown [user] [file] : CHange OWNer
+Change le proprio d'un fichier. Généralement seul root accède à cette commande.
+
+chgrp [group] [file]
+change le groupe propriétaire. L'utilisateur doit faire partir du groupe proprio cible.
+
+Le umask est une valeur sur 4 chiffres en octale qui est utilisée pour déterminer les permissions initials d'un fichier ou d'un répertoire :
+	-Fichier : permission = 0666 & ~umask
+	-Répertoire : permission = 0777 & ~umask
+Généralement, le umask est à 0022, ce qui donne les permissions :
+0644
+
+le umask est interpréter par le fait qu'on enlève des permissions par défaut
+
+un inode est une structure de données contenant des infos concernant un fochier 
+stocké dans le système de fichiers.
+
+A chaque fichiers correspond un num d'inode (i-number) dans le systeme de fichiers dans lequel il réside, unique au périphérique sur lequel..
+
+id du périph
+num inode
+permissions fichier
+compteur du nombre de lien dur
+id proprio
+id groupe proprio
+taille
+date dernier acces atime
+date derniere modif mtime //modif du contenu
+date dernier changement ctime //changement dans l'inode
+
+Il n'ya pas le nom du fichier
+
+synonyme de unlink : rm
+
+lien créer par un processus, compteur de lien incrémenter -> pas ça sous 
+windows => pas le droit de supprimer un fichier
+le fichier seras effacer quand le compteur de lien == 0
+

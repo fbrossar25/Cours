@@ -1,0 +1,104 @@
+1ere moitié du 20ème : recherche de la def. de calcul
+Gödel, Chruch, Turing
+
+Déf.
+Un problème en info. est constitué de données sous une certaine forme et d'une question portant sur ces données
+
+Une instance d'un problème est composée d'une valeurr pour chaque donnée du problème
+
+Un algorithme  est une méthode indiquant sans ambiguïté une suite finie d'actions mécaniques 
+(sans faire appel à l'intelligence ou à la réflexion) à effectuer pour trouver la 
+réponse à un problème.
+
+Un programme désigne la traduction d'un algorithme dans une langage de programmation
+
+Inexistence d'algorithme pour un problème :
+Que signifie exactement qu'aucun algo n'existe pour un prob. donné ? Cela veut dire qu'il n'existe pas d'aalgo qui répond à la question pour n'importe quelle instance du problème, càd que pour tt algo, il existe une donnée du prob. tq :
+-soit l'algo ne s'arrête pas
+-soit il donne une réponse fausse
+
+Indécidabilité : Un problème pour lequel aucun algo n'existe est dit indécidable
+
+Un problème est dit traitable s'il existe un algorithme utilisable pour le résoudre.
+
+Un problème peut être non-traitable si les algorithmes pour le résoudre :
+	-prennent trop de temps
+	-utilisent trop de mémoire
+Si un problème est non-traitable, on peut chercher des algorithmes:
+	-qui donnent une réponse approchée de la question
+	-qui ne répondent pas toujours
+
+La complexité algorithmique (ou coût) est la mesure de l'efficacité d'un algorithme, càd :
+	-son temps d'éxecution
+	-la place mémoire utilisée
+La complexité algorithmique permet de comparer deux algorithmes qui résolvent le même problème.
+
+L'algorithmique est l'étude des méthodes pour améliorer la complexité des algorithmes.
+
+Les notations de Landau permettent de comparer des fonctions asymptotiquement, càd connaître leur comportement pour des n très grand.
+
+notation 		Signification
+f = O(g)			f est bornée par g
+f = Theta(g)		f est du même ordre que g
+f = o(g)			f est dominée par g
+
+On dit que f est bornée par g, et on note F = O(g) si :
+
+Il existe k > 0 tq Il existe n0 € N tq Pour tt n > n0 , |f(n)| <= k * |g(n)|
+
+pour les grandes aleurs de n, f(n) ne dépasse pas k * g(n)
+
+n = O(n²) avec n0 = 0 et k = 1
+n = O(n) avec n0=0 et k=1
+42n = O(n) avec n0=0 et k=42
+42 = O(1) avec k = 42 par exemple
+sin(n) = O(1)
+
+On dit que f est de même ordre que g, et on note f = Theta(g) si :
+Il existe k1,k2 > 0, Il existe n0 € N, Pour tt n > n0, k1 * |g(n)| <= |f(n)| <= k2 * |g(n)|
+
+Pour les grandes valeurs de n, f(n) est encadrée par k1 * g(n) et k2 * g(n)
+Ou f = O(g) et g = O(f)
+
+2 + sin(n) = Theta(1)
+42 = Theta(1)
+n = Theta(n) avec n0 = 0 et k = 42
+
+On dit f est dominée par g, et on note f = o(g) si :
+Pour tt epsilon > 0, Il existe n0 € N tq pour tt n > n0, |f(n)| <= epsilon * |g(n)|
+
+Pour epsilon aussi petit qu'on veut, et pour des grandes valeurs de n, f(n) ne dépasse pas 
+epsilon * g(n), dit autrement, pour des grandes valeurs de n, f(n) est tout petit 
+par rapport à g(n)
+
+lim f(n)/g(n) = 0 quand n -> +infini
+
+42 = o(log n)
+log (n) = o(n)
+n = o(n²)
+42n = o(n²)
+
+f borne g : on dit que f borne g, et on note f = Omega(g) si g est bornée par f, càd si g = O(f)
+
+f domine g, on note f = epsilon(g), si g est dominée par f càd si g = o(f)
+
+f est équivalente à g : on note f ~ g, si f = g + o(g)
+
+Lorsqu'on aura une fonction f à étudier, on cherchera à trouver :
+	1) une fonction g telle que f = Theta(g)
+	2) à défaut, une fonction h telle que f = O(h)
+
+Lorsqu'on aura à comparer deux fonctions f et g, on cherchera à montrer :
+	-soit f = o(g) (ou f = epsilon(g))
+	-soit f = Theta(g)
+
+a ^ (b*c) = a^b + a^c
+a^(b*c) = (a^b)^c
+logb (a) = ln a / ln b
+a ^ b = e^(b ln a)
+somme de i=1 à n des i = n(n+1) / 2 = O(n²)
+somme de i=1 à n des i² = ((2n + 1)(n+1)n) / 6 = O(n ^ 3)
+
+Formule de Stirling
+n! ~ ((racine(2 Pi n)) * ((n / e) ^ n))
+

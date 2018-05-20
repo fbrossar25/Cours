@@ -1,0 +1,117 @@
+/* ---------------------------------------------------------------
+			RE-INITIALISATION DES TAGS HTML
+	Pour éviter les valeurs par défaut différentes suivant les 
+	navigateurs. Seuls les tags le plus	souvent utilisés et non 
+	dépréciés sont pris en compte.
+	Reset complet : http://meyerweb.com/eric/tools/css/reset/
+--------------------------------------------------------------- */
+html, body, div, span, iframe,
+h1, h2, h3, h4, h5, h6, p, pre,
+a, img, strong, ol, ul, li,
+fieldset, form, label, legend,
+table, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font-weight: normal;	
+	vertical-align: baseline;
+	background: transparent;
+	}
+body {
+	line-height: 1;
+	}	
+ol, ul {
+	list-style: none;
+	}
+table { 
+	border-collapse: collapse;
+	border-spacing: 0;
+	}
+h1 {
+	font-size: 32px;
+	margin-bottom: 10px;
+}
+h2 {
+	font-size: 26px;
+}
+/* ---------------------------------------------------------------
+	FEUILLE DE STYLE ORIGINALE	
+--------------------------------------------------------------- */
+html {
+	height: 100%
+	}
+body {
+	background: #20190f;
+	color: #e8dbb1;
+	font: 14px Verdana, Geneva, Sans-Serif;
+	height: 100%;
+	}
+
+#bcPage {
+	background: url(../images/fond.jpg);
+	height: 100%;
+	margin: 0 auto;
+	width: 800px;
+	}
+	
+/* ---------------------------------------------------------------
+	BLOC MESSAGES
+--------------------------------------------------------------- */
+.bcMessages {
+	margin: 20px 0 0 250px;
+	width: 550px;
+	}
+	
+.bcMessages li {
+	background: url(../images/fond_blabla.png);
+	margin: 0 0 10px 25px;
+	padding: 5px 5px 5px 35px;
+	}
+	
+.imgAuteur {
+	float: left;
+	height: 50px;
+	margin-left: -60px;
+	margin-top: 5px;
+	width: 50px;
+	}
+	
+.finMessage a {
+	float: right;
+	margin-left: 20px;
+	width: auto;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	}
+
+.finMessage a:hover {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	}
+	
+#bcMessages #bcPlus {
+	background: url(../images/speaker.png) no-repeat top right;
+	height: 75px;	
+	padding: 35px 80px 0 0;
+	text-align: right;
+	}
+a {
+	font-weight: bold;
+	color: #3c96f1;
+	text-decoration: none;
+	}
+	
+a:hover {
+	text-decoration: underline;
+	}
+	
+strong {
+	font-weight: bold;
+	}
+	
+.debutFin {
+	color: #efe7de;
+	font-size: 12px;
+}

@@ -1,0 +1,3 @@
+interface Askable{
+	int distanceFromeTreasure();
+}

@@ -1,0 +1,42 @@
+Exercice 1
+Classe point {
+	privé reel x,y
+	Constructeur(réel x,réel y)
+		moi.x <- x
+		moi.y <- y
+	fin
+	Constructeur ()
+		Constructeur (1.0 , 1.0)
+	fin
+	reel distOrigine()
+		retourner racine(x*x+y*y)
+	fin
+	reel distAvec(point lui)
+		retourner racine((moi.x-lui.x)*(moi.x-lui.x)+(moi.y-lui.y)*(moi.y-lui.y))
+	fin
+	réel getX()
+		retourner x
+	fin
+	réel getY()
+		retourner y
+	fin
+	réel getRayonPolaire()
+		distOrigine()
+	fin
+	réel getAnglePolaire()
+		réel res
+		si(y = o) res = 0.0
+		sinon si (x > 0 && y > 0) res = arctan (x/y)
+		sinon si (x > 0 && y < 0) res = arctan (x/y) + 2.0*PI
+		sinon si (x < 0) res = arctan (x/y) + PI
+		sinon si (x = 0 && y > 0) res = PI / 2.0
+		sinon si (x = 0 && y < 0) res = ((3.0 * PI) / 2.0)
+		fin si
+		retourner res
+	fin
+	CoordPolaires enCoordPolaires()		
+		retourner créer CoordPolaire(getAnglePolaire(),distOrigine())
+	fin
+}
+
+

@@ -1,0 +1,42 @@
+Rédigez en java une classe Date qui enregistre un 
+jour et un mois, et telle qu'un tableau de Date puisse être trié par Arrays.sort(tab)
+
+Définir une méthode
+public int compareTo(Object o) qui retourne
+	-Un nombre négatif si this < o
+	-Un nombre nul si this == o
+	-Un nombre positif si this > o
+ainsi que la méthode equals (Object o)
+
+public class Date implements Comparable{
+	private int j;
+	private int m;
+	Date(int j,int m){
+		if((j>0 && j<32) && (m > 0 && m<13)){
+			this.j = j;
+			this.m = m;
+		}
+		else{
+			this.j=1;
+			this.m=1;
+		}
+	}
+	Date(){
+		this(1,1);
+	}
+	public boolean equals(Date lui){
+		return (this.j == lui.j && this.m == lui.m);
+	}
+	
+	public int compareTo(Date lui){
+		if(this.equals(lui)) return 0;			//this == lui
+		else {
+			if(this.m > lui.m) return 1;
+			else if (this.m < lui.m) return -1;
+			else { 								//this.m == lui.m
+				if(this.j > lui.j) return 1;
+				else return -1;
+			}
+		}
+	}
+}

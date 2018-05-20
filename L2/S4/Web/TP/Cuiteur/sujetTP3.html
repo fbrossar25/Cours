@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="sujetTP3_fichiers/styleTP.css">
+
+<title>TP3 - PHP -affichage de listes de données</title>
+
+</head>
+
+<body>
+
+	<div id="page">
+
+		<h1>TP3 : PHP - Affichage de listes de données</h1>
+		<p>La réalisation de ce TP vous apprendra à afficher
+			des listes de données provenant d'une base de données
+			et vous aidera à réaliser les listes de blablas
+			(messages) de l'application Cuiteur.</p>
+		<p>
+			Vous devez avant tout lire <a href="http://moodle.univ-fcomte.fr/pluginfile.php/554072/mod_resource/content/12/projet_cuiteur/projet.html">le
+				cahier des charges de l'application Cuiteur</a>. Vous y trouverez la
+			description des fonctionnalités de l'application, la
+			description de la base de données à utiliser et la
+			description de l'arborescence des répertoires.
+		</p>
+
+
+		<h3>Pré-requis</h3>
+		Ce TP couvre les parties suivantes du cours PHP :
+		<ul>
+			<li>Notions de base</li>
+			<li>Date et chaînes</li>
+			<li>Les tableaux</li>
+			<li>Travailler avec MySQL</li>
+		</ul>
+
+		<h3>Notions à acquérir</h3>
+		<ul>
+			<li>Ecrire un script PHP simple</li>
+			<li>Connexion à une base de données</li>
+			<li>Envoi de requêtes SQL</li>
+			<li>Boucle de traitement des résultats</li>
+			<li>Ecrire et utiliser des fonctions</li>
+			<li>Utiliser une bibliothèque de fonctions</li>
+		</ul>
+
+		<h3>Travail à réaliser</h3>
+		L'objectif est de réaliser l'affichages de deux listes :
+		<ul>
+			<li>la liste des utilisateurs inscrits dans la base de
+				données de l'application cuiteur</li>
+			<li>la liste des blablas de l'utilisateur Chuck Norris</li>
+		</ul>
+		<br>La liste des utilisateurs inscrits est très simple
+		à réaliser. La liste des blablas est un peu plus
+		complexe car les blablas peuvent avoir trois origines
+		différentes.
+		<p>Le travail est décomposé en 8 phases
+			correspondant chacune à 8 scripts PHP, qui doivent se trouver
+			dans le répertoire tp de votre répertoire de travail
+			sur le serveur. Pour simplifier les choses et que vous soyiez
+			concentré sur le code PHP, vous commencerez par
+			réaliser l'affichage sans aucun style de mise en forme. Seul
+			le dernier script fera une mise en pages / mise en forme,
+			basée sur ce qui a été fait dans le TP2.</p>
+		<p>Vous utiliserez les fonctions suivantse pour gérer les
+			erreurs de la base de données :</p>
+		<pre>			<code>
+//___________________________________________________________________
+/**
+ * Gestion d'une erreur de requête base de données.
+ *
+ * @param resource	$bd		Connecteur sur la bd ouverte
+ * @param string	$sql	requête SQL provoquant l'erreur
+ */
+function fd_bd_erreur($bd, $sql) {
+	$errNum = mysqli_errno($bd);
+	$errTxt = mysqli_error($bd);
+
+	// Collecte des informations facilitant le debugage
+	$msg = '&lt;h4&gt;Erreur de requête&lt;/h4&gt;'
+			."&lt;pre&gt;&lt;b&gt;Erreur mysql :&lt;/b&gt; $errNum"
+			."&lt;br&gt; $errTxt"
+			."&lt;br&gt;&lt;br&gt;&lt;b&gt;Requête :&lt;/b&gt;&lt;br&gt; $sql"
+			.'&lt;br&gt;&lt;br&gt;&lt;b&gt;Pile des appels de fonction&lt;/b&gt;';
+
+	// Récupération de la pile des appels de fonction
+	$msg .= '&lt;table border="1" cellspacing="0" cellpadding="2"&gt;'
+			.'&lt;tr&gt;&lt;td&gt;Fonction&lt;/td&gt;&lt;td&gt;Appelée ligne&lt;/td&gt;'
+			.'&lt;td&gt;Fichier&lt;/td&gt;&lt;/tr&gt;';
+
+	$appels = debug_backtrace();
+	for ($i = 0, $iMax = count($appels); $i &lt; $iMax; $i++) {
+		$msg .= '&lt;tr align="center"&gt;&lt;td&gt;'
+				.$appels[$i]['function'].'&lt;/td&gt;&lt;td&gt;'
+				.$appels[$i]['line'].'&lt;/td&gt;&lt;td&gt;'
+				.$appels[$i]['file'].'&lt;/td&gt;&lt;/tr&gt;';
+	}
+
+	$msg .= '&lt;/table&gt;&lt;/pre&gt;';
+
+	fd_bd_erreurExit($msg);
+}			
+//___________________________________________________________________
+/**
+ * Arrêt du script si erreur base de données.
+ * Affichage d'un message d'erreur si on est en phase de
+ * développement, sinon stockage dans un fichier log.
+ *
+ * @param string	$msg	Message affiché ou stocké.
+ */
+function fd_bd_erreurExit($msg) {
+	ob_end_clean();		// Supression de tout ce qui
+					// a pu être déja généré
+
+	echo '&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="ISO-8859-1"&gt;&lt;title&gt;',
+			'Erreur base de données&lt;/title&gt;&lt;/head&gt;&lt;body&gt;',
+			$msg,
+			'&lt;/body&gt;&lt;/html&gt;';
+	exit();
+}
+</code>
+		</pre>
+		<p>
+			Vous <strong><span class="texteImportant">devez</span></strong>
+			nommer les scripts tels qu'ils sont nommés dans cet
+			énoncé. Vous <strong><span class="texteImportant">devez</span></strong> utiliser l'arborescence de
+			répertoires se trouvant dans votre répertoire de
+			travail. Toutes les scripts de ce TP <span class="texteImportant">doivent</span>
+			se trouver dans le répertoire tp.
+		</p>
+		<h3>Liste des utilisateurs de Cuiteur</h3>
+		<h4>Etape 1</h4>
+		<p>
+			<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554055/mod_resource/content/30/TP3_cuiteur/images/tp3_1.jpg" target="_blank"><img src="sujetTP3_fichiers/tp3_1_m.jpg" class="flotteGauche" height="267" width="260"></a>Afficher les utilisateurs inscrits dans
+			Cuiteur (
+			<code>liste_users_1.php</code>
+			).
+		</p>
+		<p>
+			Il faut sélectionner dans la base de données les
+			utilisateurs et les trier par identifiant (
+			<code>usID</code>
+			). Les données seront affichées comme dans la copie
+			d'écean ci-contre. Utilisez des tags
+			<code>h1</code>
+			et
+			<code>h2</code>
+			pour les titres et des
+			<code>ul</code>
+			et
+			<code>li</code>
+			pour les informations sur un utilisateur. N'utilisez pas de feuille
+			de styles car l'important ici est PHP et pas une zolie page.
+		</p>
+		<h4>Etape 2</h4>
+		<p>
+			Réaliser une fonction de tranformation de date (
+			<code>liste_users_2.php</code>
+			).
+		</p>
+		<p>
+			Ecrivez la fonction permettant d'afficher les dates provenant de la
+			base de données (format aaaammjj) dans un format lisible (28
+			février 2011). La fonction s'appelle
+			<code> xx_amj_clair()</code>
+			, où xx sont vos initiales. Utilisez cette fonction pour
+			afficher les date d'inscription et de naissance des utilisateurs.
+		</p>
+		<p class="texteCentre">
+			<img src="sujetTP3_fichiers/tp3_2.png" height="494" width="769">
+		</p>
+
+
+		<h4>Etape 3</h4>
+		<p>
+			Réaliser et utiliser une bibliothèque de fonctions (
+			<code>bibli_cuiteur.php</code>
+			et
+			<code>liste_users_3.php</code>
+			).
+		</p>
+		Dans les pages suivantes nous allons réutiliser certains
+		éléments présents dans
+		<code>liste_users_2.php</code>
+		:
+		<ul>
+			<li>la fonction <code>fd_bd_erreur()</code></li>
+			<li>la fonction<code> xx_amj_clair() </code></li>
+			<li>l'affichage de l'en-tête de la page HTML</li>
+			<li>la connexion à la base de données.</li>
+		</ul>
+		<p>
+			Copiez votre fichier
+			<code>liste_users_2.php</code>
+			en
+			<code>liste_users_3.php</code>
+			. <strong>Déplacer</strong> les fonctions
+			<code>fd_bd_erreur()</code>
+			et
+			<code>xx_amj_clair()</code>
+			du fichier
+			<code>liste_users_3.php</code>
+			dans un nouveau fichier
+			<code>bibli_cuiteur.php</code>
+			(une bibliothèque de fonctions). Incluez la
+			bibliothèque dans
+			<code>liste_users_3.php</code>
+			. Testez. Vous devez avoir les mêmes résultats qu'avec
+			<code>liste_users_2.php</code>
+			.
+		</p>
+		<p>
+			Dans
+			<code>bibli_cuiteur.php</code>
+			, écrivez la fonction
+			<code>xx_html_debut()</code>
+			qui affiche le début de la page HTML. La fonction a deux
+			arguments : le titre de la page, le nom d'un fichier de feuille de
+			styles. Le deuxième argument est facultatif. La signature de
+			ces fonctions doit être commentée avec la syntaxe PHPDoc
+			telle que vue en cours.
+		</p>
+		<p>
+			Dans
+			<code>bibli_cuiteur.php</code>
+			, écrivez la fonction
+			<code>xx_bd_connection()</code>
+			qui permet la connexion à la base de données Cuiteur.
+			La signature de ces fonctions doit être commentée avec
+			la syntaxe PHPDoc telle que vue en cours.
+		</p>
+		<p>
+			Utilisez ces fontions dans
+			<code> liste_users_3.php</code>
+			.
+		</p>
+		<h3>Liste des blablas d'un utilisateur</h3>
+		<p>La liste des blablas d'un utilisateur est
+			décomposée en trois sous-listes pour faciliter la prise
+			en compte de l'otigine différentes des blablas à
+			afficher. Pour simplifier les requêtes, on ne tiendra pas
+			compte du recuitage éventuel des blablas.</p>
+		Il faut afficher les blablas pour l'utilisateur Chuck Norris (usID 23)
+		:
+		<ul>
+			<li>la liste des blablas écrits par Chuck Norris</li>
+			<li>la liste des blablas écrits par les utilsateurs
+				auxquels est abonné Chuck (ses abonnements)</li>
+			<li>la liste des blablas qui mentionnent de Chuck (ses
+				abonnés).</li>
+		</ul>
+		<br>
+		<table class="tablePadding">
+			<tbody><tr>
+				<td><h4 style="margin: 0">Etape 1</h4>
+					<p>
+						Afficher les blablas écrits par Chuck Norris.
+						<code>(liste_blablas_1.php</code>
+						)
+					</p>
+					<p>
+						Il faut sélectionner dans la base de données les
+						blablas dont l'utilisateur 23 est l'auteur. <br> On affichera
+						le pseudo et le nom de l'auteur, le texte du blabla, la date et
+						l'heure de publication. Les blablas sont affichés du plus
+						récent au plus ancien.<br> Utilisez la
+						bibliothèque
+						<code>bibli_cuiteur.php </code>
+						avec les fonctions communes.
+					</p>
+					<p class="texteCentre">
+						<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554055/mod_resource/content/30/TP3_cuiteur/images/tp3_4.jpg" target="_blank"><img src="sujetTP3_fichiers/tp3_4_m.jpg" align="middle" height="179" width="260"></a>
+					</p></td>
+				<td><h4 style="margin: 0">Etape 2</h4>
+					<p>
+						Afficher les blablas écrits par les utilsateurs auxquels
+						est abonné Chuck (ses abonnements). (
+						<code>liste_blablas_2.php</code>
+						)
+					</p>
+					<p>
+						Il faut sélectionner dans la base de données les
+						blablas dont les auteurs sont les abonnements de l'utilisateur 23
+						(table
+						<code>estAbonne</code>
+						). Attention on ne doit pas sélectionner les blablas qui
+						sont adressé à un utilisateur particulier. <br>
+						On affichera le pseudo et le nom de l'auteur, le texte du blabla,
+						la date et l'heure de publication. Les blablas sont
+						affichés du plus récent au plus ancien.<br>
+						Utilisez la bibliothèque
+						<code>bibli_cuiteur.php</code>
+						avec les fonctions communes.
+					</p>
+					<p class="texteCentre">
+						<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554055/mod_resource/content/30/TP3_cuiteur/images/tp3_5.jpg" target="_blank"><img src="sujetTP3_fichiers/tp3_5_m.jpg" height="505" width="260"></a>
+					</p></td>
+				<td><h4 style="margin: 0">Etape 3</h4>
+					<p>
+						Affichez les blablas mentionnant Chuck Norris. (
+						<code>liste_blablas_3.php</code>
+						)
+					</p>
+					<p>
+						Il faut sélectionner dans la base de données les
+						blablas dont les auteurs mentionnent l'utilisateur 23 dans le
+						texte (table
+						<code>mentions</code>
+						). <br> On affichera le pseudo et le nom de l'auteur, le
+						texte du blabla, la date et l'heure de publication. Les blablas
+						sont affichés du plus récent au plus ancien.<br>
+						Utilisez la bibliothèque
+						<code>bibli_cuiteur.php</code>
+						avec les fonctions communes.
+					</p>
+					<p class="texteCentre">
+						<a href="http://moodle.univ-fcomte.fr/pluginfile.php/554055/mod_resource/content/30/TP3_cuiteur/images/tp3_6.jpg" target="_blank"><img src="sujetTP3_fichiers/tp3_6_m.jpg" height="592" width="260"></a>
+					</p></td>
+			</tr>
+		</tbody></table>
+		<h4>Etape 4</h4>
+		<p>
+			Traitements communs (
+			<code>liste_blablas_4.php</code>
+			)
+		</p>
+		<p>
+			Comme le traitement des trois requêtes de sélection est
+			le même, ainsi que l'affichage des informations
+			sélectionnées dans la base de données,
+			écrivez dans
+			<code>bibli_cuiteur.php</code>
+			la fonction
+			<code>xx_aff_blablas</code>
+			qui effectue le traitement et l'affichage. La signature de cette
+			fonction doit être commentée avec la syntaxe PHPDoc
+			telle que vue en cours.
+		</p>
+		<p>N'écrivez pas cette fonction avant d'avoir bien
+			vérifié les résultats de vos trois
+			requêtes, qui doivent être identiques à ceux
+			affichés dans les copies d'écran ci-dessus.</p>
+		<h4>Etape 5</h4>
+		<p>Mise en page et la mise en forme de l'affichage</p>
+		<p>
+			Copier votre feuille de styles du TP2 (ou celle fournie dans la
+			correction - conseillé), supprimez tout ce qui ne concerne pas
+			le coprs de la page et la liste des messages, puis enregistrez la
+			sous
+			<code>tp3.css</code>
+			. Gérez l'utilisation de cette feuille de styles dans Le
+			script
+			<code>liste_blablas_5.php</code>
+			.
+		</p>
+		<p>
+			Modifiez la fonction
+			<code>xx_aff_blablas</code>
+			pour quelle réalise l'affichage ci-dessous (on ne gère
+			pas l'affichage particulier des mentions et des tags) :
+		</p>
+		<p class="texteCentre">
+			<img src="sujetTP3_fichiers/tp3_8.png" height="296" width="870">
+		</p>
+		<h4>Etape 6</h4>
+		<p>
+			Réaliser l'affichage de tous les blablas dans une seule liste
+			et non plus dans trois sous-listes
+			<code>(liste_blablas_6.php</code>
+			). Les blablas sont classés du plus récent au plus
+			ancien.
+		</p>
+		<h4>Etape 7</h4>
+		<p>
+			Réaliser l'affichage de tous les blablas d'un utilisateur dont
+			l'identifiant est passé dans l'URL (
+			<code>liste_blablas_7.php</code>
+			).
+		</p>
+		<h4>A déposer sur moodle</h4>
+		<p>
+			Un fichier <span class="texteImportant">zippé</span> contenant
+			<code>liste_users_1.php</code>
+			,
+			<code>liste_users_2.php</code>
+			,
+			<code>liste_users_3.php</code>
+			,
+			<code>liste_blablas_1.php</code>
+			,
+			<code>liste_blablas_2.php</code>
+			,
+			<code> liste_blablas_3.php</code>
+			,
+			<code>liste_blablas_4.php</code>
+			,
+			<code> liste_blablas_5.php</code>
+			, 
+			<code> liste_blablas_6.php</code>
+			, 
+			<code> liste_blablas_7.php</code>
+			, 
+			<code>bibli_cuiteur.php</code>
+			,
+			<code>tp3.css</code>
+			. Vous devez déposer un fichier zippé et pas les
+			fichiers sources car ils seraient modifiés automatiquement par
+			moodle.
+		</p>
+	</div>
+
+</body></html>

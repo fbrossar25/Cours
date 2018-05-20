@@ -1,0 +1,2 @@
+/usr/bin/ar cr libDisplayMessage.a  CMakeFiles/DisplayMessage.dir/DisplayMessage.cpp.o
+/usr/bin/ranlib libDisplayMessage.a

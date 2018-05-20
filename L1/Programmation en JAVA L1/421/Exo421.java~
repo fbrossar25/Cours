@@ -1,0 +1,108 @@
+public class Exo421 {
+public static void main(String[]args){
+int d[]={0,1,2,3},n_relance,nd_relance,nd_relance2,nb_lancer;
+boolean fin_jeu;
+/*
+d[] est un tableau de valeur correspondant au dé (1 pour le premier dé, etc..) ;
+n_relance et le nombre de dé à relancé, nd_relance et le numéro du dé que le joueur désire relancé et nd_relance 2 le numéro du second
+fin_jeu est un booléen vrai si on arrête le jeu (si le joueur perd ou gagne)
+*/
+n_relance = 0;
+fin_jeu=0;
+d[0]=0;
+d[1]=(int)((Math.random()*6)+1);  //lancement des dés
+d[2]=(int)((Math.random()*6)+1);
+d[3]=(int)((Math.random()*6)+1);
+nb_lancer=0;
+while ((fin_jeu=0)||(nb_lancer<3)){
+	//tant que le jeux ne prend pas fin (le joueur perd ou gagne) OU tant que le joueur à n'as pas relancer trois fois (4 lancer au total en comptant celui de départ)
+	if((d[1]=4)&&(d[2]=2)&&(d[3]=1)){ // si on gagne le jeux se termine
+		fin_jeu=1;
+		Ecran.afficher("Lancer : [",d[1],"] [",d[2],"] [",d[3],"] ");
+		Ecran.sautDeLigne();
+		Ecran.afficher("Vous avez gagné !");
+		Ecran.sautDeLigne();
+	}
+	else{
+		Ecran.afficher("Lancer : [",d[1],"] [",d[2],"] [",d[3],"] "); 
+		Ecran.sautDeLigne();
+		//on demande combien de dés doivent être relancés
+		Ecran.afficher("Combien de dés voulez-vous relancer ? (nombre entier de 0 à 3 uniquement; 0 pour ne pas relancer, 1 pour en relancer 1,...) ");
+		n_relance=Clavier.saisirInt();
+		Ecran.sautDeLigne();
+		switch (n_relance){
+			0:{  
+				fin_jeu=1
+				if((d[1]=4)&&(d[2]=2)&&(d[3]=1)){   //si l'utilisateur ne lance pas de dé on regarde s'il gagne ou non
+					Ecran.afficher("Vous avez gagné !");
+					Ecran.sautDeLigne();
+				}
+				else{
+					Ecran.afficher("Vous avez perdu !");
+					Ecran.sautDeLigne();
+				}
+			}
+			break;
+			
+			1:{
+				//On demande quel dé le joueur veut relancer
+				Ecran.afficher("Quel dé voulez-vous relancer ? (nombre entier de 1 à 3 uniquement; 1 pour en relancer celui de gauche,...) ");
+				Ecran.sautDeLigne();
+				nd_relance=Clavier.saisirInt();
+				d[nd_relance]=(int)((Math.random()*6)+1); //lancement du dé
+				nb_lancer++; //incrémentation du nombre de lancer
+				
+			}
+			break;
+			
+			2:{
+				//on demande quels dés le joueur veut relancer
+				Ecran.afficher("Quels dés voulez vous relancer ? (nombre entier de 1 à 3, deux nombres à entré à la suite, entrez le même nombres relanceras le dé deux fois) ");
+				nd_relance=Clavier.saisirInt();
+				Ecran.sautDeLigne();
+				nd_relance2=Clavier.saisirInt();
+				d[nd_relance]=(int)((Math.random()*6)+1); //lancement des dés
+				d[nd_relance2]=(int)((Math.random()*6)+1);
+				nb_lancer++; //incrémentation du nombre de lancer
+			}
+			break;
+			
+			3:{
+				//on relance les trois dés
+				d[1]=(int)((Math.random()*6)+1);  //lancement des dés
+				d[2]=(int)((Math.random()*6)+1);
+				d[3]=(int)((Math.random()*6)+1);
+				nb_lancer++; //incrémentation du nombre de lancer
+			}
+			break;
+			
+			default:{
+				Ecran.afficher("erreur de saisie arrêt du programme...");
+				fin_jeu=1;
+			}
+		}
+	}
+}
+if((d[1]=4)&&(d[2]=2)&&(d[3]=1)){   // on regarde si le joueur gagne ou non
+	Ecran.afficher("Vous avez gagné !");
+	Ecran.sautDeLigne();
+}
+else{
+		Ecran.afficher("Vous avez perdu !");
+		Ecran.sautDeLigne();
+}
+}
+}
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

@@ -1,0 +1,116 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/../include/AgenceImmobiliere.h
+iostream
+-
+string
+-
+vector
+-
+limits
+-
+assert.h
+-
+StringUtils.h
+../src/../include/StringUtils.h
+CBien.h
+../src/../include/CBien.h
+CBienImmeuble.h
+../src/../include/CBienImmeuble.h
+CBienLot.h
+../src/../include/CBienLot.h
+CBienLotAppartement.h
+../src/../include/CBienLotAppartement.h
+CBienLotMaison.h
+../src/../include/CBienLotMaison.h
+CClient.h
+../src/../include/CClient.h
+CAgence.h
+../src/../include/CAgence.h
+
+../src/../include/CAgence.h
+string
+-
+vector
+-
+CClient.h
+../src/../include/CClient.h
+CBienLotAppartement.h
+../src/../include/CBienLotAppartement.h
+CBienLotMaison.h
+../src/../include/CBienLotMaison.h
+CBienImmeuble.h
+../src/../include/CBienImmeuble.h
+
+../src/../include/CBien.h
+string
+-
+
+../src/../include/CBienImmeuble.h
+vector
+-
+CBienLotAppartement.h
+../src/../include/CBienLotAppartement.h
+
+../src/../include/CBienLot.h
+CBien.h
+../src/../include/CBien.h
+
+../src/../include/CBienLotAppartement.h
+CBienLot.h
+../src/../include/CBienLot.h
+
+../src/../include/CBienLotMaison.h
+CBienLot.h
+../src/../include/CBienLot.h
+
+../src/../include/CClient.h
+string
+-
+
+../src/../include/StringUtils.h
+string
+-
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CAgence.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CBien.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CBienImmeuble.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CBienLot.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CBienLotAppartement.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CBienLotMaison.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/CClient.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/StringUtils.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/main.cpp
+AgenceImmobiliere.h
+/home/florian/Cours_Info/L3/S5/MOP/TP 5 - Agence Immobilière - Corrigé/src/AgenceImmobiliere.h
+

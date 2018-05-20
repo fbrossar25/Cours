@@ -1,0 +1,278 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	background-color: #20190F;
+	font-family: Verdana;
+	font-size: 16px;
+	font-weight: normal;
+	color: #E8DBB1;
+	line-height: 1.6;
+	background-repeat: repeat-y;
+}
+
+p{
+	margin-left: 32;
+	margin-right: 32;
+	margin-bottom: 16;
+}
+
+strong{
+	font-weight: bold;
+}
+
+h1{
+	margin: 26;
+	font-size: 36;
+	font-weight: bold;
+	border-bottom: 3px solid;
+	color: #E8DBB1;
+}
+h2{
+	margin: 22;
+	font-size: 26;
+	font-weight: bold;
+	color: #E8DBB1;
+}
+h3{
+	margin: 18;
+	font-size: 20;
+	font-weight: bold;
+	color: #E8DBB1;
+}
+ol, ul {
+	list-style: none;
+	color: #EF9C3B;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{
+	color: #3C96F1;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+#corps{
+	background-image: url("../images/fond.jpg");
+	width: 800;
+	height : 100%;
+	margin: auto;
+	padding-bottom: 5%;
+}
+
+#megaphone{
+	float: right;
+	margin: 0px -60px 0px 30px;
+}
+
+#cuiteurphone{
+	float: left;
+	margin: 0px 10px 0px -60px;
+}
+
+#tel1{
+	float: left;
+	margin: 0px 0px 30px -20px;
+}
+
+#radio{
+	float: left;
+	margin: 20px 0px 0px 0px;
+}
+
+#tel3{
+	float: right;
+	margin: -20px 0px 30px 0px;
+}
+
+#tel4{
+	float: right;
+	margin: 20px -30px 0px 0px;
+}
+
+#cuiteurlogo{
+	float: right;
+	margin: -52% 15% 0% 0%;
+}
+
+#p1{
+	margin-bottom: 30px;
+}
+
+#p2{
+	margin-top: 620px;
+}
+
+#securite{
+	float: right;
+	margin: 0px -60px 0px 30px;
+}
+
+#transBox{
+	position : relative;
+	background: url("../images/photos/clavier.jpg") no-repeat;
+	width: 800px;
+	height: 304px;
+}
+
+#texteClavier{
+	float: right;
+	width: 400px;
+	height: 304px;
+	margin: 0px 0px 0px 0px;
+	padding-left: 20px;
+	background: rgba(25,25,25,0.8);
+	line-height: 1.8;
+	font-weight: bold;
+}
+
+#serveur3{
+	float: left;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#serveur4{
+	float: right;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#serveur2{
+	float: left;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#mail{
+	float: right;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#sdl1,#sdl2,#sdl3{
+	clear: both;
+}
+
+#bd1{
+	float: left;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#bd2{
+	float: right;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	width: 300px;
+	text-align: center;
+}
+
+#dactylo{
+	float: left;
+	margin-left: -80px;
+}
+
+#p3{
+	text-align: center;
+	color: #F0A060;
+	font-weight: bold;
+}
+
+#p4{
+	text-align: center;
+	color: #F0A060;
+	font-weight: bold;
+}
+
+#basDePage{
+	text-align: right;
+	font-size: 12;
+}
+
+#moustique{
+	float: right;
+	margin: 0px 0px 0px 10px;
+}
+
+#imgMoyens1,#imgMoyens2,#imgMoyens3,
+#imgMoyens4,#imgMoyens5,#imgMoyens6{
+	display: block;
+	margin: auto;
+}
+
+#corpsMoyens{
+	text-align: center;
+	background-image: url(../images/fond.jpg);
+	width: 800px;
+	margin: auto;
+	background-repeat: repeat-y;
+	padding-top: 10%;
+}
+
+#retour{
+	position: fixed;
+	right: 25%;
+	font-size: 12px;
+	margin-top: 50px;
+}
+
+#bandeau{
+	text-align: left;
+	position: fixed;
+	margin-top: -10%;
+	background: rgba(25,25,25,0.8);
+	width: 800px;
+}

@@ -1,0 +1,154 @@
+				TD 2
+classe tableau 
+
+entier taille entier
+entier CAPACITE (constant)
+tableau d'entier contenu
+
+constructeur(entier taille)
+constructeur()				//avec une taille standard (défini par le programmeur)
+
+booléen estVide()
+booléen estPlein()
+booléen estPresent(entier n)
+rien ajout(entier n)
+rien retirerUn(entier n)
+rien retirerTous(entier n)
+
+classe tableau{
+	entier : taille, CAPACITE
+	tableau t [] de entier
+	constructeur(entier n)
+		CAPACITE <- n
+		tableau t [] <- créer tableau [n] de entier
+	fin
+	constructeur()
+		constructeur(100)
+	fin
+	booléen estVide()
+		retourner (taille == 0)
+	fin
+	booléen estPlein()
+		retourner (taille == CAPACITE)
+	fin
+	booléen estPresent(entier n)
+		booléen presence <- false
+		entier i <- 0
+		Tant que (!presence && i < taille) faire
+			si (t[i] == n) alors
+				presence <- true
+			sinon 
+				i <- i+1
+			fin 
+		fait
+		retourner presence
+	fin
+	ajout(entier n)
+		si (!estPlein()) alors
+			t[taille] <- n
+			taille <- taille + 1
+		sinon Ecran.afficher("tableau plein")
+		fsi
+	fin
+	retirer(entier n)
+		entier i <- 0
+		booléen stop <- false
+		tant que ((i < taille) && !stop)
+			Si (t[i]=n) alors
+				stop <- true
+				entier j
+				pour j de i à taille - 1 faire
+					t[j] <- t[j+1]
+				fait
+			sinon i <- i + 1
+			fin si
+		fait
+	fin
+	retirerTout(entier n)
+		entier i <- 0
+		entier j
+		tant que (i < taille)
+			Si (t[i] = n) alors
+				pour j de i à taille -1 faire
+					t[j] <- t[j+1]
+				fait
+			sinon i <- i+100
+			fin si
+		fait
+	fin
+}
+
+
+en java
+
+public class tableau{
+	final int CAPACITE;
+	int nbElements;
+	int[] tab;
+	tableau(int n){
+		CAPACITE = n;
+		tab = new int[CAPACITE];
+	}
+	tableau(){
+		tableau(100);
+	}
+	boolean estVide(){
+		return (taille == 0);
+	}
+	boolean estPlein(){
+		return (taille == CAPACITE);
+	}
+	boolean estPresent(int n){
+		boolean presence = false;
+		int i = 0;
+		while(!presence && (i < taille)){
+			if(t[i] == n)presence <- true;
+			else i++;
+		}
+		return presence
+	}
+	ajout(int n){
+		if(!estPlein()){
+			t[taille] = n;
+			taille++;
+		}
+		else Ecran.afficher("tableau plein");
+	}
+	retirer(int n){
+		int i = 0;
+		boolean stop = false;
+		while((i < taille) && !stop){
+			if(t[i]==n){
+				stop = true;
+				int j;
+				for(j=i;j<taille;j++){
+					t[j] = t[j+1];
+				}
+			}
+			else i++;
+		}
+	}
+	retirerTout(int n){
+		int i=0,j;
+		while(i < taille){
+			if(t[i] == n){
+				for(j=i;j<taille;j++){
+					t[j] = t[j+1];
+				}
+			}
+			else i++;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

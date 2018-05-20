@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC -O3 -DNDEBUG -Wall -o4   -shared -Wl,-soname,libDisplayMessage_r.so -o libDisplayMessage_r.so CMakeFiles/DisplayMessage_r.dir/DisplayMessage.cpp.o 

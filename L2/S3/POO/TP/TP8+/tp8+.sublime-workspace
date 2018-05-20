@@ -1,0 +1,397 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"print",
+				"print_string"
+			],
+			[
+				"pri",
+				"printCNF"
+			],
+			[
+				"e",
+				"else"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/H/wifi.txt",
+			"settings":
+			{
+				"buffer_size": 85,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Java/JavaC.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"last_filter": "java",
+		"selected_items":
+		[
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"bat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"ja",
+				"Set Syntax: Java"
+			],
+			[
+				"mip",
+				"Set Syntax: MIPS"
+			],
+			[
+				"htm",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"syntax",
+				"Set Syntax: MIPS"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: match"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/BROSSARD_LACROIX.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/Date/Date.java",
+		"/C/Users/Florian/Desktop/liens youtube.txt",
+		"/D/Jeux/Steam/steamapps/common/Kerbal Space Program/GameData/CrossFeedEnabler/Readme_CFE.txt",
+		"/C/Users/Florian/Downloads/Compressed/KSP mods/KSP_patch_fr_beta402_WIN/READ_ME+CHANGELOG.txt",
+		"/C/Users/Florian/Downloads/Compressed/KSP mods/KspPlayers_last/readme.txt",
+		"/C/Users/Florian/Downloads/Compressed/KSP mods/NearFuturePropulsion0_6_0/readme.txt",
+		"/C/Users/Florian/Downloads/Compressed/NearFuturePropulsion0_6_0/readme.txt",
+		"/C/Users/Florian/Downloads/Compressed/KerbalAlarmClock_3.5.0.0/info.txt",
+		"/D/wifi appart.txt",
+		"/C/Users/Florian/Desktop/Cours Info/L2/APP/question interview.txt",
+		"/D/wifi maison.txt",
+		"/D/Torrents/wifi maison.txt",
+		"/D/créer usb bootable sous windows en cmd.txt",
+		"/H/wifi.txt",
+		"/F/license.txt",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/S2/jeu de la vie/JDLV_V3/JDLV_V3.java",
+		"/E/autorun.inf",
+		"/C/Users/Florian/Desktop/Cours Info/Proj_POO_rescue/src/Askable.java",
+		"/H/backup/stuff/images/Hentai/Chuunibyou Demo Koi ga Shitai! - Nibutani Route wa BADEND!/contenu/[hentaifr.net] a lire.txt",
+		"/F/enculé.txt",
+		"/F/JOOOOOOOooooOOOOSH~.txt",
+		"/C/Users/Florian/Desktop/Nouveau document texte.txt",
+		"/C/Users/Florian/Desktop/LACROIX_BROSSARD_TreasureHunt/src/Wall.java",
+		"/C/Users/Florian/Desktop/LACROIX_BROSSARD_TreasureHunt/src/Map.java",
+		"/C/Users/Florian/Desktop/LACROIX_BROSSARD_TreasureHunt/src/Cell.java",
+		"/C/Users/Florian/AppData/Local/Temp/operation.txt",
+		"/C/Users/Florian/Desktop/SaisieConsoleExterenASM.asm",
+		"/C/Users/Florian/Desktop/SaisieConsoleExterenASM.txt",
+		"/C/Users/Florian/Desktop/Cours Info/Proj_POO_rescue/presentation/Map.java",
+		"/C/Users/Florian/Desktop/Cours Info/Proj_POO_rescue/presentation/Main.java",
+		"/C/Users/Florian/Desktop/Cours Info/RSA Workspace/TP6_PACMAN_JAVA/src/boardgame/Cell.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/mips.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TD6/sortByX.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TD6/Person.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TD7/Arc.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TD6/Couple.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Map.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Askable.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Cell.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Direction.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Free.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Hasard.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Hunter.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Position.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Stone.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Treasure.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Wall.java",
+		"/C/Users/Florian/Desktop/projet POO LACROIX BROSSARD/projet POO LACROIX BROSSARD/src/Treasure.java",
+		"/C/Users/Florian/Desktop/Cours Info/Eclipse Workspace/Proj_POO_TreasureHunt/src/Main.java",
+		"/C/Users/Florian/Desktop/projet POO LACROIX BROSSARD/projet POO LACROIX BROSSARD/src/Free.java",
+		"/C/Users/Florian/Desktop/projet POO LACROIX BROSSARD/projet POO LACROIX BROSSARD/src/Map.java",
+		"/C/Users/Florian/Desktop/projet POO LACROIX BROSSARD/projet POO LACROIX BROSSARD/src/Cell.java",
+		"/C/Users/Florian/Desktop/projet POO LACROIX BROSSARD/projet POO LACROIX BROSSARD/src/Direction.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/LD/TP/tp6/BROSSARD_Florian_TP6.ml",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP6/Horloge.java",
+		"/C/Windows/System32/switch.batch",
+		"/C/Users/Florian/Desktop/switch.batch",
+		"/C/Users/Florian/Desktop/Cours Info/L2/LD/TP/tp6/tp6_save.ml",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/Tests/complementA2.asm",
+		"/J/Proj_POO_TreasureHunt/src/Wall.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/Tests/puissance10.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/testLogisim.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/projet/Tests/bitExtender16.asm",
+		"/C/Users/Florian/Desktop/question interview.txt",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/digit.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/digitPerso.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/forDigit V2.0.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/forDigit.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/Colle MIPS/BROSSARD_Florian.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/fibonacci.txt",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP5/Fibonacci.java",
+		"/J/Proj POO/Wall.java",
+		"/J/Proj POO/Map.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/test CH11/CastHoraire.java",
+		"/C/xampp/apache/test.php",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP7/GoFerry.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP7/Moto.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/421/Exo421.java",
+		"/D/eula.1028.txt",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP7/Ferry.java",
+		"/C/Users/Florian/Desktop/Cours Info/HTML_CSS/1. tests/premiere page.html",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/perimetre Polygone/perimetrePolygone.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/deplacement_point/Deplacement_point.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/Conversion entier vers Hexadecimal/conversionEntierHexa.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/Mastermind/Mastermind.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/Ep_TP/BROSSARD_Ep_TP_V2.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/S2/TP9 (matrice)/Exo3b.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP6/TP6.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/TP6/toHexString.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/ADO/TP/MIPS/HelloWorld.asm",
+		"/C/Users/Florian/Desktop/Cours Info/L2/LD/TP/tp6/tp6.ml",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/S2/jeu de la vie/JDLV_V1/JDLV_V1.java",
+		"/C/Users/Florian/Desktop/Cours Info/Billard Objets/classes/MANIFEST.MF",
+		"/C/Users/Florian/Desktop/Cours Info/Billard Objets/classes/META.INF",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Map.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Cell.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Wall.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Bounds.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Stone.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Hunter.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Hasard.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Direction.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Position.java",
+		"/C/Users/Florian/Desktop/Cours Info/L1/Programmation en JAVA L1/Projet S2/sujet4_V4/Sujet4_V4.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Askable.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8+/Hasard.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8+/Balle.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8/Position.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8/Damier.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8+/Case.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8+/Direction.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Tresor.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Vide.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Mur.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Aventurier.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Damier.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Case.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/GoDamier.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Console.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/Projet/Balle.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TD6/Personne.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/TP/TP8/Ame.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/jeux d'echec/Piece.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/jeux d'echec/Cavalier.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/jeux d'echec/Reine.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/jeux d'echec/Roi.java",
+		"/C/Users/Florian/Desktop/Cours Info/L2/POO/jeux d'echec/Tour.java"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/H/wifi.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 85,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tp8+.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Florian\\Desktop\\Cours Info\\L2\\POO\\test CH11\\CastHoraire.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

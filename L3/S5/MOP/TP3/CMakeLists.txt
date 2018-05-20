@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 2.8.9)
+project(MOP_TP3)
+message(System Name : ${CMAKE_SYSTEM_NAME})
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -o4")
+
+#debug version
+if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+	if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+		add_executable(hello.exe hello.cpp)
+		target_link_libraries(hello.exe F:\Cours_Info\L3\S5\MOP\TP3\dll\libDisplayMessage_d.dll)
+		add_definitions(\D_SYSTEM_WINDOWS)
+	elseif(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
+		add_executable(hello hello.cpp)
+		target_link_libraries(hello /home/florian/Cours_Info/L3/S5/MOP/TP3/dll/libDisplayMessage_d.so)
+		add_definitions(-D_SYSTEM_LINUX)
+	endif()
+endif()
+
+#release version
+if(${CMAKE_BUILD_TYPE} STREQUAL Release)
+	if(${CMAKE_SYSTEM_NAME} STREQUAL Windows)
+		add_executable(hello.exe hello.cpp)
+		target_link_libraries(hello F:\Cours_Info\L3\S5\MOP\TP3\dll\libDisplayMessage_r.dll)
+		add_definitions(\D_SYSTEM_WINDOWS)
+	elseif(${CMAKE_SYSTEM_NAME} STREQUAL Linux)
+		add_executable(hello hello.cpp)
+		target_link_libraries(hello /home/florian/Cours_Info/L3/S5/MOP/TP3/dll/libDisplayMessage_r.so)
+		add_definitions(-D_SYSTEM_LINUX)
+	endif()
+endif()
