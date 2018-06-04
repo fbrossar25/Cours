@@ -47,17 +47,17 @@ ________________________________________________________________________________
 	#define PROF_PLEIN_TEMPS 1	//Prof à plein temps
 	#define PROF_MI_TEMPS 2		//Prof à mi-temps
 
-	#define NB_PROF_MATH 3		//Nombre de profs de chimie
-	#define NB_PROF_PHYSIQUE 4	//Nombre de profs de chimie
-	#define NB_PROF_INFO 4		//Nombre de profs de chimie
+	#define NB_PROF_MATH 3		//Nombre de profs de math
+	#define NB_PROF_PHYSIQUE 4	//Nombre de profs de physique
+	#define NB_PROF_INFO 4		//Nombre de profs de info
 	#define NB_PROF_CHIMIE 4	//Nombre de profs de chimie
-	#define NB_PROF_ANGLAIS 4	//Nombre de profs de chimie
-	#define NB_PROF_FRANCAIS 5	//Nombre de profs de chimie
+	#define NB_PROF_ANGLAIS 4	//Nombre de profs de anglais
+	#define NB_PROF_FRANCAIS 5	//Nombre de profs de francais
 	
 	#define NB_PROFS 24
 
 	#define NB_GROUPES 16 		// 16 groupes de TP de 20 élèves
-	#define NB_COURS 5 			// Nombres de cours dans l'année
+	#define NB_COURS 5 			// Nombres de groupes de cours dans l'année
 	#define NB_SALLES 5 		// 4 spec en L1 + 1 tronc commun en L0
 
 	//type de profs
@@ -102,7 +102,7 @@ ________________________________________________________________________________
 	const int NB_S3_MATH[] = {30, 0, 42, 0};
 	const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
 	const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-	const int NB_S2_OTHER[] = {0, 0, 0, 0};
+	const int NB_S3_OTHER[] = {0, 0, 0, 0};
 	//Specialités
 	const int NB_S3CE_PHYS[] = {48, 0, 48, 0};
 	const int NB_S3CS_PHYS[] = {48, 0, 48, 0};
@@ -112,14 +112,158 @@ ________________________________________________________________________________
 	const int NB_S3CS_INFO[] = {48, 0, 33, 45}; // + Admin et C
 	const int NB_S3GE_INFO[] = {12, 0, 12, 12};
 	const int NB_S3OG_INFO[] = {12, 0, 12, 12};
-	const int NB_S3CE_CHIM[] = {0, 0, 0, 0};
+	const int NB_S3CE_CHIM[] = {45, 0, 36, 36}; //Chemical eng + chem
 	const int NB_S3CS_CHIM[] = {0, 0, 0, 0};
 	const int NB_S3GE_CHIM[] = {30, 0, 21, 21};
 	const int NB_S3OG_CHIM[] = {30, 0, 21, 21};
 	
-	/*
-		TODO : define pour chaque matières + créneaux libre pour la classe Groupe
-	*/
+	//S4 Commun
+	const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
+	const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
+	const int NB_S4_OTHER[] = {6, 0, 6, 6}; //introduction to the business world
+	//Spec
+	const int NB_S4CE_MATH[] = {30, 0, 42, 0};
+	const int NB_S4CS_MATH[] = {30, 0, 42, 0};
+	const int NB_S4GE_MATH[] = {30, 0, 42, 0};
+	const int NB_S4OG_MATH[] = {45, 0, 48, 9}; // + Statistics
+	const int NB_S4CE_PHYS[] = {36, 0, 36, 0};
+	const int NB_S4CS_PHYS[] = {36, 0, 36, 0};
+	const int NB_S4GE_PHYS[] = {36, 30, 36, 0}; // + Earth Science
+	const int NB_S4OG_PHYS[] = {36, 0, 36, 0}; 
+	const int NB_S4CE_INFO[] = {12, 0, 12, 12};
+	const int NB_S4CS_INFO[] = {51, 0, 51, 36}; // + Data Structires and Archi
+	const int NB_S4GE_INFO[] = {12, 0, 12, 12};
+	const int NB_S4OG_INFO[] = {12, 0, 12, 12};
+	const int NB_S4CE_CHIM[] = {45, 0, 45, 36}; //Chemical eng + chem
+	const int NB_S4CS_CHIM[] = {0, 0, 0, 0};
+	const int NB_S4GE_CHIM[] = {30, 0, 30, 21};
+	const int NB_S4OG_CHIM[] = {30, 0, 30, 21};
+	
+	
+	//define de toutes les matieres (en nombre de creneau, 1 creaneau = )
+	//L0 S1
+	#define int NB_CRENEAUX_S1_MATH_CI 28
+	#define int NB_CRENEAUX_S1_PHYS_CI 28
+	#define int NB_CRENEAUX_S1_CHIM_CI 28
+	#define int NB_CRENEAUX_S1_INFO_CI 38
+	#define int NB_CRENEAUX_S1_FRANCAIS_CI 28
+	#define int NB_CRENEAUX_S1_FRANCAIS_TP 28
+	#define int NB_CRENEAUX_S1_ANGLAIS_CI 47
+	#define int NB_CRENEAUX_S1_ANGLAIS_TP 28
+	#define int NB_CRENEAUX_S1_OTHER_TP 10
+	
+	//L0 S2
+	#define int NB_CRENEAUX_S2_MATH_CM 14
+	#define int NB_CRENEAUX_S2_MATH_CI 43
+	#define int NB_CRENEAUX_S2_PHYS_CM 10
+	#define int NB_CRENEAUX_S2_PHYS_CI 19
+	#define int NB_CRENEAUX_S2_PHYS_TP 14
+	#define int NB_CRENEAUX_S2_CHIM_CM 10
+	#define int NB_CRENEAUX_S2_CHIM_CI 19
+	#define int NB_CRENEAUX_S2_CHIM_TP 14
+	#define int NB_CRENEAUX_S2_INFO_CM 7
+	#define int NB_CRENEAUX_S2_INFO_CI 22
+	#define int NB_CRENEAUX_S2_INFO_TP 14
+	#define int NB_CRENEAUX_S2_FRANCAIS_CI 28
+	#define int NB_CRENEAUX_S2_ANGLAIS_CI 28
+	#define int NB_CRENEAUX_S2_OTHER_TD 6
+	#define int NB_CRENEAUX_S2_OTHER_TP 19
+	
+	//L1 S3
+	#define int NB_CRENEAUX_S3_MATH_CM 20
+	#define int NB_CRENEAUX_S3_MATH_TD 28
+	
+	#define int NB_CRENEAUX_S3CE_PHYS_CM 32
+	#define int NB_CRENEAUX_S3CE_PHYS_TD 32
+	#define int NB_CRENEAUX_S3CS_PHYS_CM 32
+	#define int NB_CRENEAUX_S3CS_PHYS_TD 32
+	#define int NB_CRENEAUX_S3GE_PHYS_CM 32
+	#define int NB_CRENEAUX_S3GE_PHYS_CI 20
+	#define int NB_CRENEAUX_S3GE_PHYS_TD 32
+	#define int NB_CRENEAUX_S3OG_PHYS_CM 42
+	#define int NB_CRENEAUX_S3OG_PHYS_TD 38
+	#define int NB_CRENEAUX_S3OG_PHYS_TP 4
+	
+	#define int NB_CRENEAUX_S3CE_CHIM_CM 30
+	#define int NB_CRENEAUX_S3CE_CHIM_TD 24
+	#define int NB_CRENEAUX_S3CE_CHIM_TP 24
+	#define int NB_CRENEAUX_S3GE_CHIM_CM 20
+	#define int NB_CRENEAUX_S3GE_CHIM_TD 14
+	#define int NB_CRENEAUX_S3GE_CHIM_TP 14
+	#define int NB_CRENEAUX_S3OG_CHIM_CM 20
+	#define int NB_CRENEAUX_S3OG_CHIM_TD 14
+	#define int NB_CRENEAUX_S3OG_CHIM_TP 14
+	
+	#define int NB_CRENEAUX_S3CE_INFO_CM 8
+	#define int NB_CRENEAUX_S3CE_INFO_CI 8
+	#define int NB_CRENEAUX_S3CE_INFO_TP 8
+	#define int NB_CRENEAUX_S3CS_INFO_CM 30
+	#define int NB_CRENEAUX_S3CS_INFO_TD 24
+	#define int NB_CRENEAUX_S3CS_INFO_TP 24
+	#define int NB_CRENEAUX_S3GE_INFO_CM 8
+	#define int NB_CRENEAUX_S3GE_INFO_TD 8
+	#define int NB_CRENEAUX_S3GE_INFO_TP 8
+	#define int NB_CRENEAUX_S3OG_INFO_CM 8
+	#define int NB_CRENEAUX_S3OG_INFO_TD 8
+	#define int NB_CRENEAUX_S3OG_INFO_TP 8
+	
+	#define int NB_CRENEAUX_S3_FRANCAIS_CI 24
+	#define int NB_CRENEAUX_S3_ANGLAIS_CI 24
+	#define int NB_CRENEAUX_S3_OTHER_TD 6
+	
+	
+	//L2 S4
+	#define int NB_CRENEAUX_S4CE_MATH_CM 20
+	#define int NB_CRENEAUX_S4CE_MATH_TD 28
+	#define int NB_CRENEAUX_S4CS_MATH_CM 20
+	#define int NB_CRENEAUX_S4CS_MATH_TD 28
+	#define int NB_CRENEAUX_S4GE_MATH_CM 20
+	#define int NB_CRENEAUX_S4GE_MATH_TD 28
+	#define int NB_CRENEAUX_S4OG_MATH_CM 30
+	#define int NB_CRENEAUX_S4OG_MATH_TD 31
+	#define int NB_CRENEAUX_S4OG_MATH_TP 6
+	                         
+	#define int NB_CRENEAUX_S4CE_PHYS_CM 24
+	#define int NB_CRENEAUX_S4CE_PHYS_TD 24
+	#define int NB_CRENEAUX_S4CS_PHYS_CM 24
+	#define int NB_CRENEAUX_S4CS_PHYS_TD 24
+	#define int NB_CRENEAUX_S4GE_PHYS_CM 24
+	#define int NB_CRENEAUX_S4GE_PHYS_CI 20
+	#define int NB_CRENEAUX_S4GE_PHYS_TD 24
+	#define int NB_CRENEAUX_S4OG_PHYS_CM 24
+	#define int NB_CRENEAUX_S4OG_PHYS_TD 24
+	                         
+	#define int NB_CRENEAUX_S4CE_CHIM_CM 30
+	#define int NB_CRENEAUX_S4CE_CHIM_TD 30
+	#define int NB_CRENEAUX_S4CE_CHIM_TP 24
+	#define int NB_CRENEAUX_S4GE_CHIM_CM 20
+	#define int NB_CRENEAUX_S4GE_CHIM_TD 20
+	#define int NB_CRENEAUX_S4GE_CHIM_TP 14
+	#define int NB_CRENEAUX_S4OG_CHIM_CM 20
+	#define int NB_CRENEAUX_S4OG_CHIM_TD 20
+	#define int NB_CRENEAUX_S4OG_CHIM_TP 14
+	                         
+	#define int NB_CRENEAUX_S4CE_INFO_CM 8
+	#define int NB_CRENEAUX_S4CE_INFO_CI 8
+	#define int NB_CRENEAUX_S4CE_INFO_TP 8
+	#define int NB_CRENEAUX_S4CS_INFO_CM 34
+	#define int NB_CRENEAUX_S4CS_INFO_TD 34
+	#define int NB_CRENEAUX_S4CS_INFO_TP 24
+	#define int NB_CRENEAUX_S4GE_INFO_CM 8
+	#define int NB_CRENEAUX_S4GE_INFO_TD 8
+	#define int NB_CRENEAUX_S4GE_INFO_TP 8
+	#define int NB_CRENEAUX_S4OG_INFO_CM 8
+	#define int NB_CRENEAUX_S4OG_INFO_TD 8
+	#define int NB_CRENEAUX_S4OG_INFO_TP 8
+	                         
+	#define int NB_CRENEAUX_S4_FRANCAIS_CI 24
+	#define int NB_CRENEAUX_S4_ANGLAIS_CI 24
+	#define int NB_CRENEAUX_S4_FRANCAIS_TP 24
+	#define int NB_CRENEAUX_S4_ANGLAIS_TP 24
+	#define int NB_CRENEAUX_S4_OTHER_CM 4
+	#define int NB_CRENEAUX_S4_OTHER_TD 4
+	#define int NB_CRENEAUX_S4_OTHER_TP 4
+	
 \end
 
 \User functions:
@@ -163,7 +307,7 @@ ________________________________________________________________________________
 /* Classe représentant un cours. Un cours se compose de chaque élément ci-dessous.		*/
 Cours
 {
-	int		groupes [4];				/* représente les groupes participants (initialisé à -1 si pas de groupe)	*/
+	int		groupes [4];			/* représente les groupes participants (initialisé à -1 si pas de groupe)	*/
 	int		matiere;				/* représente une matière		*/
     
  	int		prof;					/* représente un prof			*/
