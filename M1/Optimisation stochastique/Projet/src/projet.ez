@@ -321,7 +321,7 @@ Groupe
 	int		specialisation;				/* type de diplome */
 	//int		occupation	[NB_CRENEAUX_JOUR];	/* indique si présente dans le créneau	*/
 	//si matiere[i] == 0 -> pas d'occupation
-	int		matiere		[NB_CRENEAUX_JOUR];	/* indique la matière dans le créneau	*/
+	int		matiere		[NB_CRENEAUX * NB_CRENEAUX_JOUR];	/* indique la matière dans le créneau	*/
 }
 
 /* Classe représentant un enseignant.							*/
@@ -331,7 +331,7 @@ Prof
 	int		potentiel;						/* indique son nombre d'horaires	*/
 	//int		occupation	[NB_CRENEAUX_JOUR];	/* indique si présent dans le créneau	*/
 	int		matiere;						//matiere enseignée par le prof
-	int		classe		[NB_CRENEAUX_JOUR];		/* indique la classe dans le créneau	*/
+	int		classe		[NB_CRENEAUX * NB_CRENEAUX_JOUR];		/* indique la classe dans le créneau	*/
 }
 
 /* Classe représentant une salle de cours.							*/
@@ -339,7 +339,7 @@ Salle
 {
 	int		potentiel;					/* indique le nombre d'élève max dans la salle */
 	int		type;						//type de la salle
-	int		occupation	[NB_CRENEAUX_JOUR];	/* indique si occupée dans le créneau	*/
+	int		occupation	[NB_CRENEAUX * NB_CRENEAUX_JOUR];	/* indique si occupée dans le créneau	*/
 }
 
 Creneau
@@ -591,6 +591,17 @@ GenomeClass
 \end
 
 \GenomeClass::evaluator:
+
+	//initialisation des compteurs à des valeurs par défaut
+	for(int i=0; i<NB_GROUPES; i++)
+	{
+		for(int j=0; j<NB_CRENEAUX * NB_CRENEAUX_JOUR; j++)
+		{
+			Genome.groupes[i].occupation[j] = 0;
+		} 
+	}
+
+
 	//TODO évaluation du genome (pénalités, etc...)
 	return 0;
 \end
