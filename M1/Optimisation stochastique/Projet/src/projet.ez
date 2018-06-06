@@ -23,7 +23,7 @@ ________________________________________________________________________________
 
 	#define NB_JOURS 180 //52 semaines avec 5 jours d'écoles - 16 semaines de vacances
 	#define NB_CRENEAUX_JOUR 4 		// 4 creneaux par jours
-	#define NB_CRENEAUX 720 //nombre de creneaux potentiel sur l'année
+	const int NB_CRENEAUX = NB_JOURS * NB_CRENEAUX_JOUR;
 
 	#define SPEC_L0 0			// Pas de spécialisation en L0
 	#define SPEC_CE	1			// Chemical Engineering
@@ -43,6 +43,10 @@ ________________________________________________________________________________
 	#define NB_SALLE_INFO 2		//(20 places)
 	#define NB_SALLE_LABO 2		//(20 places)
 
+	const int NB_SALLES =     NB_SALLE_CM + NB_SALLE_TD
+							+ NB_SALLE_LANG + NB_SALLE_INFO
+							+ NB_SALLE_LABO;
+
 	#define PROF_VACATAIRE 0	//Prof vacataire
 	#define PROF_PLEIN_TEMPS 1	//Prof à plein temps
 	#define PROF_MI_TEMPS 2		//Prof à mi-temps
@@ -54,11 +58,11 @@ ________________________________________________________________________________
 	#define NB_PROF_ANGLAIS 4	//Nombre de profs de anglais
 	#define NB_PROF_FRANCAIS 5	//Nombre de profs de francais
 	
-	#define NB_PROFS 24
+	const int NB_PROFS = NB_PROF_MATH + NB_PROF_PHYSIQUE + NB_PROF_INFO
+						 + NB_PROF_CHIMIE + NB_PROF_ANGLAIS + NB_PROF_FRANCAIS;
 
 	#define NB_GROUPES 16 		// 16 groupes de TP de 20 élèves
 	#define NB_COURS 5 			// Nombres de groupes de cours dans l'année
-	#define NB_SALLES 5 		// 4 spec en L1 + 1 tronc commun en L0
 
 	//type de profs
 	#define PROF_MATH 0
@@ -71,6 +75,7 @@ ________________________________________________________________________________
 	#define TYPE_COURS 4 //CM, CI, TD et TP
 
 	//on regroupe les cours par type
+	#define COURS_LIBRE -1
 	#define COURS_MATH 0
 	#define COURS_PHYSIQUE 1
 	#define COURS_INFO 2
@@ -139,6 +144,62 @@ ________________________________________________________________________________
 	const int NB_S4GE_CHIM[] = {30, 0, 30, 21};
 	const int NB_S4OG_CHIM[] = {30, 0, 30, 21};
 	
+	int compteur = 0;
+	for(int i=0; i<4; i++)
+	{
+		compteur += NB_S1_MATH[i];
+		compteur += NB_S1_PHYS[i];
+		compteur += NB_S1_CHIM[i];
+		compteur += NB_S1_INFO[i];
+		compteur += NB_S1_FRANCAIS[i];
+		compteur += NB_S1_ANGLAIS[i];
+		compteur += NB_S1_OTHER[i];
+		compteur += NB_S2_MATH[i];
+		compteur += NB_S2_PHYS[i];
+		compteur += NB_S2_INFO[i];
+		compteur += NB_S2_CHIM[i];
+		compteur += NB_S2_FRANCAIS[i];
+		compteur += NB_S2_ANGLAIS[i];
+		compteur += NB_S2_OTHER[i];
+		compteur += NB_S3_MATH[i];
+		compteur += NB_S3_FRANCAIS[i];
+		compteur += NB_S3_ANGLAIS[i];
+		compteur += NB_S3_OTHER[i];
+		compteur += NB_S3CE_PHYS[i];
+		compteur += NB_S3CS_PHYS[i];
+		compteur += NB_S3GE_PHYS[i];
+		compteur += NB_S3OG_PHYS[i];
+		compteur += NB_S3CE_INFO[i];
+		compteur += NB_S3CS_INFO[i];
+		compteur += NB_S3GE_INFO[i];
+		compteur += NB_S3OG_INFO[i];
+		compteur += NB_S3CE_CHIM[i];
+		compteur += NB_S3CS_CHIM[i];
+		compteur += NB_S3GE_CHIM[i];
+		compteur += NB_S3OG_CHIM[i];
+		compteur += NB_S4_FRANCAIS[i];
+		compteur += NB_S4_ANGLAIS[i];
+		compteur += NB_S4_OTHER[i];
+		compteur += NB_S4CE_MATH[i];
+		compteur += NB_S4CS_MATH[i];
+		compteur += NB_S4GE_MATH[i];
+		compteur += NB_S4OG_MATH[i];
+		compteur += NB_S4CE_PHYS[i];
+		compteur += NB_S4CS_PHYS[i];
+		compteur += NB_S4GE_PHYS[i];
+		compteur += NB_S4OG_PHYS[i];
+		compteur += NB_S4CE_INFO[i];
+		compteur += NB_S4CS_INFO[i];
+		compteur += NB_S4GE_INFO[i];
+		compteur += NB_S4OG_INFO[i];
+		compteur += NB_S4CE_CHIM[i];
+		compteur += NB_S4CS_CHIM[i];
+		compteur += NB_S4GE_CHIM[i];
+		compteur += NB_S4OG_CHIM[i];
+	}
+
+	const int NB_COURS = compteur;
+	const int TOTAL_CRENEAUX = NB_CRENEAUX * NB_CRENEAUX_JOUR;
 	
 	//define de toutes les matieres (en nombre de creneau, 1 creaneau = )
 	//L0 S1
@@ -319,9 +380,9 @@ Cours
 Groupe
 {
 	int		specialisation;				/* type de diplome */
-	//int		occupation	[NB_CRENEAUX_JOUR];	/* indique si présente dans le créneau	*/
+	int		occupation	[TOTAL_CRENEAUX];	/* indique si présente dans le créneau	*/
 	//si matiere[i] == 0 -> pas d'occupation
-	int		matiere		[NB_CRENEAUX * NB_CRENEAUX_JOUR];	/* indique la matière dans le créneau	*/
+	int		matiere		[TOTAL_CRENEAUX];	/* indique la matière dans le créneau	*/
 }
 
 /* Classe représentant un enseignant.							*/
@@ -329,9 +390,9 @@ Prof
 {
 	char 	id; //correspond à A,B,C ou D sur le sujet
 	int		potentiel;						/* indique son nombre d'horaires	*/
-	//int		occupation	[NB_CRENEAUX_JOUR];	/* indique si présent dans le créneau	*/
+	int		occupation	[TOTAL_CRENEAUX];	/* nombre de cours sur un même creneau */
 	int		matiere;						//matiere enseignée par le prof
-	int		classe		[NB_CRENEAUX * NB_CRENEAUX_JOUR];		/* indique la classe dans le créneau	*/
+	int		classe		[TOTAL_CRENEAUX];		/* indique la classe dans le créneau	*/
 }
 
 /* Classe représentant une salle de cours.							*/
@@ -339,7 +400,7 @@ Salle
 {
 	int		potentiel;					/* indique le nombre d'élève max dans la salle */
 	int		type;						//type de la salle
-	int		occupation	[NB_CRENEAUX * NB_CRENEAUX_JOUR];	/* indique si occupée dans le créneau	*/
+	int		occupation	[TOTAL_CRENEAUX];	/* indique si occupée dans le créneau	*/
 }
 
 Creneau
@@ -595,9 +656,40 @@ GenomeClass
 	//initialisation des compteurs à des valeurs par défaut
 	for(int i=0; i<NB_GROUPES; i++)
 	{
-		for(int j=0; j<NB_CRENEAUX * NB_CRENEAUX_JOUR; j++)
+		if(Genome.groupes[i] == NULL)
+		{
+			Genome.groupes[i] = new Groupe();
+		}
+		for(int j=0; j<TOTAL_CRENEAUX; j++)
 		{
 			Genome.groupes[i].occupation[j] = 0;
+			Genome.groupes[i].matiere[j] = COURS_LIBRE;
+		} 
+	}
+
+	for(int i=0; i<NB_PROFS; i++)
+	{
+		if(Genome.profs[i] == NULL)
+		{
+			Genome.profs[i] = new Prof();
+		}
+		for(int j=0; j<TOTAL_CRENEAUX; j++)
+		{
+			Genome.profs[i].occupation[j] = 0;
+			Genome.profs[i].classe[j] = COURS_LIBRE;
+		} 
+	}
+
+	for(int i=0; i<NB_SALLES; i++)
+	{
+		if(Genome.profs[i] == NULL)
+		{
+			Genome.profs[i] = new Prof();
+		}
+		for(int j=0; j<TOTAL_CRENEAUX; j++)
+		{
+			Genome.profs[i].occupation[j] = 0;
+			Genome.profs[i].classe[j] = COURS_LIBRE;
 		} 
 	}
 
