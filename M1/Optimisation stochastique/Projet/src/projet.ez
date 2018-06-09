@@ -230,130 +230,6 @@ ________________________________________________________________________________
 
 	const int NB_COURS = compteur;
 	
-	//define de toutes les matieres (en nombre de creneau, 1 creneau  = 1H30 )
-	//L0 S1
-	#define int NB_CRENEAUX_S1_MATH_CI 28
-	#define int NB_CRENEAUX_S1_PHYS_CI 28
-	#define int NB_CRENEAUX_S1_CHIM_CI 28
-	#define int NB_CRENEAUX_S1_INFO_CI 38
-	#define int NB_CRENEAUX_S1_FRANCAIS_CI 28
-	#define int NB_CRENEAUX_S1_FRANCAIS_TP 28
-	#define int NB_CRENEAUX_S1_ANGLAIS_CI 47
-	#define int NB_CRENEAUX_S1_ANGLAIS_TP 28
-	#define int NB_CRENEAUX_S1_OTHER_TP 10
-	
-	//L0 S2
-	#define int NB_CRENEAUX_S2_MATH_CM 14
-	#define int NB_CRENEAUX_S2_MATH_CI 43
-	#define int NB_CRENEAUX_S2_PHYS_CM 10
-	#define int NB_CRENEAUX_S2_PHYS_CI 19
-	#define int NB_CRENEAUX_S2_PHYS_TP 14
-	#define int NB_CRENEAUX_S2_CHIM_CM 10
-	#define int NB_CRENEAUX_S2_CHIM_CI 19
-	#define int NB_CRENEAUX_S2_CHIM_TP 14
-	#define int NB_CRENEAUX_S2_INFO_CM 7
-	#define int NB_CRENEAUX_S2_INFO_CI 22
-	#define int NB_CRENEAUX_S2_INFO_TP 14
-	#define int NB_CRENEAUX_S2_FRANCAIS_CI 28
-	#define int NB_CRENEAUX_S2_ANGLAIS_CI 28
-	#define int NB_CRENEAUX_S2_OTHER_TD 6
-	#define int NB_CRENEAUX_S2_OTHER_TP 19
-	
-	//L1 S3
-	#define int NB_CRENEAUX_S3_MATH_CM 20
-	#define int NB_CRENEAUX_S3_MATH_TD 28
-	
-	#define int NB_CRENEAUX_S3CE_PHYS_CM 32
-	#define int NB_CRENEAUX_S3CE_PHYS_TD 32
-	#define int NB_CRENEAUX_S3CS_PHYS_CM 32
-	#define int NB_CRENEAUX_S3CS_PHYS_TD 32
-	#define int NB_CRENEAUX_S3GE_PHYS_CM 32
-	#define int NB_CRENEAUX_S3GE_PHYS_CI 20
-	#define int NB_CRENEAUX_S3GE_PHYS_TD 32
-	#define int NB_CRENEAUX_S3OG_PHYS_CM 42
-	#define int NB_CRENEAUX_S3OG_PHYS_TD 38
-	#define int NB_CRENEAUX_S3OG_PHYS_TP 4
-	
-	#define int NB_CRENEAUX_S3CE_CHIM_CM 30
-	#define int NB_CRENEAUX_S3CE_CHIM_TD 24
-	#define int NB_CRENEAUX_S3CE_CHIM_TP 24
-	#define int NB_CRENEAUX_S3GE_CHIM_CM 20
-	#define int NB_CRENEAUX_S3GE_CHIM_TD 14
-	#define int NB_CRENEAUX_S3GE_CHIM_TP 14
-	#define int NB_CRENEAUX_S3OG_CHIM_CM 20
-	#define int NB_CRENEAUX_S3OG_CHIM_TD 14
-	#define int NB_CRENEAUX_S3OG_CHIM_TP 14
-	
-	#define int NB_CRENEAUX_S3CE_INFO_CM 8
-	#define int NB_CRENEAUX_S3CE_INFO_CI 8
-	#define int NB_CRENEAUX_S3CE_INFO_TP 8
-	#define int NB_CRENEAUX_S3CS_INFO_CM 30
-	#define int NB_CRENEAUX_S3CS_INFO_TD 24
-	#define int NB_CRENEAUX_S3CS_INFO_TP 24
-	#define int NB_CRENEAUX_S3GE_INFO_CM 8
-	#define int NB_CRENEAUX_S3GE_INFO_TD 8
-	#define int NB_CRENEAUX_S3GE_INFO_TP 8
-	#define int NB_CRENEAUX_S3OG_INFO_CM 8
-	#define int NB_CRENEAUX_S3OG_INFO_TD 8
-	#define int NB_CRENEAUX_S3OG_INFO_TP 8
-	
-	#define int NB_CRENEAUX_S3_FRANCAIS_CI 24
-	#define int NB_CRENEAUX_S3_ANGLAIS_CI 24
-	#define int NB_CRENEAUX_S3_OTHER_TD 6
-	
-	
-	//L2 S4
-	#define int NB_CRENEAUX_S4CE_MATH_CM 20
-	#define int NB_CRENEAUX_S4CE_MATH_TD 28
-	#define int NB_CRENEAUX_S4CS_MATH_CM 20
-	#define int NB_CRENEAUX_S4CS_MATH_TD 28
-	#define int NB_CRENEAUX_S4GE_MATH_CM 20
-	#define int NB_CRENEAUX_S4GE_MATH_TD 28
-	#define int NB_CRENEAUX_S4OG_MATH_CM 30
-	#define int NB_CRENEAUX_S4OG_MATH_TD 31
-	#define int NB_CRENEAUX_S4OG_MATH_TP 6
-	                         
-	#define int NB_CRENEAUX_S4CE_PHYS_CM 24
-	#define int NB_CRENEAUX_S4CE_PHYS_TD 24
-	#define int NB_CRENEAUX_S4CS_PHYS_CM 24
-	#define int NB_CRENEAUX_S4CS_PHYS_TD 24
-	#define int NB_CRENEAUX_S4GE_PHYS_CM 24
-	#define int NB_CRENEAUX_S4GE_PHYS_CI 20
-	#define int NB_CRENEAUX_S4GE_PHYS_TD 24
-	#define int NB_CRENEAUX_S4OG_PHYS_CM 24
-	#define int NB_CRENEAUX_S4OG_PHYS_TD 24
-	                         
-	#define int NB_CRENEAUX_S4CE_CHIM_CM 30
-	#define int NB_CRENEAUX_S4CE_CHIM_TD 30
-	#define int NB_CRENEAUX_S4CE_CHIM_TP 24
-	#define int NB_CRENEAUX_S4GE_CHIM_CM 20
-	#define int NB_CRENEAUX_S4GE_CHIM_TD 20
-	#define int NB_CRENEAUX_S4GE_CHIM_TP 14
-	#define int NB_CRENEAUX_S4OG_CHIM_CM 20
-	#define int NB_CRENEAUX_S4OG_CHIM_TD 20
-	#define int NB_CRENEAUX_S4OG_CHIM_TP 14
-	                         
-	#define int NB_CRENEAUX_S4CE_INFO_CM 8
-	#define int NB_CRENEAUX_S4CE_INFO_CI 8
-	#define int NB_CRENEAUX_S4CE_INFO_TP 8
-	#define int NB_CRENEAUX_S4CS_INFO_CM 34
-	#define int NB_CRENEAUX_S4CS_INFO_TD 34
-	#define int NB_CRENEAUX_S4CS_INFO_TP 24
-	#define int NB_CRENEAUX_S4GE_INFO_CM 8
-	#define int NB_CRENEAUX_S4GE_INFO_TD 8
-	#define int NB_CRENEAUX_S4GE_INFO_TP 8
-	#define int NB_CRENEAUX_S4OG_INFO_CM 8
-	#define int NB_CRENEAUX_S4OG_INFO_TD 8
-	#define int NB_CRENEAUX_S4OG_INFO_TP 8
-	                         
-	#define int NB_CRENEAUX_S4_FRANCAIS_CI 24
-	#define int NB_CRENEAUX_S4_ANGLAIS_CI 24
-	#define int NB_CRENEAUX_S4_FRANCAIS_TP 24
-	#define int NB_CRENEAUX_S4_ANGLAIS_TP 24
-	#define int NB_CRENEAUX_S4_OTHER_CM 4
-	#define int NB_CRENEAUX_S4_OTHER_TD 4
-	#define int NB_CRENEAUX_S4_OTHER_TP 4
-	
 \end
 
 \User functions:
@@ -412,7 +288,7 @@ Groupe
 {
 	int		specialisation;				/* type de diplome */
 	int		occupation	[NB_CRENEAUX];	/* indique si présente dans le créneau	*/
-	//si matiere[i] == 0 -> pas d'occupation
+	//si matiere[i] == COURS_LIBRE -> pas d'occupation
 	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
 	int 	coursSuivis[NB_MATIERES][NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
 }
@@ -495,7 +371,7 @@ GenomeClass
 	//initialisation des profs
 	for(int i=0; i<NB_PROFS; i++)
 	{
-		Genome.profs[i] = new ProfsClass();
+		Genome.profs[i] = new Prof();
 	}
 	int compteur = 0;
 	for(int i=0; i<NB_PROF_MATH; i++) 
@@ -617,6 +493,7 @@ GenomeClass
 	for(int i=0; i<NB_COURS; i++) 
 	{
 		Genome.cours[i]			= new Cours();
+		//TODO initialiser tous les cours en fonction du nombre d'heures souhaité par type de cours et matiere
 	}
 
 	//initialisation des creneaux
@@ -625,7 +502,19 @@ GenomeClass
 		Genome.creneaux[i] = new Creneau();
 	}
 
-	//TODO poser tous les cours aléatoirement ?
+	//TODO poser tous les cours pour les groupes suivant s'ils sont disponible (semi-aléatoire)
+	//faire un tirage aléatoire jusqu'a tomber sur un créneau ou le groupe sont libre et ou au moins une salle est libre
+	//TODO tenter de faire un tirage aléatoire pour placer les profs et les salles sinon diriger le tirage aléatoire
+	for (int i=0; i<NB_COURS; i++)
+	{
+		int j = Genome.cours[i]->creneau;
+		Genome.groupes	[Genome.cours[i]->groupe]	->occupation[j]++;
+		Genome.groupes	[Genome.cours[i]->groupe]	->matiere[j] 		= Genome.cours[i]->matiere;
+		Genome.profs	[Genome.cours[i]->prof]		->potentiel[j]--;
+		Genome.profs	[Genome.cours[i]->prof]		->classe[j] 		= Genome.cours[i]->groupes;
+		Genome.salles	[Genome.cours[i]->salle]	->potentiel[j]--;
+		Genome.creneaux	[j]							->potentiel--;
+	}
 \end
 
 \GenomeClass::crossover:
@@ -640,21 +529,189 @@ GenomeClass
 \end
 
 \GenomeClass::mutator:
-	//reinstancier tous les membres du Genome qui sont NULL
-	//Pour chaque cours c1 dans Genome->cours
-		//prof p1 = c1->prof
-		//si random(0.0,1.0) < 0.5
-			// mutation -> échanger deux profs de la même matière (aléatoire ?)
-			//p2 est le prof à échanger avec p1
-			// Pour chaque cours c2
-				//Si c2->prof == p2 Alors c2->prof = p1
-				//Sinon Si c2->prof == p1 Alors c2->prof = p2
-				//décrémenter les nombre de cours de c1 et c2
-	//Si prof.nbHeure(c1) > 1 OU salles.nbCours(c1) > 1 OU classes.nbCours(c1) > 1 Alors
-		//erreur : nécessite 'correction manuelle'
-		//reporter le cours du creneau c1 ?
-	//retourner 1 si erreur, 0 sinon
-	return 0;
+	int	nb_mutation = 0;
+
+	/* -------------------------------------------------------------------------------------------- */
+	/* EVALUATION DES CRENEAUX									*/
+	/* -------------------------------------------------------------------------------------------- */
+
+	/* Initialisation des compteurs 								*/
+	for (int k=0; k<NB_GROUPES; k++)
+	{
+		if (Genome.groupes[k] == NULL)
+		{
+			Genome.groupes[k]			= new Groupe();
+		}
+
+		for(int j=0; j<NB_CRENEAUX; j++)
+		{
+			Genome.groupes[k]->occupation[j]	= 0;
+		}
+	}
+
+	for (int k=0; k<NB_PROFS; k++)
+	{
+		if (Genome.profs[k] == NULL)
+		{
+			Genome.profs[k]			= new Prof();
+		}
+
+		for(int j=0; j<NB_CRENEAUX; j++)
+		{
+			Genome.profs[k]->occupation[j]	= 0;
+		}
+	}
+
+	for (int k=0; k<NB_SALLES; k++)
+	{	
+		if (Genome.salles[k] == NULL)
+		{
+			Genome.salles[k]			= new Salle();
+		}
+
+		for(int j=0; j<NB_CRENEAUX; j++)
+		{
+			Genome.salles[k]->occupation[j]	= 0;
+		}
+	}
+
+	for (int j=0; j<NB_CRENEAUX; j++)
+	{	
+		if (Genome.creneaux[j] == NULL)
+		{
+			Genome.creneaux[j]			= new Creneau();
+		}
+		Genome.creneaux[j]->potentiel		= NB_SALLES;
+	}
+
+	/* Affectation des compteurs 									*/
+	for (int i=0; i<NB_COURS; i++)
+	{
+		int j = Genome.cours[i]->creneau;
+		Genome.groupes	[Genome.cours[i]->groupes]	->occupation[j]++;
+		Genome.profs	[Genome.cours[i]->prof]		->occupation[j]++;
+		Genome.salles	[Genome.cours[i]->salle]	->occupation[j]++;
+		Genome.creneaux	[j]				->potentiel--;
+	}
+
+
+	/* Analyse & Modification des compteurs 							*/
+	for (int i=0; i<NB_COURS; i++)
+	{
+		int	j				= Genome.cours[i]->creneau;
+		int	c				= Genome.cours[i]->groupes;
+		int	p				= Genome.cours[i]->prof;
+		int	s				= Genome.cours[i]->salle;
+		int	err				= 0;
+		int	r				= j;
+			
+	/* en cas de mutation, on échange deux profs de même matière					*/
+	/*
+		if (sigmaP < pMutPerGene)
+		{
+	//		cout<<"MUTATION !!"<<endl;
+			int k		= 0;
+			int minprof	= 0;
+			int maxprof	= nbProfsTx[k];
+			int y		= 0;
+				
+			while (p > maxprof)
+			{
+				minprof = maxprof;
+				maxprof += nbProfsTx[++k];
+			}
+				
+			if (p == maxprof)
+			{
+				y = minprof;
+			}
+			else
+			{
+				y = p+1;
+			}
+				
+			for (int x=0; x<NB_COURS; x++)
+			{
+				if (Genome.cours[x]->prof == y)
+				{
+	//				cout<<"On remplace :"<<chiffre2string(p)<<" par "<<chiffre2string(y)<<endl;
+					Genome.cours[x]->prof = p;
+					Genome.profs	[p]	->occupation[Genome.cours[x]->creneau]++;
+					Genome.profs	[y]	->occupation[Genome.cours[x]->creneau]--;
+					Genome.cours[i]->prof = y;
+					Genome.profs	[y]	->occupation[j]++;
+					Genome.profs	[p]	->occupation[j]--;
+					break;
+				}
+			}
+		}
+		*/
+
+	/* on vérifie l'occupation des éléments du cours 						*/
+		
+		if (err == 0)
+		{
+			if (Genome.groupes[c]->occupation[j] > 1)
+			{
+				err = 1;
+			}
+			if (Genome.profs[p]->occupation[j] > 1)
+			{
+				err = 2;
+			}
+			if (Genome.salles[s]->occupation[j] > 1)
+			{
+				err = 3;
+			}
+		}
+
+	/* en cas d'erreur, on "corrige" le cours en le réinitialisant de manière valide.		*/
+		if (err > 0)
+		{
+			nb++;
+			r 	= j;
+			int mode = 1;
+			do
+			{
+				r = (r + 1)%NB_CRENEAUX;
+				if (r == j)
+				{
+					if (mode == 2)
+					{
+						break;
+					}
+					else
+					{
+						mode++;
+					}
+				}
+			}
+			while
+			(
+				(Genome.creneaux[r]->potentiel <= 0) ||
+				(
+					((Genome.creneaux[r]->potentiel == NB_SALLES) && (mode < 2)) ||
+					(Genome.groupes	[c]	->occupation[r] > 0) ||
+					(Genome.profs	[p]	->occupation[r] > 0) ||
+					(Genome.salles	[s]	->occupation[r] > 0)
+				)
+			);
+			
+			Genome.groupes	[c]	->occupation[j]--;
+			Genome.profs	[p]	->occupation[j]--;
+			Genome.salles	[s]	->occupation[j]--;
+			Genome.creneaux	[j]	->potentiel++;
+			
+			Genome.groupes	[c]	->occupation[r]++;
+			Genome.profs	[p]	->occupation[r]++;
+			Genome.salles	[s]	->occupation[r]++;
+			Genome.creneaux	[r]	->potentiel--;
+		}
+
+		Genome.cours[i]->creneau = r;
+	}
+
+	return nb;
 \end
 
 \GenomeClass::evaluator:
@@ -911,8 +968,42 @@ GenomeClass
 		}
 	}
 
-	//TODO pénalités faibles si plusieurs même cours dans une même journée par groupe
-	//TODO pénalités faibles par trou dans une journée travaillée
+	//pénalités faibles si plusieurs même cours dans une même journée par groupe
+	for(int i=0; i<NB_GROUPES; i++)
+	{
+		compteursPlusCours = 0
+		for(int j=0; j<NB_CRENEAUX; j= j+NB_CRENEAUX_JOUR){
+			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
+				if(Genome.groupes[i]->matiere[j+k] == Genome.groupes[i]->matiere[j+k+1]){
+					compteursPlusCours++;
+				}
+			}
+			if(compteursPlusCours > 1){
+				evaluation += PENALITE_FAIBLE;
+			}
+			compteursPlusCours = 0;
+		}
+		
+	}
+	//pénalités faibles par trou dans une journée travaillée
+	for(int i=0; i<NB_PROFS; i++)
+	{
+		compteursTrou = 0;
+		for(int j=0; j<NB_CRENEAUX; j+=NB_CRENEAUX_JOUR){
+			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
+				if(Genome.profs[i]->matiere[j+k] != COURS_LIBRE){
+					if(Genome.profs[i]->matiere[j+k+1] == COURS_LIBRE){
+						compteursTrou++;
+					}
+				}
+			}
+			if(compteursTrou > 0){
+				evaluation += PENALITE_FAIBLE;
+			}
+			compteursTrou = 0;
+		}
+		
+	}
 
 	return evaluation;
 \end
