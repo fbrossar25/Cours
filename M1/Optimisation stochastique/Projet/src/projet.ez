@@ -104,11 +104,14 @@ ________________________________________________________________________________
 	#define COURS_CHIMIE 3
 	#define COURS_ANGLAIS 4
 	#define COURS_FRANCAIS 5
-	//type des cours
+	#define NB_MATIERES 6 //nombre de matiere non-libre
+
+	//type des cours (dois correspondre aux index des tableaux représentant les nombre d'heures de cours)
 	#define COURS_CM 0
 	#define COURS_CI 1
 	#define COURS_TD 2
 	#define COURS_TP 3
+	#define NB_TYPES_COURS 4
 	
 	//Cours L0
 	//S1
@@ -411,13 +414,14 @@ Groupe
 	int		occupation	[NB_CRENEAUX];	/* indique si présente dans le créneau	*/
 	//si matiere[i] == 0 -> pas d'occupation
 	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
+	int 	coursSuivis[NB_MATIERES][NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
 }
 
 /* Classe représentant un enseignant.							*/
 Prof
 {
 	char 	id; //correspond à A,B,C ou D sur le sujet
-	int type; //prof plein-temps, mi-temps ou vacataire
+	int 	type; //prof plein-temps, mi-temps ou vacataire
 	int		potentiel;						/* indique son nombre d'horaires	*/
 	int		occupation	[NB_CRENEAUX];	/* nombre de cours sur un même creneau */
 	int		matiere;						//matiere enseignée par le prof
@@ -667,7 +671,14 @@ GenomeClass
 		{
 			Genome.groupes[i]->occupation[j] = 0;
 			Genome.groupes[i]->matiere[j] = COURS_LIBRE;
-		} 
+		}
+		for(int j=0; j<NB_COURS; j++)
+		{
+			for(int k=0; k<NB_TYPES_COURS; k++)
+			{
+				Genome.groupes[i]->coursSuivis[j][k] = 0;
+			}
+		}
 	}
 
 	for(int i=0; i<NB_PROFS; i++)
@@ -715,23 +726,33 @@ GenomeClass
 		Genome.creneaux[i]->potentiel = NB_SALLES;
 	}
 
-	int creneau;
+	int creneau, groupe, prof, matiere, type;
 	for(int i=0; i<NB_COURS; i++)
 	{
 		//Creneau du cours
 		creneau = Genome.cours[i]->creneau;
+		//groupe du cours
+		groupe = Genome.cours[i]->groupe;
+		//prof du cours
+		prof = Genome.cours[i]->prof;
+		//matiere du cours
+		matiere = Genome.cours[i]->matiere;
+		//type du cours
+		type = Genome.cours[i]->type;
 		//Le groupe du cours est occupé pour ce créneau
-		Genome.groupes[Genome.cours[i]->groupe]->occupation[creneau]++;
+		Genome.groupes[groupe]->occupation[creneau]++;
 		//La matiere que suit le groupe à ce creneau est celle du cours
-		Genome.groupes[Genome.cours[i]->groupe]->matiere[creneau] = Genome.cours[i]->matiere;
+		Genome.groupes[groupe]->matiere[creneau] = matiere;
 		//Le prof du cours est occupé pour ce créneau
-		Genome.profs[Genome.cours[i]->prof]->occupation[creneau]++;
+		Genome.profs[prof]->occupation[creneau]++;
 		//Le prof enseigne au groupe de ce cours
-		Genome.profs[Genome.cours[i]->prof]->groupe[creneau] = Genome.cours[i]->groupe;
+		Genome.profs[prof]->groupe[creneau] = groupe;
 		//La salle est occupé par un groupe
 		Genome.salles[Genome.cours[i]->salle]->occupation[creneau]++;
 		//Le contient un cours supplémentaire
 		Genome.creneaux[creneau]->potentiel--;
+		//Le groupes suis un cours supplémentaire
+		Genome.groupes[groupe]->coursSuivis[matiere][type]++;
 	}
 
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
@@ -748,6 +769,17 @@ GenomeClass
 			{
 				//plus d'un cours en même temps 
 				evaluation += PENALITE_OBLIGATOIRE;
+			}
+			for(int k=0; k<NB_MATIERES; k++)
+			{
+				for(int l=0; l<NB_TYPES_COURS; l++)
+				{
+					if(Genome.groupes[j]->coursSuivis[k][l] != 0)
+					{
+						//Mauvais nombre d'heures suivis
+						evaluation += PENALITE_FORTE;
+					}
+				}
 			}
 		}
 
@@ -814,11 +846,73 @@ GenomeClass
 		}
 	}
 
-	//TODO pénalités obligatoires pour la vérification des correspondances entre cours et matiere du prof
-	//TODO pénalités fortes au comptage du nombre des cours par groupes et par type de cours (CM, CI, TD, TP)
+	Cours* c;
+	Salle* s;
+	Prof* p;
+	Groupe* g;
+	for(int i=0; i<NB_COURS; i++)
+	{
+		c = Genome.cours[i];
+		s = Genome.salles[c->salle];
+		p = Genome.profs[c->prof];
+		g = Genome.groupes[c->groupe];
+
+		//Évaluation matiere / prof
+		if(p->matiere != c->matiere)
+		{
+			evaluation += PENALITE_OBLIGATOIRE;
+		}
+
+		//Évaluation des types de salle pour chaque cours
+		switch(c->type)
+		{
+			case COURS_CM:
+				if(s->type != SALLE_CM)
+				{
+					evaluation += PENALITE_FORTE;
+				}
+				break;
+			case COURS_CI:
+			case COURS_TD:
+			 	//on considère que les CI se passent dans les salles de TD
+				if(s->type != SALLE_TD)
+				{
+					evaluation += PENALITE_FORTE;
+				}
+				break;
+			case COURS_TP:
+				switch(c->matiere)
+				{
+					case COURS_INFO:
+						if(s->type != SALLE_INFO)
+						{
+							evaluation += PENALITE_FORTE;
+						}
+						break;
+					case COURS_ANGLAIS:
+					case COURS_FRANCAIS:
+						if(s->type != SALLE_LANG)
+						{
+							evaluation += PENALITE_FORTE;
+						}
+						break;
+					case COURS_CHIMIE:
+					case COURS_PHYSIQUE:
+						if(s->type != SALLE_LABO)
+						{
+							evaluation += PENALITE_FORTE;
+						}
+						break;
+					default:
+						evaluation += PENALITE_FORTE;
+				}
+				break;
+			default:;
+		}
+	}
+
 	//TODO pénalités faibles si plusieurs même cours dans une même journée par groupe
 	//TODO pénalités faibles par trou dans une journée travaillée
-	//TODO pénalités fortes par cours dans une salle de mauvais type
 
 	return evaluation;
 \end
