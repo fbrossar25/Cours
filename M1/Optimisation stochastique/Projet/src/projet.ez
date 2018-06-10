@@ -98,7 +98,8 @@ ________________________________________________________________________________
 	#define COURS_CHIMIE 3
 	#define COURS_ANGLAIS 4
 	#define COURS_FRANCAIS 5
-	#define NB_MATIERES 6 //nombre de matiere non-libre
+	#define COURS_AUTRE 6
+	#define NB_MATIERES 7 //nombre de matiere non-libre
 
 	//type des cours (dois correspondre aux index des tableaux représentant les nombre d'heures de cours)
 	#define COURS_CM 0
@@ -106,127 +107,190 @@ ________________________________________________________________________________
 	#define COURS_TD 2
 	#define COURS_TP 3
 	#define NB_TYPES_COURS 4
-	
-	//Cours L0
-	//S1
-	const int NB_S1_MATH[] = {0, 42, 0, 0}; //0 CM, 42 CI, 0 TD, 0 TP 
-	const int NB_S1_PHYS[] = {0, 42, 0, 0}; 
-	const int NB_S1_CHIM[] = {0, 42, 0, 0}; 
-	const int NB_S1_INFO[] = {0, 56, 0, 0}; 
-	const int NB_S1_FRANCAIS[] = {0, 42, 0, 42}; 
-	const int NB_S1_ANGLAIS[] = {0, 70, 0, 42}; 
-	const int NB_S1_OTHER[] = {0, 0, 0, 14};  //methode
-	
-	//S2
-	const int NB_S2_MATH[] = {20, 64, 0, 0}; 
-	const int NB_S2_PHYS[] = {14, 28, 0, 21}; 
-	const int NB_S2_INFO[] = {10, 32, 0, 21};
-	const int NB_S2_CHIM[] = {14, 28, 0, 21};  
-	const int NB_S2_FRANCAIS[] = {0, 42, 0, 0}; 
-	const int NB_S2_ANGLAIS[] = {0, 42, 0, 0}; 
-	const int NB_S2_OTHER[] = {0, 0, 8, 28};  //projet
-	
-	//Cours L1
-	//S3 Commun
-	const int NB_S3_MATH[] = {30, 0, 42, 0};
-	const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
-	const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-	const int NB_S3_OTHER[] = {0, 0, 0, 0};
-	//Specialités
-	const int NB_S3CE_PHYS[] = {48, 0, 48, 0};
-	const int NB_S3CS_PHYS[] = {48, 0, 48, 0};
-	const int NB_S3GE_PHYS[] = {48, 30, 48, 0};
-	const int NB_S3OG_PHYS[] = {63, 0, 57, 6};
-	const int NB_S3CE_INFO[] = {12, 0, 12, 12};
-	const int NB_S3CS_INFO[] = {48, 0, 33, 45};
-	const int NB_S3GE_INFO[] = {12, 0, 12, 12};
-	const int NB_S3OG_INFO[] = {12, 0, 12, 12};
-	const int NB_S3CE_CHIM[] = {45, 0, 36, 36};
-	const int NB_S3CS_CHIM[] = {0, 0, 0, 0};
-	const int NB_S3GE_CHIM[] = {30, 0, 21, 21};
-	const int NB_S3OG_CHIM[] = {30, 0, 21, 21};
-	
-	//S4 Commun
-	const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
-	const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-	const int NB_S4_OTHER[] = {6, 0, 6, 6};
-	//Spec
-	const int NB_S4CE_MATH[] = {30, 0, 42, 0};
-	const int NB_S4CS_MATH[] = {30, 0, 42, 0};
-	const int NB_S4GE_MATH[] = {30, 0, 42, 0};
-	const int NB_S4OG_MATH[] = {45, 0, 48, 9}; // + Statistics
-	const int NB_S4CE_PHYS[] = {36, 0, 36, 0};
-	const int NB_S4CS_PHYS[] = {36, 0, 36, 0};
-	const int NB_S4GE_PHYS[] = {36, 30, 36, 0}; // + Earth Science
-	const int NB_S4OG_PHYS[] = {36, 0, 36, 0}; 
-	const int NB_S4CE_INFO[] = {12, 0, 12, 12};
-	const int NB_S4CS_INFO[] = {51, 0, 51, 36}; // + Data Structires and Archi
-	const int NB_S4GE_INFO[] = {12, 0, 12, 12};
-	const int NB_S4OG_INFO[] = {12, 0, 12, 12};
-	const int NB_S4CE_CHIM[] = {45, 0, 45, 36}; //Chemical eng + chem
-	const int NB_S4CS_CHIM[] = {0, 0, 0, 0};
-	const int NB_S4GE_CHIM[] = {30, 0, 30, 21};
-	const int NB_S4OG_CHIM[] = {30, 0, 30, 21};
 
-	int compteur = 0;
-	for(int i=0; i<4; i++)
-	{
-		compteur += NB_S1_MATH[i] * NB_GROUPES_L0;
-		compteur += NB_S1_PHYS[i] * NB_GROUPES_L0;
-		compteur += NB_S1_CHIM[i] * NB_GROUPES_L0;
-		compteur += NB_S1_INFO[i] * NB_GROUPES_L0;
-		compteur += NB_S1_FRANCAIS[i] * NB_GROUPES_L0;
-		compteur += NB_S1_ANGLAIS[i] * NB_GROUPES_L0;
-		compteur += NB_S1_OTHER[i] * NB_GROUPES_L0;
-		compteur += NB_S2_MATH[i] * NB_GROUPES_L0;
-		compteur += NB_S2_PHYS[i] * NB_GROUPES_L0;
-		compteur += NB_S2_INFO[i] * NB_GROUPES_L0;
-		compteur += NB_S2_CHIM[i] * NB_GROUPES_L0;
-		compteur += NB_S2_FRANCAIS[i] * NB_GROUPES_L0;
-		compteur += NB_S2_ANGLAIS[i] * NB_GROUPES_L0;
-		compteur += NB_S2_OTHER[i] * NB_GROUPES_L0;
-		compteur += NB_S3_MATH[i] * NB_GROUPES_L1;
-		compteur += NB_S3_FRANCAIS[i] * NB_GROUPES_L1;
-		compteur += NB_S3_ANGLAIS[i] * NB_GROUPES_L1;
-		compteur += NB_S3_OTHER[i] * NB_GROUPES_L1;
-		compteur += NB_S3CE_PHYS[i] * NB_GROUPES_CE;
-		compteur += NB_S3CS_PHYS[i] * NB_GROUPES_CS;
-		compteur += NB_S3GE_PHYS[i] * NB_GROUPES_GE;
-		compteur += NB_S3OG_PHYS[i] * NB_GROUPES_OG;
-		compteur += NB_S3CE_INFO[i] * NB_GROUPES_CE;
-		compteur += NB_S3CS_INFO[i] * NB_GROUPES_CS;
-		compteur += NB_S3GE_INFO[i] * NB_GROUPES_GE;
-		compteur += NB_S3OG_INFO[i] * NB_GROUPES_OG;
-		compteur += NB_S3CE_CHIM[i] * NB_GROUPES_CE;
-		compteur += NB_S3CS_CHIM[i] * NB_GROUPES_CS;
-		compteur += NB_S3GE_CHIM[i] * NB_GROUPES_GE;
-		compteur += NB_S3OG_CHIM[i] * NB_GROUPES_OG;
-		compteur += NB_S4_FRANCAIS[i] * NB_GROUPES_L1;
-		compteur += NB_S4_ANGLAIS[i] * NB_GROUPES_L1;
-		compteur += NB_S4_OTHER[i] * NB_GROUPES_L1;
-		compteur += NB_S4CE_MATH[i] * NB_GROUPES_CE;
-		compteur += NB_S4CS_MATH[i] * NB_GROUPES_CS;
-		compteur += NB_S4GE_MATH[i] * NB_GROUPES_GE;
-		compteur += NB_S4OG_MATH[i] * NB_GROUPES_OG;
-		compteur += NB_S4CE_PHYS[i] * NB_GROUPES_CE;
-		compteur += NB_S4CS_PHYS[i] * NB_GROUPES_CS;
-		compteur += NB_S4GE_PHYS[i] * NB_GROUPES_GE;
-		compteur += NB_S4OG_PHYS[i] * NB_GROUPES_OG;
-		compteur += NB_S4CE_INFO[i] * NB_GROUPES_CE;
-		compteur += NB_S4CS_INFO[i] * NB_GROUPES_CS;
-		compteur += NB_S4GE_INFO[i] * NB_GROUPES_GE;
-		compteur += NB_S4OG_INFO[i] * NB_GROUPES_OG;
-		compteur += NB_S4CE_CHIM[i] * NB_GROUPES_CE;
-		compteur += NB_S4CS_CHIM[i] * NB_GROUPES_CS;
-		compteur += NB_S4GE_CHIM[i] * NB_GROUPES_GE;
-		compteur += NB_S4OG_CHIM[i] * NB_GROUPES_OG;
-	}
-
-	const int NB_COURS = compteur;
+	#define NB_COURS 12946
 	
 \end
 
 \User functions:
+
+	int getNombreCoursL0(int matiere, int type)
+	{
+		//Cours L0
+		//S1
+		const int NB_S1_MATH[] = {0, 42, 0, 0};
+		const int NB_S1_PHYS[] = {0, 42, 0, 0}; 
+		const int NB_S1_CHIM[] = {0, 42, 0, 0}; 
+		const int NB_S1_INFO[] = {0, 56, 0, 0}; 
+		const int NB_S1_FRANCAIS[] = {0, 42, 0, 42}; 
+		const int NB_S1_ANGLAIS[] = {0, 70, 0, 42}; 
+		const int NB_S1_OTHER[] = {0, 0, 0, 14};
+		
+		//S2
+		const int NB_S2_MATH[] = {20, 64, 0, 0}; 
+		const int NB_S2_PHYS[] = {14, 28, 0, 21}; 
+		const int NB_S2_INFO[] = {10, 32, 0, 21};
+		const int NB_S2_CHIM[] = {14, 28, 0, 21};  
+		const int NB_S2_FRANCAIS[] = {0, 42, 0, 0}; 
+		const int NB_S2_ANGLAIS[] = {0, 42, 0, 0}; 
+		const int NB_S2_OTHER[] = {0, 0, 8, 28};
+
+		switch(matiere)
+		{
+			case COURS_MATH: return NB_S1_MATH[type] + NB_S2_MATH[type];
+			case COURS_PHYSIQUE: return NB_S1_PHYS[type] + NB_S2_PHYS[type];
+			case COURS_INFO: return NB_S1_INFO[type] + NB_S2_INFO[type];
+			case COURS_CHIMIE: return NB_S1_CHIM[type] + NB_S2_CHIM[type];
+			case COURS_ANGLAIS: return NB_S1_ANGLAIS[type] + NB_S2_ANGLAIS[type];
+			case COURS_FRANCAIS: return NB_S1_FRANCAIS[type] + NB_S2_FRANCAIS[type];
+			case COURS_AUTRE: return NB_S1_OTHER[type] + NB_S2_OTHER[type];
+			default: return 0;
+		}
+	}
+
+	int getNombreCoursCE(int matiere, int type)
+	{
+		const int NB_S3_MATH[] = {30, 0, 42, 0};
+		const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
+		const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
+		const int NB_S3_OTHER[] = {0, 0, 0, 0};
+		const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
+		const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
+		const int NB_S4_OTHER[] = {6, 0, 6, 6};
+		const int NB_S3CE_PHYS[] = {48, 0, 48, 0};
+		const int NB_S3CE_INFO[] = {12, 0, 12, 12};
+		const int NB_S3CE_CHIM[] = {45, 0, 36, 36};
+		const int NB_S4CE_MATH[] = {30, 0, 42, 0};
+		const int NB_S4CE_PHYS[] = {36, 0, 36, 0};
+		const int NB_S4CE_INFO[] = {12, 0, 12, 12};
+		const int NB_S4CE_CHIM[] = {45, 0, 45, 36};
+
+		switch(matiere)
+		{
+			case COURS_MATH: return NB_S3_MATH[type] + NB_S4CE_MATH[type];
+			case COURS_PHYSIQUE: return NB_S3CE_PHYS[type] + NB_S4CE_PHYS[type];
+			case COURS_INFO: return NB_S3CE_INFO[type] + NB_S4CE_INFO[type];
+			case COURS_CHIMIE: return NB_S3CE_CHIM[type] + NB_S4CE_CHIM[type];
+			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
+			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
+			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
+			default: return 0;
+		}
+	}
+
+	int getNombreCoursCS(int matiere, int type)
+	{
+        const int NB_S3_MATH[] = {30, 0, 42, 0};
+        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
+        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
+        const int NB_S3_OTHER[] = {0, 0, 0, 0};
+        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
+        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
+        const int NB_S4_OTHER[] = {6, 0, 6, 6};
+        const int NB_S3CS_PHYS[] = {48, 0, 48, 0};
+        const int NB_S3CS_INFO[] = {48, 0, 33, 45};
+        const int NB_S3CS_CHIM[] = {0, 0, 0, 0};
+        const int NB_S4CS_MATH[] = {30, 0, 42, 0};
+        const int NB_S4CS_PHYS[] = {36, 0, 36, 0};
+        const int NB_S4CS_INFO[] = {51, 0, 51, 36};
+        const int NB_S4CS_CHIM[] = {0, 0, 0, 0};
+
+		switch(matiere)
+		{
+			case COURS_MATH: return NB_S3_MATH[type] + NB_S4CS_MATH[type];
+			case COURS_PHYSIQUE: return NB_S3CS_PHYS[type] + NB_S4CS_PHYS[type];
+			case COURS_INFO: return NB_S3CS_INFO[type] + NB_S4CS_INFO[type];
+			case COURS_CHIMIE: return NB_S3CS_CHIM[type] + NB_S4CS_CHIM[type];
+			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
+			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
+			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
+			default: return 0;
+		}
+	}
+
+	int getNombreCoursGE(int matiere, int type)
+	{
+
+        const int NB_S3_MATH[] = {30, 0, 42, 0};
+        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
+        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
+        const int NB_S3_OTHER[] = {0, 0, 0, 0};
+        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
+        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
+        const int NB_S4_OTHER[] = {6, 0, 6, 6};
+        const int NB_S3GE_PHYS[] = {48, 30, 48, 0};
+        const int NB_S3GE_INFO[] = {12, 0, 12, 12};
+        const int NB_S3GE_CHIM[] = {30, 0, 21, 21};
+        const int NB_S4GE_MATH[] = {30, 0, 42, 0};
+        const int NB_S4GE_PHYS[] = {36, 30, 36, 0};
+        const int NB_S4GE_INFO[] = {12, 0, 12, 12};
+        const int NB_S4GE_CHIM[] = {30, 0, 30, 21};
+
+		switch(matiere)
+		{
+			case COURS_MATH: return NB_S3_MATH[type] + NB_S4GE_MATH[type];
+			case COURS_PHYSIQUE: return NB_S3GE_PHYS[type] + NB_S4GE_PHYS[type];
+			case COURS_INFO: return NB_S3GE_INFO[type] + NB_S4GE_INFO[type];
+			case COURS_CHIMIE: return NB_S3GE_CHIM[type] + NB_S4GE_CHIM[type];
+			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
+			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
+			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
+			default: return 0;
+		}
+	}
+
+	int getNombreCoursOG(int matiere, int type)
+	{
+
+        const int NB_S3_MATH[] = {30, 0, 42, 0};
+        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
+        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
+        const int NB_S3_OTHER[] = {0, 0, 0, 0};
+        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
+        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
+        const int NB_S4_OTHER[] = {6, 0, 6, 6};
+        const int NB_S3OG_PHYS[] = {63, 0, 57, 6};
+        const int NB_S3OG_INFO[] = {12, 0, 12, 12};
+        const int NB_S3OG_CHIM[] = {30, 0, 21, 21};
+        const int NB_S4OG_MATH[] = {45, 0, 48, 9};
+        const int NB_S4OG_PHYS[] = {36, 0, 36, 0}; 
+        const int NB_S4OG_INFO[] = {12, 0, 12, 12};
+        const int NB_S4OG_CHIM[] = {30, 0, 30, 21};
+
+		switch(matiere)
+		{
+			case COURS_MATH: return NB_S3_MATH[type] + NB_S4OG_MATH[type];
+			case COURS_PHYSIQUE: return NB_S3OG_PHYS[type] + NB_S4OG_PHYS[type];
+			case COURS_INFO: return NB_S3OG_INFO[type] + NB_S4OG_INFO[type];
+			case COURS_CHIMIE: return NB_S3OG_CHIM[type] + NB_S4OG_CHIM[type];
+			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
+			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
+			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
+			default: return 0;
+		}
+	}
+
+	int getNombreCours(int matiere, int specialite, int type)
+	{
+		switch(type)
+		{
+			case COURS_CM: break;
+			case COURS_CI: break;
+			case COURS_TD: break;
+			case COURS_TP: break;
+			default: return 0;
+		}
+
+		switch(specialite)
+		{
+			case SPEC_L0: return getNombreCoursL0(matiere, type);
+			case SPEC_CE: return getNombreCoursCE(matiere, type);
+			case SPEC_CS: return getNombreCoursCS(matiere, type);
+			case SPEC_GE: return getNombreCoursGE(matiere, type);
+			case SPEC_OG: return getNombreCoursOG(matiere, type);
+			default: return 0;
+		}
+	}
 
 	/* fonction d'affichage */
 	string cmpTiret(int unsigned n)
@@ -257,7 +321,6 @@ ________________________________________________________________________________
 		return oss.str();
 	}
 
-	int**
 \end
 
 /* -------------------------------------------------------------------------------------------- */
@@ -336,7 +399,6 @@ GenomeClass
 	//initialisation des groupes de TP
 
 	Groupe* g;
-	int i = NB_GROUPES_L0;
 	for(int i=0; i<NB_GROUPES; i++) 
 	{
 		g = new Groupe();
@@ -504,9 +566,10 @@ GenomeClass
 		int j = Genome.cours[i]->creneau;
 		Genome.groupes	[Genome.cours[i]->groupe]	->occupation[j]++;
 		Genome.groupes	[Genome.cours[i]->groupe]	->matiere[j] 		= Genome.cours[i]->matiere;
-		Genome.profs	[Genome.cours[i]->prof]		->potentiel[j]--;
-		Genome.profs	[Genome.cours[i]->prof]		->classe[j] 		= Genome.cours[i]->groupes;
-		Genome.salles	[Genome.cours[i]->salle]	->potentiel[j]--;
+		Genome.profs	[Genome.cours[i]->prof]		->potentiel--;
+		Genome.profs	[Genome.cours[i]->prof]		->occupation[j]++;
+		Genome.profs	[Genome.cours[i]->prof]		->groupe[j] 		= Genome.cours[i]->groupe;
+		Genome.salles	[Genome.cours[i]->salle]	->occupation[j]++;
 		Genome.creneaux	[j]							->potentiel--;
 	}
 \end
@@ -523,7 +586,7 @@ GenomeClass
 \end
 
 \GenomeClass::mutator:
-	int	nb_mutation = 0;
+	int	nb = 0;
 
 	/* -------------------------------------------------------------------------------------------- */
 	/* EVALUATION DES CRENEAUX									*/
@@ -582,7 +645,7 @@ GenomeClass
 	for (int i=0; i<NB_COURS; i++)
 	{
 		int j = Genome.cours[i]->creneau;
-		Genome.groupes[Genome.cours[i]->groupes]->occupation[j]++;
+		Genome.groupes[Genome.cours[i]->groupe]->occupation[j]++;
 		Genome.profs[Genome.cours[i]->prof]	->occupation[j]++;
 		Genome.salles[Genome.cours[i]->salle]->occupation[j]++;
 		Genome.creneaux[j]->potentiel--;
@@ -593,7 +656,7 @@ GenomeClass
 	for (int i=0; i<NB_COURS; i++)
 	{
 		int	j= Genome.cours[i]->creneau;
-		int	c= Genome.cours[i]->groupes;
+		int	c= Genome.cours[i]->groupe;
 		int	p= Genome.cours[i]->prof;
 		int	s= Genome.cours[i]->salle;
 		int	err	= 0;
@@ -727,7 +790,7 @@ GenomeClass
 		{
 			for(int k=0; k<NB_TYPES_COURS; k++)
 			{
-				Genome.groupes[i]->coursASuivre[NB_MATIERES *j + k] = 0;
+				Genome.groupes[i]->coursASuivre[(NB_MATIERES * j) + k] = 0;
 			}
 		}
 	}
@@ -752,7 +815,7 @@ GenomeClass
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.profs[i]->occupation[j] = 0;
-			Genome.profs[i]->classe[j] = COURS_LIBRE;
+			Genome.profs[i]->groupe[j] = COURS_LIBRE;
 		} 
 	}
 
@@ -803,7 +866,7 @@ GenomeClass
 		//Le contient un cours supplémentaire
 		Genome.creneaux[creneau]->potentiel--;
 		//Le groupes suis un cours supplémentaire
-		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]--;
+		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]++;
 	}
 
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
@@ -825,7 +888,7 @@ GenomeClass
 			{
 				for(int l=0; l<NB_TYPES_COURS; l++)
 				{
-					if(Genome.groupes[j]->coursASuivre[NB_MATIERES * k + l] != 0)
+					if(Genome.groupes[j]->coursASuivre[(NB_MATIERES * k) + l] != getNombreCours(k, Genome.groupes[j]->specialisation, l))
 					{
 						//Mauvais nombre d'heures suivis
 						evaluation += PENALITE_FORTE;
@@ -836,7 +899,7 @@ GenomeClass
 
 		for(int j=0; j<NB_PROFS; j++)
 		{
-			if(Genome.profs[j]->matiere[i] != COURS_LIBRE)
+			if(Genome.profs[j]->occupation[i] != COURS_LIBRE)
 			{
 				compteurCoursProf++;
 			}
@@ -882,12 +945,12 @@ GenomeClass
 	//Évaluation des horaires effectués par les profs
 	for(int j=0; j<NB_PROFS; j++)
 	{
-		if(Genome.profs[j]->potentiel[i] < 0)
+		if(Genome.profs[j]->potentiel < 0)
 		{
 			if(Genome.profs[j]->type == PROF_VACATAIRE)
 			{
 				//Moins on doit payer de vacataire, mieux c'est
-				evaluation += PENALITE_FAIBLE * -Genome.profs[j]->potentiel[i];
+				evaluation += PENALITE_FAIBLE * -Genome.profs[j]->potentiel;
 			}
 			else
 			{
@@ -900,13 +963,11 @@ GenomeClass
 	Cours* c;
 	Salle* s;
 	Prof* p;
-	Groupe* g;
 	for(int i=0; i<NB_COURS; i++)
 	{
 		c = Genome.cours[i];
 		s = Genome.salles[c->salle];
 		p = Genome.profs[c->prof];
-		g = Genome.groupes[c->groupe];
 
 		//Évaluation matiere / prof
 		if(p->matiere != c->matiere)
@@ -965,7 +1026,7 @@ GenomeClass
 	//pénalités faibles si plusieurs même cours dans une même journée par groupe
 	for(int i=0; i<NB_GROUPES; i++)
 	{
-		compteursPlusCours = 0;
+		int compteursPlusCours = 0;
 		for(int j=0; j<NB_CRENEAUX; j= j+NB_CRENEAUX_JOUR){
 			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
 				if(Genome.groupes[i]->matiere[j+k] == Genome.groupes[i]->matiere[j+k+1]){
@@ -982,11 +1043,11 @@ GenomeClass
 	//pénalités faibles par trou dans une journée travaillée
 	for(int i=0; i<NB_PROFS; i++)
 	{
-		compteursTrou = 0;
+		int compteursTrou = 0;
 		for(int j=0; j<NB_CRENEAUX; j+=NB_CRENEAUX_JOUR){
 			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
-				if(Genome.profs[i]->matiere[j+k] != COURS_LIBRE){
-					if(Genome.profs[i]->matiere[j+k+1] == COURS_LIBRE){
+				if(Genome.profs[i]->occupation[j+k] != COURS_LIBRE){
+					if(Genome.profs[i]->occupation[j+k+1] == COURS_LIBRE){
 						compteursTrou++;
 					}
 				}
@@ -1003,7 +1064,7 @@ GenomeClass
 \end
 
 \User Makefile options:
-	CXXFLAGS+=-std=c++98
+	CXXFLAGS+=-std=c++11
 \end
 
 \Default run parameters :
