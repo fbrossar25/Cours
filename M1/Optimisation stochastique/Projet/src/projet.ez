@@ -23,7 +23,7 @@ ________________________________________________________________________________
 
 	#define NB_JOURS 180 //52 semaines avec 5 jours d'écoles - 16 semaines de vacances
 	#define NB_CRENEAUX_JOUR 4 		// 4 creneaux par jours
-	const int NB_CRENEAUX = NB_JOURS * NB_CRENEAUX_JOUR;
+	#define NB_CRENEAUX 720 //NB_JOURS * NB_CRENEAUX_JOUR
 
 	#define GROUPE_LIBRE -1		// Pour indiquer l'absence de groupe
 	#define SPEC_L0 0			// Pas de spécialisation en L0
@@ -50,9 +50,7 @@ ________________________________________________________________________________
 	#define NB_SALLE_INFO 2		//(20 places)
 	#define NB_SALLE_LABO 2		//(20 places)
 
-	const int NB_SALLES =     NB_SALLE_CM + NB_SALLE_TD
-							+ NB_SALLE_LANG + NB_SALLE_INFO
-							+ NB_SALLE_LABO;
+	#define NB_SALLES 18     //NB_SALLE_CM + NB_SALLE_TD + NB_SALLE_LANG + NB_SALLE_INFO + NB_SALLE_LABO;
 
 	#define PROF_VACATAIRE 0	//Prof vacataire
 	#define PROF_PLEIN_TEMPS 1	//Prof à plein temps
@@ -65,8 +63,7 @@ ________________________________________________________________________________
 	#define NB_PROF_ANGLAIS 4	//Nombre de profs de anglais
 	#define NB_PROF_FRANCAIS 5	//Nombre de profs de francais
 	
-	const int NB_PROFS = NB_PROF_MATH + NB_PROF_PHYSIQUE + NB_PROF_INFO
-						 + NB_PROF_CHIMIE + NB_PROF_ANGLAIS + NB_PROF_FRANCAIS;
+	#define NB_PROFS 24 //NB_PROF_MATH + NB_PROF_PHYSIQUE + NB_PROF_INFO + NB_PROF_CHIMIE + NB_PROF_ANGLAIS + NB_PROF_FRANCAIS
 
 	#define NB_GROUPES_L0 8 	//Nombre de groupes de TP en L0
 	#define NB_GROUPES_CE 2		//Nombre de groupes de TP en L1 Chemical Engineering
@@ -74,13 +71,10 @@ ________________________________________________________________________________
 	#define NB_GROUPES_GE 2		//Nombre de groupes de TP en L1 Geophysical Engineering
 	#define NB_GROUPES_OG 2		//Nombre de groupes de TP en L1 Oil and Gas
 	// Nombre de groupes de TP de 20 élèves
-	const int NB_GROUPES =  NB_GROUPES_L0 + NB_GROUPES_CE +	NB_GROUPES_CS
-							+ NB_GROUPES_GE + NB_GROUPES_OG;
-	const int NB_GROUPES_L1 = NB_GROUPES - NB_GROUPES_L0;
+	#define NB_GROUPES 16 	//NB_GROUPES_L0 + NB_GROUPES_CE +	NB_GROUPES_CS + NB_GROUPES_GE + NB_GROUPES_OG;
+	#define NB_GROUPES_L1 8 //NB_GROUPES - NB_GROUPES_L0
 
-	#define MAX_GROUPES_SALLES 4 //nombre de groupes max dans une même salle
-
-	#define NB_COURS 5 			// Nombres de groupes de cours dans l'année
+	#define MAX_GROUPES_SALLES 4 //nombre de groupes max dans une même salles
 
 	//type de profs
 	#define PROF_MATH 0
@@ -141,13 +135,13 @@ ________________________________________________________________________________
 	//Specialités
 	const int NB_S3CE_PHYS[] = {48, 0, 48, 0};
 	const int NB_S3CS_PHYS[] = {48, 0, 48, 0};
-	const int NB_S3GE_PHYS[] = {48, 30, 48, 0}; // + Earth Science
-	const int NB_S3OG_PHYS[] = {63, 0, 57, 6}; // + Elec
+	const int NB_S3GE_PHYS[] = {48, 30, 48, 0};
+	const int NB_S3OG_PHYS[] = {63, 0, 57, 6};
 	const int NB_S3CE_INFO[] = {12, 0, 12, 12};
-	const int NB_S3CS_INFO[] = {48, 0, 33, 45}; // + Admin et C
+	const int NB_S3CS_INFO[] = {48, 0, 33, 45};
 	const int NB_S3GE_INFO[] = {12, 0, 12, 12};
 	const int NB_S3OG_INFO[] = {12, 0, 12, 12};
-	const int NB_S3CE_CHIM[] = {45, 0, 36, 36}; //Chemical eng + chem
+	const int NB_S3CE_CHIM[] = {45, 0, 36, 36};
 	const int NB_S3CS_CHIM[] = {0, 0, 0, 0};
 	const int NB_S3GE_CHIM[] = {30, 0, 21, 21};
 	const int NB_S3OG_CHIM[] = {30, 0, 21, 21};
@@ -155,7 +149,7 @@ ________________________________________________________________________________
 	//S4 Commun
 	const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
 	const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-	const int NB_S4_OTHER[] = {6, 0, 6, 6}; //introduction to the business world
+	const int NB_S4_OTHER[] = {6, 0, 6, 6};
 	//Spec
 	const int NB_S4CE_MATH[] = {30, 0, 42, 0};
 	const int NB_S4CS_MATH[] = {30, 0, 42, 0};
@@ -233,6 +227,7 @@ ________________________________________________________________________________
 \end
 
 \User functions:
+
 	/* fonction d'affichage */
 	string cmpTiret(int unsigned n)
 	{
@@ -290,7 +285,7 @@ Groupe
 	int		occupation	[NB_CRENEAUX];	/* indique si présente dans le créneau	*/
 	//si matiere[i] == COURS_LIBRE -> pas d'occupation
 	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
-	int 	coursSuivis[NB_MATIERES][NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
+	int 	coursASuivre[NB_MATIERES * NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
 }
 
 /* Classe représentant un enseignant.							*/
@@ -728,11 +723,11 @@ GenomeClass
 			Genome.groupes[i]->occupation[j] = 0;
 			Genome.groupes[i]->matiere[j] = COURS_LIBRE;
 		}
-		for(int j=0; j<NB_COURS; j++)
+		for(int j=0; j<NB_MATIERES; j++)
 		{
 			for(int k=0; k<NB_TYPES_COURS; k++)
 			{
-				Genome.groupes[i]->coursSuivis[j][k] = 0;
+				Genome.groupes[i]->coursASuivre[NB_MATIERES *j + k] = 0;
 			}
 		}
 	}
@@ -808,7 +803,7 @@ GenomeClass
 		//Le contient un cours supplémentaire
 		Genome.creneaux[creneau]->potentiel--;
 		//Le groupes suis un cours supplémentaire
-		Genome.groupes[groupe]->coursSuivis[matiere][type]++;
+		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]--;
 	}
 
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
@@ -830,7 +825,7 @@ GenomeClass
 			{
 				for(int l=0; l<NB_TYPES_COURS; l++)
 				{
-					if(Genome.groupes[j]->coursSuivis[k][l] != 0)
+					if(Genome.groupes[j]->coursASuivre[NB_MATIERES * k + l] != 0)
 					{
 						//Mauvais nombre d'heures suivis
 						evaluation += PENALITE_FORTE;
