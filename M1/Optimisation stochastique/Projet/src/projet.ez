@@ -493,7 +493,6 @@ GenomeClass
 	for(int i=0; i<NB_COURS; i++) 
 	{
 		Genome.cours[i]			= new Cours();
-		//TODO initialiser tous les cours en fonction du nombre d'heures souhaité par type de cours et matiere
 	}
 
 	//initialisation des creneaux
@@ -540,12 +539,12 @@ GenomeClass
 	{
 		if (Genome.groupes[k] == NULL)
 		{
-			Genome.groupes[k]			= new Groupe();
+			Genome.groupes[k]= new Groupe();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
-			Genome.groupes[k]->occupation[j]	= 0;
+			Genome.groupes[k]->occupation[j]= 0;
 		}
 	}
 
@@ -553,12 +552,12 @@ GenomeClass
 	{
 		if (Genome.profs[k] == NULL)
 		{
-			Genome.profs[k]			= new Prof();
+			Genome.profs[k]= new Prof();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
-			Genome.profs[k]->occupation[j]	= 0;
+			Genome.profs[k]->occupation[j]= COURS_LIBRE;
 		}
 	}
 
@@ -566,12 +565,12 @@ GenomeClass
 	{	
 		if (Genome.salles[k] == NULL)
 		{
-			Genome.salles[k]			= new Salle();
+			Genome.salles[k]= new Salle();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
-			Genome.salles[k]->occupation[j]	= 0;
+			Genome.salles[k]->occupation[j]	= COURS_LIBRE;
 		}
 	}
 
@@ -579,31 +578,31 @@ GenomeClass
 	{	
 		if (Genome.creneaux[j] == NULL)
 		{
-			Genome.creneaux[j]			= new Creneau();
+			Genome.creneaux[j]	= new Creneau();
 		}
-		Genome.creneaux[j]->potentiel		= NB_SALLES;
+		Genome.creneaux[j]->potentiel= NB_SALLES;
 	}
 
 	/* Affectation des compteurs 									*/
 	for (int i=0; i<NB_COURS; i++)
 	{
 		int j = Genome.cours[i]->creneau;
-		Genome.groupes	[Genome.cours[i]->groupes]	->occupation[j]++;
-		Genome.profs	[Genome.cours[i]->prof]		->occupation[j]++;
-		Genome.salles	[Genome.cours[i]->salle]	->occupation[j]++;
-		Genome.creneaux	[j]				->potentiel--;
+		Genome.groupes[Genome.cours[i]->groupes]->occupation[j]++;
+		Genome.profs[Genome.cours[i]->prof]	->occupation[j]++;
+		Genome.salles[Genome.cours[i]->salle]->occupation[j]++;
+		Genome.creneaux[j]->potentiel--;
 	}
 
 
 	/* Analyse & Modification des compteurs 							*/
 	for (int i=0; i<NB_COURS; i++)
 	{
-		int	j				= Genome.cours[i]->creneau;
-		int	c				= Genome.cours[i]->groupes;
-		int	p				= Genome.cours[i]->prof;
-		int	s				= Genome.cours[i]->salle;
-		int	err				= 0;
-		int	r				= j;
+		int	j= Genome.cours[i]->creneau;
+		int	c= Genome.cours[i]->groupes;
+		int	p= Genome.cours[i]->prof;
+		int	s= Genome.cours[i]->salle;
+		int	err	= 0;
+		int	r= j;
 			
 	/* en cas de mutation, on échange deux profs de même matière					*/
 	/*
@@ -971,7 +970,7 @@ GenomeClass
 	//pénalités faibles si plusieurs même cours dans une même journée par groupe
 	for(int i=0; i<NB_GROUPES; i++)
 	{
-		compteursPlusCours = 0
+		compteursPlusCours = 0;
 		for(int j=0; j<NB_CRENEAUX; j= j+NB_CRENEAUX_JOUR){
 			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
 				if(Genome.groupes[i]->matiere[j+k] == Genome.groupes[i]->matiere[j+k+1]){
