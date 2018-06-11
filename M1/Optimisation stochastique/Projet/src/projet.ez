@@ -88,7 +88,7 @@ ________________________________________________________________________________
 	#define NB_HEURES_MI_TEMPS 192
 	#define NB_HEURES_VACATAIRE 0
 	
-	#define TYPE_COURS 4 //CM, CI, TD et TP
+	#define NB_TYPE_COURS 4 //CM, CI, TD et TP
 
 	//on regroupe les cours par type
 	#define COURS_LIBRE -1
@@ -113,7 +113,6 @@ ________________________________________________________________________________
 \end
 
 \User functions:
-
 	int getNombreCoursL0(int matiere, int type)
 	{
 		//Cours L0
@@ -321,6 +320,68 @@ ________________________________________________________________________________
 		return oss.str();
 	}
 
+	Groupe* instancierGroupe()
+	{
+		Groupe* g = new Groupe();
+		g->specialisation = -1;
+		for(int i=0; i<NB_CRENEAUX; i++)
+		{
+			g->occupation[i] = 0;
+			g->matiere[i] = COURS_LIBRE;
+		}
+		
+		for(int i=0; i<NB_MATIERES * NB_TYPES_COURS; i++)
+		{
+			g->coursASuivre[i] = 0;
+		}
+		return g;
+	}
+
+	Cours* instancierCours()
+	{
+		Cours* c = new Cours();
+		c->groupe = GROUPE_LIBRE;
+		c->matiere = COURS_LIBRE;
+		c->type = -1;
+		c->prof = -1;
+		c->salle = -1;
+		c->creneau = -1;
+		return c;
+	}
+
+	Prof* instancierProf()
+	{
+		Prof* p = new Prof();
+		p->id = 'X';
+		p->type = -1;
+		p->potentiel = -1;
+		p->matiere = COURS_LIBRE;
+		for(int i=0; i<NB_CRENEAUX; i++)
+		{
+			p->occupation[i] = 0;
+			p->groupe[i] = GROUPE_LIBRE;
+		}
+		return p;
+	}
+
+	Salle* instancierSalle()
+	{
+		Salle* s = new Salle();
+		s->type = -1;
+		s->potentiel = 0;
+		for(int i=0; i<NB_CRENEAUX; i++)
+		{
+			s->occupation[i] = 0;
+		}
+		return s;
+	}
+
+	Creneau* instancierCreneau()
+	{
+		Creneau* c = new Creneau();
+		c->potentiel = NB_SALLES;
+		return c;
+	}
 \end
 
 /* -------------------------------------------------------------------------------------------- */
@@ -365,14 +426,13 @@ Prof
 /* Classe représentant une salle de cours.							*/
 Salle
 {
-	int		potentiel;					/* indique le nombre d'élève max dans la salle */
 	int		type;						//type de la salle
+	int 	potentiel;
 	int		occupation	[NB_CRENEAUX];	/* indique si occupée dans le créneau	*/
 }
 
 Creneau
 {
-	int horaire; //0 -> 8H30, 1 -> 10H15, 2 -> 12H45, 3 -> 14H30
 	int potentiel; // initialisé à NB_SALLES, si < 0, il y plus de cours qui de salles le même jour au même creneau
 }
 
@@ -389,19 +449,23 @@ GenomeClass
 \end
 /* -------------------------------------------------------------------------------------------- */
 
+\After everything else function:
+	bBest->printOn(cout);
+	std::cout << "meilleure évaluation : " << bBest->evaluate() << std::endl;
+\end
+
 \GenomeClass::display:
 	//TODO affichage console
-	std::cout << NB_PROFS << std::endl;
+	std::cout << "COMING SOON" << std::endl;
 \end
 
 \GenomeClass::initialiser:
-
 	//initialisation des groupes de TP
 
 	Groupe* g;
 	for(int i=0; i<NB_GROUPES; i++) 
 	{
-		g = new Groupe();
+		g = instancierGroupe();
 		if(i<NB_GROUPES_L0)
 		{
 			g->specialisation = SPEC_L0;
@@ -428,7 +492,7 @@ GenomeClass
 	//initialisation des profs
 	for(int i=0; i<NB_PROFS; i++)
 	{
-		Genome.profs[i] = new Prof();
+		Genome.profs[i] = instancierProf();
 	}
 	int compteur = 0;
 	for(int i=0; i<NB_PROF_MATH; i++) 
@@ -514,11 +578,28 @@ GenomeClass
 		compteur++;
 	}
 
+	Prof* p;
+	for(int i=0; i<NB_PROFS; i++)
+	{
+		p = Genome.profs[i];
+		switch(p->type)
+		{
+			case PROF_PLEIN_TEMPS:
+				p->potentiel = NB_HEURES_PLEIN_TEMPS;
+				break;
+			case PROF_MI_TEMPS:
+				p->potentiel = NB_HEURES_MI_TEMPS;
+				break;
+			default:
+				p->potentiel = NB_HEURES_VACATAIRE;
+		}
+	}
+
 	//initialisation des salles
 
 	for(int i=0; i<NB_SALLES; i++)
 	{
-		Genome.salles[i]			= new Salle();
+		Genome.salles[i]			= instancierSalle();
 		if(i<2)
 		{
 			Genome.salles[i]->type			= SALLE_CM;
@@ -549,13 +630,22 @@ GenomeClass
 	//initialisation des cours
 	for(int i=0; i<NB_COURS; i++) 
 	{
-		Genome.cours[i]			= new Cours();
+		Genome.cours[i]			= instancierCours();
 	}
 
 	//initialisation des creneaux
 	for(int i=0; i<NB_CRENEAUX; i++) 
 	{
-		Genome.creneaux[i] = new Creneau();
+		Genome.creneaux[i] = instancierCreneau();
+	}
+	
+	for(int i=0; i<10000; i++)
+	{
+		if(random(0, 5) >= 5)
+		{
+			std::cout << "random borne sup incluse" << std::endl;
+			break;
+		}
 	}
 
 	//TODO poser tous les cours pour les groupes suivant s'ils sont disponible (semi-aléatoire)
@@ -563,14 +653,12 @@ GenomeClass
 	//TODO tenter de faire un tirage aléatoire pour placer les profs et les salles sinon diriger le tirage aléatoire
 	for (int i=0; i<NB_COURS; i++)
 	{
-		int j = Genome.cours[i]->creneau;
-		Genome.groupes	[Genome.cours[i]->groupe]	->occupation[j]++;
-		Genome.groupes	[Genome.cours[i]->groupe]	->matiere[j] 		= Genome.cours[i]->matiere;
-		Genome.profs	[Genome.cours[i]->prof]		->potentiel--;
-		Genome.profs	[Genome.cours[i]->prof]		->occupation[j]++;
-		Genome.profs	[Genome.cours[i]->prof]		->groupe[j] 		= Genome.cours[i]->groupe;
-		Genome.salles	[Genome.cours[i]->salle]	->occupation[j]++;
-		Genome.creneaux	[j]							->potentiel--;
+		Genome.cours[i]->matiere = random(0, NB_MATIERES);;
+		Genome.cours[i]->type = random(0, NB_TYPE_COURS);;
+		Genome.cours[i]->groupe = random(0, NB_GROUPES);;
+		Genome.cours[i]->prof = random(0, NB_PROFS);;
+		Genome.cours[i]->salle = random(0, NB_SALLES);;
+		Genome.cours[i]->creneau = random(0, NB_CRENEAUX);;
 	}
 \end
 
@@ -779,7 +867,7 @@ GenomeClass
 	{
 		if(Genome.groupes[i] == NULL)
 		{
-			Genome.groupes[i] = new Groupe();
+			Genome.groupes[i] = instancierGroupe();
 		}
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
@@ -799,7 +887,7 @@ GenomeClass
 	{
 		if(Genome.profs[i] == NULL)
 		{
-			Genome.profs[i] = new Prof();
+			Genome.profs[i] = instancierProf();
 		}
 		switch(Genome.profs[i]->type)
 		{
@@ -823,7 +911,7 @@ GenomeClass
 	{
 		if(Genome.salles[i] == NULL)
 		{
-			Genome.salles[i] = new Salle();
+			Genome.salles[i] = instancierSalle();
 		}
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
@@ -835,38 +923,45 @@ GenomeClass
 	{
 		if(Genome.creneaux[i] == NULL)
 		{
-			Genome.creneaux[i] = new Creneau();
+			Genome.creneaux[i] = instancierCreneau();
 		}
 		Genome.creneaux[i]->potentiel = NB_SALLES;
 	}
 
 	int creneau, groupe, prof, matiere, type;
+	Cours* c;
 	for(int i=0; i<NB_COURS; i++)
 	{
+		c = Genome.cours[i];
 		//Creneau du cours
-		creneau = Genome.cours[i]->creneau;
+		creneau = c->creneau;
 		//groupe du cours
-		groupe = Genome.cours[i]->groupe;
+		groupe = c->groupe;
 		//prof du cours
-		prof = Genome.cours[i]->prof;
+		prof = c->prof;
 		//matiere du cours
-		matiere = Genome.cours[i]->matiere;
+		matiere = c->matiere;
 		//type du cours
-		type = Genome.cours[i]->type;
+		type = c->type;
+
 		//Le groupe du cours est occupé pour ce créneau
 		Genome.groupes[groupe]->occupation[creneau]++;
 		//La matiere que suit le groupe à ce creneau est celle du cours
 		Genome.groupes[groupe]->matiere[creneau] = matiere;
+		//Le groupes suis un cours supplémentaire
+		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]++;
+
 		//Le prof du cours est occupé pour ce créneau
 		Genome.profs[prof]->occupation[creneau]++;
 		//Le prof enseigne au groupe de ce cours
 		Genome.profs[prof]->groupe[creneau] = groupe;
+		//Le prof travail une heure
+		Genome.profs[prof]->potentiel--;
+
 		//La salle est occupé par un groupe
-		Genome.salles[Genome.cours[i]->salle]->occupation[creneau]++;
+		Genome.salles[c->salle]->occupation[creneau]++;
 		//Le contient un cours supplémentaire
 		Genome.creneaux[creneau]->potentiel--;
-		//Le groupes suis un cours supplémentaire
-		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]++;
 	}
 
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
@@ -960,7 +1055,6 @@ GenomeClass
 		}
 	}
 
-	Cours* c;
 	Salle* s;
 	Prof* p;
 	for(int i=0; i<NB_COURS; i++)
@@ -1068,8 +1162,8 @@ GenomeClass
 \end
 
 \Default run parameters :
-  Number of generations : 100
-  Time limit: 10
+  Number of generations : 10
+  Time limit: 120
   Population size : 100
   Offspring size : 40%
   Mutation probability : 1
