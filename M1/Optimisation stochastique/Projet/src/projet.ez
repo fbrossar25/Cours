@@ -31,6 +31,7 @@ ________________________________________________________________________________
 	#define SPEC_CS	2			// Computer Science
 	#define SPEC_GE	3			// Geophysical Engineering
 	#define SPEC_OG	4			// Oil and Gas
+	#define NB_SPECIALITES 5 	//(L0, CE, CS, GE, OG)
 
 	#define SALLE_CM 0			//Salle CM
 	#define SALLE_TD 1			//Salle TD
@@ -87,8 +88,6 @@ ________________________________________________________________________________
 	#define NB_HEURES_PLEIN_TEMPS 384
 	#define NB_HEURES_MI_TEMPS 192
 	#define NB_HEURES_VACATAIRE 0
-	
-	#define NB_TYPE_COURS 4 //CM, CI, TD et TP
 
 	//on regroupe les cours par type
 	#define COURS_LIBRE -1
@@ -106,7 +105,7 @@ ________________________________________________________________________________
 	#define COURS_CI 1
 	#define COURS_TD 2
 	#define COURS_TP 3
-	#define NB_TYPES_COURS 4
+	#define NB_TYPES_COURS 4 //CM, CI, TD et TP
 
 	#define NB_COURS 12946
 	
@@ -770,17 +769,14 @@ GenomeClass
 		Genome.creneaux[i] = instancierCreneau();
 	}
 
-	//TODO poser tous les cours pour les groupes suivant s'ils sont disponible (semi-aléatoire)
-	//faire un tirage aléatoire jusqu'a tomber sur un créneau ou le groupe sont libre et ou au moins une salle est libre
-	//TODO tenter de faire un tirage aléatoire pour placer les profs et les salles sinon diriger le tirage aléatoire
 	for (int i=0; i<NB_COURS; i++)
 	{
-		Genome.cours[i]->matiere = random(0, NB_MATIERES);;
-		Genome.cours[i]->type = random(0, NB_TYPE_COURS);;
-		Genome.cours[i]->groupe = random(0, NB_GROUPES);;
-		Genome.cours[i]->prof = random(0, NB_PROFS);;
-		Genome.cours[i]->salle = random(0, NB_SALLES);;
-		Genome.cours[i]->creneau = random(0, NB_CRENEAUX);;
+		Genome.cours[i]->matiere = random(0, NB_MATIERES);
+		Genome.cours[i]->type = random(0, NB_TYPES_COURS);
+		Genome.cours[i]->creneau  = random(0, NB_CRENEAUX);
+		Genome.cours[i]->salle = random(0, NB_SALLES);
+		Genome.cours[i]->groupe = random(0, NB_GROUPES);
+		Genome.cours[i]->prof = random(0, NB_PROFS);
 	}
 \end
 
