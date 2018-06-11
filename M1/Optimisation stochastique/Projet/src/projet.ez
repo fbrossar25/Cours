@@ -98,7 +98,7 @@ ________________________________________________________________________________
 	#define COURS_CHIMIE 3
 	#define COURS_ANGLAIS 4
 	#define COURS_FRANCAIS 5
-	#define COURS_AUTRE 6
+	#define COURS_AUTRE 6 //on considère que tous les profs peuvent enseigner ce cours
 	#define NB_MATIERES 7 //nombre de matiere non-libre
 
 	//type des cours (dois correspondre aux index des tableaux représentant les nombre d'heures de cours)
@@ -291,35 +291,6 @@ ________________________________________________________________________________
 		}
 	}
 
-	/* fonction d'affichage */
-	string cmpTiret(int unsigned n)
-	{
-		string Emot = "";
-		while (Emot.length() < n)
-		{
-			Emot += "-";
-		} 
-		return Emot;
-	}
-	/* Fonctions d'affichage, utilisées pour placer des espaces à coté du texte.			*/
-	string cmpEspaceAlignGauche(string mot, int unsigned n)
-		{ string Emot = mot; if ((Emot.length() > n) && (n > 2)) { Emot = mot.substr(0,n-3) + "..."; }
-		while (Emot.length() < n) { Emot = Emot + " "; } return Emot; }
-	string cmpEspaceAlignCentre(string mot, int unsigned n)
-		{ string Emot = mot; bool pos = true; if ((Emot.length() > n) && (n > 2)) { Emot = mot.substr(0,n-3) + "..."; }
-		while (Emot.length() < n) { if (pos) { Emot = Emot + " "; pos = false; }  else { Emot = " " + Emot; pos = true; } } return Emot; }
-	string cmpEspaceAlignDroite(string mot, int unsigned n)
-		{ string Emot = mot; if ((Emot.length() > n) && (n > 2)) { Emot = mot.substr(0,n-3) + "..."; }
-		while (Emot.length() < n) { Emot = + " " + Emot; } return Emot; }
-	/* Fonction de convertion, permet de changer une valeur numérique en texte pour son affichage	*/
-	template<typename T>
-	string chiffre2string(T c)
-	{
-		ostringstream oss;
-		oss << c;
-		return oss.str();
-	}
-
 	Groupe* instancierGroupe()
 	{
 		Groupe* g = new Groupe();
@@ -328,6 +299,7 @@ ________________________________________________________________________________
 		{
 			g->occupation[i] = 0;
 			g->matiere[i] = COURS_LIBRE;
+			g->cours[i] = NULL;
 		}
 		
 		for(int i=0; i<NB_MATIERES * NB_TYPES_COURS; i++)
@@ -360,6 +332,7 @@ ________________________________________________________________________________
 		{
 			p->occupation[i] = 0;
 			p->groupe[i] = GROUPE_LIBRE;
+			p->cours[i] = NULL;
 		}
 		return p;
 	}
@@ -381,6 +354,71 @@ ________________________________________________________________________________
 		Creneau* c = new Creneau();
 		c->potentiel = NB_SALLES;
 		return c;
+	}
+
+	std::string creneauToString(int creneau)
+	{
+		switch(creneau % 4)
+		{
+			case 0: return "8H30 - 10H";
+			case 1: return "10H15 - 11H45";
+			case 2: return "12H45 - 14H15";
+			case 3: return "14H30 - 16H";
+			default: return "Erreur";
+		}
+	}
+
+	std::string matiereToString(int matiere)
+	{
+		switch(matiere)
+		{
+			case COURS_MATH: return "MATH";
+			case COURS_PHYSIQUE: return "PHYSIQUE";
+			case COURS_INFO: return "INFO";
+			case COURS_CHIMIE: return "CHIMIE";
+			case COURS_ANGLAIS: return "ANGLAIS";
+			case COURS_FRANCAIS: return "FRANCAIS";
+			case COURS_AUTRE: return "AUTRE";
+			default: return "ERREUR";
+		}
+	}
+
+	std::string typeCoursToString(int type)
+	{
+		switch(type)
+		{
+			case COURS_CM: return "CM";
+			case COURS_CI: return "CI";
+			case COURS_TD: return "TD";
+			case COURS_TP: return "TP";
+			default: return "ERREUR";
+		}
+	}
+
+	std::string specialisationToString(int spe)
+	{
+		switch(spe)
+		{
+			case SPEC_L0: return "L0";
+			case SPEC_CE: return "spécialité Chemical Engineering";
+			case SPEC_CS: return "spécialité Computer Science";
+			case SPEC_GE: return "spécialité Geophysical Engineering";
+			case SPEC_OG: return "spécialité Oil and Gas";
+			default: return "ERREUR";
+		}
+	}
+
+	std::string typeSalleToString(int type)
+	{
+		switch(type)
+		{
+			case SALLE_CM: return "CM";
+			case SALLE_TD: return "TD";
+			case SALLE_LABO: return "LABO";
+			case SALLE_INFO: return "INFO";
+			case SALLE_LANG: return "LANG";
+			default: return "ERREUR";
+		}
 	}
 \end
 
@@ -410,6 +448,7 @@ Groupe
 	//si matiere[i] == COURS_LIBRE -> pas d'occupation
 	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
 	int 	coursASuivre[NB_MATIERES * NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
+	Cours*  cours[NB_CRENEAUX];
 }
 
 /* Classe représentant un enseignant.							*/
@@ -421,6 +460,7 @@ Prof
 	int		occupation	[NB_CRENEAUX];	/* nombre de cours sur un même creneau */
 	int		matiere;						//matiere enseignée par le prof
 	int		groupe		[NB_CRENEAUX];		/* indique le group dans le créneau	*/
+	Cours*  cours[NB_CRENEAUX];
 }
 
 /* Classe représentant une salle de cours.							*/
@@ -450,13 +490,104 @@ GenomeClass
 /* -------------------------------------------------------------------------------------------- */
 
 \After everything else function:
-	bBest->printOn(cout);
-	std::cout << "meilleure évaluation : " << bBest->evaluate() << std::endl;
+	//bBest->printOn(std::cout);
+	std::string nomFichier = "resultat.txt";
+	std::fstream fichier(nomFichier, ios::out);
+	if(fichier.good())
+	{
+		bBest->printOn(fichier);
+		fichier << std::endl << "évaluation : " << bBest->evaluate() << std::endl;
+		fichier.close();
+		std::cout << "Meilleure évaluation : " << bBest->evaluate() << std::endl;
+	}
+	else
+	{
+		std::cout << std::endl << "Ouverture du fichier " << nomFichier << " impossible, affichage dans la sortie standard." << std::endl;
+		bBest->printOn(std::cout);
+		std::cout << std::endl << "évaluation : " << bBest->evaluate() << std::endl;
+	}
 \end
 
 \GenomeClass::display:
-	//TODO affichage console
-	std::cout << "COMING SOON" << std::endl;
+	os << "======================Affichage des salles======================" << std::endl;
+
+	for(int i=0; i<NB_SALLES; i++)
+	{
+		os << "Salle " << i << " : " << typeSalleToString(Genome.salles[i]->type) << std::endl;
+	}
+
+	os << "======================Affichage des groupes======================" << std::endl;
+
+	for(int i=0; i<NB_GROUPES; i++)
+	{
+		os << "Groupe TP " << i << " : " << specialisationToString(Genome.groupes[i]->specialisation) << std::endl;
+	}
+
+	os << "======================Affichage des emplois du temps des profs======================" << std::endl;
+
+	int compteurJours;
+	std::string indent = "    ";
+	Prof* p;
+	Cours* c;
+	for(int i=0; i<NB_COURS; i++)
+	{
+		Genome.groupes[Genome.cours[i]->groupe]->cours[Genome.cours[i]->creneau] = Genome.cours[i];
+		Genome.profs[Genome.cours[i]->prof]->cours[Genome.cours[i]->creneau] = Genome.cours[i];
+	}
+
+	for(int i=0; i<NB_PROFS; i++)
+	{
+		p = Genome.profs[i];
+		os << "----------" << "prof " << p->id << "(" << matiereToString(p->matiere) << ")----------" << std::endl;
+		compteurJours = 0;
+		for(int j=0; j<NB_CRENEAUX; j++)
+		{
+			if(j % 4 == 0)
+			{
+				compteurJours++;
+				os << "Jour " << compteurJours << ":" << std::endl;
+			}
+			c = p->cours[j];
+			if(c == NULL)
+			{
+				os << indent << creneauToString(j) << " : LIBRE" << std::endl;
+			}
+			else
+			{
+				os << indent << creneauToString(j) << " : groupe TP " << c->groupe << " -> " << matiereToString(c->matiere);
+				os << ", salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
+			}
+		}
+	}
+
+	os << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl;
+
+	Groupe* g;
+	for(int i=0; i<NB_GROUPES; i++)
+	{
+		g = Genome.groupes[i];
+		os << "Groupe TP " << i << " : " << specialisationToString(g->specialisation) << std::endl;
+		compteurJours = 0;
+		for(int j=0; j<NB_CRENEAUX; j++)
+		{
+			if(j % 4 == 0)
+			{
+				compteurJours++;
+				os << "Jour " << compteurJours << ":" << std::endl;
+			}
+			c = g->cours[j];
+			if(c == NULL)
+			{
+				os << indent << creneauToString(j) << " : LIBRE" << std::endl;
+			}
+			else
+			{
+				os << indent << creneauToString(j) << " : prof " << Genome.profs[c->prof]->id << " -> " << matiereToString(c->matiere);
+				os << ", salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
+			}
+		}
+	}
+
 \end
 
 \GenomeClass::initialiser:
@@ -638,15 +769,6 @@ GenomeClass
 	{
 		Genome.creneaux[i] = instancierCreneau();
 	}
-	
-	for(int i=0; i<10000; i++)
-	{
-		if(random(0, 5) >= 5)
-		{
-			std::cout << "random borne sup incluse" << std::endl;
-			break;
-		}
-	}
 
 	//TODO poser tous les cours pour les groupes suivant s'ils sont disponible (semi-aléatoire)
 	//faire un tirage aléatoire jusqu'a tomber sur un créneau ou le groupe sont libre et ou au moins une salle est libre
@@ -663,10 +785,10 @@ GenomeClass
 \end
 
 \GenomeClass::crossover:
-	//pour chaque cours, 1 chance sur 2 de garder le creneau
+	//pour chaque cours, 1 chance sur 2 de garder le creneau du parent
 	for (int i=0; i<NB_COURS; i++)
 	{
-		if(random(0.0,1.0) < 0.5)
+		if(random(0.0, 1.0) < 0.5)
 		{
 			child.cours[i]->creneau = parent2.cours[i]->creneau;
 		}
@@ -685,12 +807,12 @@ GenomeClass
 	{
 		if (Genome.groupes[k] == NULL)
 		{
-			Genome.groupes[k]= new Groupe();
+			Genome.groupes[k] = instancierGroupe();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
-			Genome.groupes[k]->occupation[j]= 0;
+			Genome.groupes[k]->occupation[j] = 0;
 		}
 	}
 
@@ -698,12 +820,12 @@ GenomeClass
 	{
 		if (Genome.profs[k] == NULL)
 		{
-			Genome.profs[k]= new Prof();
+			Genome.profs[k]= instancierProf();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
-			Genome.profs[k]->occupation[j]= COURS_LIBRE;
+			Genome.profs[k]->occupation[j] = COURS_LIBRE;
 		}
 	}
 
@@ -711,7 +833,7 @@ GenomeClass
 	{	
 		if (Genome.salles[k] == NULL)
 		{
-			Genome.salles[k]= new Salle();
+			Genome.salles[k]= instancierSalle();
 		}
 
 		for(int j=0; j<NB_CRENEAUX; j++)
@@ -724,9 +846,9 @@ GenomeClass
 	{	
 		if (Genome.creneaux[j] == NULL)
 		{
-			Genome.creneaux[j]	= new Creneau();
+			Genome.creneaux[j]	= instancierCreneau();
 		}
-		Genome.creneaux[j]->potentiel= NB_SALLES;
+		Genome.creneaux[j]->potentiel = NB_SALLES;
 	}
 
 	/* Affectation des compteurs 									*/
@@ -994,14 +1116,11 @@ GenomeClass
 
 		for(int j=0; j<NB_PROFS; j++)
 		{
-			if(Genome.profs[j]->occupation[i] != COURS_LIBRE)
-			{
-				compteurCoursProf++;
-			}
 			if(Genome.profs[j]->occupation[i] > 1)
 			{
 				//plus d'un cours en même temps 
 				evaluation += PENALITE_OBLIGATOIRE;
+				compteurCoursProf++;
 			}
 		}
 
@@ -1064,8 +1183,9 @@ GenomeClass
 		p = Genome.profs[c->prof];
 
 		//Évaluation matiere / prof
-		if(p->matiere != c->matiere)
+		if(c->matiere != COURS_AUTRE && c->matiere != COURS_LIBRE && p->matiere != c->matiere)
 		{
+			//Si le prof ne peut pas enseigner cette matiere
 			evaluation += PENALITE_OBLIGATOIRE;
 		}
 
@@ -1162,12 +1282,12 @@ GenomeClass
 \end
 
 \Default run parameters :
-  Number of generations : 10
+  Number of generations : 20
   Time limit: 120
   Population size : 100
   Offspring size : 40%
-  Mutation probability : 1
-  Crossover probability : 1
+  Mutation probability : 0.5
+  Crossover probability : 0.5
   Evaluator goal : Minimise
   Selection operator: Tournament 2.0
   Surviving parents: 90%
