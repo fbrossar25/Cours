@@ -279,7 +279,7 @@ Groupe
 	//si matiere[i] == COURS_LIBRE -> pas d'occupation
 	int		matiere		[NB_CRENEAUX];	/* indique la matière dans le créneau	*/
 	int 	coursASuivre[NB_MATIERES * NB_TYPES_COURS]; /* indique le nombre de cours suivis de chaque matiere et type */
-	Cours*  cours[NB_CRENEAUX];
+	Cours*  cours[NB_CRENEAUX]; //utilisé uniquement dans display pour simplifier l'affichage
 }
 
 /* Classe représentant un enseignant.							*/
@@ -291,7 +291,7 @@ Prof
 	int		occupation	[NB_CRENEAUX];	/* nombre de cours sur un même creneau */
 	int		matiere;						//matiere enseignée par le prof
 	int		groupe		[NB_CRENEAUX];		/* indique le group dans le créneau	*/
-	Cours*  cours[NB_CRENEAUX];
+	Cours*  cours[NB_CRENEAUX]; //utilisé uniquement dans display pour simplifier l'affichage
 }
 
 /* Classe représentant une salle de cours.							*/
@@ -360,6 +360,7 @@ GenomeClass
 	std::string indent = "    ";
 	Prof* p;
 	Cours* c;
+	//Pour simplifier l'affichage
 	for(int i=0; i<NB_COURS; i++)
 	{
 		Genome.groupes[Genome.cours[i]->groupe]->cours[Genome.cours[i]->creneau] = Genome.cours[i];
