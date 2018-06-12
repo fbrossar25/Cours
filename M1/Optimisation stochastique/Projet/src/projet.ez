@@ -107,6 +107,44 @@ ________________________________________________________________________________
 	#define COURS_TP 3
 	#define NB_TYPES_COURS 4 //CM, CI, TD et TP
 
+	//liste des cours à suivre de tous les groupes / matières / types
+	int listeCoursASuivre[] = {
+		20, 106, 0, 0,
+		14, 70, 0, 21,
+		10, 88, 0, 21,
+		0, 84, 0, 42,
+		0, 112, 0, 42,
+		14, 70, 0, 21,
+		0, 0, 8, 42,
+		60, 0, 84, 0,
+		84, 0, 84, 0,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		90, 0, 81, 72,
+		6, 6, 0, 6,
+		60, 0, 84, 0,
+		84, 0, 84, 0,
+		99, 0, 84, 81,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		0, 0, 0, 0,
+		6, 6, 0, 6,
+		60, 0, 84, 0,
+		84, 60, 84, 0,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		60, 0, 51, 42,
+		6, 6, 0, 6,
+		75, 0, 90, 9,
+		99, 0, 93, 6,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		60, 0, 51, 42,
+		6, 6, 0, 6
+	};
 	#define NB_COURS 12946
 	
 \end
@@ -357,14 +395,14 @@ GenomeClass
 		os << "Salle " << i << " : " << typeSalleToString(Genome.salles[i]->type) << std::endl;
 	}
 
-	os << "======================Affichage des groupes======================" << std::endl << std::endl;
+	os << std::endl << "======================Affichage des groupes======================" << std::endl << std::endl;
 
 	for(int i=0; i<NB_GROUPES; ++i)
 	{
 		os << "Groupe TP " << i << " : " << specialisationToString(Genome.groupes[i]->specialisation) << std::endl;
 	}
 
-	os << "======================Affichage des emplois du temps des profs======================" << std::endl << std::endl;
+	os << std::endl << "======================Affichage des emplois du temps des profs======================" << std::endl << std::endl;
 
 	int compteurJours;
 	std::string indent = "    ";
@@ -397,12 +435,12 @@ GenomeClass
 			else
 			{
 				os << indent << creneauToString(j) << " : groupe TP " << c->groupe << " -> " << matiereToString(c->matiere);
-				os << ", salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
+				os << "(" << typeCoursToString(c->type) << "), salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
 			}
 		}
 	}
 
-	os << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl << std::endl;
+	os << std::endl << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl << std::endl;
 
 	Groupe* g;
 	for(int i=0; i<NB_GROUPES; ++i)
@@ -425,7 +463,7 @@ GenomeClass
 			else
 			{
 				os << indent << creneauToString(j) << " : prof " << Genome.profs[c->prof]->id << " -> " << matiereToString(c->matiere);
-				os << ", salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
+				os << "(" << typeCoursToString(c->type) << "), salle " << c->salle << "(" << typeSalleToString(Genome.salles[c->salle]->type) << ")" << std::endl;
 			}
 		}
 	}
@@ -433,46 +471,10 @@ GenomeClass
 \end
 
 \GenomeClass::initialiser:
-	//liste des cours à suivre de tous les groupes / matières / types
-	static const int listeCoursASuivre[] = {
-		20, 106, 0, 0,
-		14, 70, 0, 21,
-		10, 88, 0, 21,
-		0, 84, 0, 42,
-		0, 112, 0, 42,
-		14, 70, 0, 21,
-		0, 0, 8, 42,
-		60, 0, 84, 0,
-		84, 0, 84, 0,
-		24, 0, 24, 24,
-		0, 72, 0, 36,
-		0, 72, 0, 36,
-		90, 0, 81, 72,
-		6, 6, 0, 6,
-		60, 0, 84, 0,
-		84, 0, 84, 0,
-		99, 0, 84, 81,
-		0, 72, 0, 36,
-		0, 72, 0, 36,
-		0, 0, 0, 0,
-		6, 6, 0, 6,
-		60, 0, 84, 0,
-		84, 60, 84, 0,
-		24, 0, 24, 24,
-		0, 72, 0, 36,
-		0, 72, 0, 36,
-		60, 0, 51, 42,
-		6, 6, 0, 6,
-		75, 0, 90, 9,
-		99, 0, 93, 6,
-		24, 0, 24, 24,
-		0, 72, 0, 36,
-		0, 72, 0, 36,
-		60, 0, 51, 42,
-		6, 6, 0, 6
-	};
 	//initialisation des groupes de TP
+	int compteur = 0;
 	Groupe* g;
+	int nbCours;
 	for(int i=0; i<NB_GROUPES; ++i) 
 	{
 		g = instancierGroupe();
@@ -501,15 +503,29 @@ GenomeClass
 		{
 			for(int k=0; k<NB_TYPES_COURS; ++k) //type
 			{
-				g->coursASuivre[getIdxNombreCours(j, k)] = listeCoursASuivre[getIdxNombreCours(g->specialisation, j, k)];
+				nbCours = listeCoursASuivre[getIdxNombreCours(g->specialisation, j, k)];
+				g->coursASuivre[getIdxNombreCours(j, k)] = nbCours;
+				for(int l=0; l<nbCours; l++)
+				{
+					Genome.cours[compteur] = instancierCours();
+					Genome.cours[compteur]->matiere = j;
+					Genome.cours[compteur]->type = k;
+					Genome.cours[compteur]->groupe = i;
+					compteur++;
+				}
 			}
 		}
-
 		Genome.groupes[i] = g;
+	}
+	
+	if(compteur != NB_COURS)
+	{
+		std::cerr << "Erreur : nombre d'instanciation incorrect (" << compteur << ")" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 
 	//initialisation des profs
-	int compteur = 0;
+	compteur = 0;
 	for(int i=0; i<NB_PROF_MATH; ++i) 
 	{
 		Genome.profs[compteur] = instancierProf();
@@ -651,44 +667,93 @@ GenomeClass
 	}
 
 	//initialisation des cours
-	int r, j, tries;
+	int r, j, tries, limit, typeSalle;
 	Prof* p;
 	Salle* s;
 	for(int i=0; i<NB_COURS; ++i) 
 	{
-		Genome.cours[i]			= instancierCours();
-		Genome.cours[i]->matiere = random(0, NB_MATIERES);
-		Genome.cours[i]->type = random(0, NB_TYPES_COURS);
-
+		g = Genome.groupes[Genome.cours[i]->groupe];
 		tries = 0;
 		do
 		{
 			//on cherche une créneau aléatoire ayant au moins une salle de libre quelle qu'elle soit
 			r = random(0, NB_CRENEAUX);
 			tries++;
-		}while(Genome.creneaux[r]->potentiel <= 0 && tries < NB_CRENEAUX);
+		}while(Genome.creneaux[r]->potentiel <= 0  && g->occupation[Genome.cours[i]->creneau] > 0 && tries < NB_CRENEAUX);
 		Genome.cours[i]->creneau  = r;
 		Genome.creneaux[Genome.cours[i]->creneau]->potentiel--;
-
-		tries = 0;
-		do
-		{
-			r = random(0, NB_SALLES);
-			s = Genome.salles[r];
-			tries++;
-		}while(s->occupation[Genome.cours[i]->creneau] >= s->potentiel && tries < NB_SALLES);
-		Genome.cours[i]->salle = r;
-		s->occupation[Genome.cours[i]->creneau]++;
-
-		tries = 0;
-		do
-		{
-			r = random(0, NB_GROUPES);
-			g = Genome.groupes[r];
-			tries++;
-		}while(g->occupation[Genome.cours[i]->creneau] > 0 && tries < NB_GROUPES);
-		Genome.cours[i]->groupe = r;
 		g->occupation[Genome.cours[i]->creneau]++;
+
+		//dans les autre cas on prend au hasard un prof libre pouvant enseigné la matière
+		if((Genome.cours[i]->matiere == COURS_FRANCAIS || Genome.cours[i]->matiere == COURS_ANGLAIS) && Genome.cours[i]->type != COURS_CM)
+		{
+			limit = NB_SALLE_LANG;
+			typeSalle = SALLE_LANG;
+		}
+		else
+		{
+			switch(Genome.cours[i]->type)
+			{
+				case COURS_CM:
+					limit = NB_SALLE_CM;
+					typeSalle = SALLE_CM;
+					break;
+				case COURS_CI:
+				case COURS_TD:
+					limit = NB_SALLE_TD;
+					typeSalle = SALLE_TD;
+					break;
+				case COURS_TP:
+					switch(Genome.cours[i]->matiere)
+					{
+						case COURS_PHYSIQUE:
+						case COURS_CHIMIE:
+							limit = NB_SALLE_LABO;
+							typeSalle = SALLE_LABO;
+							break;
+						case COURS_INFO:
+							limit = NB_SALLE_INFO;
+							typeSalle = SALLE_INFO;
+							break;
+						default:
+							limit = 0;
+							typeSalle = -1;
+					}
+					break;
+				default:
+					limit = 0;
+					typeSalle = -1;
+			}
+		}
+		if(typeSalle < 0)
+		{
+			tries = 0;
+			do
+			{
+				r = random(0, NB_SALLES);
+				s = Genome.salles[r];
+				tries++;
+			}while(s->occupation[Genome.cours[i]->creneau] >= s->potentiel && tries < NB_SALLES);
+			Genome.cours[i]->salle = r;
+			s->occupation[Genome.cours[i]->creneau]++;
+		}
+		else
+		{
+			j=0;
+			while(Genome.salles[j]->type != typeSalle)
+			{
+				j++;
+			}
+			tries = 0;
+			do
+			{
+				r = random(0, limit);
+				s = Genome.salles[j + r];
+				tries++;
+			}while(s->occupation[Genome.cours[i]->creneau] >= s->potentiel && tries < NB_SALLES);
+			Genome.cours[i]->salle = j + r;
+			s->occupation[Genome.cours[i]->creneau]++;
+		}
 
 		if(Genome.cours[i]->matiere == COURS_AUTRE)
 		{
@@ -705,7 +770,6 @@ GenomeClass
 		else
 		{
 			//dans les autre cas on prend au hasard un prof libre pouvant enseigné la matière
-			int limit;
 			switch(Genome.cours[i]->matiere)
 			{
 				case COURS_MATH: limit = NB_PROF_MATH; break;
@@ -727,7 +791,7 @@ GenomeClass
 				r = random(0, limit);
 				p = Genome.profs[j + r];
 				tries++;
-			}while(p->occupation[Genome.cours[i]->creneau] > 0 && p->type != PROF_VACATAIRE && p->potentiel > 0 && tries < NB_PROFS);
+			}while(p->occupation[Genome.cours[i]->creneau] > 0 && (p->type == PROF_VACATAIRE || p->potentiel > 0) && tries < NB_PROFS);
 			Genome.cours[i]->prof = j + r;
 			p->occupation[Genome.cours[i]->creneau]++;
 			p->potentiel--;
@@ -736,6 +800,8 @@ GenomeClass
 \end
 
 \GenomeClass::crossover:
+	//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
+	//si le cours est dans une salle appropriée
 	int matiere, salle, type;
 	Salle* s;
 	for (int i=0; i<NB_COURS; ++i)
@@ -744,66 +810,47 @@ GenomeClass
 		salle = parent2.cours[i]->salle;
 		type = parent2.cours[i]->type;
 		s = parent2.salles[salle];
-		
-		/*if(random(0.0, 1.0) < 0.5)
+		switch(type)
 		{
-			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
-			//si le prof peut enseigner le cours
-			if(matiere != COURS_LIBRE && matiere != COURS_AUTRE)
-			{
-				if(matiere == COURS_AUTRE || matiere == parent2.profs[prof]->matiere)
+			case COURS_CM:
+				if(s->type == SALLE_CM)
 				{
 					copierCours(parent2.cours[i], child.cours[i]);
 				}
-			}
-		}
-		else */
-		if(random(0.0, 1.0) < 0.5)
-		{
-			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
-			//si si le cours est dans une salle appropriée
-			switch(type)
-			{
-				case COURS_CM:
-					if(s->type == SALLE_CM)
-					{
-						copierCours(parent2.cours[i], child.cours[i]);
-					}
-					break;
-				case COURS_CI:
-				case COURS_TD:
-					if(s->type == SALLE_TD)
-					{
-						copierCours(parent2.cours[i], child.cours[i]);
-					}
-					break;
-				case COURS_TP:
-					switch(matiere)
-					{
-						case COURS_INFO:
-							if(s->type == SALLE_INFO)
-							{
-								copierCours(parent2.cours[i], child.cours[i]);
-							}
-						case COURS_PHYSIQUE:
-						case COURS_CHIMIE:
-							if(s->type == SALLE_LABO)
-							{
-								copierCours(parent2.cours[i], child.cours[i]);
-							}
-							break;
-						case COURS_FRANCAIS:
-						case COURS_ANGLAIS:
-							if(s->type == SALLE_LANG)
-							{
-								copierCours(parent2.cours[i], child.cours[i]);
-							}
-							break;
-						default:;
-					}
-					break;
-				default:;
-			}
+				break;
+			case COURS_CI:
+			case COURS_TD:
+				if(s->type == SALLE_TD)
+				{
+					copierCours(parent2.cours[i], child.cours[i]);
+				}
+				break;
+			case COURS_TP:
+				switch(matiere)
+				{
+					case COURS_INFO:
+						if(s->type == SALLE_INFO)
+						{
+							copierCours(parent2.cours[i], child.cours[i]);
+						}
+					case COURS_PHYSIQUE:
+					case COURS_CHIMIE:
+						if(s->type == SALLE_LABO)
+						{
+							copierCours(parent2.cours[i], child.cours[i]);
+						}
+						break;
+					case COURS_FRANCAIS:
+					case COURS_ANGLAIS:
+						if(s->type == SALLE_LANG)
+						{
+							copierCours(parent2.cours[i], child.cours[i]);
+						}
+						break;
+					default:;
+				}
+				break;
+			default:;
 		}
 	}
 \end
@@ -1255,9 +1302,9 @@ GenomeClass
 \end
 
 \Default run parameters :
-  Number of generations : 50
+  Number of generations : 30
   Time limit: 120
-  Population size : 100
+  Population size : 20
   Offspring size : 40%
   Mutation probability : 0.5
   Crossover probability : 0.5
