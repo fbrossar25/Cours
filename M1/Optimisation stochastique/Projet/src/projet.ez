@@ -94,9 +94,9 @@ ________________________________________________________________________________
 	#define COURS_MATH 0
 	#define COURS_PHYSIQUE 1
 	#define COURS_INFO 2
-	#define COURS_CHIMIE 3
-	#define COURS_ANGLAIS 4
-	#define COURS_FRANCAIS 5
+	#define COURS_ANGLAIS 3
+	#define COURS_FRANCAIS 4
+	#define COURS_CHIMIE 5
 	#define COURS_AUTRE 6 //on considère que tous les profs peuvent enseigner ce cours
 	#define NB_MATIERES 7 //nombre de matiere non-libre
 
@@ -112,182 +112,14 @@ ________________________________________________________________________________
 \end
 
 \User functions:
-	int getNombreCoursL0(int matiere, int type)
+	inline int getIdxNombreCours(int specialite, int matiere, int type)
 	{
-		//Cours L0
-		//S1
-		const int NB_S1_MATH[] = {0, 42, 0, 0};
-		const int NB_S1_PHYS[] = {0, 42, 0, 0}; 
-		const int NB_S1_CHIM[] = {0, 42, 0, 0}; 
-		const int NB_S1_INFO[] = {0, 56, 0, 0}; 
-		const int NB_S1_FRANCAIS[] = {0, 42, 0, 42}; 
-		const int NB_S1_ANGLAIS[] = {0, 70, 0, 42}; 
-		const int NB_S1_OTHER[] = {0, 0, 0, 14};
-		
-		//S2
-		const int NB_S2_MATH[] = {20, 64, 0, 0}; 
-		const int NB_S2_PHYS[] = {14, 28, 0, 21}; 
-		const int NB_S2_INFO[] = {10, 32, 0, 21};
-		const int NB_S2_CHIM[] = {14, 28, 0, 21};  
-		const int NB_S2_FRANCAIS[] = {0, 42, 0, 0}; 
-		const int NB_S2_ANGLAIS[] = {0, 42, 0, 0}; 
-		const int NB_S2_OTHER[] = {0, 0, 8, 28};
-
-		switch(matiere)
-		{
-			case COURS_MATH: return NB_S1_MATH[type] + NB_S2_MATH[type];
-			case COURS_PHYSIQUE: return NB_S1_PHYS[type] + NB_S2_PHYS[type];
-			case COURS_INFO: return NB_S1_INFO[type] + NB_S2_INFO[type];
-			case COURS_CHIMIE: return NB_S1_CHIM[type] + NB_S2_CHIM[type];
-			case COURS_ANGLAIS: return NB_S1_ANGLAIS[type] + NB_S2_ANGLAIS[type];
-			case COURS_FRANCAIS: return NB_S1_FRANCAIS[type] + NB_S2_FRANCAIS[type];
-			case COURS_AUTRE: return NB_S1_OTHER[type] + NB_S2_OTHER[type];
-			default: return 0;
-		}
+		return (((specialite * NB_MATIERES) + matiere) * NB_TYPES_COURS) + type;
 	}
-
-	int getNombreCoursCE(int matiere, int type)
+	
+	inline int getIdxNombreCours(int matiere, int type)
 	{
-		const int NB_S3_MATH[] = {30, 0, 42, 0};
-		const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
-		const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-		const int NB_S3_OTHER[] = {0, 0, 0, 0};
-		const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
-		const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-		const int NB_S4_OTHER[] = {6, 0, 6, 6};
-		const int NB_S3CE_PHYS[] = {48, 0, 48, 0};
-		const int NB_S3CE_INFO[] = {12, 0, 12, 12};
-		const int NB_S3CE_CHIM[] = {45, 0, 36, 36};
-		const int NB_S4CE_MATH[] = {30, 0, 42, 0};
-		const int NB_S4CE_PHYS[] = {36, 0, 36, 0};
-		const int NB_S4CE_INFO[] = {12, 0, 12, 12};
-		const int NB_S4CE_CHIM[] = {45, 0, 45, 36};
-
-		switch(matiere)
-		{
-			case COURS_MATH: return NB_S3_MATH[type] + NB_S4CE_MATH[type];
-			case COURS_PHYSIQUE: return NB_S3CE_PHYS[type] + NB_S4CE_PHYS[type];
-			case COURS_INFO: return NB_S3CE_INFO[type] + NB_S4CE_INFO[type];
-			case COURS_CHIMIE: return NB_S3CE_CHIM[type] + NB_S4CE_CHIM[type];
-			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
-			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
-			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
-			default: return 0;
-		}
-	}
-
-	int getNombreCoursCS(int matiere, int type)
-	{
-        const int NB_S3_MATH[] = {30, 0, 42, 0};
-        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
-        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-        const int NB_S3_OTHER[] = {0, 0, 0, 0};
-        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
-        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-        const int NB_S4_OTHER[] = {6, 0, 6, 6};
-        const int NB_S3CS_PHYS[] = {48, 0, 48, 0};
-        const int NB_S3CS_INFO[] = {48, 0, 33, 45};
-        const int NB_S3CS_CHIM[] = {0, 0, 0, 0};
-        const int NB_S4CS_MATH[] = {30, 0, 42, 0};
-        const int NB_S4CS_PHYS[] = {36, 0, 36, 0};
-        const int NB_S4CS_INFO[] = {51, 0, 51, 36};
-        const int NB_S4CS_CHIM[] = {0, 0, 0, 0};
-
-		switch(matiere)
-		{
-			case COURS_MATH: return NB_S3_MATH[type] + NB_S4CS_MATH[type];
-			case COURS_PHYSIQUE: return NB_S3CS_PHYS[type] + NB_S4CS_PHYS[type];
-			case COURS_INFO: return NB_S3CS_INFO[type] + NB_S4CS_INFO[type];
-			case COURS_CHIMIE: return NB_S3CS_CHIM[type] + NB_S4CS_CHIM[type];
-			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
-			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
-			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
-			default: return 0;
-		}
-	}
-
-	int getNombreCoursGE(int matiere, int type)
-	{
-
-        const int NB_S3_MATH[] = {30, 0, 42, 0};
-        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
-        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-        const int NB_S3_OTHER[] = {0, 0, 0, 0};
-        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
-        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-        const int NB_S4_OTHER[] = {6, 0, 6, 6};
-        const int NB_S3GE_PHYS[] = {48, 30, 48, 0};
-        const int NB_S3GE_INFO[] = {12, 0, 12, 12};
-        const int NB_S3GE_CHIM[] = {30, 0, 21, 21};
-        const int NB_S4GE_MATH[] = {30, 0, 42, 0};
-        const int NB_S4GE_PHYS[] = {36, 30, 36, 0};
-        const int NB_S4GE_INFO[] = {12, 0, 12, 12};
-        const int NB_S4GE_CHIM[] = {30, 0, 30, 21};
-
-		switch(matiere)
-		{
-			case COURS_MATH: return NB_S3_MATH[type] + NB_S4GE_MATH[type];
-			case COURS_PHYSIQUE: return NB_S3GE_PHYS[type] + NB_S4GE_PHYS[type];
-			case COURS_INFO: return NB_S3GE_INFO[type] + NB_S4GE_INFO[type];
-			case COURS_CHIMIE: return NB_S3GE_CHIM[type] + NB_S4GE_CHIM[type];
-			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
-			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
-			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
-			default: return 0;
-		}
-	}
-
-	int getNombreCoursOG(int matiere, int type)
-	{
-
-        const int NB_S3_MATH[] = {30, 0, 42, 0};
-        const int NB_S3_FRANCAIS[] = {0, 36, 0, 0};
-        const int NB_S3_ANGLAIS[] = {0, 36, 0, 0};
-        const int NB_S3_OTHER[] = {0, 0, 0, 0};
-        const int NB_S4_FRANCAIS[] = {0, 36, 0, 36};
-        const int NB_S4_ANGLAIS[] = {0, 36, 0, 36};
-        const int NB_S4_OTHER[] = {6, 0, 6, 6};
-        const int NB_S3OG_PHYS[] = {63, 0, 57, 6};
-        const int NB_S3OG_INFO[] = {12, 0, 12, 12};
-        const int NB_S3OG_CHIM[] = {30, 0, 21, 21};
-        const int NB_S4OG_MATH[] = {45, 0, 48, 9};
-        const int NB_S4OG_PHYS[] = {36, 0, 36, 0}; 
-        const int NB_S4OG_INFO[] = {12, 0, 12, 12};
-        const int NB_S4OG_CHIM[] = {30, 0, 30, 21};
-
-		switch(matiere)
-		{
-			case COURS_MATH: return NB_S3_MATH[type] + NB_S4OG_MATH[type];
-			case COURS_PHYSIQUE: return NB_S3OG_PHYS[type] + NB_S4OG_PHYS[type];
-			case COURS_INFO: return NB_S3OG_INFO[type] + NB_S4OG_INFO[type];
-			case COURS_CHIMIE: return NB_S3OG_CHIM[type] + NB_S4OG_CHIM[type];
-			case COURS_ANGLAIS: return NB_S3_ANGLAIS[type] + NB_S4_ANGLAIS[type];
-			case COURS_FRANCAIS: return NB_S3_FRANCAIS[type] + NB_S4_FRANCAIS[type];
-			case COURS_AUTRE: return NB_S3_OTHER[type] + NB_S4_OTHER[type];
-			default: return 0;
-		}
-	}
-
-	int getNombreCours(int matiere, int specialite, int type)
-	{
-		switch(type)
-		{
-			case COURS_CM: break;
-			case COURS_CI: break;
-			case COURS_TD: break;
-			case COURS_TP: break;
-			default: return 0;
-		}
-
-		switch(specialite)
-		{
-			case SPEC_L0: return getNombreCoursL0(matiere, type);
-			case SPEC_CE: return getNombreCoursCE(matiere, type);
-			case SPEC_CS: return getNombreCoursCS(matiere, type);
-			case SPEC_GE: return getNombreCoursGE(matiere, type);
-			case SPEC_OG: return getNombreCoursOG(matiere, type);
-			default: return 0;
-		}
+		return (matiere * NB_TYPES_COURS) + type;
 	}
 
 	Groupe* instancierGroupe()
@@ -508,21 +340,21 @@ GenomeClass
 \end
 
 \GenomeClass::display:
-	os << "======================Affichage des salles======================" << std::endl;
+	os << "======================Affichage des salles======================" << std::endl << std::endl;
 
 	for(int i=0; i<NB_SALLES; i++)
 	{
 		os << "Salle " << i << " : " << typeSalleToString(Genome.salles[i]->type) << std::endl;
 	}
 
-	os << "======================Affichage des groupes======================" << std::endl;
+	os << "======================Affichage des groupes======================" << std::endl << std::endl;
 
 	for(int i=0; i<NB_GROUPES; i++)
 	{
 		os << "Groupe TP " << i << " : " << specialisationToString(Genome.groupes[i]->specialisation) << std::endl;
 	}
 
-	os << "======================Affichage des emplois du temps des profs======================" << std::endl;
+	os << "======================Affichage des emplois du temps des profs======================" << std::endl << std::endl;
 
 	int compteurJours;
 	std::string indent = "    ";
@@ -537,7 +369,7 @@ GenomeClass
 	for(int i=0; i<NB_PROFS; i++)
 	{
 		p = Genome.profs[i];
-		os << "----------" << "prof " << p->id << "(" << matiereToString(p->matiere) << ")----------" << std::endl;
+		os << "----------" << "prof " << p->id << "(" << matiereToString(p->matiere) << ")----------" << std::endl << std::endl;
 		compteurJours = 0;
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
@@ -559,13 +391,13 @@ GenomeClass
 		}
 	}
 
-	os << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl;
+	os << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl << std::endl;
 
 	Groupe* g;
 	for(int i=0; i<NB_GROUPES; i++)
 	{
 		g = Genome.groupes[i];
-		os << "Groupe TP " << i << " : " << specialisationToString(g->specialisation) << std::endl;
+		os << "----------" << "Groupe TP " << i << " : " << specialisationToString(g->specialisation) << "----------" << std::endl << std::endl;
 		compteurJours = 0;
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
@@ -590,8 +422,45 @@ GenomeClass
 \end
 
 \GenomeClass::initialiser:
+	//liste des cours à suivre de tous les groupes / matières / types
+	static const int listeCoursASuivre[] = {
+		20, 106, 0, 0,
+		14, 70, 0, 21,
+		10, 88, 0, 21,
+		0, 84, 0, 42,
+		0, 112, 0, 42,
+		14, 70, 0, 21,
+		0, 0, 8, 42,
+		60, 0, 84, 0,
+		84, 0, 84, 0,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		90, 0, 81, 72,
+		6, 6, 0, 6,
+		60, 0, 84, 0,
+		84, 0, 84, 0,
+		99, 0, 84, 81,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		0, 0, 0, 0,
+		6, 6, 0, 6,
+		60, 0, 84, 0,
+		84, 60, 84, 0,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		60, 0, 51, 42,
+		6, 6, 0, 6,
+		75, 0, 90, 9,
+		99, 0, 93, 6,
+		24, 0, 24, 24,
+		0, 72, 0, 36,
+		0, 72, 0, 36,
+		60, 0, 51, 42,
+		6, 6, 0, 6
+	};
 	//initialisation des groupes de TP
-
 	Groupe* g;
 	for(int i=0; i<NB_GROUPES; i++) 
 	{
@@ -616,6 +485,15 @@ GenomeClass
 		{
 			g->specialisation = SPEC_OG;
 		}
+		
+		for(int i=0; i<NB_MATIERES; i++) //matiere
+		{
+			for(int j=0; j<NB_TYPES_COURS; j++) //type
+			{
+				g->coursASuivre[getIdxNombreCours(i, j)] = listeCoursASuivre[getIdxNombreCours(g->specialisation, i, j)];
+			}
+		}
+
 		Genome.groupes[i] = g;
 	}
 
@@ -797,11 +675,6 @@ GenomeClass
 	/* Initialisation des compteurs 								*/
 	for (int k=0; k<NB_GROUPES; k++)
 	{
-		if (Genome.groupes[k] == NULL)
-		{
-			Genome.groupes[k] = instancierGroupe();
-		}
-
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.groupes[k]->occupation[j] = 0;
@@ -810,11 +683,6 @@ GenomeClass
 
 	for (int k=0; k<NB_PROFS; k++)
 	{
-		if (Genome.profs[k] == NULL)
-		{
-			Genome.profs[k]= instancierProf();
-		}
-
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.profs[k]->occupation[j] = COURS_LIBRE;
@@ -822,12 +690,7 @@ GenomeClass
 	}
 
 	for (int k=0; k<NB_SALLES; k++)
-	{	
-		if (Genome.salles[k] == NULL)
-		{
-			Genome.salles[k]= instancierSalle();
-		}
-
+	{
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.salles[k]->occupation[j]	= COURS_LIBRE;
@@ -835,11 +698,7 @@ GenomeClass
 	}
 
 	for (int j=0; j<NB_CRENEAUX; j++)
-	{	
-		if (Genome.creneaux[j] == NULL)
-		{
-			Genome.creneaux[j]	= instancierCreneau();
-		}
+	{
 		Genome.creneaux[j]->potentiel = NB_SALLES;
 	}
 
@@ -982,10 +841,6 @@ GenomeClass
 			Genome.groupes[i]->occupation[j] = 0;
 			Genome.groupes[i]->matiere[j] = COURS_LIBRE;
 		}
-		for(int j=0; j<NB_MATIERES*NB_TYPES_COURS; j++)
-		{
-			Genome.groupes[i]->coursASuivre[j] = 0;
-		}
 	}
 
 	for(int i=0; i<NB_PROFS; i++)
@@ -1042,7 +897,7 @@ GenomeClass
 		//La matiere que suit le groupe à ce creneau est celle du cours
 		Genome.groupes[groupe]->matiere[creneau] = matiere;
 		//Le groupes suis un cours supplémentaire
-		Genome.groupes[groupe]->coursASuivre[NB_MATIERES * matiere + type]++;
+		Genome.groupes[groupe]->coursASuivre[getIdxNombreCours(matiere, type)]--;
 
 		//Le prof du cours est occupé pour ce créneau
 		Genome.profs[prof]->occupation[creneau]++;
@@ -1063,7 +918,7 @@ GenomeClass
 		{
 			for(int k=0; k<NB_TYPES_COURS; k++)
 			{
-				if(Genome.groupes[i]->coursASuivre[(NB_MATIERES * j) + k] != getNombreCours(j, Genome.groupes[i]->specialisation, k))
+				if(Genome.groupes[i]->coursASuivre[getIdxNombreCours(j, k)] != 0)
 				{
 					//Mauvais nombre d'heures suivis
 					evaluation += PENALITE_FORTE;
