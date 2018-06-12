@@ -757,20 +757,16 @@ GenomeClass
 		}
 	}
 
-	//initialisation des cours
-	for(int i=0; i<NB_COURS; i++) 
-	{
-		Genome.cours[i]			= instancierCours();
-	}
-
 	//initialisation des creneaux
 	for(int i=0; i<NB_CRENEAUX; i++) 
 	{
 		Genome.creneaux[i] = instancierCreneau();
 	}
 
-	for (int i=0; i<NB_COURS; i++)
+	//initialisation des cours
+	for(int i=0; i<NB_COURS; i++) 
 	{
+		Genome.cours[i]			= instancierCours();
 		Genome.cours[i]->matiere = random(0, NB_MATIERES);
 		Genome.cours[i]->type = random(0, NB_TYPES_COURS);
 		Genome.cours[i]->creneau  = random(0, NB_CRENEAUX);
@@ -872,7 +868,6 @@ GenomeClass
 	/*
 		if (sigmaP < pMutPerGene)
 		{
-	//		cout<<"MUTATION !!"<<endl;
 			int k		= 0;
 			int minprof	= 0;
 			int maxprof	= nbProfsTx[k];
@@ -897,7 +892,6 @@ GenomeClass
 			{
 				if (Genome.cours[x]->prof == y)
 				{
-	//				cout<<"On remplace :"<<chiffre2string(p)<<" par "<<chiffre2string(y)<<endl;
 					Genome.cours[x]->prof = p;
 					Genome.profs	[p]	->occupation[Genome.cours[x]->creneau]++;
 					Genome.profs	[y]	->occupation[Genome.cours[x]->creneau]--;
@@ -983,30 +977,19 @@ GenomeClass
 	//initialisation des compteurs à des valeurs par défaut
 	for(int i=0; i<NB_GROUPES; i++)
 	{
-		if(Genome.groupes[i] == NULL)
-		{
-			Genome.groupes[i] = instancierGroupe();
-		}
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.groupes[i]->occupation[j] = 0;
 			Genome.groupes[i]->matiere[j] = COURS_LIBRE;
 		}
-		for(int j=0; j<NB_MATIERES; j++)
+		for(int j=0; j<NB_MATIERES*NB_TYPES_COURS; j++)
 		{
-			for(int k=0; k<NB_TYPES_COURS; k++)
-			{
-				Genome.groupes[i]->coursASuivre[(NB_MATIERES * j) + k] = 0;
-			}
+			Genome.groupes[i]->coursASuivre[j] = 0;
 		}
 	}
 
 	for(int i=0; i<NB_PROFS; i++)
 	{
-		if(Genome.profs[i] == NULL)
-		{
-			Genome.profs[i] = instancierProf();
-		}
 		switch(Genome.profs[i]->type)
 		{
 			case PROF_PLEIN_TEMPS:
@@ -1027,10 +1010,6 @@ GenomeClass
 
 	for(int i=0; i<NB_SALLES; i++)
 	{
-		if(Genome.salles[i] == NULL)
-		{
-			Genome.salles[i] = instancierSalle();
-		}
 		for(int j=0; j<NB_CRENEAUX; j++)
 		{
 			Genome.salles[i]->occupation[j] = 0;
@@ -1039,10 +1018,6 @@ GenomeClass
 
 	for(int i=0; i<NB_CRENEAUX; i++)
 	{
-		if(Genome.creneaux[i] == NULL)
-		{
-			Genome.creneaux[i] = instancierCreneau();
-		}
 		Genome.creneaux[i]->potentiel = NB_SALLES;
 	}
 
@@ -1082,6 +1057,21 @@ GenomeClass
 		Genome.creneaux[creneau]->potentiel--;
 	}
 
+	for(int i=0; i<NB_GROUPES; i++)
+	{
+		for(int j=0; j<NB_MATIERES; j++)
+		{
+			for(int k=0; k<NB_TYPES_COURS; k++)
+			{
+				if(Genome.groupes[i]->coursASuivre[(NB_MATIERES * j) + k] != getNombreCours(j, Genome.groupes[i]->specialisation, k))
+				{
+					//Mauvais nombre d'heures suivis
+					evaluation += PENALITE_FORTE;
+				}
+			}
+		}
+	}
+
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
 	int compteurCoursGroupe = 0, compteurCoursProf = 0;
 	for(int i=0; i<NB_CRENEAUX; i++)
@@ -1096,17 +1086,6 @@ GenomeClass
 			{
 				//plus d'un cours en même temps 
 				evaluation += PENALITE_OBLIGATOIRE;
-			}
-			for(int k=0; k<NB_MATIERES; k++)
-			{
-				for(int l=0; l<NB_TYPES_COURS; l++)
-				{
-					if(Genome.groupes[j]->coursASuivre[(NB_MATIERES * k) + l] != getNombreCours(k, Genome.groupes[j]->specialisation, l))
-					{
-						//Mauvais nombre d'heures suivis
-						evaluation += PENALITE_FORTE;
-					}
-				}
 			}
 		}
 
