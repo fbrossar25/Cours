@@ -112,6 +112,16 @@ ________________________________________________________________________________
 \end
 
 \User functions:
+	void copierCours(Cours* from, Cours* to)
+	{
+		to->groupe = from->groupe;
+		to->matiere = from->matiere;
+		to->type = from->type;
+		to->prof = from->prof;
+		to->salle = from->salle;
+		to->creneau = from->creneau;
+	}
+
 	inline int getIdxNombreCours(int specialite, int matiere, int type)
 	{
 		return (((specialite * NB_MATIERES) + matiere) * NB_TYPES_COURS) + type;
@@ -656,12 +666,74 @@ GenomeClass
 \end
 
 \GenomeClass::crossover:
-	//pour chaque cours, 1 chance sur 2 de garder le creneau du parent
+	int prof, matiere, salle, type;
+	Salle* s;
 	for (int i=0; i<NB_COURS; i++)
 	{
+		matiere = parent2.cours[i]->matiere;
+		prof = parent2.cours[i]->prof;
+		salle = parent2.cours[i]->salle;
+		type = parent2.cours[i]->type;
+		s = parent2.salles[salle];
+		
 		if(random(0.0, 1.0) < 0.5)
 		{
-			child.cours[i]->creneau = parent2.cours[i]->creneau;
+			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
+			//si le prof peut enseigner le cours
+			if(matiere != COURS_LIBRE && matiere != COURS_AUTRE)
+			{
+				if(matiere == COURS_AUTRE || matiere == parent2.profs[prof]->matiere)
+				{
+					copierCours(parent2.cours[i], child.cours[i]);
+				}
+			}
+		}
+		else if(random(0.0, 1.0) < 0.5)
+		{
+			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
+			//si si le cours est dans une salle appropriée
+			switch(type)
+			{
+				case COURS_CM:
+					if(s->type == SALLE_CM)
+					{
+						copierCours(parent2.cours[i], child.cours[i]);
+					}
+					break;
+				case COURS_CI:
+				case COURS_TD:
+					if(s->type == SALLE_TD)
+					{
+						copierCours(parent2.cours[i], child.cours[i]);
+					}
+					break;
+				case COURS_TP:
+					switch(matiere)
+					{
+						case COURS_INFO:
+							if(s->type == SALLE_INFO)
+							{
+								copierCours(parent2.cours[i], child.cours[i]);
+							}
+						case COURS_PHYSIQUE:
+						case COURS_CHIMIE:
+							if(s->type == SALLE_LABO)
+							{
+								copierCours(parent2.cours[i], child.cours[i]);
+							}
+							break;
+						case COURS_FRANCAIS:
+						case COURS_ANGLAIS:
+							if(s->type == SALLE_LANG)
+							{
+								copierCours(parent2.cours[i], child.cours[i]);
+							}
+							break;
+						default:;
+					}
+					break;
+				default:;
+			}
 		}
 	}
 \end
