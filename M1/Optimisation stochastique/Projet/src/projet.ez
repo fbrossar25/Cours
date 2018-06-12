@@ -136,14 +136,14 @@ ________________________________________________________________________________
 	{
 		Groupe* g = new Groupe();
 		g->specialisation = -1;
-		for(int i=0; i<NB_CRENEAUX; i++)
+		for(int i=0; i<NB_CRENEAUX; ++i)
 		{
 			g->occupation[i] = 0;
 			g->matiere[i] = COURS_LIBRE;
 			g->cours[i] = NULL;
 		}
 		
-		for(int i=0; i<NB_MATIERES * NB_TYPES_COURS; i++)
+		for(int i=0; i<NB_MATIERES * NB_TYPES_COURS; ++i)
 		{
 			g->coursASuivre[i] = 0;
 		}
@@ -169,7 +169,7 @@ ________________________________________________________________________________
 		p->type = -1;
 		p->potentiel = -1;
 		p->matiere = COURS_LIBRE;
-		for(int i=0; i<NB_CRENEAUX; i++)
+		for(int i=0; i<NB_CRENEAUX; ++i)
 		{
 			p->occupation[i] = 0;
 			p->groupe[i] = GROUPE_LIBRE;
@@ -183,7 +183,7 @@ ________________________________________________________________________________
 		Salle* s = new Salle();
 		s->type = -1;
 		s->potentiel = 0;
-		for(int i=0; i<NB_CRENEAUX; i++)
+		for(int i=0; i<NB_CRENEAUX; ++i)
 		{
 			s->occupation[i] = 0;
 		}
@@ -352,14 +352,14 @@ GenomeClass
 \GenomeClass::display:
 	os << "======================Affichage des salles======================" << std::endl << std::endl;
 
-	for(int i=0; i<NB_SALLES; i++)
+	for(int i=0; i<NB_SALLES; ++i)
 	{
 		os << "Salle " << i << " : " << typeSalleToString(Genome.salles[i]->type) << std::endl;
 	}
 
 	os << "======================Affichage des groupes======================" << std::endl << std::endl;
 
-	for(int i=0; i<NB_GROUPES; i++)
+	for(int i=0; i<NB_GROUPES; ++i)
 	{
 		os << "Groupe TP " << i << " : " << specialisationToString(Genome.groupes[i]->specialisation) << std::endl;
 	}
@@ -371,13 +371,13 @@ GenomeClass
 	Prof* p;
 	Cours* c;
 	//Pour simplifier l'affichage
-	for(int i=0; i<NB_COURS; i++)
+	for(int i=0; i<NB_COURS; ++i)
 	{
 		Genome.groupes[Genome.cours[i]->groupe]->cours[Genome.cours[i]->creneau] = Genome.cours[i];
 		Genome.profs[Genome.cours[i]->prof]->cours[Genome.cours[i]->creneau] = Genome.cours[i];
 	}
 
-	for(int i=0; i<NB_PROFS; i++)
+	for(int i=0; i<NB_PROFS; ++i)
 	{
 		p = Genome.profs[i];
 		os << "----------" << "prof " << p->id << "(" << matiereToString(p->matiere) << ")----------" << std::endl << std::endl;
@@ -405,7 +405,7 @@ GenomeClass
 	os << "======================Affichage des emplois du temps des groupes de TP======================" << std::endl << std::endl;
 
 	Groupe* g;
-	for(int i=0; i<NB_GROUPES; i++)
+	for(int i=0; i<NB_GROUPES; ++i)
 	{
 		g = Genome.groupes[i];
 		os << "----------" << "Groupe TP " << i << " : " << specialisationToString(g->specialisation) << "----------" << std::endl << std::endl;
@@ -473,7 +473,7 @@ GenomeClass
 	};
 	//initialisation des groupes de TP
 	Groupe* g;
-	for(int i=0; i<NB_GROUPES; i++) 
+	for(int i=0; i<NB_GROUPES; ++i) 
 	{
 		g = instancierGroupe();
 		if(i<NB_GROUPES_L0)
@@ -497,11 +497,11 @@ GenomeClass
 			g->specialisation = SPEC_OG;
 		}
 		
-		for(int i=0; i<NB_MATIERES; i++) //matiere
+		for(int j=0; j<NB_MATIERES; ++j) //matiere
 		{
-			for(int j=0; j<NB_TYPES_COURS; j++) //type
+			for(int k=0; k<NB_TYPES_COURS; ++k) //type
 			{
-				g->coursASuivre[getIdxNombreCours(i, j)] = listeCoursASuivre[getIdxNombreCours(g->specialisation, i, j)];
+				g->coursASuivre[getIdxNombreCours(j, k)] = listeCoursASuivre[getIdxNombreCours(g->specialisation, j, k)];
 			}
 		}
 
@@ -509,114 +509,112 @@ GenomeClass
 	}
 
 	//initialisation des profs
-	for(int i=0; i<NB_PROFS; i++)
-	{
-		Genome.profs[i] = instancierProf();
-	}
 	int compteur = 0;
-	for(int i=0; i<NB_PROF_MATH; i++) 
+	for(int i=0; i<NB_PROF_MATH; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		Genome.profs[compteur]->matiere = PROF_MATH;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		compteur++;
 	}
-	for(int i=0; i<NB_PROF_PHYSIQUE; i++) 
+	for(int i=0; i<NB_PROF_PHYSIQUE; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->matiere = PROF_PHYSIQUE;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		if(i < 2)
 		{
 			Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		}
 		else if(i == 3)
 		{
 			Genome.profs[compteur]->type = PROF_MI_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_MI_TEMPS;
 		}
 		else
 		{
 			Genome.profs[compteur]->type = PROF_VACATAIRE;
+			Genome.profs[compteur]->potentiel = NB_HEURES_VACATAIRE;
 		}
 		compteur++;
 	}
-	for(int i=0; i<NB_PROF_INFO; i++) 
+	for(int i=0; i<NB_PROF_INFO; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->matiere = PROF_INFO;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		if(i < 2)
 		{
 			Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		}
 		else if(i == 3)
 		{
 			Genome.profs[compteur]->type = PROF_MI_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_MI_TEMPS;
 		}
 		else
 		{
 			Genome.profs[compteur]->type = PROF_VACATAIRE;
+			Genome.profs[compteur]->potentiel = NB_HEURES_VACATAIRE;
 		}
 		compteur++;
 	}
-	for(int i=0; i<NB_PROF_CHIMIE; i++) 
+	for(int i=0; i<NB_PROF_CHIMIE; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->matiere = PROF_CHIMIE;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		if(i < 2)
 		{
 			Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		}
 		else
 		{
 			Genome.profs[compteur]->type = PROF_MI_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_MI_TEMPS;
 		}
 		compteur++;
 	}
-	for(int i=0; i<NB_PROF_ANGLAIS; i++) 
+	for(int i=0; i<NB_PROF_ANGLAIS; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->matiere = PROF_ANGLAIS;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+		Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		compteur++;
 	}
-	for(int i=0; i<NB_PROF_FRANCAIS; i++) 
+	for(int i=0; i<NB_PROF_FRANCAIS; ++i) 
 	{
+		Genome.profs[compteur] = instancierProf();
 		Genome.profs[compteur]->matiere = PROF_FRANCAIS;
 		Genome.profs[compteur]->id = (char)('A' + i);
 		if(i < 2)
 		{
 			Genome.profs[compteur]->type = PROF_PLEIN_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_PLEIN_TEMPS;
 		}
 		else if(i < 4)
 		{
 			Genome.profs[compteur]->type = PROF_MI_TEMPS;
+			Genome.profs[compteur]->potentiel = NB_HEURES_MI_TEMPS;
 		}
 		else
 		{
 			Genome.profs[compteur]->type = PROF_VACATAIRE;
+			Genome.profs[compteur]->potentiel = NB_HEURES_VACATAIRE;
 		}
 		compteur++;
 	}
 
-	Prof* p;
-	for(int i=0; i<NB_PROFS; i++)
-	{
-		p = Genome.profs[i];
-		switch(p->type)
-		{
-			case PROF_PLEIN_TEMPS:
-				p->potentiel = NB_HEURES_PLEIN_TEMPS;
-				break;
-			case PROF_MI_TEMPS:
-				p->potentiel = NB_HEURES_MI_TEMPS;
-				break;
-			default:
-				p->potentiel = NB_HEURES_VACATAIRE;
-		}
-	}
-
 	//initialisation des salles
 
-	for(int i=0; i<NB_SALLES; i++)
+	for(int i=0; i<NB_SALLES; ++i)
 	{
 		Genome.salles[i]			= instancierSalle();
 		if(i<2)
@@ -647,36 +645,107 @@ GenomeClass
 	}
 
 	//initialisation des creneaux
-	for(int i=0; i<NB_CRENEAUX; i++) 
+	for(int i=0; i<NB_CRENEAUX; ++i) 
 	{
 		Genome.creneaux[i] = instancierCreneau();
 	}
 
 	//initialisation des cours
-	for(int i=0; i<NB_COURS; i++) 
+	int r, j, tries;
+	Prof* p;
+	Salle* s;
+	for(int i=0; i<NB_COURS; ++i) 
 	{
 		Genome.cours[i]			= instancierCours();
 		Genome.cours[i]->matiere = random(0, NB_MATIERES);
 		Genome.cours[i]->type = random(0, NB_TYPES_COURS);
-		Genome.cours[i]->creneau  = random(0, NB_CRENEAUX);
-		Genome.cours[i]->salle = random(0, NB_SALLES);
-		Genome.cours[i]->groupe = random(0, NB_GROUPES);
-		Genome.cours[i]->prof = random(0, NB_PROFS);
+
+		tries = 0;
+		do
+		{
+			//on cherche une créneau aléatoire ayant au moins une salle de libre quelle qu'elle soit
+			r = random(0, NB_CRENEAUX);
+			tries++;
+		}while(Genome.creneaux[r]->potentiel <= 0 && tries < NB_CRENEAUX);
+		Genome.cours[i]->creneau  = r;
+		Genome.creneaux[Genome.cours[i]->creneau]->potentiel--;
+
+		tries = 0;
+		do
+		{
+			r = random(0, NB_SALLES);
+			s = Genome.salles[r];
+			tries++;
+		}while(s->occupation[Genome.cours[i]->creneau] >= s->potentiel && tries < NB_SALLES);
+		Genome.cours[i]->salle = r;
+		s->occupation[Genome.cours[i]->creneau]++;
+
+		tries = 0;
+		do
+		{
+			r = random(0, NB_GROUPES);
+			g = Genome.groupes[r];
+			tries++;
+		}while(g->occupation[Genome.cours[i]->creneau] > 0 && tries < NB_GROUPES);
+		Genome.cours[i]->groupe = r;
+		g->occupation[Genome.cours[i]->creneau]++;
+
+		if(Genome.cours[i]->matiere == COURS_AUTRE)
+		{
+			//n'importe quel prof libre peut enseigner les cours qualifiés comme 'autre'
+			tries = 0;
+			do
+			{
+				r = random(0, NB_PROFS);
+				tries++;
+			}while(Genome.profs[r]->occupation[Genome.cours[i]->creneau] > 0 && tries < NB_PROFS);
+			Genome.cours[i]->prof = r;
+			Genome.profs[r]->occupation[Genome.cours[i]->creneau]++;
+		}
+		else
+		{
+			//dans les autre cas on prend au hasard un prof libre pouvant enseigné la matière
+			int limit;
+			switch(Genome.cours[i]->matiere)
+			{
+				case COURS_MATH: limit = NB_PROF_MATH; break;
+				case COURS_INFO: limit = NB_PROF_INFO; break;
+				case COURS_PHYSIQUE: limit = NB_PROF_PHYSIQUE; break;
+				case COURS_CHIMIE: limit = NB_PROF_CHIMIE; break;
+				case COURS_FRANCAIS: limit = NB_PROF_FRANCAIS; break;
+				case COURS_ANGLAIS: limit = NB_PROF_ANGLAIS; break;
+				default: limit = 0;
+			}
+			j=0;
+			while(Genome.profs[j]->matiere != Genome.cours[i]->matiere)
+			{
+				j++;
+			}
+			tries = 0;
+			do
+			{
+				r = random(0, limit);
+				p = Genome.profs[j + r];
+				tries++;
+			}while(p->occupation[Genome.cours[i]->creneau] > 0 && p->type != PROF_VACATAIRE && p->potentiel > 0 && tries < NB_PROFS);
+			Genome.cours[i]->prof = j + r;
+			p->occupation[Genome.cours[i]->creneau]++;
+			p->potentiel--;
+		}
 	}
 \end
 
 \GenomeClass::crossover:
-	int prof, matiere, salle, type;
+	int matiere, salle, type;
 	Salle* s;
-	for (int i=0; i<NB_COURS; i++)
+	for (int i=0; i<NB_COURS; ++i)
 	{
 		matiere = parent2.cours[i]->matiere;
-		prof = parent2.cours[i]->prof;
 		salle = parent2.cours[i]->salle;
 		type = parent2.cours[i]->type;
 		s = parent2.salles[salle];
 		
-		if(random(0.0, 1.0) < 0.5)
+		/*if(random(0.0, 1.0) < 0.5)
 		{
 			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
 			//si le prof peut enseigner le cours
@@ -688,7 +757,8 @@ GenomeClass
 				}
 			}
 		}
-		else if(random(0.0, 1.0) < 0.5)
+		else */
+		if(random(0.0, 1.0) < 0.5)
 		{
 			//pour chaque cours, 1 chance sur 2 de garder le creneau du parent2
 			//si si le cours est dans une salle appropriée
@@ -746,37 +816,37 @@ GenomeClass
 	/* -------------------------------------------------------------------------------------------- */
 
 	/* Initialisation des compteurs 								*/
-	for (int k=0; k<NB_GROUPES; k++)
+	for (int k=0; k<NB_GROUPES; ++k)
 	{
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.groupes[k]->occupation[j] = 0;
 		}
 	}
 
-	for (int k=0; k<NB_PROFS; k++)
+	for (int k=0; k<NB_PROFS; ++k)
 	{
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.profs[k]->occupation[j] = COURS_LIBRE;
 		}
 	}
 
-	for (int k=0; k<NB_SALLES; k++)
+	for (int k=0; k<NB_SALLES; ++k)
 	{
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.salles[k]->occupation[j]	= COURS_LIBRE;
 		}
 	}
 
-	for (int j=0; j<NB_CRENEAUX; j++)
+	for (int j=0; j<NB_CRENEAUX; ++j)
 	{
 		Genome.creneaux[j]->potentiel = NB_SALLES;
 	}
 
 	/* Affectation des compteurs 									*/
-	for (int i=0; i<NB_COURS; i++)
+	for (int i=0; i<NB_COURS; ++i)
 	{
 		int j = Genome.cours[i]->creneau;
 		Genome.groupes[Genome.cours[i]->groupe]->occupation[j]++;
@@ -787,7 +857,7 @@ GenomeClass
 
 
 	/* Analyse & Modification des compteurs 							*/
-	for (int i=0; i<NB_COURS; i++)
+	for (int i=0; i<NB_COURS; ++i)
 	{
 		int	j= Genome.cours[i]->creneau;
 		int	c= Genome.cours[i]->groupe;
@@ -820,7 +890,7 @@ GenomeClass
 				y = p+1;
 			}
 				
-			for (int x=0; x<NB_COURS; x++)
+			for (int x=0; x<NB_COURS; ++x)
 			{
 				if (Genome.cours[x]->prof == y)
 				{
@@ -907,16 +977,16 @@ GenomeClass
 	int evaluation = 0;
 
 	//initialisation des compteurs à des valeurs par défaut
-	for(int i=0; i<NB_GROUPES; i++)
+	for(int i=0; i<NB_GROUPES; ++i)
 	{
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.groupes[i]->occupation[j] = 0;
 			Genome.groupes[i]->matiere[j] = COURS_LIBRE;
 		}
 	}
 
-	for(int i=0; i<NB_PROFS; i++)
+	for(int i=0; i<NB_PROFS; ++i)
 	{
 		switch(Genome.profs[i]->type)
 		{
@@ -929,29 +999,29 @@ GenomeClass
 			default:
 				Genome.profs[i]->potentiel = NB_HEURES_VACATAIRE;
 		}
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.profs[i]->occupation[j] = 0;
 			Genome.profs[i]->groupe[j] = COURS_LIBRE;
 		} 
 	}
 
-	for(int i=0; i<NB_SALLES; i++)
+	for(int i=0; i<NB_SALLES; ++i)
 	{
-		for(int j=0; j<NB_CRENEAUX; j++)
+		for(int j=0; j<NB_CRENEAUX; ++j)
 		{
 			Genome.salles[i]->occupation[j] = 0;
 		} 
 	}
 
-	for(int i=0; i<NB_CRENEAUX; i++)
+	for(int i=0; i<NB_CRENEAUX; ++i)
 	{
 		Genome.creneaux[i]->potentiel = NB_SALLES;
 	}
 
 	int creneau, groupe, prof, matiere, type;
 	Cours* c;
-	for(int i=0; i<NB_COURS; i++)
+	for(int i=0; i<NB_COURS; ++i)
 	{
 		c = Genome.cours[i];
 		//Creneau du cours
@@ -985,11 +1055,11 @@ GenomeClass
 		Genome.creneaux[creneau]->potentiel--;
 	}
 
-	for(int i=0; i<NB_GROUPES; i++)
+	for(int i=0; i<NB_GROUPES; ++i)
 	{
-		for(int j=0; j<NB_MATIERES; j++)
+		for(int j=0; j<NB_MATIERES; ++j)
 		{
-			for(int k=0; k<NB_TYPES_COURS; k++)
+			for(int k=0; k<NB_TYPES_COURS; ++k)
 			{
 				if(Genome.groupes[i]->coursASuivre[getIdxNombreCours(j, k)] != 0)
 				{
@@ -1002,9 +1072,9 @@ GenomeClass
 
 	//Évaluation des occupations pour les groupes, les profs, les salles et les creneaux
 	int compteurCoursGroupe = 0, compteurCoursProf = 0;
-	for(int i=0; i<NB_CRENEAUX; i++)
+	for(int i=0; i<NB_CRENEAUX; ++i)
 	{
-		for(int j=0; j<NB_GROUPES; j++)
+		for(int j=0; j<NB_GROUPES; ++j)
 		{
 			if(Genome.groupes[j]->matiere[i] != COURS_LIBRE)
 			{
@@ -1017,7 +1087,7 @@ GenomeClass
 			}
 		}
 
-		for(int j=0; j<NB_PROFS; j++)
+		for(int j=0; j<NB_PROFS; ++j)
 		{
 			if(Genome.profs[j]->occupation[i] > 1)
 			{
@@ -1043,7 +1113,7 @@ GenomeClass
 			compteurCoursProf = 0;
 		}
 
-		for(int j=0; j<NB_SALLES; j++)
+		for(int j=0; j<NB_SALLES; ++j)
 		{
 			if(Genome.salles[j]->occupation[i] > Genome.salles[j]->potentiel)
 			{
@@ -1060,7 +1130,7 @@ GenomeClass
 	}
 
 	//Évaluation des horaires effectués par les profs
-	for(int j=0; j<NB_PROFS; j++)
+	for(int j=0; j<NB_PROFS; ++j)
 	{
 		if(Genome.profs[j]->potentiel < 0)
 		{
@@ -1079,7 +1149,7 @@ GenomeClass
 
 	Salle* s;
 	Prof* p;
-	for(int i=0; i<NB_COURS; i++)
+	for(int i=0; i<NB_COURS; ++i)
 	{
 		c = Genome.cours[i];
 		s = Genome.salles[c->salle];
@@ -1141,11 +1211,11 @@ GenomeClass
 	}
 
 	//pénalités faibles si plusieurs même cours dans une même journée par groupe
-	for(int i=0; i<NB_GROUPES; i++)
+	for(int i=0; i<NB_GROUPES; ++i)
 	{
 		int compteursPlusCours = 0;
 		for(int j=0; j<NB_CRENEAUX; j= j+NB_CRENEAUX_JOUR){
-			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
+			for(int k=0; k<(NB_CRENEAUX_JOUR-1); ++k){
 				if(Genome.groupes[i]->matiere[j+k] == Genome.groupes[i]->matiere[j+k+1]){
 					compteursPlusCours++;
 				}
@@ -1158,11 +1228,11 @@ GenomeClass
 		
 	}
 	//pénalités faibles par trou dans une journée travaillée
-	for(int i=0; i<NB_PROFS; i++)
+	for(int i=0; i<NB_PROFS; ++i)
 	{
 		int compteursTrou = 0;
 		for(int j=0; j<NB_CRENEAUX; j+=NB_CRENEAUX_JOUR){
-			for(int k=0; k<(NB_CRENEAUX_JOUR-1); k++){
+			for(int k=0; k<(NB_CRENEAUX_JOUR-1); ++k){
 				if(Genome.profs[i]->occupation[j+k] != COURS_LIBRE){
 					if(Genome.profs[i]->occupation[j+k+1] == COURS_LIBRE){
 						compteursTrou++;
@@ -1185,7 +1255,7 @@ GenomeClass
 \end
 
 \Default run parameters :
-  Number of generations : 20
+  Number of generations : 50
   Time limit: 120
   Population size : 100
   Offspring size : 40%
