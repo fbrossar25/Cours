@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Algorithmes de recherche - TD1}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Intros et définitions}
+	
+	Recherche de mots dans un texte, algorithme exact, toutes les solutions et pas d'heuristique.\\
+	
+	\subsection{Périodicité et bords}
+	
+	Quelles sont les périodes du mot x = aabaabaa et pér(x) de x ?
+	\begin{align*}
+		p = 3 &\Rightarrow \forall 0 \leq i \leq 8 - 3 - 1 \Rightarrow i \in [0, 4]\\
+		p = 6 &\Rightarrow \forall 0 \leq i \leq 8 - 6 - 1 \Rightarrow i \in [0, 1]\\
+		p = 7 &\Rightarrow \forall 0 \leq i \leq 8 - 7 - 1 \Rightarrow i \in [0, 0]\\
+		p = 8 &\Rightarrow \text{Admis}\\
+		\text{pér}(x) &= 3\\
+	\end{align*}
+	\\
+	
+	Quelles sont les bords du mot x = aabaabaa ?\\
+	$\Rightarrow$ $\epsilon$, a, aa et aabaa.\\
+	
+	Quelle est la relation entre les notions de bords et périodes ?\\
+	Les notions de bords et de périodes sont duales.\\
+	
+	Application avec la bord aa.\\
+	Le bord correspond à la période 6, qui correspond à $|aabaabaa| - |aa|$.\\
+	
+	Quel est le bord du mot aabaabaa ?\\
+	C'est aabaa.\\
+	
+	\newpage
+	
+	Quelles sont les suites des bords et des périodes du mot x = aabaabaa ?\\
+	Suite des bords : (aabaa, aa, a, $\epsilon$), car LE bord de aaabaabaa est aabaa (le bord le plus long)\\
+	Suite des périodes : (3, 6, 7, 8), car \begin{align*}
+		3 &= |x| - |Bord(x)|\\
+		&= |aabaabaa| - |aabaa|\\
+		&= 8 - 5\\
+		\text{ET}&\\
+		6 &= |x| - |Bord^{2}(x)|\\
+		&= |aabaabaa| - |aa|\\
+		&= 8 - 2
+	\end{align*}\\
+	
+	\subsection{Puissance et primitive}
+	
+	Donner un exemple de mots x et y vérifiant $x^m = y^n$ sur un alphabet à 2 lettres ?\\
+	Soit x = ab et y = abab $\Rightarrow x^2 = y^1$\\
+	
+	Donner un exemple de mot primitif et de non-primitif de longueurs supérieures à 3.\\
+	Le mot abaab st primitif.\\
+	Le mot baba = $(ba)^2$ n'est pas primtif.\\
+	
+	Vérifier la proposition 'Un mot non vide est primitif si et seulement s'il un facteur de son carré qu'en tant que préfix et suffixe', avec les mots abaab et baba.\\
+	Le mot abaab est primitif car abaab est uniquement un facteur de abaab . abaab en tant que préfixe et suffixe.\\
+	Le mot baba n'est pas primitif car baba n'est pas uniquement un facteur de baba . baba qu'en tant que préfixe et suffixe, par exemple ba . baba . ba.\\
+	
+	Donner un exemple de mots conjugués.\\
+	Avec A = {a, b}, x = abbaba, y = abaabb, on a u = abb et v = aba.\\
+	Avec B = {A, C, G, T}, x = AGTACGTTA , y = ACGTTAAGT, on a u = AGT et v = ACGTTA.\\
+	Avec $B^3$ = {AAA, AAC, ..., TTT}, x = TTTACG , y = ACGTTT , on a u = TTT, v = ACG.\\
+	
+	Donner un exemple de mot z avec des mots conjugués x et y.\\
+	Soit x = AAC, y = ACA, on a z = A car x = z . AC et y = AC . z
+	
+	\section{Mots particuliers}
+	
+	\subsection{Mots de fibonacci}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			n & $F_n$ & $f_n$\\ 
+			\hline 
+			3 & 2 & ab \\ 
+			\hline 
+			4 & 3 & aba \\ 
+			\hline 
+			5 & 5 & abaab \\ 
+			\hline 
+			6 & 8 & abaababa \\ 
+			\hline 
+			7 & 13 & abaababaabaab \\ 
+			\hline 
+			8 & 21 & abaababaabaababaababa \\ 
+			\hline 
+		\end{tabular} 
+	\end{center}
+
+	Propriété remarquable : ???\\
+	
+	Démontrer $\phi^{n}(a) = f_{n+2}$.
+	\begin{align*}
+		\phi^{1}(a) &= ab = f_{3}\\
+		\phi^{2}(a) &= \phi^{1}(\phi(a))\\
+		&= \phi^{1}(ab)\\
+		&= \phi(a) . \phi(b)\\
+		&= ab . a = aba\\
+		&= f_{4}\\
+		\phi^{n}(a) &= \phi^{n-1}(\phi(a))\\
+		&= \phi^{n-1}(ab)\\
+		&= \phi^{n-1}(a) . \phi^{n-1}(b)\\
+		&= f_{n+1} . \phi^{n-2}(\phi(b))\\
+		&= f_{n+1} . \phi^{n-2}(a)\\
+		&= f_{n+1} . f_{n}\\
+		&= f_{n+2}\\
+	\end{align*}
+	
+	Démontrer la proposition du palindrome de fibonacci avec $n \geq 3$.\\
+	\begin{align*}
+		f_3 &= ab, u = \epsilon \Rightarrow palindrome (trivial)\\
+		f_4 &= aba, u = a \Rightarrow palindrome (trivial)\\
+		f_5 &= abaab, u = aba \Rightarrow palindrome car \\
+	\end{align*}
+	
+	Pour tout $n \geq 5$, on a $f_n = f_{n-1} . f_{n-2} = f_{n-2} . f_{n-3} . f_{n-2}$.\\
+	
+	Si n est impair alors, par hypothèse de récurrence alors $f_{n-2}$ est impair et $f_{n-3}$ est pair. Donc $f_{n-2} = u_1ab$ et $f_{n-3} = u_2ba$ avec $u_1$ et $u_2$ des palindromes.\\
+	Donc, $f_n = u_1abu_2bau_1ab$.\\
+	Mais $u_1$ et $u_2$ sont des palindromes, donc $u_1abu_2bau_1$ est également un palindrome.\\
+	En posant $u = u_1abu_2bau_1$, on a alors $f_n = uab$ où u est un palindrome.\\
+	
+	Démonstration de façon similaire si n est pair.
+	
+	\subsection{Les mots de DE BRUIJN}
+	
+	Donner tous les mots de DE BRUIJN d'ordre $k = 1$ dans l'alphabet $A = {a,b}$.\\
+	Les mots ab et ba sont les deux seuls mots de DE BRUIJN d'ordre 1.\\
+	
+	Pour k = 3 :\\
+	$A^3 = {aaa, aab, ..., bbb}$\\
+	Introuvables à la man car trop compliqués. Ex : aaababbbaa car ses facteurs de longueur 3 sont les 8 mots de $A^3$ : aaa, aab, aba, abb, baa, bab, bba, bbb. Chaque mot n'apparait qu'une et une seule fois dans ce mot ET tout les mots de $A^3$ y apparaissent.
+	
+\end{document}

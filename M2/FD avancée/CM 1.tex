@@ -1,0 +1,102 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Fouille de données avancée - CM1}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Intro / définitions}
+	
+	Types de satellite : optique et radar sont les plus courants. Lidar (ppur l'altitude), et d'autres existent.
+	
+	\subsection{Résolution spatiale}
+	
+	Correspond à la surface terrestre englobée dans un pixel
+	\begin{itemize}
+		\item Basse résolution : quelques centaines de mètres par pixel
+		\item haute résolution : 5 mètres par pixel
+		\item Très haute résolution : 0,6 mètres par pixel
+	\end{itemize}
+
+	Pour l'analyse d'image, la résolution nécessaire n'est pas la même, par exemple isoler les zones industrialisées nécessite que de la haute résolution (5-10m/px), pas plus.\\
+	$\Rightarrow$ Différents niveaux d'analyse
+	
+	Exemple du glissements de terrain : Basse réso pour générale, haute réso pour différencier les partie du glissement de terrain, très haute réso pour trouver les fissures.
+	
+	\subsection{Résolution spectrale}
+	
+	Pourquoi ne pas se limiter au visible ?\\
+	
+	\begin{itemize}
+		\item Radiométrie des objets terrestres
+		\item Problème de la très haute résolution : on vois les ombres des bâtiments apparaitre
+		\item Bandes hyperspectrale : Beaucoup plus de bande que d'habitude $\Rightarrow$ permet par exemple de pouvoir isoler des espèces dans la végétation.
+		\item Satellites multispectraux : Entre 3 et 10 bandes
+	\end{itemize}
+
+	\subsection{Résolution temporelle}
+	
+	C'est la fréquence d'acquisition d'image d'une même zone. Aussi nommé la fréquence de revisite d'une satellite.\\
+	
+	Délai de revisite de plusieurs mois à quelques semaine voire quelques jours $\Rightarrow$ plusieurs tour de la Terre pour photographier une zone.
+	
+	\newpage
+	
+	\subsection{Quelques problèmes}
+	
+	\paragraph{Correction d'images}
+	\begin{itemize}
+		\item Le bleu est consommé à l'aller et au retour (atmosphère)
+		\item Angle de du soleil par rapport au satellite, il ne passe pas toujours au zénith. Les immeuble sont par exemple plus grand à cause de l'angle de prise de vue.
+		\item Absorption, ombres, distorsion géométrique, diffraction
+		\item Objet qui émette de la lumière
+		\item Turbulence (air qui déforme la lumière, ...)
+	\end{itemize}
+	
+	\paragraph{Pixels vs objets}
+	\begin{itemize}
+		\item Segmentation : regroupement de pixels suivant un critère d'homogéneité
+	\end{itemize}
+	\paragraph{Quels traitements ?}
+	\begin{itemize}
+		\item Extraction d'objets (recherche d'objets géographiques cible : bâtiments, champs, ...)
+		\item Classification de l'image
+			\begin{itemize}
+			\item Approche supervisée : apprendre le modèle de classification des pixels ou des objets
+			\item Approche non supervisée
+			\end{itemize}
+		\item Classification supervisée
+		\item Nombres de classes
+	\end{itemize}
+
+	\paragraph{Et l'expert ?}
+	\begin{itemize}
+		\item Peu disponible (ou cher...)
+		\item Peu commettre des erreurs
+		\item Doit être guidé afin de fournir des connaissances utiles, compréhensibles et opérables
+		\item Formalisation de ses connaissances : Exemple $\Rightarrow$ Ontologie
+		\item Domaines transfert : Échelle d'analyse, zone, satellite, date, ...
+	\end{itemize}
+
+	\subsection{Challenges}
+	\begin{itemize}
+		\item Utiliser la complémentarité des méthodes existantes
+		\item Valoriser les informations temporelles
+		\item Intégrer l'expert
+		\begin{itemize}
+			\item Apprentissage (segmentation / classification) actif
+			\item ???
+		\end{itemize}
+	\end{itemize}
+	
+\end{document}
