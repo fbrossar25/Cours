@@ -2,19 +2,21 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
+\usepackage[a4paper, bottom=3.5em, top=3em]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{fullpage}
 \usepackage{tikz}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 
-\title{Algorithmes de recherche - TD1}
+\title{Algorithmes de recherche - TD}
 \begin{document}
 	
 	\maketitle
-	
+	\tableofcontents
+	\listoffigures
+	\newpage
 	\section{Intros et définitions}
 	
 	Recherche de mots dans un texte, algorithme exact, toutes les solutions et pas d'heuristique.\\
@@ -43,8 +45,6 @@
 	Quel est le bord du mot aabaabaa ?\\
 	C'est aabaa.\\
 	
-	\newpage
-	
 	Quelles sont les suites des bords et des périodes du mot x = aabaabaa ?\\
 	Suite des bords : (aabaa, aa, a, $\epsilon$), car LE bord de aaabaabaa est aabaa (le bord le plus long)\\
 	Suite des périodes : (3, 6, 7, 8), car \begin{align*}
@@ -56,7 +56,7 @@
 		&= |aabaabaa| - |aa|\\
 		&= 8 - 2
 	\end{align*}\\
-	
+	\newpage
 	\subsection{Puissance et primitive}
 	
 	Donner un exemple de mots x et y vérifiant $x^m = y^n$ sur un alphabet à 2 lettres ?\\
@@ -77,7 +77,7 @@
 	
 	Donner un exemple de mot z avec des mots conjugués x et y.\\
 	Soit x = AAC, y = ACA, on a z = A car x = z . AC et y = AC . z
-	
+	\newpage
 	\section{Mots particuliers}
 	
 	\subsection{Mots de fibonacci}
@@ -136,7 +136,7 @@
 	En posant $u = u_1abu_2bau_1$, on a alors $f_n = uab$ où u est un palindrome.\\
 	
 	Démonstration de façon similaire si n est pair.
-	
+	\newpage
 	\subsection{Les mots de DE BRUIJN}
 	
 	Donner tous les mots de DE BRUIJN d'ordre $k = 1$ dans l'alphabet $A = {a,b}$.\\
@@ -145,5 +145,117 @@
 	Pour k = 3 :\\
 	$A^3 = {aaa, aab, ..., bbb}$\\
 	Introuvables à la man car trop compliqués. Ex : aaababbbaa car ses facteurs de longueur 3 sont les 8 mots de $A^3$ : aaa, aab, aba, abb, baa, bab, bba, bbb. Chaque mot n'apparait qu'une et une seule fois dans ce mot ET tout les mots de $A^3$ y apparaissent.
+
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=10cm]{"DE BRUIJN ordre 3".png}
+		\caption{Automate DE BRUIJN ordre 3 avec A = \{a,b\}}
+	\end{figure}
 	
+	
+	Exactement 2 flèches sortent de chacun des états, l'une étiqutée par a, l'autre par b, et exactement 2 flèches entrent dans chacun des états, toutes 2 étiquetées par la même lettre.
+	Il faut passer par toutes les flèches en commençant et terminant par le même état.\\
+	
+	Longueur d'un mot de DE BRUIJN d'ordre k = f(k) ?\\
+	$2^k + (k-1)$
+	
+	\newpage
+	
+	\section{Automates de localisation}
+	
+	\subsection{Arbre d'un dictionnaire}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=13cm]{"Arbre d'un dictionnaire".png}
+		\caption{Automate A(X) reconnaissant X = \{aa, abaaa, abab\}}
+	\end{figure}
+
+	\subsection{Localisation de plusieurs mots}
+	
+	\begin{align*}
+		h(b) &= \epsilon \Rightarrow \text{Tout ce qui se finit par b va vers }\epsilon\\
+		h(a) &= a\\
+		h(aa) &= aa\\
+		h(ab) &= ab\\
+		h(aaa) &= aa\\
+		h(aab) &= ab\\
+		h(aba) &= aba\\
+		h(abb) &= \epsilon\\
+	\end{align*}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=15cm]{"Arbre de localisation".png}
+		\caption{Automate D(X) reconnaissant X = \{aa, abaaa, abab\}}
+	\end{figure}
+	\newpage
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=15cm]{"Arbre de localisation 2".png}
+		\caption{Automate D(X) reconnaissant X = \{ab, babb, bb\} sur A = \{a, b, c\}}
+	\end{figure}
+	Sur ce dernier automate, les flèches étiquetées 'c' vont toutes vers l'état $\epsilon$.\\
+
+
+	\subsection{Construction de l'automate-dictionnaire}
+
+	Localisation des mots $X = {ab, babb, bb}$ sur $A = {a,b,c}$ sur le texte $y = cbabba$.\\
+	Utilisation de l'algorithme LOCALISATION(X, y) sur l'automate D(X) fait précédemment.\\
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			j & $y[j]$ & Etat r & Mot\\
+			\hline 
+			 &  & $\epsilon$ &\\ 
+			\hline 
+			0 & c & $\epsilon$ &\\ 
+			\hline
+			1 & b & b &\\
+			\hline
+			2 & a & ba &\\
+			\hline
+			3 & b & bab & Occurence de ab\\
+			\hline
+			4 & b & babb & Occurence de babb et bb\\
+			\hline
+			5 & a & ba &\\
+			\hline
+		\end{tabular} 
+	\end{center}
+	La colonne Mot contient la liste des mots reconnus, si l'état r appartient aux états terminaux de D(X).\\
+	
+	\newpage
+	
+	\subsection{Automate avec fonction de suppleance}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=15cm]{"Automate avec fonction de suppleance".png}
+		\caption{Automate DS(X) reconnaissant X = {aa, abaaa, abab} sur A = \{a, b\}}
+		\label{DS(X)}
+	\end{figure}
+
+	\subsection{Automate avec optimisation de la fonction de suppleance}
+	
+	Avec l'automate DS(X) (page \pageref{DS(X)}), donner des exemples d'ensembles Suivant(u) avec $u = abaa \text{ (état abaa)}$.\\
+	\begin{align*}
+		Suivant(u) &= \{a\}\\
+		f(u) &= aa\\
+		Suivant(f(u)) &= Suivant(aa) = \emptyset\\
+		&\Rightarrow \text{car } \{a\} \Leftrightarrow \{a\} \cup \emptyset \\
+		f(f(u)) &= f(aa) = a\\
+		Suivant(f(f(u))) &= Suivant(a) = \{a, b\}\\
+		&\Rightarrow \text{fin car } Suivant(a) \notin Suivant(aa)\\
+		&\Rightarrow \text{g: état abaa} \rightarrow \text{état a}\\
+	\end{align*}
+	Example avec $u = aba \text{ (état 4)}$.\\
+	\begin{align*}
+		Suivant(u) &= \{a, b\}\\
+		f(u) &= a\\
+		Suivant(a) &= \{a, b\}\\
+		f(f(u)) &= \epsilon\\
+		Suivant(\epsilon) &= \{a\}\\
+		&\Rightarrow \text{g: état aba} \rightarrow \text{état }\epsilon\\
+	\end{align*}
 \end{document}
