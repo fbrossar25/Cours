@@ -1,0 +1,49 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Sécurité - TD 1}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Exercice 1 : paiement en ligne}
+	
+	Ce système est-il sûr ?\\
+	Non.\\
+	
+	Sinon quelles vulnérabilités peut-on imaginer ?\\
+	Le jeton n'étant composé que de 10 chiffres, une attaques par brute force est envisageable en moins de dix minutes car il n'y a que 10 Milliards de possibilités. De même, il n'est pas indiqué que la communication est chiffrée.
+	
+	\section{Exercice 2 : données médicales}
+	
+	Quels sont les objectifs de sécurité nécessaire pour cette base de données ?\\
+	Disponibilité (nécessaire, suivre circuit d'un patient), intégrité (très important), confidentialité (obligatoire), traçabilité (authentification).\\
+	
+	\section{Exercice 3 : niveau de sécurité}
+	Donner deux raisons qui expliquent l'augmentation constante de cette différence de niveau de sécurité.\\
+	\begin{itemize}
+		\item Réutilisation des même mots de passes d'une à plusieurs fois par jour.
+		\item 
+	\end{itemize}
+
+	Décrire le genre de mesures permettant d'éviter ce phénomène.\\
+	\begin{itemize}
+		\item Changement régulier des mots de passes via les politiques de sécurité
+		\item 
+	\end{itemize}
+
+	\section{Exercice 4 : analyse de risque}
+	
+	A partir de ces chiffres, calculer le risque annuel dû aux virus et aux défigurations et juger l'utilité de mettre en place les mesures de sécurité énoncées.\\
+	
+
+\end{document}
