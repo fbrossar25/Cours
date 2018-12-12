@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Sécurité - TD 2}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Exercice 1 : Chiffrement symétrique vs asymétrique}
+	
+	\begin{enumerate}
+		\item $\sum_{i=1}^{n-1} = \frac{(n-1)(n-2)}{2}$ avec $n = 7$, il faut donc 21 clés symétriques.
+		\item AES car il est un standard fiable.
+		\item 7, une clé privé et une publique par personne.
+		\item Sa clé privé et la clé publique d'Alice.
+		\item RSA
+		\item Chiffrement plus rapide, possibilité de signature par l'expéditeur
+	\end{enumerate}
+
+	\section{Exercice 2 : Clé privée}
+	
+	\begin{enumerate}
+		\item Non il ne peut plus envoyer de courriers électroniques. Il peut en recevoir car il à toujours sa clé publique.
+		\item Il ne peut pas signer ses courriers mais peut vérifier la signatures de ceux qu'il reçoit.
+		\item Si le message est claire il peut utiliser la clé publique pour retrouver la clé privée. Il doit créer un nouveau couple de clés privée/publique.
+	\end{enumerate}
+
+	\section{Exercice 3 : Certificats}
+	
+	\begin{enumerate}
+		\item Fichier contenant des informations tel que l'identité du signataire, l'algorithme de chiffrement, la clé publique du titulaire, etc...
+		\item La différence majeure est que les certificats PGP n'ont pas d'autorités de certifications.
+		\item Vérification de la présence du certificat dans le magasins de certificats du navigateur.
+	\end{enumerate}
+
+	\section{Exercice 4 : Certificats}
+	
+	\begin{enumerate}
+		\item Le signataire des deux certificats est le même.
+		\item Génération d'une même clé publique possible.
+		\item Les deux certificats peuvent déchiffrer les messages de l'autre.
+	\end{enumerate}
+
+	\section{Exercice 5 : Attention connexion non certifiée}
+	
+	\begin{itemize}
+		\item Date certificat expirée
+		\item Autorité de certificat non officielle
+		\item Autorité de certificat non présente dans le magasin
+		\item Erreur dans le certificat
+		\item Horloge système déreglée
+		\item Certificat révoqué
+		\item Protocole utilisé par la certif obsolète
+	\end{itemize}
+	
+	\section{Exercice 6 : Diffie-Hellman}
+	
+	\section{Exercice 7 : RSA}
+	
+	\begin{align*}
+		(n,e) &= (33, 3)\\
+		n &= 33 = 3 * 11 \text{ (Nombre premiers)}\\
+		p &= 3\\
+		q &= 11\\
+		e * d &= 1\ \%\ (p-1)(q-1)\\
+		e * d &= 1\ \%\ 20\\
+		3 * d - 1 &= 20\\
+		\frac{d}{3}&= \frac{21}{3}\\
+		d &= 7\\
+		\text{Clé privée (n,d) } &= (33, 7)
+	\end{align*}
+
+	\section{Exercice 8 : RSA}
+	
+	\begin{enumerate}
+		\item 
+		\item 
+		\item 
+	\end{enumerate}
+
+\end{document}

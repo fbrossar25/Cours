@@ -1,0 +1,6 @@
+EMPLOYE(jussieu) = PRODUIT(id_pers,nom,adresse,statut)(sigma(affectation="jussieu")(EMPLOYE)
+EMPLOYE(sorbonne) = PRODUIT(id_pers,nom,adresse,statut)(sigma(affectation="sorbonne")(EMPLOYE)
+EMPLOYE(dauphine) = PRODUIT(id_pers,nom,adresse,statut)(sigma(affectation="dauphine")(EMPLOYE)
+
+
+2.2.1

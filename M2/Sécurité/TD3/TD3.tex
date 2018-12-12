@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Sécurité - TD 3}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Exercice 1 : Principe de l'ISO 27001}
+	
+	\subsection{Quelles sont les différentes étapes d'une appréciation du risque ?}
+	
+	\begin{itemize}
+		\item Identification des risques (vulnérabilités, conséquences, menaces, actifs)
+		\item Estimation des risques (Estimation conséquences, probabilité d'occurrence, impacts)
+		\item Évaluation du risque
+	\end{itemize}
+
+	\subsection{Question 2}
+	
+	\begin{itemize}
+		\item Vulnérable car connecté au réseau interne et non mis à jour
+		\item Toute personne malintentionnée ayant accès au réseau de l'entreprise + wifi ouvert au public s'il existe
+		\item Pas de confidentialité, modification ou suppression de données (DIC)
+		\item Installer les mises à jour de sécurité
+		\item Régression de service dû aux mises à jour. Le serveur est peut être déjà infecté
+		\item Il faut effectuer une analyse du serveur pour désinfection. Vérifier la compatibilité du matériel (Serveur de test).
+	\end{itemize}
+
+	\subsection{Question 3}
+
+	\begin{itemize}
+		\item Accès physiques
+		\item Les utilisateurs
+		\item Disponibilité, Intégrité, Confidentialité (DIC)
+		\item Mettre des porte et des serrures
+		\item Mauvaises gestion des mesures de sécurité misent en place
+		\item Durcir l'accès (alarme si la porte reste ouverte, etc...)
+	\end{itemize}
+
+	\subsection{Question 4}
+	
+	\begin{itemize}
+		\item Accepter
+		\item Réduire (prendre des mesures)
+		\item Refuser (supprimer le service)
+		\item Transférer (sous-traiter)
+	\end{itemize}
+
+	\subsection{Question 5}
+	
+	Oui, si le risque à un impact faible et une probabilité d'occurrence faible, il peut être définis comme acceptable.
+	
+	\subsection{Question 6}
+	
+	Malgré les mesures de sécurité misent en place, certaines peuvent être réduites mais pas évitées totalement.
+	
+	\subsection{Question 7}
+	
+	Elle doit donner son approbation pour accepter ou refuser le risque résiduel.
+	
+	\subsection{Question 8}
+	
+	\begin{itemize}
+		\item Objectifs de sécurité sélectionnés
+		\item Mesures de sécurité retenues avec justification
+		\item Mesures de sécurité effectivement mises en place
+		\item Mesures de sécurité non retenues avec justification
+	\end{itemize}
+
+	\subsection{Question 9}
+	
+	Elle sert à vérifier que l'on a rien oublié.
+	
+	\subsection{Question 10}
+	
+	Simplification de l'audit.
+	
+	\subsection{Question 11}
+	
+	Voir chapitre 7.2 + 4.2.3b du document de la certification ISO 27001.
+	
+	\subsection{Question 12}
+	
+	Permet de certifier un SMSI.
+	
+\end{document}

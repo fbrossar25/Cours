@@ -1,0 +1,11 @@
+MapReduce
+Framework google
+Répartition de données sur un ensemble de clusters (disques)
+Traiter un grand nombre de données texte avec un max de productivité pendant le développement de l'application
+MapReduce est un modèle de programmation
+Parallélistation automatique
+
+Projet :
+ - Trouver un jeu de données intéressants
+ - Fournir un fichier pdf indiquant quels données sont utilisées et qu'est-ce qui seras analysé
+ - Projet à deux ou individuel

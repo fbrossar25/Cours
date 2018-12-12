@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{ERP - CM}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Introduction}
+	
+	Pourquoi ce cours ? 50\% des besoins informatiques des entreprises sont résolus à base de solutions progiciels.
+	
+	\subsection{Le sens des mots}
+	
+	\begin{itemize}
+		\item Digitalisation de l'entreprise $\Rightarrow$ la numérisation de l'entreprise en français\\
+		Ou comment faire croire à une révolution quand il s'agit de poursuivre la mise en place d'applications informatiques et d'y avoir accès depuis un PC, sa tablette ou son téléphone (ces 2 derniers étant un peu novateur niveau technologique)
+		\item Le vocabulaire évolue... même le mot informatique semble passé de mode...
+		\item Exemple : décider que, lors du comité de direction mensuel, il y aura dorénavant un point RH montre une modification forte dans le management de l'entreprise, et ça n'a rien de "digital".
+		\item Mise en place d'outils informatiques : Maîtrise d'ouvrage (MOA) et Maîtrise d'oeuvre (MOE)
+		\item MOA = Métier = Utilisateurs
+		\item MOE = Maîtrise d'oeuvre = Souvent Dir informatique = DSI (Direction des Systèmes d'Information) = ceux qui \textbf{pilotent} le projet et \textbf{exploitent} la solution (vérifient constamment que l'application tourne correctement)
+		\item Pour répondre à un besoin, une DSI peut mettre en place des outls basés sur des progiciels ou réalise des développements spécifiques.
+		\item Progiciel = Produit : conçu et vendu par un éditeur, paramètrable et couvrant un ou plusieurs domaines fonctionnel.
+		\item Application générique, destiné à être utilisé et paramétré de manière spécifique pour une entreprise.
+		\item Une fois paramétré, on parle de "solution"
+	\end{itemize}
+
+	\newpage
+
+	\subsection{ERP}
+	\begin{itemize}
+		\item Différence entre Progiciel et PGI
+		\item ERP (Enterprise Resource Planning = PGI : Progiciel de Gestion Intégré) et 'progiciel vertical'
+		\item BDD unique pour ERP
+		\item chaque progiciel vise une taille d'entreprise
+	\end{itemize}
+
+	\subsection{Progiciel vertical}
+	\begin{itemize}
+		\item Ne couvre q'un domaine de l'entreprise : COmpta, RH, gestion commerciale, ...
+		\item Il faut les interfacer entre eux pour qu'ils s'échangent des données (Autant de progiciels verticaux que de domaines fonctionnels)
+		\item Les "gros" progiciels verticaux sont souvent plus riches en fonctions
+	\end{itemize}
+	\vspace{2em}
+	Pourquoi ne pas toujours mettre en place un ERP dans l'entreprise ?\\
+	Parce que c'est un projet lourd, impactant tous les services de l'entreprise en même temps.
+	
+	\section{Le projet d'intégration d'un progiciel}
+	
+	\begin{enumerate}
+		\item Définir le besoin
+		\item Choisir un produit et définir le budget
+		\item Intégrer mon cul sur la commode
+		\item Ya une étape 4 mais y va trop vite RIP
+	\end{enumerate}
+	
+	\textbf{Ne pas inverser les étapes 1 et 2 !}
+	
+	Le projet d'intégration doit impliquer tous les acteurs.
+	
+	\subsection{Étape 1 : Définir le besoin, Ingénierie des exigences}
+	
+	\textbf{Objectif :} exprimer toutes les fonctions souhaitées indépendamment des solutions techniques à mettre en oeuvre.
+	\begin{itemize}
+		\item Les caractériser de manière précise (spécifications) en veillant à lever toute ambiguïté (méthode Agile ou pas)
+		\item Les prioriser (hiérarchiser) en fonction de \textbf{l'analyse de la valeur}
+		\begin{itemize}
+			\item L'objectif de l'analyse de la valeur est de concevoir une solution parfaitement adaptée aux besoins de ses utilisateurs et, ceci, ai coût le plus faible.
+			\item A Quoi ça sert ?
+			\item Combien et pourquoi ça coûte ?
+			\item Que peut-on changer pour que cela coûte moins cher ?
+			\item Attention aux calculs de coûts : cout par nature, cout par affectation, ...
+			\item Un regard extérieur (AMOA) est souvent nécessaire pour effectuer cette démarche (recul, comparaison avec ce qui se fait ailleurs...)
+		\end{itemize}
+		\item Dans de gros projets d'intégration de progiciel, il est préférable d'éviter l'effet tunnel d'un projet trop long. Des livraisons intermédiaires (par lots) sont nécessaires pour une appropriation progressive du nouvel outil. Il faut donc prioriser les fonctions. Mais
+		\begin{itemize}
+			\item Prioriser c'est choisir
+			\item Choisir c'est renoncer
+			\item Renoncer c'est douloureux
+			\item La douleur peux être une source de plaisir mais pas toujours $\backslash$o/
+		\end{itemize}
+	\end{itemize}
+
+	\newpage
+	
+	L'utilisateur exprime souvent son besoin par rapport à l'outil qu'il a actuellement et non par rapport à ses besoins dans l'absolu. Beaucoup d'experts métier ont du mal à exprimer leurs besoins.
+	Ce qu'il faut avoir à l'esprit:
+	\begin{itemize}
+		\item Expression plurielle : pour un même domaine fonctionnelle, les besoins son exprimés différemment selon les interlocuteur (les MOA n'ont pas tous la même signification pour tout)
+		\item Chacun présente ses exigences en fonction de ses contraintes
+		\item il en résulte des exigences multidimensionnelles voire contradictoires
+	\end{itemize}
+
+	La définition des besoins est donc une étape complexe car il y a mélange d'éléments factuels et d'appréciations humaines (lutte de pouvoir, amitiés, etc...)
+	
+	Le Quoi, fait généralement l'objet d'un consensus rapide.\\
+	Le comment, est souvent plus compliqué à valider.
+	
+\end{document}

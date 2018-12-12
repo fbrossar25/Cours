@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\title{Certification logicielle - CM}
+\begin{document}
+	
+	\maketitle
+	
+	\section{Crise du logiciel}
+	
+	\begin{itemize}
+		\item Constat
+			\begin{itemize}
+				\item Délais non-tenus
+				\item budget dépassé
+				\item qualité médiocre
+			\end{itemize}
+		\item Il faut passer de l'artisanat au stade industriel
+			\begin{itemize}
+				\item formation des "informaticiens"
+				\item concevoir des méthodes et des outils de développement
+			\end{itemize}
+	\end{itemize}
+	
+	\section{Spécifier, c'est difficile}
+	
+	\begin{itemize}
+		\item Spécifications informelles :
+			\begin{itemize}
+				\item cahier des charges qui doit être précis, non ambigü, non redondant...
+				\item prévoir plein de scénarios pour que la correction ne devienne pas de la robustesse
+				\item est-ce que le logiciel répond au cahier des charges ?
+			\end{itemize}
+		\item Spécifications formelles, plusieurs approches :
+			\begin{itemize}
+				\item logique
+				\item algébrique (logique équationnelle avec conditions)
+				\item basées sur le modèle
+				\item on peut (essayer de) prouver que le programme répond bien à sa spécif.
+			\end{itemize}
+	\end{itemize}
+
+	\section{Certification 2}
+	\subsection{Reprise de la logique de Hoare}
+	Rappel : Logique de Hoare $\Rightarrow$ mélange un langage de programmation et des spécifications logiques
+	
+	Langage ? : \begin{itemize}
+		\item langage des tant que (jouet - Turing complet)
+		\item langages courants (C, JAVA, PHP, ...)
+	\end{itemize}
+
+	Définition du langage ;
+		\begin{itemize}
+			\item syntaxique - grammaire
+			\item sémantique 	\begin{itemize}
+									\item de style sémantique dénotationnelle (mathématique pas trop formel)
+									\item intuitive
+									\item opérationnelles (vu tout à l'heure)
+								\end{itemize}
+		\end{itemize}
+	
+	Syntaxe : \begin{itemize}
+		\item id ou variable
+		\item nombres entiers, flottants, ....
+		\item booléens
+	\end{itemize}
+
+	Expressions : 2 types (arithmétiques, booléennes)
+	
+	\begin{align*}
+		E_a \rightarrow I_d |&\\
+							Z |&\\
+							-E_a |&\\
+							E_a + E_a |& E_a - E_a | E_a * E_a | E_a / E_a\\
+	\end{align*}
+	
+	Instructions :
+	\begin{align*}
+		I \rightarrow skip\ |&\\
+		I; I |&\\
+		if\ E_b\ then\ I\ else\ I\ |&\\
+		I_d := E_a |&\\
+		while\ E_b\ do\ I&\\
+	\end{align*}
+	
+	Exemple :
+	\begin{align*}
+		x &:= 3\\
+		x &:= x + 1\\
+		x &:= 0; x:= x + 1\\
+		if\ x < y\ &then\ m := x\ else\ m := y\\
+	\end{align*}
+	
+	En principe, pour des langages jouets, la sémantique instruite est non ambiguë.
+	Sinon c'est réglé par le manuel de référence ou par des normes.
+	
+\end{document}
