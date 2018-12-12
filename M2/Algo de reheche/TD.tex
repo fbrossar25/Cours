@@ -249,7 +249,7 @@
 		&\Rightarrow \text{fin car } Suivant(a) \notin Suivant(aa)\\
 		&\Rightarrow \text{g: état abaa} \rightarrow \text{état a}\\
 	\end{align*}
-	Example avec $u = aba \text{ (état 4)}$.\\
+	Exemple avec $u = aba \text{ (état 4)}$.\\
 	\begin{align*}
 		Suivant(u) &= \{a, b\}\\
 		f(u) &= a\\
@@ -258,4 +258,147 @@
 		Suivant(\epsilon) &= \{a\}\\
 		&\Rightarrow \text{g: état aba} \rightarrow \text{état }\epsilon\\
 	\end{align*}
+	
+	\newpage
+	
+	\section{Alignements de mots}
+	
+	\subsection{Comparaison de mots}
+	
+	Démontrer que la distance préfixe est bien une distance.
+	\paragraph{Positivité :}
+	$d_{préf}(u,v) \geq 0$ car $lpc(u,v) \leq min(|u|,|v|)$
+	\paragraph{Séparation :}
+	Si $ u = v$ alors $lpc(u,v) = |u| = |v|$ et $d_{préf}(u,v) = 0$ et réciproquement.
+	\paragraph{Symétrie :}
+	$d_{préf}(u,v) = d_{préf}(v,u)$ : évident
+	\paragraph{Inégalité triangulaire :}
+	$d_{préf}(u,v) \leq d_{préf}(u,w) + d_{préf}(w,v)$ pour tout $w \in A*$\\
+	car
+	\begin{align*}
+		d_{préf}(u,w) + d_{préf}(w,v) &= |u| + |w| - 2 * lpc(u,w) + |v| + |w| - 2 * lpc(v,w)\\
+		&= |u| + |v| - 2 * min(|lpc(u,w)|,|lpc(v,w|)\\
+		&+ 2 * |w| - 2 * max(|lpc(u,w)|,|lpc(v,w|)\\
+		&\geq |u| + |v| - 2 * |lpc(u,v)| + 2(|w| - max(|lpc(u,w)|,|lpc(v,w)|)
+		&\geq |u| + |v| - 2 * |lpc(u,v)|
+	\end{align*}
+	
+	Donner la suite des opérations élémentaires pour passer de $x = ACGA$ à \\
+	$y = ATGCTA$ en supposant pour toutes lettres $a,b \in A$ les coûts suivants :
+	\begin{itemize}
+		\item $Sub(a,a) = 0$ et $Sub(a,b) = 1$ pour $a \neq b$
+		\item $Dé(a) = Ins(a) = 1$
+	\end{itemize}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline 
+			Opération &  Mot résultant &  Coût \\ 
+			\hline 
+			Mot initial ACGA &  ACGA &  X \\ 
+			\hline 
+			Sub(A,A) & \textbf{A}CGA & 0 \\ 
+			\hline 
+			Sub(C,T) & A\textbf{T}GA & 1 \\ 
+			\hline 
+			Sub(G,G) & AT\textbf{G}A & 0 \\ 
+			\hline 
+			Ins(C) & ATG\textbf{C}A & 1 \\ 
+			\hline 
+			Ins(T) & ATGC\textbf{T}A & 1 \\ 
+			\hline 
+			Sub(A,A) & ATGCT\textbf{A} & 0 \\
+			\hline 
+			Mot final & ATGCTA & X \\ 
+			\hline 
+		\end{tabular} 
+	\end{center}
+	
+	\subsection{Alignements}
+	
+	L'alignement global c'et un alignement qui cherche a aligner, pour deux mots, la première lettre de x avec la première de y, et la dernière de x avec la dernière de y.
+	
+	Attention x est en haut et y est bas !!!
+	
+	Donner les paires alignées et leurs coûts pour passer de $x = ACGA$ à $y = ATGCTA$\\
+	Avec les même coûts que précédemment.
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline 
+			Opération &  Paire alignée &  Coût \\
+			\hline 
+			Sub(A,A) & (A,A) & 0 \\ 
+			\hline 
+			Sub(C,T) & (C,T) & 1 \\ 
+			\hline 
+			Sub(G,G) & (G,G) & 0 \\ 
+			\hline 
+			Ins(C) & (-,C) & 1 \\ 
+			\hline 
+			Ins(T) & (-,T) & 1 \\ 
+			\hline 
+			Sub(A,A) & (A,A) & 0 \\
+			\hline 
+		\end{tabular} 
+	\end{center}
+
+	\[
+		\left(
+		\begin{tabular}{cccccc}
+			A&C&G&-&-&A\\
+			A&T&G&C&T&A\\
+		\end{tabular}
+		\right)
+	\]
+	\newpage
+	Donner le graphe d'édition G(ACGA, ATGCTA) de x = ACGA à y = ATGCTA. Donner l'alignement optimal.
+	\begin{center}
+		\begin{tabular}{|c|c c c c c c c|}
+			\hline
+			G&y&A&T&G&C&T&A\\
+			\hline
+			x&(-1,-1)&&&&&&\\
+			A&&(0,0)&&&&&\\
+			C&&&(1,1)&&&&\\
+			G&&&&(2,2)&(2,3)&(2,4)&\\
+			T&&&&&&&(3,5)\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	Normalement, il faut tout compléter mais j'ai la flemme.
+	Dans le tableau :
+	\begin{itemize}
+		\item Délétion $\rightarrow$ case verticale
+		\item Insertion $\rightarrow$ case à droite
+		\item Substitution $\rightarrow$ case en diagonale
+	\end{itemize}
+
+	\subsection{Alignement optimal}
+
+	Calcul de la distance d'édition entre les 2 mots x = ACGA et y = ATGCTA sachant :
+	\begin{itemize}
+		\item Matrice de substitution Sub avec Sub(a,b) = 1 (a $\neq$ b) et Sub(a,a) = 0
+		\item Vecteurs de délétion et d'insertion avec Dél(a) = Ins(a) = 1
+	\end{itemize}
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+			\hline
+			T&j&-1&0&1&2&3&4&5\\
+			\hline
+			i&/&y[j]&A&T&G&C&T&A\\
+			\hline
+			-1&x[i]&0&1&2&3&4&5&6\\
+			\hline
+			0&A&1&0&1&2&3&4&5\\
+			\hline
+			1&C&2&1&1&2&2&3&4\\
+			\hline
+			2&G&3&2&2&1&2&3&4\\
+			\hline
+			3&A&4&3&3&2&2&3&3\\
+			\hline
+		\end{tabular}
+	\end{center}
+
 \end{document}
