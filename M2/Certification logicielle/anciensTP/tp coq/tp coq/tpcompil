@@ -1,0 +1,69 @@
+Require Export Reals.
+Require Import List.
+
+Inductive expr : Set := 
+  | var : Z -> expr
+  | plus : expr -> expr -> expr
+  | moins : expr -> expr -> expr
+  | fois : expr -> expr -> expr.
+
+Definition vingtetun := fois (plus (var 2) (var 5)) (var 3). 
+Definition quaranteetun := moins (plus (moins (var 2) (var 1)) (fois (var 7) (var 6))) (var 2).
+
+Fixpoint eval_expr (e : expr)  : Z :=
+match e with
+| var x => x 
+| plus e1 e2 => eval_expr e1 + eval_expr e2
+| moins e1 e2 => eval_expr e1 - eval_expr e2
+| fois e1 e2 => eval_expr e1 * eval_expr e2
+end.
+
+Eval compute in eval_expr vingtetun.
+Eval compute in eval_expr quaranteetun.
+
+Inductive exprpost : Set := 
+  | varpost : Z -> exprpost
+  | pluspost : exprpost
+  | moinspost : exprpost
+  | foispost : exprpost
+  | nilpost : exprpost.
+
+Definition vingtetunpost := (varpost 2)::(varpost 5)::(pluspost)::(varpost 3)::(foispost)::nil. 
+Definition quaranteetunpost := (varpost 2)::(varpost 1)::(moinspost)::(varpost 7)::(varpost 6)::(foispost)::(pluspost)::(varpost 2)::(moinspost)::nil.
+
+Inductive stack : Set :=
+  | Empty : stack
+  | Cons : exprpost -> stack -> stack.
+
+Definition pile_nouv := Empty.
+
+Fixpoint empiler (p:stack) (e:exprpost) :=
+match p with
+| Empty => Cons e Empty
+| Cons n q => empiler q e
+end.
+
+Fixpoint depiler (p:stack) :=
+match p with
+| Empty => Empty
+| Cons n q => q
+end.
+
+Fixpoint sommet (p:stack) :=
+match p with
+| Empty => nilpost
+| Cons n q => n
+end.
+
+Fixpoint eval_postfixe2 (l:list exprpost) (p:stack)  : Z :=
+match l with
+| nil => 0
+| cons n q => 
+  match n with
+  | varpost x => eval_postfixe2 q (empiler p (varpost x)) 
+  | pluspost => eval_postfixe2 q (empiler p (varpost (sommet p) + varpost (depiler (sommet p))))
+  | moinspost => eval_postfixe2 q (empiler p (sommet p - depiler (sommet p)))
+  | foispost => eval_postfixe2 q (empiler p (sommet p * depiler (sommet p)))
+  | nilpost => 0
+  end
+end.

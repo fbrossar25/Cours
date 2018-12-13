@@ -1,0 +1,118 @@
+(* version 8.6 de coq *)
+Require Import List.
+Require Import Arith.
+
+(* 1 : Logique *)
+
+Lemma not_imp : (forall A : Prop, A \/ ~A) -> forall A B : Prop, ~(A -> B) -> (A /\ ~B).
+Proof.
+intros.
+split.
+specialize H with A.
+destruct H.
+assumption.
+unfold not in H0.
+exfalso.
+apply H0.
+intro.
+contradiction.
+auto.
+Qed.
+
+
+Lemma tiers_exclus_pierce : (forall A : Prop, A \/ ~A) -> (forall A B: Prop, ((A->B) -> A) -> A).
+Proof.
+intros.
+destruct (H A).
+assumption.
+apply H0.
+intros.
+contradiction.
+Qed.
+
+Lemma pierce_tiers_exclus : (forall A B: Prop, ((A->B) -> A) -> A) -> (forall A : Prop, A \/ ~A).
+Proof.
+intros.
+assert (H False).
+Admitted.
+
+
+
+(* 2 : Listes *)
+
+Inductive pseudo_bool : Set := 
+  | Vrai : pseudo_bool
+  | Faux : pseudo_bool
+  | Idk : pseudo_bool.
+
+Definition pseudo_andb (a b:pseudo_bool) : pseudo_bool :=
+match a, b with
+| Vrai,Vrai => Vrai
+| _,Faux => Faux
+| Faux,_ => Faux
+| _,_=> Idk
+end.
+
+Lemma andb_comm : forall a b:pseudo_bool, pseudo_andb a b = pseudo_andb b a.
+Proof.
+intros.
+induction a; induction b; simpl; trivial.
+Qed.
+
+Print filter.
+
+
+Fixpoint pseudo_filter {X:Set} (P: X -> pseudo_bool) (l: list X) : list X :=
+match l with
+nil => nil
+| h::t => match (P h) with
+Vrai => h::(pseudo_filter P t)
+| _ => pseudo_filter P t
+end
+end.
+
+
+Lemma filter_and_filter : forall (X:Set) l (c1 c2 : X -> pseudo_bool),
+pseudo_filter c2 (pseudo_filter c1 l) = pseudo_filter (fun X => pseudo_andb (c1 X) (c2 X)) l.
+Proof.
+intros.
+induction l.
+simpl.
+reflexivity.
+simpl; elim (c1 a); simpl; elim (c2 a); rewrite <- IHl; trivial.
+Qed.
+
+
+(* 3 : Somme des carrés *)
+
+Fixpoint Sn (n : nat) :=
+match n with
+| 0 => 0
+| S k => (S k) * (S k) + (Sn (k))
+end.
+
+Eval compute in Sn 10.
+
+Lemma pourq32 : forall n : nat, Sn (S n) = (S n) * (S n) + Sn (n).
+Proof.
+intro.
+trivial.
+Qed.
+
+Lemma q32 : forall n : nat, 6 * (Sn n) = n * (n + 1) * (2*n + 1).
+Proof.
+intros.
+elim n.
+simpl.
+reflexivity.
+intros.
+rewrite pourq32.
+replace (6 * (S n0 * S n0 + Sn n0)) with (6 * (S n0 * S n0) + 6 * Sn n0).
+rewrite H.
+ring.
+simpl.
+ring.
+Qed.
+
+
+
