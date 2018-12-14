@@ -1,0 +1,88 @@
+[mini_safety]
+name = "Function mini"
+behavior = "Safety"
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 5
+begin = 4
+end = 8
+
+[JC_5]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 2
+begin = 8
+end = 36
+
+[JC_9]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 3
+begin = 8
+end = 60
+
+[JC_8]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 2
+begin = 8
+end = 36
+
+[JC_11]
+file = "/home/florian/Documents/certification/TP1/mini.jessie/"
+line = 0
+begin = -1
+end = -1
+
+[JC_12]
+file = "/home/florian/Documents/certification/TP1/mini.jessie/"
+line = 0
+begin = -1
+end = -1
+
+[JC_6]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 3
+begin = 8
+end = 60
+
+[JC_4]
+file = "/home/florian/Documents/certification/TP1/mini.jessie/"
+line = 0
+begin = -1
+end = -1
+
+[JC_7]
+file = "/home/florian/Documents/certification/TP1/"
+line = 0
+begin = -1
+end = -1
+
+[JC_2]
+file = "/home/florian/Documents/certification/TP1/mini.jessie/"
+line = 0
+begin = -1
+end = -1
+
+[JC_1]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 5
+begin = 4
+end = 8
+
+[mini_ensures_default]
+name = "Function mini"
+behavior = "default behavior"
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 5
+begin = 4
+end = 8
+
+[JC_10]
+file = "/home/florian/Documents/certification/TP1/"
+line = 0
+begin = -1
+end = -1
+
+[JC_3]
+file = "/home/florian/Documents/certification/TP1/mini.c"
+line = 5
+begin = 4
+end = 8
+
