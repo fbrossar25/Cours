@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+.router-link-active{
+  color: red;
+}
+
+%liste-choix {
+  border-radius: 5px;
+  width: 100px;
+}
+
+.state-option {
+  @extend %liste-choix;
+  background: gray;
+}
+
+.state-confirme{
+  @extend %liste-choix;
+  background: lightseagreen;
+}
+
+.state-annule{
+  @extend %liste-choix;
+  background: firebrick;
+}
+
+.state-facture{
+  @extend %liste-choix;
+  background: orange;
+}
+
+.state-encaisse{
+  @extend %liste-choix;
+  background: olivedrab;
+}

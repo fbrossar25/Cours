@@ -1,0 +1,9 @@
+<div class="d-flex align-items-center header">
+  <div><button class="btn btn-primary" (click)="toggle()"> NAV  </button></div>
+  <div><button class="btn btn-primary" (click)="callIncrementVersion()"> +  </button></div>
+  <div><button class="btn btn-primary" (click)="callDecrementVersion()"> -  </button></div>
+  <div class="title flex-grow-1 text-center">
+    <h1>{{ title }} v{{versionObservable | async}}</h1>
+  </div>
+  <div><button class="btn btn-primary"> Login </button></div>
+</div>

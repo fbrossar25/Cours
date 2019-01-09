@@ -1,0 +1,22 @@
+<tr>
+  <th scope="row">{{presta.id === undefined ? 'undefined' : presta.id === null ? 'null' : presta.id}}</th>
+  <td>{{presta.intitule}}</td>
+  <td>{{presta.date_debut | date: 'shortDate'}}</td>
+  <td>{{presta.date_fin | date: 'shortDate'}}</td>
+  <td>{{presta.nb_jours}}</td>
+  <td>{{presta.tjm_ht | currency: 'EUR'}}</td>
+  <td>{{presta.taux_tva}}</td>
+  <td>{{presta | total | currency: 'EUR'}}</td>
+  <td>{{presta | total:true  | currency: 'EUR'}}</td>
+  <td>
+    {{presta.state}}
+    <select class="form-control" [(ngModel)]="presta.state" [appStatePresta]="presta.state">
+      <option [value]='state' *ngFor="let state of states" [appStatePresta]="state">{{state}}</option>
+    </select>
+  </td>
+  <td>
+      {{presta.type}}
+      <select class="form-control" [(ngModel)]="presta.type">
+        <option [value]='type' *ngFor="let type of types">{{type}}</option>
+      </select></td>
+</tr>

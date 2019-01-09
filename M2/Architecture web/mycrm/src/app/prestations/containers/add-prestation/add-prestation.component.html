@@ -1,0 +1,41 @@
+<div class="container">
+  <form (ngSubmit)="register()" [formGroup]="form">
+    <div class="row form-group">
+      <div class="col">
+        <label for="">id</label>
+        <input type="text" class="form-control" formControlName="id" />
+        <span>{{form.get('id').valid}}</span>
+      </div>
+      <div class="col">
+        <label for="">intitule</label>
+        <input type="text" class="form-control" formControlName="intitule" />
+        <span>{{form.get('intitule').valid}}</span>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col">
+        <label for="">date_debut</label>
+        <input type="text" class="form-control" formControlName="date_debut" />
+      </div>
+      <div class="col">
+        <label for="">date_fin</label>
+        <input type="text" class="form-control" formControlName="date_fin" />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col">
+        <label for="">tjm_ht</label>
+        <input type="text" class="form-control" formControlName="tjm_ht" />
+        <span>{{form.get('tjm_ht').valid}}</span>
+      </div>
+      <div class="col">
+        <label for="">nb_jours</label>
+        <input type="text" class="form-control" formControlName="nb_jours" />
+        <span>{{form.get('nb_jours').valid}}</span>
+      </div>
+    </div>
+    <div class="row form-group">
+      <button type="submit" [disabled]="form.invalid">Register</button>
+    </div>
+</form>
+</div>

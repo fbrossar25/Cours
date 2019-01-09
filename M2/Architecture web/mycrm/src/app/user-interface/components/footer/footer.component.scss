@@ -1,0 +1,15 @@
+/* Make it a marquee */
+.marquee {
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: marquee 10s linear infinite;
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { text-indent: 0% }
+    50% { text-indent: 100% }
+    100% { text-indent: 0% }
+}

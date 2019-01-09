@@ -1,0 +1,25 @@
+<header class="fixed-top">
+  <app-header #head></app-header>
+</header>
+
+<main [ngClass]="{ 'close-aside' : head.open }">
+  <div class="position-fixed"
+          [ngClass]="{ 'shadow' : !head.open} "
+          (click)="head.toggle()"></div>
+  <aside>
+    <div class="scroller">
+      <app-nav></app-nav>
+    </div>
+  </aside>
+
+  <div class="page">
+    <div class="contents">
+      <h1>Contenu dynamique</h1>
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+  </div>
+</main>

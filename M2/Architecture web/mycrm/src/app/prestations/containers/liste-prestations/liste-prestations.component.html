@@ -1,0 +1,11 @@
+<h1>Liste des prestations</h1>
+
+<app-table [headers]="listHeaders1">
+    <ng-container *ngFor="let prestation of collection">
+        <app-prestation [presta]="prestation">
+
+        </app-prestation>
+    </ng-container>
+</app-table>
+
+<router-outlet></router-outlet>
