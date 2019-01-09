@@ -1,0 +1,12 @@
+ ssh ghome.metz.supelec.fr -l hpcilc_7
+ ilc2018
+ 
+ ssh vera.ic
+ 
+ vera :
+    oarstat (liste les connexions)
+    oardel
+    Ouvertur machine : 
+    oarsub -p "cluster='sarah'" -l nodes=1,walltime=4:00:00 -I
+    
+    
