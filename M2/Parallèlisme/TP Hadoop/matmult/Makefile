@@ -1,10 +1,10 @@
 JAVACC=javac
 JAR=jar
-INPUT_FILE=matrices.in.dat
+INPUT_FILE=dijkstra.in.dat
 # INPUT_FILE=test.csv
 # INPUT_FILE=input
 OUTPUT=res.out.dat
-PROJECT=Mm
+PROJECT=Dijkstra
 JAR_NAME=$(PROJECT).jar
 DIR_CLASSES=$(PROJECT)_classes  # a dir to store classes and not mix too many files with sources
 
@@ -26,7 +26,7 @@ run:
 	hadoop jar $(JAR_NAME) $(PROJECT) $(INPUT_FILE) $(OUTPUT)
 
 clean:
-	rm -rf $(OUTPUT) $(OUTPUT)-final
+	rm -rf $(OUTPUT) $(OUTPUT).final
 
 clean_classes:
 	rm -rf $(DIR_CLASSES)
