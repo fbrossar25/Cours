@@ -375,6 +375,8 @@
 
 	\subsection{Alignement optimal}
 
+	\subsubsection{Calcul de la distance d'édition}
+	
 	Calcul de la distance d'édition entre les 2 mots x = ACGA et y = ATGCTA sachant :
 	\begin{itemize}
 		\item Matrice de substitution Sub avec Sub(a,b) = 1 (a $\neq$ b) et Sub(a,a) = 0
@@ -388,17 +390,183 @@
 			\hline
 			i&/&y[j]&A&T&G&C&T&A\\
 			\hline
-			-1&x[i]&0&1&2&3&4&5&6\\
+			-1&x[i]&\textbf{0}&1&2&3&4&5&6\\
 			\hline
-			0&A&1&0&1&2&3&4&5\\
+			0&A&1&\textbf{0}&1&2&3&4&5\\
 			\hline
-			1&C&2&1&1&2&2&3&4\\
+			1&C&2&1&\textbf{1}&2&2&3&4\\
 			\hline
-			2&G&3&2&2&1&2&3&4\\
+			2&G&3&2&2&\textbf{1}&\textbf{2}&\textbf{3}&4\\
 			\hline
-			3&A&4&3&3&2&2&3&3\\
+			3&A&4&3&3&2&2&3&\textbf{3}\\
 			\hline
 		\end{tabular}
 	\end{center}
 
+	\subsubsection{Calcul d'un alignement optimal}
+	
+	Les chemins de coût minimal entre [-1, 1] et [3, 5] sont données en gras.
+	Les deux alignements otpimaux associés aux 2 chemins de coût minimal sont :
+	
+	\[
+	\left(
+	\begin{tabular}{cccccc}
+	A&-&-&C&G&A\\
+	A&T&G&C&T&A\\
+	\end{tabular}
+	\right)
+	\text{ET}
+	\left(
+	\begin{tabular}{cccccc}
+	A&C&G&-&-&A\\
+	A&T&G&C&T&A\\
+	\end{tabular}
+	\right)
+	\]
+	\textbf{Exemple :} Calucl de la distane d'édition entre les 2 mots $x = EAWACQGKL$ et $y = ERDAWCQPGKWY$ sur l'alphabet {A, C, D, E, G, K, L, P, Q, R, W, Y} sachant :
+	\begin{itemize}
+		\item Matrice de substitution Sub avec $Sub(a,b) = 3 (a \neq b)$ et $Sub(a,a) = 0$
+		\item Vecteurs de déletion et insertion avec $Del(a) = Ins(a) = 0$
+	\end{itemize}
+	
+	Distance d'édition :
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			T & j & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
+			\hline
+			i & / & y{[}j{]} & E & R & D & A & W & C & Q & P & G & K & W & Y\\
+			\hline
+			-1 & x{[}i{]} & \textbf{0} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12\\
+			\hline
+			0 & E & 1 & \textbf{0} & \textbf{1} & \textbf{2} & 3 & 4 & 5 & 6 & 7 & 8
+			& 9 & 10 & 11\\
+			\hline
+			1 & A & 2 & 1 & 2 & 3 & \textbf{2} & 3 & 4 & 5 & 6 & 7 & 8 & 9 &
+			10\\
+			\hline
+			2 & W & 3 & 2 & 3 & 4 & 3 & \textbf{2} & 3 & 4 & 5 & 6 & 7 & 8 &
+			9\\
+			\hline
+			3 & A & 4 & 3 & 4 & 5 & 4 & \textbf{3} & 4 & 5 & 6 & 7 & 8 & 9 &
+			10\\
+			\hline
+			4 & C & 5 & 4 & 5 & 6 & 5 & 4 & \textbf{3} & 4 & 5 & 6 & 7 & 8 &
+			9\\
+			\hline
+			5 & Q & 6 & 5 & 6 & 7 & 6 & 5 & 4 & \textbf{3} & \textbf{4} & 5 & 6 & 7
+			& 8\\
+			\hline
+			6 & G & 7 & 6 & 7 & 8 & 7 & 6 & 5 & 4 & 5 & \textbf{4} & 5 & 6 &
+			7\\
+			\hline
+			7 & K & 8 & 7 & 8 & 9 & 8 & 7 & 6 & 5 & 6 & 5 & \textbf{4} & \textbf{5}
+			& \textbf{6}\\
+			\hline
+			8 & L & 9 & 8 & 9 & 10 & 9 & 8 & 7 & 6 & 7 & 6 & \textbf{5} & \textbf{6}
+			& \textbf{7}\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\newpage
+	Alignements optimaux:
+
+	\[
+	\left(
+	\begin{tabular}{cccccccccccccc}
+	E&-&-&A&W&A&C&Q&-&G&K&-&-&L\\
+	E&R&D&A&W&-&C&Q&P&G&K&W&Y&-\\
+	0&1&1&0&0&1&0&0&1&0&0&1&1&1\\
+	\end{tabular}
+	\right) = 7
+	\]
+	\[
+	\left(
+	\begin{tabular}{cccccccccccccc}
+	E&-&-&A&W&A&C&Q&-&G&K&L&-&-\\
+	E&R&D&A&W&-&C&Q&P&G&K&-&W&Y\\
+	0&1&1&0&0&1&0&0&1&0&0&1&1&1\\
+	\end{tabular}
+	\right) = 7
+	\]
+	\[
+	\left(
+	\begin{tabular}{cccccccccccccc}
+	E&-&-&A&W&A&C&Q&-&G&K&-&L&-\\
+	E&R&D&A&W&-&C&Q&P&G&K&W&-&Y\\
+	0&1&1&0&0&1&0&0&1&0&0&1&1&1\\
+	\end{tabular}
+	\right) = 7
+	\]
+	
+	\subsection{Plus long sous-mot commun}
+	
+	\subsubsection{Calcul plus long sous-mot commun}
+	
+	Calculer les plus long sous-mots communs aux mots $x = AGCTGA$ et $y = CAGATCAGAG$.
+	\begin{enumerate}
+		\item smc
+		\item $d_smot$
+		\item Alg LES\_PLUS\_LONG\_SOUS\_MOTS\_COMMUNS
+	\end{enumerate}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		T & j & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\
+		\hline
+		i & / & y{[}j{]} & C & A & G & A & T & C & A & G & A & G\\
+		-1 & x{[}i{]} & \textbf{0} & \textbf{0} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+		& 0\\
+		0 & A & 0 & 0 & \textbf{1} & 1 & 1 & 1 & 1 & 1 & 1 & 1 &
+		1\\
+		1 & G & 0 & 0 & 1 & \textbf{2} & \textbf{2} & \textbf{2} & 2 & 2 & 2 & 2
+		& 2\\
+		2 & C & 0 & 1 & 1 & \textbf{2} & \textbf{2} & 2 & \textbf{3} &
+		\textbf{3} & 3 & 3 & 3\\
+		3 & T & 0 & 1 & 1 & 2 & 2 & \textbf{2} & \textbf{3} & \textbf{3} & 3 & 3
+		& 3\\
+		4 & G & 0 & 1 & 1 & 2 & 2 & 2 & 3 & 3 & \textbf{4} & 4 &
+		4\\
+		5 & A & 0 & 1 & 2 & 2 & 3 & 3 & 3 & 4 & 4 & \textbf{5} &
+		\textbf{5}\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\[
+\left(
+\begin{tabular}{ccccccccccc}
+-&A&G&-&-&C&-&T&G&A&-\\
+C&A&G&A&T&C&A&-&G&A&G\\
+\end{tabular}
+\right) = 6
+\]
+\[
+\left(
+\begin{tabular}{ccccccccccc}
+-&A&G&C&-&T&-&-&G&A&-\\
+C&A&G&-&A&T&C&A&G&A&G\\
+\end{tabular}
+\right) = 6
+\]
+\[
+\left(
+\begin{tabular}{ccccccccccc}
+-&A&G&-&-&C&T&-&G&A&-\\
+C&A&G&A&T&C&-&A&G&A&G\\
+\end{tabular}
+\right) = 6
+\]
+\[
+\left(
+\begin{tabular}{ccccccccccc}
+-&A&G&-&C&T&-&-&G&A&-\\
+C&A&G&A&-&T&C&A&G&A&G\\
+\end{tabular}
+\right) = 6
+\]
+
+AGCTGA\\
+AGCGA\\
 \end{document}
