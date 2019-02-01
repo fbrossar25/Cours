@@ -1,0 +1,12 @@
+<label>Nom crypto : </label>
+
+<input [(ngModel)]="nomCrypto">
+
+<button (click)="onclick()" [disabled]="nomCrypto===''">Chercher</button>
+<div>La recherche s'effectue sur : {{nomCrypto}}</div>
+
+<div *ngFor = "let c of listCrypto">
+  <div *ngIf = "c.name.toLowerCase().includes(nomCrypto.toLowerCase())">
+    <app-crypto [coin]="c" ></app-crypto>
+  </div>
+  </div>
