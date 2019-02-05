@@ -1,3 +1,5 @@
-<p [ngStyle]="{color: getColor()}">
-  {{coin.id}} {{coin.symbol}} {{coin.name}}
-</p>
+    <div [ngStyle]="{'color': getColor()}">
+        <a [routerLink]="['/detail',coin.id]"> {{coin.id}} {{coin.symbol}} {{coin.name | lowercase}} </a>
+      
+      </div>
+ 

@@ -11,10 +11,11 @@ export class CryptoComponent implements OnInit {
   @Input () coin : Coin;
   constructor() { }
 
+  getColor () : String {
+    return "red";
+    }
+
   ngOnInit() {
   }
 
-  getColor(){
-    return "red";
-  }
 }

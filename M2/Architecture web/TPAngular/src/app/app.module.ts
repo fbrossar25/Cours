@@ -7,18 +7,28 @@ import { RechercheComponent } from './recherche/recherche.component';
 import { FormsModule} from "@angular/forms";
 import { CryptoComponent } from './crypto/crypto.component';
 import { HttpClientModule } from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
+import { DetailComponent } from './detail/detail.component';
 
+
+const appRoutes: Routes = [
+  {path: 'recherche', component: RechercheComponent },
+  { path: 'detail/:id', component: DetailComponent}
+  ];
+  
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RechercheComponent,
-    CryptoComponent
+    CryptoComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot (appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,11 +2,13 @@
 
 <input [(ngModel)]="nomCrypto">
 
-<button (click)="onclick()" [disabled]="nomCrypto===''">Chercher</button>
+<button (click)="onclick()" routerLink="/" [disabled]="nomCrypto==''">Chercher</button>
 <div>La recherche s'effectue sur : {{nomCrypto}}</div>
-
+<div *ngIf="router.url == '/'">
 <div *ngFor = "let c of listCrypto">
   <div *ngIf = "c.name.toLowerCase().includes(nomCrypto.toLowerCase())">
     <app-crypto [coin]="c" ></app-crypto>
   </div>
   </div>
+</div>
+  
