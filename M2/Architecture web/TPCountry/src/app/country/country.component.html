@@ -1,0 +1,9 @@
+<div *ngIf="country !== undefined && country !== null else error">
+  <p>Nom: {{country.name}}</p>
+  <p>Capitale: {{country.capital}}</p>
+  <p>Population: {{country.population}}</p>
+  <p>Superficie: {{country.area}}</p>
+  <p>Région: {{country.region}}</p>
+  <p>Monnaie: {{country.currency}}</p>
+</div>
+<ng-template #error>Une erreur est survenue</ng-template>

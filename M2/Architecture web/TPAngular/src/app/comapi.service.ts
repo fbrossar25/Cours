@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Data} from './model/data';
 import {Coin} from './model/coin';
 import {DataDetail} from './model/DataDetail';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient } from '@angular/common/http';
 import {Observable } from 'rxjs';
 
 @Injectable({
