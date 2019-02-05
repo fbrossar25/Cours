@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  country: string;
-  constructor(private router: Router) { }
+  propertyName = 'name';
+  value = '';
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
 
   search() {
-    this.router.navigate(`search/name/${this.country}`);
+    console.log(`Recherche pour ${this.propertyName}=${this.value}`);
+    this.router.navigate([`list/${this.propertyName}/${this.value}`]);
   }
 }

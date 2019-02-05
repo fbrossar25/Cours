@@ -1,3 +1,9 @@
-<p>
-  country-list works!
-</p>
+<h2>Liste des pays :</h2>
+<div *ngIf="countries !== undefined && countries !== null && countries.length > 0 else noresult">
+  <ul>
+    <li *ngFor="let country of countries">
+      <a [routerLink]="['/country', country.alpha3Code]" routerLinkActive="router-link-active">{{country.name}}</a>
+    </li>
+  </ul>
+</div>
+<ng-template #noresult><p>Aucun résultat pour '{{property}}' = '{{value}}' </p></ng-template>

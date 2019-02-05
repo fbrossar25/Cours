@@ -1,7 +1,7 @@
-import { Country } from './../../models/country';
-import { Component, OnInit, Input } from '@angular/core';
+import { Country } from './../shared/models/country';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestCountriesService } from 'src/services/rest-countries.service';
+import { RestCountriesService } from './../shared/services/rest-countries.service';
 
 @Component({
   selector: 'app-country',
@@ -11,17 +11,25 @@ import { RestCountriesService } from 'src/services/rest-countries.service';
 export class CountryComponent implements OnInit {
 
   country: Country;
+  alphaCode = '';
 
-  constructor(private route: ActivatedRoute, private countriesService: RestCountriesService) { }
+  constructor(private route: ActivatedRoute, private countriesService: RestCountriesService) {  }
 
   ngOnInit() {
-    const countryName = this.route.snapshot.paramMap.get('country');
-    this.countriesService.getByName(countryName).subscribe(countries => {
-      this.country = countries[0];
-      if (this.country == null || this.country === undefined) {
-        console.log(`Le pays '${countryName}' n\'as pas été trouvé`);
+    this.alphaCode = this.route.snapshot.paramMap.get('code');
+    console.log(`Affichage du pays de code '${this.alphaCode}'`);
+    this.countriesService.getByAlphaCode(this.alphaCode).subscribe(
+      country => this.country = country,
+      error => {
+        if (error.status === 404 && error.statusText === 'OK') {
+            console.log(`Pas de pays de code '${this.alphaCode}'`);
+        } else {
+          console.log(`Une erreur est survenue pour le pays de code '${this.alphaCode}' : ${error.message}`);
+          console.error(error);
+        }
+        this.country = null;
       }
-    });
+    );
   }
 
 }
