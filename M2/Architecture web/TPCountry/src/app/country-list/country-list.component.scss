@@ -1,0 +1,24 @@
+.countries-container{
+  padding-bottom: 5px;
+  margin-left: 5px;
+  min-height: 50px;
+
+  .countries-error{
+    color: #fd0b0b;
+  }
+
+  .countries-list{
+    margin-left: 5px;
+
+    .country-item{
+      a{
+        text-decoration: none;
+        color: black;
+      }
+
+      :hover{
+        background-color: lightslategray;
+      }
+    }
+  }
+}

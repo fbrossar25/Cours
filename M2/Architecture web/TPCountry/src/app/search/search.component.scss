@@ -1,0 +1,36 @@
+@import "../../constants";
+
+.region-field{
+  width: $field-width;
+}
+
+.property-field{
+
+}
+
+.search-button{
+
+}
+
+.search-container{
+  width: 100%;
+  background:$my-green;
+  align-content: center;
+  min-width: 100%;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+
+.search-container label{
+  font-weight: bold;
+}
+
+.search-container *{
+  margin: 5px;
+}
+
+.value-field{
+  width: $field-width;
+}

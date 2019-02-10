@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "constants";
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  min-width: $min-width;
+  min-height: $min-height;
+}

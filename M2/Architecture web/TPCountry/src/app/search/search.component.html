@@ -1,20 +1,23 @@
-<select [(ngModel)]="propertyName">
-  <option value="alpha">Code pays</option>
-  <option value="name">Nom</option>
-  <option value="currency">Code monnaie</option>
-  <option value="lang">Code langue</option>
-  <option value="capital">Capitale</option>
-  <option value="callingcode">Indicatif téléphonique</option>
-  <option value="region">Région</option>
-</select>
-<input type="text" [(ngModel)]="value" *ngIf="propertyName !== 'region' else region"/>
-<ng-template #region>
-  <select [(ngModel)]="value">
-    <option value="africa">Afrique</option>
-    <option value="americas">Amériques</option>
-    <option value="asia">Asie</option>
-    <option value="europe">Europe</option>
-    <option value="oceania">Océanie</option>
+<div class="search-container">
+  <label>Recherche :</label>
+  <select [(ngModel)]="propertyName" class="property-field">
+    <option value="alpha">Code pays</option>
+    <option value="name">Nom</option>
+    <option value="currency">Code monnaie</option>
+    <option value="lang">Code langue</option>
+    <option value="capital">Capitale</option>
+    <option value="callingcode">Indicatif téléphonique</option>
+    <option value="region">Région</option>
   </select>
-</ng-template>
-<button (click)="search()" [disabled]="value===''">Rechercher</button>
+  <input class="value-field" type="text" (keyup.enter)="search()" [(ngModel)]="value" *ngIf="propertyName !== 'region' else region"/>
+  <ng-template #region>
+    <select class="region-field" [(ngModel)]="value">
+      <option value="africa">Afrique</option>
+      <option value="americas">Amériques</option>
+      <option value="asia">Asie</option>
+      <option value="europe">Europe</option>
+      <option value="oceania">Océanie</option>
+    </select>
+  </ng-template>
+  <button class="search-button" (click)="search()" [disabled]="value===''">Rechercher</button>
+</div>

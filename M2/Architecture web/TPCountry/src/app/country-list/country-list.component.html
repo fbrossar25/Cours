@@ -1,9 +1,9 @@
-<h2>Liste des pays :</h2>
-<div *ngIf="countries !== undefined && countries !== null && countries.length > 0 else noresult">
-  <ul>
-    <li *ngFor="let country of countries">
+<div class="countries-container">
+  <h2>Liste des pays :</h2>
+  <div class="countries-list" *ngIf="countries !== undefined && countries !== null && countries.length > 0 else noresult">
+    <div *ngFor="let country of countries" class="country-item">
       <a [routerLink]="['/country', country.alpha3Code]" routerLinkActive="router-link-active">{{country.name}}</a>
-    </li>
-  </ul>
+    </div>
+  </div>
+  <ng-template #noresult><p class="countries-error">Aucun résultat pour '{{property}}' = '{{value}}' </p></ng-template>
 </div>
-<ng-template #noresult><p>Aucun résultat pour '{{property}}' = '{{value}}' </p></ng-template>

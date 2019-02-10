@@ -1,0 +1,34 @@
+@import "../constants";
+
+.header{
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+
+  .search{
+    background: $my-green;
+  }
+}
+
+.app{
+  margin-top: 150px;
+
+  .nav-aside{
+    background: lightgrey;
+    left: 0;
+    min-width: $aside-width;
+    width: $aside-width;
+    height: $aside-height;
+    position: fixed;
+    box-shadow: 2px 2px 2px #505050;
+  }
+
+  .main{
+    background: $my-green;
+    margin-left: $aside-width;
+    border-left: 5px solid green;
+    min-width: 300px;
+  }
+}

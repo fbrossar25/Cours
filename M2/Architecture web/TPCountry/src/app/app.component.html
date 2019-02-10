@@ -1,10 +1,12 @@
-<header>
+<header class="header">
   <app-header [title]="title"></app-header>
+  <app-search class="search"></app-search>
 </header>
-<aside>
-  <app-nav></app-nav>
-</aside>
-<app-search></app-search>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div class="app">
+  <aside class="nav-aside">
+    <app-nav></app-nav>
+  </aside>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
