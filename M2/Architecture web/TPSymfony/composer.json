@@ -7,8 +7,7 @@
     ],
     "require": {
         "twig/twig": "~1.0",
-        "slim/slim": "^3.0",
-        "symfony/form": "^4.2"
+        "slim/slim": "^3.0"
     },
     "autoload": {}
 }
