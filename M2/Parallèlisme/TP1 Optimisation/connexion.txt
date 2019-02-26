@@ -7,6 +7,6 @@
     oarstat (liste les connexions)
     oardel
     Ouvertur machine : 
-    oarsub -p "cluster='sarah'" -l nodes=1,walltime=4:00:00 -I
+    oarsub -p "cluster='kyle'" -l nodes=1,walltime=4:00:00 -I
     
     
