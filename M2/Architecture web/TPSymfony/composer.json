@@ -1,0 +1,14 @@
+{
+    "name": "vendor/package",
+    "description": "TP Symfony",
+    "license": "GPL3.0+",
+    "authors": [
+        {"name": "fbrossar25", "email": "florian.brossard@etu.unistra.fr"}
+    ],
+    "require": {
+        "twig/twig": "~1.0",
+        "slim/slim": "^3.0",
+        "symfony/form": "^4.2"
+    },
+    "autoload": {}
+}

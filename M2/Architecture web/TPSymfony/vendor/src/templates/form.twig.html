@@ -1,0 +1,30 @@
+{% extends 'app.twig.html' %}
+
+{% block form %}
+<h1>{{title}}</h1>
+<form id="formulaire" action="#" method="post" onsubmit="validerFormulaire(event)">
+    <fieldset>
+        <legend>Identité</legend>
+        Nom :<input id="nom" type="text" name="nom"/><br>
+        Prenom :<input id="prenom" type="text" name="prenom"/>
+    </fieldset>
+    <fieldset>
+        <legend>Adresse</legend>
+        Libellé voie :<input id="adresse" type="text" name="adresse"/><br>
+        Code postale :<input id="code-postale" type="text" name="code-postale"/><br>
+        Ville :<input id="ville" type="text" name="ville"/>
+    </fieldset>
+    <fieldset>
+        <legend>Contact</legend>
+        Téléphone :<input id="telephone" type="text" name="telephone"/><br>
+        Email :<input id="email" type="email" name="email"/>
+    </fieldset>
+    <fieldset>
+        <legend>Authentification</legend>
+        Login :<input id="login" type="text" name="login"/><br>
+        Mot de passe :<input id="pass" type="password" name="pass"/><br>
+        Confirmation du mot de passe :<input id="pass-confirm" type="password" name="pass-confirm"/>
+    </fieldset>
+    <input type="submit" value="Valider" id="btn-valider"/>
+</form>
+{% endblock %}
