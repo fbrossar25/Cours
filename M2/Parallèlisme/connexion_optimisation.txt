@@ -1,0 +1,20 @@
+ ssh ghome.metz.supelec.fr -l hpcilc_7
+ ilc2018
+ 
+ ssh vera.ic
+ 
+ vera :
+    oarstat (liste les connexions)
+    oardel
+    Ouverture machine : 
+    oarsub -p "cluster='kyle'" -l nodes=1,walltime=4:00:00 -I
+    
+    
+pour se déconnecter
+oardel $(oarstat | grep hpcilc_7 | sed -e 's/\([0-9][0-9]*\).*/\1/g')
+
+Pour copier un fichier ssh en local :
+scp hpcilc_7@ghome.metz.supelec.fr:[FILE] [LOCAL]
+	- FILE : chemin absolue vers le fichier à copier
+	- LOCAL : dossier local où copier le fichier
+scp hpcilc_7@ghome.metz.supelec.fr:/usr/users/hpcilc/hpcilc_7/BROSSARD/TP2/TP2.tar.gz Workspaces/Cours/M2/Parallèlisme/TP2\ Optimisation/

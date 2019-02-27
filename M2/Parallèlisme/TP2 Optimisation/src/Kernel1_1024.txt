@@ -1,0 +1,280 @@
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 1
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.104021(s)
+	PE0: Total Gigaflops = 20.644762
+
+	PE0: Total elapsed time of the application = 0.138540(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 2
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.063378(s)
+	PE0: Total Gigaflops = 33.883846
+
+	PE0: Total elapsed time of the application = 0.114294(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 3
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.085770(s)
+	PE0: Total Gigaflops = 25.037683
+
+	PE0: Total elapsed time of the application = 0.120306(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 4
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.053465(s)
+	PE0: Total Gigaflops = 40.166187
+
+	PE0: Total elapsed time of the application = 0.112092(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 5
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.068318(s)
+	PE0: Total Gigaflops = 31.433418
+
+	PE0: Total elapsed time of the application = 0.102944(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 6
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.090077(s)
+	PE0: Total Gigaflops = 23.840612
+
+	PE0: Total elapsed time of the application = 0.124891(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 7
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.068859(s)
+	PE0: Total Gigaflops = 31.186619
+
+	PE0: Total elapsed time of the application = 0.125708(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 8
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.064345(s)
+	PE0: Total Gigaflops = 33.374722
+
+	PE0: Total elapsed time of the application = 0.098846(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 9
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.058375(s)
+	PE0: Total Gigaflops = 36.787777
+
+	PE0: Total elapsed time of the application = 0.098543(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 10
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.088353(s)
+	PE0: Total Gigaflops = 24.305605
+
+	PE0: Total elapsed time of the application = 0.127547(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 11
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.073146(s)
+	PE0: Total Gigaflops = 29.359024
+
+	PE0: Total elapsed time of the application = 0.116635(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 12
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.075121(s)
+	PE0: Total Gigaflops = 28.586966
+
+	PE0: Total elapsed time of the application = 0.127941(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 13
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.066514(s)
+	PE0: Total Gigaflops = 32.286148
+
+	PE0: Total elapsed time of the application = 0.127349(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 14
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.048500(s)
+	PE0: Total Gigaflops = 44.278004
+
+	PE0: Total elapsed time of the application = 0.083365(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 15
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.077999(s)
+	PE0: Total Gigaflops = 27.532213
+
+	PE0: Total elapsed time of the application = 0.129332(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 16
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.065041(s)
+	PE0: Total Gigaflops = 33.017353
+
+	PE0: Total elapsed time of the application = 0.112058(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 17
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.073450(s)
+	PE0: Total Gigaflops = 29.237226
+
+	PE0: Total elapsed time of the application = 0.109109(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 31
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.098810(s)
+	PE0: Total Gigaflops = 21.733440
+
+	PE0: Total elapsed time of the application = 0.134114(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 32
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.109690(s)
+	PE0: Total Gigaflops = 19.577799
+
+	PE0: Total elapsed time of the application = 0.144987(s)
+--------------
+
+
+
+Computation starts: Matrixes 1024x1024, KernelId 1, NbThreads 64
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 0.041581(s)
+	PE0: Total Gigaflops = 51.645702
+
+	PE0: Total elapsed time of the application = 0.076632(s)
+--------------
+
+
+
