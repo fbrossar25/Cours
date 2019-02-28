@@ -1,0 +1,10 @@
+Computation starts: Matrixes 1024x1024, KernelId 0, NbThreads 2
+PE0: Product of two square matrixes of 1024x1024 doubles:
+	PE0: C[0][1023] = 732470706176.000000
+	PE0: C[512][512] = 563407837200384.000000
+	PE0: C[1023][0] = 1124434987450368.000000
+
+	PE0: Elapsed time of the loop = 2.265249(s)
+	PE0: Total Gigaflops = 0.948012
+
+	PE0: Total elapsed time of the application = 2.315433(s)
