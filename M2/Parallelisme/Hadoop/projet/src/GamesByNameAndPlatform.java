@@ -35,17 +35,9 @@ public class GamesByNameAndPlatform {
 
     public static class GamesByNameAndPlatformReducer extends Reducer<Text, Text, Text, Text> {
         public void reduce(Text key, Iterable<Text> values, Context context) {
-            StringBuilder resultBuilder = new StringBuilder();
-            Iterator<Text> it = values.iterator();
-            while (it.hasNext()) {
-                Text value = it.next();
-                resultBuilder.append(value);
-                if (it.hasNext()) {
-                    resultBuilder.append(";");
-                }
-            }
             try {
-                context.write(key, new Text(resultBuilder.toString()));
+                // Il n'y as pas deux jeux de même nom sur une même plateforme
+                context.write(key, values.iterator().next());
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
                 System.exit(-1);
