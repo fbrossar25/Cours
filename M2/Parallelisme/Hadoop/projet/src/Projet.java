@@ -31,11 +31,32 @@ public class Projet {
     }
   }
 
+  public static void gamesByNameAndPlatform(String[] args) {
+    try {
+      Configuration conf = new Configuration();
+      Job job = new Job(conf, "GamesByNameAndPlatform");
+      job.setJarByClass(GamesByNameAndPlatform.class);
+      job.setMapperClass(GamesByNameAndPlatform.GamesByNameAndPlatformMapper.class);
+      job.setReducerClass(GamesByNameAndPlatform.GamesByNameAndPlatformReducer.class);
+      job.setInputFormatClass(TextInputFormat.class);
+      job.setOutputFormatClass(TextOutputFormat.class);
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(Text.class);
+      FileInputFormat.setInputPaths(job, new Path(args[1]).suffix("/part-r-00000"));
+      FileOutputFormat.setOutputPath(job, new Path(args[1]).suffix("/step2"));
+      job.waitForCompletion(true);
+    } catch (IOException | InterruptedException | ClassNotFoundException e) {
+      e.printStackTrace();
+      System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
     if (args.length != 2) {
       System.err.println("Usage : hadoop jar Projet.jar Projet INPUT OUTPUT");
       System.exit(-1);
     }
     gamesByName(args);
+    gamesByNameAndPlatform(args);
   }
 }
