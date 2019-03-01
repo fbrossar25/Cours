@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.lang.InterruptedException;
 import java.lang.StringBuilder;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.apache.hadoop.io.Text;
@@ -17,11 +18,11 @@ public class GamesRatio {
         public void map(Object key, Text value, Context context) {
             String[] fields = value.toString().split("\t");
             String keyValue = fields[0];
-            String platform = keyValue.split("|")[1];
+            String platform = keyValue.split("\\|")[1];
             String[] gameFields = fields[1].split(",");
-            Double ratio = Double.parseDouble(gameFields[0]) / Double.parseDouble(gameFields[1]);
-            if (!Projet.ratioTemoin.containsKey(platform)) {
-                Projet.ratioTemoin.put(platform, ratio);
+            Double ratio = 100.0 * (Double.parseDouble(gameFields[0]) / Integer.parseInt(gameFields[1]));
+            if (!Projet.ratioTemoins.containsKey(platform)) {
+                Projet.ratioTemoins.put(platform, ratio);
             }
             try {
                 context.write(new Text(keyValue), new DoubleWritable(ratio));

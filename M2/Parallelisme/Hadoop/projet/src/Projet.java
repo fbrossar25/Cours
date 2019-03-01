@@ -9,12 +9,13 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.BooleanWritable;
 
 import java.util.HashMap;
 
 public class Projet {
 
-  public static HashMap<String, Double> ratioTemoin = new HashMap<>();
+  public static HashMap<String, Double> ratioTemoins = new HashMap<>();
 
   public static void gamesByName(String[] args) {
     try {
@@ -76,6 +77,26 @@ public class Projet {
     }
   }
 
+  public static void gamesInfluenced(String[] args) {
+    try {
+      Configuration conf = new Configuration();
+      Job job = new Job(conf, "gamesInfluenced");
+      job.setJarByClass(GamesInfluenced.class);
+      job.setMapperClass(GamesInfluenced.GamesInfluencedMapper.class);
+      job.setReducerClass(GamesInfluenced.GamesInfluencedReducer.class);
+      job.setInputFormatClass(TextInputFormat.class);
+      job.setOutputFormatClass(TextOutputFormat.class);
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(BooleanWritable.class);
+      FileInputFormat.setInputPaths(job, new Path(args[1]).suffix("/step3/part-r-00000"));
+      FileOutputFormat.setOutputPath(job, new Path(args[1]).suffix("/step4"));
+      job.waitForCompletion(true);
+    } catch (IOException | InterruptedException | ClassNotFoundException e) {
+      e.printStackTrace();
+      System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
     if (args.length != 2) {
       System.err.println("Usage : hadoop jar Projet.jar Projet INPUT OUTPUT");
@@ -84,5 +105,6 @@ public class Projet {
     gamesByName(args);
     gamesByNameAndPlatform(args);
     gamesRatio(args);
+    gamesInfluenced(args);
   }
 }
