@@ -1,4 +1,4 @@
- ssh ghome.metz.supelec.fr -l hpcilc_7
+﻿ ssh ghome.metz.supelec.fr -l hpcilc_7
  ilc2018
  
  ssh vera.ic
@@ -17,4 +17,4 @@ Pour copier un fichier ssh en local :
 scp hpcilc_7@ghome.metz.supelec.fr:[FILE] [LOCAL]
 	- FILE : chemin absolue vers le fichier à copier
 	- LOCAL : dossier local où copier le fichier
-scp hpcilc_7@ghome.metz.supelec.fr:/usr/users/hpcilc/hpcilc_7/BROSSARD/TP2/TP2.tar.gz Workspaces/Cours/M2/Parallèlisme/TP2\ Optimisation/
+scp hpcilc_7@ghome.metz.supelec.fr:/usr/users/hpcilc/hpcilc_7/BROSSARD/TP2/TP2.tar.gz Workspaces/Cours/M2/Parallelisme/Optimisation/TP2

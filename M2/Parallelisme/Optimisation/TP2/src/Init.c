@@ -58,7 +58,7 @@ void CommandLineParsing(int argc, char *argv[])
  // Default init
  NbThreads = DEFAULT_NB_THREADS;
  KernelId = DEFAULT_KERNEL_ID;
-
+ Quiet = 0;
  // Init from the command line
  argc--; argv++;
  while (argc > 0) {
@@ -88,6 +88,9 @@ void CommandLineParsing(int argc, char *argv[])
        }
      } else if (strcmp(argv[0],"-h") == 0) {
        usage(EXIT_SUCCESS, stdout);
+     } else if(strcmp(argv[0], "-q") == 0) {
+       argc--; argv++;
+       Quiet = 1;
      } else {
        usage(EXIT_FAILURE, stderr);
      }

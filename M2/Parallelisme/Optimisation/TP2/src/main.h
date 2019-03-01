@@ -8,7 +8,7 @@
 /*-------------------------------------------------------------------------------*/
 
 // Pour les mises au point ----------
-#define SIZE            1024
+#define SIZE            8192
 //#define SIZE            1027
 
 // Pour les benchmarks  -------------
@@ -34,7 +34,7 @@ extern double C[SIZE][SIZE];
 /* Global variables to control computations.                                     */
 extern int NbThreads;
 extern int KernelId;
-
+extern int Quiet;
 
 /*-------------------------------------------------------------------------------*/
 /* Global functions.                                                             */

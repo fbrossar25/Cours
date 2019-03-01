@@ -82,25 +82,24 @@ void LocalMatrixProduct()
         int slice_size = SIZE / omp_get_num_threads();
         int colonne = slice_size * omp_get_thread_num();
         //printf("%d/%d/%d\n",omp_get_thread_num(), omp_get_num_threads(),slice_size),
-        cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+	    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
                 slice_size, SIZE, SIZE,
                 1.0, &A[colonne][0], SIZE,
                 &B[0][0], SIZE,
                 0.0, &C[colonne][0], SIZE);
-        #pragma omp single
-        {
-            int reste = (SIZE % omp_get_num_threads());
-            if(reste != 0)
+            #pragma omp single
             {
-                colonne = SIZE - reste;
-                cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
-                    reste, SIZE, SIZE,
-                    1.0, &A[colonne][0], SIZE,
-                    &B[0][0], SIZE,
-                    0.0, &C[colonne][0], SIZE);
+                int reste = (SIZE % omp_get_num_threads());
+                if(reste != 0)
+                {
+                    colonne = SIZE - reste;
+                    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+                        reste, SIZE, SIZE,
+                        1.0, &A[colonne][0], SIZE,
+                        &B[0][0], SIZE,
+                        0.0, &C[colonne][0], SIZE);
+                }
             }
-        }
-
     }
     break;
 

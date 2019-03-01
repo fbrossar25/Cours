@@ -27,7 +27,17 @@ double C[SIZE][SIZE];                            /* C matrix (result matrix).   
 /* Global variables to control computations.                                     */
 int NbThreads = -1;
 int KernelId = -1; 
+int Quiet = 0;
 
+void put_perf( int nb_th, int kernel, float t, float gflops )
+{
+  char file_name[64];
+  sprintf(&file_name[0], "perf-k%d-%d.csv", kernel, SIZE);
+  FILE * file = fopen(file_name, "a+");
+  fprintf(file, "%d;%d;%f;%f\n", nb_th, kernel, t, gflops);
+  fflush(file);
+  fclose(file);
+}
 
 /*-------------------------------------------------------------------------------*/
 /* Print result of the parallel computation and performances                     */
@@ -70,9 +80,11 @@ int main(int argc, char *argv[])
   td2 = omp_get_wtime(); 
   CommandLineParsing(argc,argv);                  /* For future evolutions ...   */
   LocalMatrixInit();                              /* Initialization of the data  */
-
-  fprintf(stdout,"Computation starts: Matrixes %dx%d, KernelId %d, NbThreads %d\n",
+  if(Quiet == 0)
+  {
+    fprintf(stdout,"Computation starts: Matrixes %dx%d, KernelId %d, NbThreads %d\n",
                   SIZE, SIZE, KernelId, NbThreads);
+  }
   fflush(stdout);
 
   td1 = omp_get_wtime();                       
@@ -84,9 +96,11 @@ int main(int argc, char *argv[])
 
   tf2 = omp_get_wtime();                          /* End of time measurement     */
   d2 = tf2 - td2;
-
-  PrintResultsAndPerf(gigaflops,d1,d2);           /* Results and perf printing   */
-
+  if(Quiet == 0)
+  {
+    PrintResultsAndPerf(gigaflops,d1,d2);           /* Results and perf printing   */
+  }
+  put_perf(NbThreads, KernelId, d1, gigaflops);
   return(EXIT_SUCCESS);
 }
 
