@@ -97,6 +97,26 @@ public class Projet {
     }
   }
 
+  public static void countInfluenced(String[] args) {
+    try {
+      Configuration conf = new Configuration();
+      Job job = new Job(conf, "countInfluenced");
+      job.setJarByClass(CountInfluenced.class);
+      job.setMapperClass(CountInfluenced.CountInfluencedMapper.class);
+      job.setReducerClass(CountInfluenced.CountInfluencedReducer.class);
+      job.setInputFormatClass(TextInputFormat.class);
+      job.setOutputFormatClass(TextOutputFormat.class);
+      job.setOutputKeyClass(Text.class);
+      job.setOutputValueClass(Text.class);
+      FileInputFormat.setInputPaths(job, new Path(args[1]).suffix("/step4/part-r-00000"));
+      FileOutputFormat.setOutputPath(job, new Path(args[1]).suffix("/result"));
+      job.waitForCompletion(true);
+    } catch (IOException | InterruptedException | ClassNotFoundException e) {
+      e.printStackTrace();
+      System.exit(-1);
+    }
+  }
+
   public static void main(String[] args) {
     if (args.length != 2) {
       System.err.println("Usage : hadoop jar Projet.jar Projet INPUT OUTPUT");
@@ -106,5 +126,6 @@ public class Projet {
     gamesByNameAndPlatform(args);
     gamesRatio(args);
     gamesInfluenced(args);
+    countInfluenced(args);
   }
 }

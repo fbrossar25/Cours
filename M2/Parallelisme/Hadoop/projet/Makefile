@@ -19,9 +19,10 @@ classes:
 	mkdir -p $(CLASSES_DIR)
 	hadoop com.sun.tools.javac.Main -d $(CLASSES_DIR) $(SRC_DIR)/*.java 
 
-run:
-	rm -rf $(OUTPUT_DIR)
+run: clean
 	hadoop jar $(JAR_NAME) $(PROJECT) $(INPUT_FILE) $(OUTPUT_DIR)
+	cp $(OUTPUT_DIR)/result/part-r-00000 .
+	mv part-r-00000 result
 
 clean: clean_classes
 	rm -rf $(OUTPUT_DIR)
