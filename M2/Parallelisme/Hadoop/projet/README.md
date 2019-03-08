@@ -24,6 +24,11 @@ https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings/#Video_Games_Sal
     - Sinon Influencé  = Non
 6. MapReduce clé = (Oui / Non), valeur = (Nombre d'influencé, Pourcentage)
 
+## Lancement du projet
+
+ 1. make # compilation
+ 2. make run # lancement
+
 ## Auteurs
 ---
 
