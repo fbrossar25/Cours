@@ -1,0 +1,1 @@
+call vendor/bin/doctrine.bat orm:convert-mapping --namespace="" --force --from-database yml ./config/yaml

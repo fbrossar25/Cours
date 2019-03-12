@@ -1,0 +1,1 @@
+call vendor/bin/doctrine.bat orm:clear-cache:metadata

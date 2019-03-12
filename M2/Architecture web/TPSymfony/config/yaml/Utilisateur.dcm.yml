@@ -1,0 +1,85 @@
+Utilisateur:
+    type: entity
+    table: utilisateur
+    uniqueConstraints:
+        UNIQUE_LOGIN:
+            columns:
+                - LOGIN
+        UNIQUE_EMAIL:
+            columns:
+                - EMAIL
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: ID
+            generator:
+                strategy: IDENTITY
+    fields:
+        login:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: LOGIN
+        pass:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: PASS
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: EMAIL
+        nom:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: NOM
+        prenom:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: PRENOM
+        adresse:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: ADRESSE
+        ville:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: VILLE
+        codePostale:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: CODE_POSTALE
+        telephone:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: TELEPHONE
+    lifecycleCallbacks: {  }

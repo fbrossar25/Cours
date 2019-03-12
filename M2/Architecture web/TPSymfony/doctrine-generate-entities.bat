@@ -1,0 +1,1 @@
+call vendor/bin/doctrine.bat orm:generate-entities --no-backup --generate-annotations=false --update-entities=true --generate-methods=false ./src/model
