@@ -4,23 +4,23 @@
 <h1>Inscription validée</h1>
 <fieldset>
     <legend>Identité</legend>
-    Nom :<input disabled id="nom" type="text" name="nom" value="{{user.name}}"/><br>
-    Prenom :<input disabled id="prenom" type="text" name="prenom" value="{{user.lastName}}"/>
+    Nom :<input disabled id="nom" type="text" name="nom" value="{{user.nom}}"/><br>
+    Prenom :<input disabled id="prenom" type="text" name="prenom" value="{{user.prenom}}"/>
 </fieldset>
 <fieldset>
     <legend>Adresse</legend>
-    Libellé voie :<input disabled id="adresse" type="text" name="adresse"/><br>
-    Code postale :<input disabled id="code-postale" type="text" name="code-postale"/><br>
-    Ville :<input disabled id="ville" type="text" name="ville"/>
+    Libellé voie :<input disabled id="adresse" type="text" name="adresse" value="{{user.adresse}}"/><br>
+    Code postale :<input disabled id="code-postale" type="text" name="code-postale" value="{{user.codepostale}}"/><br>
+    Ville :<input disabled id="ville" type="text" name="ville" value="{{user.ville}}"/>
 </fieldset>
 <fieldset>
     <legend>Contact</legend>
-    Téléphone :<input disabled id="telephone" type="text" name="telephone"/><br>
-    Email :<input disabled id="email" type="email" name="email"/>
+    Téléphone :<input disabled id="telephone" type="text" name="telephone" value="{{user.telephone}}"/><br>
+    Email :<input disabled id="email" type="email" name="email" value="{{user.email}}"/>
 </fieldset>
 <fieldset>
     <legend>Authentification</legend>
-    Login :<input disabled id="login" type="text" name="login"/><br>
-    Hashed password :<input disabled id="pass" type="text" name="pass"/>
+    Login :<input disabled id="login" type="text" name="login" value="{{user.login}}"/><br>
+    Hashed password :<input disabled id="pass" type="text" name="pass" value="{{user.pass}}"/>
 </fieldset>
 {% endblock %}
