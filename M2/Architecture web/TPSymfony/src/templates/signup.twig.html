@@ -2,11 +2,11 @@
 
 {% block body %}
 <h1>Inscription</h1>
-<form id="formulaire" action="#" method="post" onsubmit="validerFormulaire(event)">
+<form id="formulaire" action="/signup-validate" method="post" onsubmit="return on_submit();">
     <fieldset>
         <legend>Identité</legend>
-        Nom :<input id="nom" type="text" name="nom"/><br>
-        Prenom :<input id="prenom" type="text" name="prenom"/>
+        Nom :<input id="nom" type="text" name="nom" required/><br>
+        Prenom :<input id="prenom" type="text" name="prenom" required/>
     </fieldset>
     <fieldset>
         <legend>Adresse</legend>
@@ -17,13 +17,13 @@
     <fieldset>
         <legend>Contact</legend>
         Téléphone :<input id="telephone" type="text" name="telephone"/><br>
-        Email :<input id="email" type="email" name="email"/>
+        Email :<input id="email" type="email" name="email" required/>
     </fieldset>
     <fieldset>
         <legend>Authentification</legend>
-        Login :<input id="login" type="text" name="login"/><br>
-        Mot de passe :<input id="pass" type="password" name="pass"/><br>
-        Confirmation du mot de passe :<input id="pass-confirm" type="password" name="pass-confirm"/>
+        Login :<input id="login" type="text" name="login" required/><br>
+        Mot de passe :<input id="pass" type="password" name="pass" required/><br>
+        Confirmation du mot de passe :<input id="pass-confirm" type="password" name="pass-confirm" required/>
     </fieldset>
     <input type="submit" value="Valider" id="btn-valider"/>
 </form>

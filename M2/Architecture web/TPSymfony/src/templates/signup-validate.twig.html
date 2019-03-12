@@ -1,0 +1,26 @@
+{% extends 'app.twig.html' %}
+
+{% block body %}
+<h1>Inscription validée</h1>
+<fieldset>
+    <legend>Identité</legend>
+    Nom :<input disabled id="nom" type="text" name="nom" value="{{user.name}}"/><br>
+    Prenom :<input disabled id="prenom" type="text" name="prenom" value="{{user.lastName}}"/>
+</fieldset>
+<fieldset>
+    <legend>Adresse</legend>
+    Libellé voie :<input disabled id="adresse" type="text" name="adresse"/><br>
+    Code postale :<input disabled id="code-postale" type="text" name="code-postale"/><br>
+    Ville :<input disabled id="ville" type="text" name="ville"/>
+</fieldset>
+<fieldset>
+    <legend>Contact</legend>
+    Téléphone :<input disabled id="telephone" type="text" name="telephone"/><br>
+    Email :<input disabled id="email" type="email" name="email"/>
+</fieldset>
+<fieldset>
+    <legend>Authentification</legend>
+    Login :<input disabled id="login" type="text" name="login"/><br>
+    Hashed password :<input disabled id="pass" type="text" name="pass"/>
+</fieldset>
+{% endblock %}
