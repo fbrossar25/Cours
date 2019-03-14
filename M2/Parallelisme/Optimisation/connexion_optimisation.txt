@@ -10,6 +10,8 @@
     oarsub -p "cluster='sarah'" -l nodes=1,walltime=4:00:00 -I
 	Pour plusierus machines
     oarsub -p "cluster='sarah'" -l nodes=8,walltime=4:00:00 -I
+    oarsub -p "cluster='sarah'" -l nodes=16,walltime=4:00:00 -I
+    oarsub -p "cluster='sarah'" -l nodes=32,walltime=4:00:00 -I
     
     
 pour se déconnecter
