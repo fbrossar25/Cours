@@ -1,8 +1,0 @@
-mpirun -np 16 -map-by ppr:1:socket -rank-by socket -bind-to socket -machinefile machines.txt ./MatrixProduct -klc 1 -k 1 -nt 1 -lc 8192
-    make mpirun SIZE=8192 N_MACHINES=16
-mpirun -np 16 -map-by ppr:1:socket -rank-by socket -bind-to socket -machinefile machines.txt ./MatrixProduct -klc 1 -k 1 -nt 4 -lc 8192
-    make mpirun SIZE=8192 N_THREADS=4 N_MACHINES=16
-mpirun -np 16 -map-by ppr:1:core -rank-by core -bind-to core -machinefile machines.txt ./MatrixProduct -klc 1 -k 1 -nt 1 -lc 8192
-    make mpirun SIZE=8192 RESOURCE=core N_MACHINES=16
-mpirun -np 16 -map-by ppr:1:core -rank-by node -bind-to none -machinefile machines.txt ./MatrixProduct -klc 1 -k 1 -nt 1 -lc 8192
-    make mpirun SIZE=8192 N_THREADS=1 RESOURCE=core BINDTO=none RANKBY=node N_MACHINES=16
