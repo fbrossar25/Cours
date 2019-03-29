@@ -1,0 +1,9 @@
+- installer anaconda
+- activer l'environnement BigData
+    - conda install nbconvert notebook jupyter_client
+    - conda env create -f TDR.yml
+    - conda activate TDR
+- Lancer notebook
+    - jupyter notebook
+- Désactiver l'env
+    - conda deactivate
