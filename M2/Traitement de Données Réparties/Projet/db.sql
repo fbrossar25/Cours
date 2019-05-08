@@ -1,0 +1,11 @@
+
+
+DROP TABLE IF EXISTS films;
+
+CREATE TABLE films(
+ film_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ title VARCHAR (500),
+ year INTEGER,
+ genre_list VARCHAR(500),
+ cast_list VARCHAR(4096)
+);
