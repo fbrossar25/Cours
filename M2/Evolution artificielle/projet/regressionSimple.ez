@@ -15,61 +15,109 @@
 __________________________________________________________*/
 
 \User declarations :
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <cmath>
+#include <vector>
 
-// these 3 defines are mandatory here. Adjust as you like.
-#define NO_FITNESS_CASES 100
-#define VAR_LEN 1
 #define GROW_FULL_RATIO 0.5
+// nombre de colonne dans le ficheir CSV
+//derniere colonne contient le r√©sultat
+//premieres colonnes contiennent les variables
+#define VAR_LEN 7
+#define CSV_FILENAME "data.csv"
 
 // this is the number of learning cases computed in parallel.
 // note that on 1024 is the maximum size on fermi architectures 512 on older cards.
 #define NUMTHREAD 1024
 #define MAX_STACK 15
 
-
 #define PI (3.141592653589793)
+
+int NO_FITNESS_CASES;
+
 \end
 
 \User functions:
-#define POLY(x) x*x*x-3*x*x+x+sin(x*10)
-/**
-   This function generates data NO_FITNESS_CASES fitness cases,
-   from the polynome POLY(X) with X randomly picked between (-1,1)
 
-   @inputs address of the inputs array. (array will be allocated here)
-   @outputs adddress of the outputs array. (array will be allocated here)
+std::vector<std::string> split(std::string str,std::string sep)
+{
+    char* cstr=const_cast<char*>(str.c_str());
+    char* current;
+    std::vector<std::string> arr;
+    current=strtok(cstr,sep.c_str());
+    while(current!=NULL)
+	{
+        arr.push_back(current);
+        current=strtok(NULL,sep.c_str());
+    }
+    return arr;
+}
 
-   @ret number of loaded fitness cases (should be equal to NO_FITNESS_CASES).   
- */
+std::vector<float> toFloats(std::vector<std::string> arr)
+{
+	std::vector<float> floats;
+	for(size_t i = 0; i != arr.size(); i++)
+	{
+		floats.push_back(std::stof(arr[i]));
+	}
+	return floats;
+}
 
-int generateData(float*** inputs, float** outputs){
-  int i=0;
-
-  (*inputs) = new float*[NO_FITNESS_CASES];
-  (*outputs) = new float[NO_FITNESS_CASES];
-
-  for( i=0 ; i<100 ; i++ ){
-    (*inputs)[i]=new float[VAR_LEN];
-    float x = random(-12.0,-0.5);
-    (*inputs)[i][0] = x;
-    (*outputs)[i] = POLY(x);
-  }
-  
-  for( i=100 ; i<NO_FITNESS_CASES-100 ; i++ ){
-    (*inputs)[i]=new float[VAR_LEN];
-    float x = random(-0.5,+2.5);
-    (*inputs)[i][0] = x;
-    (*outputs)[i] = POLY(x);
-  }
-  
-  for( i=NO_FITNESS_CASES-100 ; i<NO_FITNESS_CASES ; i++ ){
-    (*inputs)[i]=new float[VAR_LEN];
-    float x = random(2.5,12.0);
-    (*inputs)[i][0] = x;
-    (*outputs)[i] = POLY(x);
-  }
-
-  return NO_FITNESS_CASES;
+int loadData(float*** inputs, float** outputs)
+{
+	std::ifstream file(CSV_FILENAME);
+	if(file.is_open())
+	{
+		std::string line;
+		std::vector<float> arr;
+		std::vector<std::vector<float>> datas;
+		while(file.good())
+		{
+			std::getline(file, line);
+			arr = toFloats(split(line, ";"));
+			if(arr.size() == VAR_LEN)
+			{
+				datas.push_back(arr);
+			}
+		}
+		file.close();
+		
+		(*inputs) = new float*[datas.size()];
+		(*outputs) = new float[datas.size()];
+		
+		for(size_t i = 0; i != datas.size(); i++)
+		{
+			(*inputs)[i] = new float[VAR_LEN];
+			for(int j=0; j<VAR_LEN-1; j++)
+			{
+				(*inputs)[i][j] = datas[i][j];
+			}
+			(*outputs)[i] = datas[i][VAR_LEN - 1];
+		}
+		NO_FITNESS_CASES = datas.size();
+		
+		/*
+		//PRINT DATAS
+		for(size_t i = 0; i < NO_FITNESS_CASES; i++)
+		{
+			for(int j=0; j<VAR_LEN-1; j++)
+			{
+				std::cout << (*inputs)[i][j] << "    ";
+			}
+			std::cout << (*outputs)[i] << std::endl;
+		}
+		*/
+		
+		return datas.size();
+	}
+	else
+	{
+		std::cout << "Le fichier " << CSV_FILENAME << " n'existe pas." << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 
@@ -85,14 +133,16 @@ void free_data(){
 
 \Before everything else function:
 {
-  generateData(&inputs,&outputs);
+  loadData(&inputs,&outputs);
 }
 \end
 
 \After everything else function:
 {
-  std::cout << toString(((IndividualImpl*)EA->population->Best)->root) << std::endl;
 
+  std::cout << "formule trouvÈe : " << std::endl;
+  std::cout <<  toString(((IndividualImpl*)EA->population->Best)->root) << std::endl;
+  std::cout << "std dev : " << bBest->evaluate() << std::endl;
   free_data();
 }
 \end
@@ -148,8 +198,13 @@ GenomeClass {
 
 
 \begin operator description :
-OP_X, "x", 0, {RESULT=INPUT[0];};
-OP_ERC, "ERC", 0, {RESULT=ERC;};
+OP_A, "xA2", 0, {RESULT=INPUT[0];};
+OP_B, "xB2", 0, {RESULT=INPUT[1];};
+OP_C, "xC2", 0, {RESULT=INPUT[2];};
+OP_D, "xD2", 0, {RESULT=INPUT[3];};
+OP_E, "xE2", 0, {RESULT=INPUT[4];};
+OP_F, "xF2", 0, {RESULT=INPUT[5];};
+OP_ERC, "ERC", 0,{RESULT=ERC;};
 OP_ADD, "+", 2, {RESULT=OP1+OP2;};
 OP_SUB, "-", 2, {RESULT=OP1-OP2;};
 OP_MUL, "*", 2, {RESULT=OP1*OP2;};
@@ -157,7 +212,12 @@ OP_DIV, "/", 2, {
   if( !OP2 ) RESULT = 1;
   else RESULT = OP1/OP2;
 };
-OP_SIN, "sin", 1, {RESULT=sin(OP1);};
+OP_LN, "ln", 1, {RESULT=std::log(OP1);};
+OP_NEG, "neg", 1, {RESULT=-OP1;};
+OP_INV, "inv", 1, {
+  if( !OP1 ) RESULT = 1;
+  else RESULT = 1/OP1;
+};
 \end
 
 
@@ -165,12 +225,12 @@ OP_SIN, "sin", 1, {RESULT=sin(OP1);};
 \end
 
 \GenomeClass::evaluator for each fc :
-float expected_value = OUTPUT;
-ERROR = (expected_value-EVOLVED_VALUE)*(expected_value-EVOLVED_VALUE);
+	float expected_value = OUTPUT;
+	ERROR = (expected_value-EVOLVED_VALUE)*(expected_value-EVOLVED_VALUE);
 \end
 
 \GenomeClass::evaluator accumulator :
-return ERROR;
+	return ERROR;
 \end
 
 
@@ -178,13 +238,15 @@ return ERROR;
 
 CXXFLAGS+=
 LDFLAGS+=
+CXX=g++
+
 \end
 
 \Default run parameters :         // Please let the parameters appear in this order
-  Number of generations : 50   	// NB_GEN
+  Number of generations : 200   	// NB_GEN
   Time limit: 0 			// In seconds, 0 to deactivate
   Population size : 32768			//POP_SIZE
-  Offspring size : 32768 // 40% 
+  Offspring size : 40% 
   Mutation probability : 0.01       // MUT_PROB
   Crossover probability : 1      // XOVER_PROB
   Evaluator goal : minimise      // Maximise
@@ -201,7 +263,7 @@ LDFLAGS+=
   Generate csv stats file:false			
   Generate gnuplot script:false
   Generate R script:false
-  Plot stats:true				//Default: 0
+  Plot stats:false				//Default: 0
 
   //  Remote island model: true
   //IP	  file: ip.txt 			//File containing all the remote island's IP
