@@ -8,4 +8,4 @@ CREATE TABLE films(
  year INTEGER,
  genre_list VARCHAR(500),
  cast_list VARCHAR(4096)
-);
+) DEFAULT CHARSET=utf8;
